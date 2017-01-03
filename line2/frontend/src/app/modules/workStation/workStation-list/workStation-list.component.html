@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+    {{'workStations'}}
+    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+  </div>
+  <div class="card-block">
+    <div class="container-fluid">
+      <div class="row" *ngFor="let workStation of workStations" >
+        <div class="col-md-2">
+          {{workStation.id}}
+        </div>
+        <div class="col-md-4">
+          {{workStation.name}}
+        </div>
+        <div class="col-md-2">
+          {{workStation.ip}}
+        </div>
+        <div class="col-ms-4 pull-right">
+          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(workStation)"></button>
+          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(workStation)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
