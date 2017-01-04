@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { User } from '../../../user/user';
 import { WorkStation } from '../../../workStation/workStation';
 import { WorkStationService } from '../../../workStation/workStation.service';
 import { WorkStationConfiguration } from './workStationConfiguration';
@@ -24,7 +25,7 @@ export class WorkStationConfigurationComponent implements OnInit {
   nextWorkstation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
 
   constructor(private route: ActivatedRoute, private workStationService: WorkStationService, private workStationConfigurationService: WorkStationConfigurationService) { 
-      
+      this.workStationConfiguration = new WorkStationConfiguration();
   }
 
   ngOnInit() : void{
@@ -53,6 +54,10 @@ export class WorkStationConfigurationComponent implements OnInit {
           //this.messageType = MESSAGE_TYPE.Error;
           this.message = error;
         })
+  }
+
+  setUsers(users: User[]): void {
+    this.workStationConfiguration.users = users;
   }
 
   goBack(): void {

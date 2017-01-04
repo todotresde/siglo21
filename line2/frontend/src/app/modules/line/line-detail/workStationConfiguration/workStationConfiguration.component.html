@@ -34,6 +34,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6"><app-workstation-product-types></div>
-    <div class="col-md-6"><app-workstation-users></div>
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <app-workstation-users [inputUsers]="workStationConfiguration.users" (outputUsers)="setUsers($event)"></app-workstation-users>
+    </div>
 </div>

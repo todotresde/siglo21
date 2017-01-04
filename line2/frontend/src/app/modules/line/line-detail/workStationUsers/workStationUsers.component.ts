@@ -1,60 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from '../../../user/user';
 import { UserService } from '../../../user/user.service';
 
 @Component({
-  selector: 'app-workstation-product-types',
+  selector: 'app-workstation-users',
   templateUrl: './workStationUsers.component.html',
   styleUrls: ['./workStationUsers.component.css'],
   providers:[UserService]
 })
 export class WorkStationUsersComponent implements OnInit {
+  @Input() inputUsers: User[];
+  @Output() outputUsers = new EventEmitter<User[]>();
 
-  message : String = "";
+  users : User[];
+  selectedUser : User;
+  selectedUsers : User[];
   
-  workStations : WorkStation[];
-  workStationUsers: WorkStationUsers;
-  
-  prevWorkstation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
-  currentWorkstation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
-  nextWorkstation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
-
-  constructor(private route: ActivatedRoute, private workStationService: WorkStationService, private workStationUsersService: WorkStationUsersService) { 
-      
+  constructor(private route: ActivatedRoute, private userService: UserService) { 
+      this.userService.getUsers().then(users => this.users = users);
+      this.selectedUsers = this.inputUsers;
   }
 
   ngOnInit() : void{
-    this.route.params.subscribe(params => {
-      if(params["id"]){
-        this.workStationUsersService.getWorkStationUsers(params["id"]).then(workStationUsers =>{ 
-          this.workStationUsers = workStationUsers;
-        });
-      }
-    });
-
-    this.workStationService.getWorkStations().then(workStations => this.workStations = workStations);
+    
   }
 
-  save(): void {
-    this.workStationUsersService
-        .save(this.workStationUsers)
-        .then(workStationUsers => {
-          this.workStationUsers = workStationUsers; 
-
-          //this.messageType = MESSAGE_TYPE.Success;
-          this.message = "save-success";
-          
-          this.goBack();
-        }).catch(error => {
-          //this.messageType = MESSAGE_TYPE.Error;
-          this.message = error;
-        })
-  }
-
-  goBack(): void {
-    window.history.back();
+  add(user: User): void {
+    this.selectedUsers.push(user);
+    this.outputUsers.emit(this.selectedUsers);
   }
 
 }

@@ -5,6 +5,16 @@
   </div>
   <div class="card-block">
     <div class="container-fluid">
+      <div class="row" >
+        <div class="col-md-2">
+          <strong>{{'id'}}</strong>
+        </div>
+        <div class="col-md-6">
+          <strong>{{'name'}}</strong>
+        </div>
+        <div class="col-ms-4 pull-right">
+        </div>
+      </div>
       <div class="row" *ngFor="let line of lines" >
         <div class="col-md-2">
           {{line.id}}
