@@ -11,6 +11,7 @@ import { ProductModule } from './product/product.module';
 import { ProductTypeModule } from './productType/productType.module';
 import { UserModule } from './user/user.module';
 import { WorkStationModule } from './workStation/workStation.module';
+import { ManufacturingOrderModule } from './manufacturingOrder/manufacturingOrder.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { WorkStationModule } from './workStation/workStation.module';
     WorkStationModule,
     ProductModule,
     ProductTypeModule,
-    LineModule
+    LineModule,
+    ManufacturingOrderModule
   ],
   declarations: [ModulesComponent, TopbarComponent, SidebarComponent]
 })

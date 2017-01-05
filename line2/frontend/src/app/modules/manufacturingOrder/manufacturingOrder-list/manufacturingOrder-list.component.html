@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    {{'manufacturingOrders'}}
+    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+  </div>
+  <div class="card-block">
+    <div class="container-fluid">
+      <div class="row" >
+        <div class="col-md-2">
+          <strong>{{'id'}}</strong>
+        </div>
+        <div class="col-md-6">
+          <strong>{{'code'}}</strong>
+        </div>
+        <div class="col-ms-4 pull-right">
+        </div>
+      </div>
+      <div class="row" *ngFor="let manufacturingOrder of manufacturingOrders" >
+        <div class="col-md-2">
+          {{manufacturingOrder.id}}
+        </div>
+        <div class="col-md-6">
+          {{manufacturingOrder.code}}
+        </div>
+        <div class="col-ms-4 pull-right">
+          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrder)"></button>
+          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrder)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

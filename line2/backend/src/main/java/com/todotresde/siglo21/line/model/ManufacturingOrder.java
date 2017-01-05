@@ -23,16 +23,16 @@ public class ManufacturingOrder {
     private Date date;
     @NotNull
     @OneToMany
-    private List<CustomProduct> customProducts;
+    private List<ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts;
 
     public ManufacturingOrder(){
 
     }
 
-    public ManufacturingOrder(Long id, String code, List<CustomProduct> customProducts) {
+    public ManufacturingOrder(Long id, String code, List<ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts) {
         this.id = id;
         this.code = code;
-        this.customProducts = customProducts;
+        this.manufacturingOrderCustomProducts = manufacturingOrderCustomProducts;
     }
 
     public Long getId() {
@@ -59,11 +59,11 @@ public class ManufacturingOrder {
         this.date = date;
     }
 
-    public List<CustomProduct> getCustomProducts() {
-        return customProducts;
+    public List<ManufacturingOrderCustomProduct> getManufacturingOrderCustomProducts() {
+        return manufacturingOrderCustomProducts;
     }
 
-    public void setCustomProducts(List<CustomProduct> customProducts) {
-        this.customProducts = customProducts;
+    public void setManufacturingOrderCustomProducts(List<ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts) {
+        this.manufacturingOrderCustomProducts = manufacturingOrderCustomProducts;
     }
 }

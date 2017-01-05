@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        {{'manufacturingOrder'}}
+        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
+    </div>
+    <!--<app-message [messageType]="messageType" [message]="message"></app-message>-->
+    <div class="card-block">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <label for="id" class="col-md-1 col-form-label">{{'id'}}</label>
+                    <div class="col-md-3">
+                        <input class="form-control" type="number" id="id" [(ngModel)]="manufacturingOrder.id" placeholder="{{'someId'}}">
+                    </div>
+                    <label for="code" class="col-md-1 col-form-label">{{'code'}}</label>
+                    <div class="col-md-3">
+                        <input class="form-control" type="search" id="code" [(ngModel)]="manufacturingOrder.code" placeholder="{{'someCode'}}">
+                    </div>
+                    <label for="date" class="col-md-1 col-form-label">{{'date'}}</label>
+                    <div class="col-md-3">
+                        <input class="form-control" type="search" id="date" [(ngModel)]="manufacturingOrder.date" placeholder="{{'someDate'}}">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

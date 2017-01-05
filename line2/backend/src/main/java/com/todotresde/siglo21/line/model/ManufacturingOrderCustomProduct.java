@@ -11,8 +11,8 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @Entity
-@Table(name = "customProduct")
-public class CustomProduct {
+@Table(name = "manufacturingOrderCustomProduct")
+public class ManufacturingOrderCustomProduct {
     @Id
     @NotNull
     private Long id;
@@ -22,11 +22,11 @@ public class CustomProduct {
     @OneToMany
     private List<ManufacturingOrderProduct> manufacturingOrderProducts;
 
-    public CustomProduct(){
+    public ManufacturingOrderCustomProduct(){
 
     }
 
-    public CustomProduct(Long id, String description, List<ManufacturingOrderProduct> manufacturingOrderProducts) {
+    public ManufacturingOrderCustomProduct(Long id, String description, List<ManufacturingOrderProduct> manufacturingOrderProducts) {
         this.id = id;
         this.description = description;
         this.manufacturingOrderProducts = manufacturingOrderProducts;
