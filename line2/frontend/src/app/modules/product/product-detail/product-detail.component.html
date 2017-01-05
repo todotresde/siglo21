@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        {{'product'}}
+        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
+    </div>
+    <!--<app-message [messageType]="messageType" [message]="message"></app-message>-->
+    <div class="card-block">
+        <div class="container-fluid">
+            <div class="form-group row">
+                <label for="id" class="col-md-2 col-form-label">{{'id'}}</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="number" id="id" [(ngModel)]="product.id" placeholder="{{'someId'}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="code" class="col-md-2 col-form-label">{{'code'}}</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="search" id="code" [(ngModel)]="product.code" placeholder="{{'someName'}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="description" class="col-md-2 col-form-label">{{'description'}}</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="search" id="description" [(ngModel)]="product.description" placeholder="{{'someDescription'}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-md-2 col-form-label">{{'productType'}}</label>
+                <div ngbDropdown class="d-inline-block col-md-10">
+                    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedProductType.name}}</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                        <button class="dropdown-item" *ngFor="let productType of productTypes" (click)="selectedProductType = productType" >{{productType.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

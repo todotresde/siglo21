@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header">
+    {{'products'}}
+    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+  </div>
+  <div class="card-block">
+    <div class="container-fluid">
+      <div class="row" >
+          <div class="col-md-1">
+              <strong>{{'id'}}</strong>
+          </div>
+          <div class="col-md-3">
+              <strong>{{'code'}}</strong>
+          </div>
+          <div class="col-md-4">
+              <strong>{{'description'}}</strong>
+          </div>
+          <div class="col-md-4">
+              <strong>{{'productType'}}</strong>
+          </div>
+          <div class="col-ms-2 pull-right">
+          </div>
+      </div>
+      <div class="row" *ngFor="let product of products" >
+        <div class="col-md-1">
+          {{product.id}}
+        </div>
+        <div class="col-md-3">
+          {{product.code}}
+        </div>
+        <div class="col-md-4">
+          {{product.description}}
+        </div>
+        <div class="col-md-2">
+          {{product.productType.name}}
+        </div>
+        <div class="col-ms-2 pull-right">
+          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(product)"></button>
+          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(product)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
