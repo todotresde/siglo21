@@ -26,13 +26,13 @@ public class UserController {
 
     @RequestMapping(value="/user/{id}", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody
-    User get(@PathVariable Integer id) {
+    User get(@PathVariable Long id) {
         return this.userService.byId(id);
     }
 
     @RequestMapping(value="/user/{id}", method= RequestMethod.DELETE, produces="application/json")
     public @ResponseBody
-    User delete(@PathVariable Integer id) {
+    User delete(@PathVariable Long id) {
         return this.userService.delete(id);
     }
 

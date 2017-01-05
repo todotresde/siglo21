@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface UserService {
     public List<User> all();
-    public User byId(Integer id);
-    public User delete(Integer id);
+    public User byId(Long id);
+    public User delete(Long id);
     public User save(User user);
 }

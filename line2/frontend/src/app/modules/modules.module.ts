@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import {TopbarComponent} from '../layout/topbar/topbar.component';
 import {SidebarComponent} from '../layout/sidebar/sidebar.component';
 
+import { LineModule } from './line/line.module';
+import { ProductTypeModule } from './productType/productType.module';
 import { UserModule } from './user/user.module';
 import { WorkStationModule } from './workStation/workStation.module';
-import { ProductTypeModule } from './productType/productType.module';
-import { LineModule } from './line/line.module';
+
 
 @NgModule({
   imports: [

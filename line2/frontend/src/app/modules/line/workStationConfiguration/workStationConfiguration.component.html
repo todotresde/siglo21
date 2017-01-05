@@ -1,0 +1,2 @@
+<app-workstation-configuration-list [inputWorkStationConfigurations]="workStationConfigurations" (selectedWorkStationConfiguration)="setSelectedWorkStationConfiguration($event)"></app-workstation-configuration-list>
+<app-workstation-configuration-detail [inputWorkStationConfiguration]="selectedWorkStationConfiguration" (outputWorkStationConfiguration)="addWorkStationConfiguration($event)" ></app-workstation-configuration-detail>

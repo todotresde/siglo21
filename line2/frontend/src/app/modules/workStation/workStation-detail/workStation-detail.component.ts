@@ -17,7 +17,7 @@ export class WorkStationDetailComponent implements OnInit {
   message : String = "";
 
   constructor(private route: ActivatedRoute, private workStationService: WorkStationService) { 
-    this.workStation = new WorkStation();
+    this.workStation = new WorkStation(-1,"-1","0.0.0.0");
   }
 
   ngOnInit() : void{

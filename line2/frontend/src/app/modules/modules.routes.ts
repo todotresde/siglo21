@@ -15,7 +15,7 @@ export const ModulesRoutes: Route[] = [
 	    	...UserRoutes,
 	    	...WorkStationRoutes,
 	    	...ProductTypeRoutes,
-			...LineRoutes
+			  ...LineRoutes
     	]
   	}
 ];

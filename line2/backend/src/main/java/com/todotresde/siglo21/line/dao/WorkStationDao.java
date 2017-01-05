@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
  * Created by Leonardo on 27/12/2016.
  */
 @Transactional
-public interface WorkStationDao extends CrudRepository<WorkStation, Integer> {
-    public WorkStation findById(Integer id);
+public interface WorkStationDao extends CrudRepository<WorkStation, Long> {
+    public WorkStation findById(Long id);
+    public void delete(Long id);
 }

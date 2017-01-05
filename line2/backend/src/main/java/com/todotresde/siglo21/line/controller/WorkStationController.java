@@ -27,13 +27,13 @@ public class WorkStationController {
 
     @RequestMapping(value="/workStation/{id}", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody
-    WorkStation get(@PathVariable Integer id) {
+    WorkStation get(@PathVariable Long id) {
         return this.workStationService.byId(id);
     }
 
     @RequestMapping(value="/workStation/{id}", method= RequestMethod.DELETE, produces="application/json")
     public @ResponseBody
-    WorkStation delete(@PathVariable Integer id) {
+    WorkStation delete(@PathVariable Long id) {
         return this.workStationService.delete(id);
     }
 

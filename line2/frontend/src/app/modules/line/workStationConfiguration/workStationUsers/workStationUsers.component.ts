@@ -11,7 +11,7 @@ import { UserService } from '../../../user/user.service';
   providers:[UserService]
 })
 export class WorkStationUsersComponent implements OnInit {
-  @Input() inputUsers: User[];
+  @Input() inputUsers: User[] = [];
   @Output() outputUsers = new EventEmitter<User[]>();
 
   users : User[];
@@ -19,16 +19,21 @@ export class WorkStationUsersComponent implements OnInit {
   selectedUsers : User[];
   
   constructor(private route: ActivatedRoute, private userService: UserService) { 
-      this.userService.getUsers().then(users => this.users = users);
       this.selectedUsers = this.inputUsers;
+      this.selectedUser = new User();
   }
 
   ngOnInit() : void{
-    
+      this.userService.getUsers().then(users => this.users = users);
   }
 
   add(user: User): void {
     this.selectedUsers.push(user);
+    this.outputUsers.emit(this.selectedUsers);
+  }
+
+  remove(user: User): void {
+    this.selectedUsers = this.selectedUsers.filter(u => u.id !== user.id)
     this.outputUsers.emit(this.selectedUsers);
   }
 

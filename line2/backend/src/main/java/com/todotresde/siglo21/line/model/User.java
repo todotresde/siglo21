@@ -15,25 +15,32 @@ import javax.validation.constraints.NotNull;
 public class User {
     @Id
     @NotNull
-    public Integer id;
-
+    private Long id;
     @NotNull
-    public String name;
+    private String name;
 
     public User(){
 
     }
 
-    public User(Integer id, String name) {
+    public User(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getName() {
-        return this.name;
+    public Long getId() {
+        return id;
     }
 
-    public Integer getId() {
-        return this.id;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

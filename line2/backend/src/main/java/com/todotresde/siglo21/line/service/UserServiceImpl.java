@@ -26,11 +26,11 @@ public class UserServiceImpl implements UserService{
         return users;
     }
 
-    public User byId(Integer id) {
+    public User byId(Long id) {
         return userDao.findById(id);
     }
 
-    public User delete(Integer id) {
+    public User delete(Long id) {
         User user = userDao.findById(id);
         userDao.delete(id);
         return user;

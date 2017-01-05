@@ -26,11 +26,11 @@ public class WorkStationServiceImpl implements WorkStationService{
         return workStations;
     }
 
-    public WorkStation byId(Integer id) {
+    public WorkStation byId(Long id) {
         return workStationDao.findById(id);
     }
 
-    public WorkStation delete(Integer id) {
+    public WorkStation delete(Long id) {
         WorkStation workStation = workStationDao.findById(id);
         workStationDao.delete(id);
         return workStation;

@@ -13,33 +13,43 @@ import javax.validation.constraints.NotNull;
 public class WorkStation {
     @Id
     @NotNull
-    public Integer id;
-
+    private Long id;
     @NotNull
-    public String name;
-
+    private String name;
     @NotNull
-    public String ip;
+    private String ip;
 
     public WorkStation(){
 
     }
 
-    public WorkStation(Integer id, String name, String ip) {
+    public WorkStation(Long id, String name, String ip) {
         this.id = id;
         this.name = name;
         this.ip = ip;
     }
 
-    public String getName() {
-        return this.name;
+    public Long getId() {
+        return id;
     }
 
-    public Integer getId() {
-        return this.id;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getIp() {
-        return this.ip;
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 }

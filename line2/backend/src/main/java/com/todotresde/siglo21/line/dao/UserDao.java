@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
  * Created by Leonardo on 27/12/2016.
  */
 @Transactional
-public interface UserDao extends CrudRepository<User, Integer> {
-    public User findById(Integer id);
+public interface UserDao extends CrudRepository<User, Long> {
+    public User findById(Long id);
+    public void delete(Long id);
 }

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface ProductTypeService {
     public List<ProductType> all();
-    public ProductType byId(Integer id);
-    public ProductType delete(Integer id);
+    public ProductType byId(Long id);
+    public ProductType delete(Long id);
     public ProductType save(ProductType productType);
 }

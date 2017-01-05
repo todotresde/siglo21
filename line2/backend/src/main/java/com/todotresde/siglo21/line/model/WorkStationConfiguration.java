@@ -8,31 +8,36 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @Entity
-@Table(name = "workStation")
+@Table(name = "workStationConfiguration")
 public class WorkStationConfiguration {
     @Id
     @NotNull
-    public Integer id;
+    private Long id;
     @OneToOne
-    public WorkStation workStation;
+    @NotNull
+    private WorkStation workStation;
     @OneToOne
-    public WorkStation prevWorkStation;
+    @NotNull
+    private WorkStation prevWorkStation;
     @OneToOne
-    public WorkStation nextWorkStation;
+    @NotNull
+    private WorkStation nextWorkStation;
     @OneToMany
-    public List<ProductType> productTypes;
+    @NotNull
+    private List<ProductType> productTypes;
     @OneToMany
-    public List<User> users;
+    @NotNull
+    private List<User> users;
 
     public WorkStationConfiguration(){
 
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

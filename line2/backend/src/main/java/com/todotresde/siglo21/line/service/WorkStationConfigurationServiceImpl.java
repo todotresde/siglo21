@@ -26,11 +26,11 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
         return workStationConfigurations;
     }
 
-    public WorkStationConfiguration byId(Integer id) {
+    public WorkStationConfiguration byId(Long id) {
         return workStationConfigurationDao.findById(id);
     }
 
-    public WorkStationConfiguration delete(Integer id) {
+    public WorkStationConfiguration delete(Long id) {
         WorkStationConfiguration workStationConfiguration = workStationConfigurationDao.findById(id);
         workStationConfigurationDao.delete(id);
         return workStationConfiguration;

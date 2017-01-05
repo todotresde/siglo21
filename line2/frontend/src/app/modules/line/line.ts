@@ -3,5 +3,5 @@ import { WorkStationConfiguration } from './workStationConfiguration/workStation
 export class Line {
     id: number;
     name : string;
-    workStationConfigurations : WorkStationConfiguration[];
+    workStationConfigurations : WorkStationConfiguration[] = [];
 }

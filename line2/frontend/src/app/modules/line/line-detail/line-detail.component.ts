@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Line } from '../line';
 import { LineService } from '../line.service';
+import { WorkStationConfiguration } from '../workStationConfiguration/workStationConfiguration';
 
 @Component({
   selector: 'app-line-detail',
@@ -11,7 +12,6 @@ import { LineService } from '../line.service';
   providers:[LineService]
 })
 export class LineDetailComponent implements OnInit {
-
   line : Line;
   messageType : Number = 0;
   message : String = "";
@@ -44,6 +44,10 @@ export class LineDetailComponent implements OnInit {
           //this.messageType = MESSAGE_TYPE.Error;
           this.message = error;
         })
+  }
+
+  addWorkStationConfigurations(workStationConfigurations: WorkStationConfiguration[]): void{
+    this.line.workStationConfigurations = workStationConfigurations;
   }
 
   goBack(): void {

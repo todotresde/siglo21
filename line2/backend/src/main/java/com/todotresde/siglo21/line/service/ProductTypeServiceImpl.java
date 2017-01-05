@@ -26,11 +26,11 @@ public class ProductTypeServiceImpl implements ProductTypeService{
         return productTypes;
     }
 
-    public ProductType byId(Integer id) {
+    public ProductType byId(Long id) {
         return productTypeDao.findById(id);
     }
 
-    public ProductType delete(Integer id) {
+    public ProductType delete(Long id) {
         ProductType productType = productTypeDao.findById(id);
         productTypeDao.delete(id);
         return productType;

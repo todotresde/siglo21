@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface WorkStationService {
     public List<WorkStation> all();
-    public WorkStation byId(Integer id);
-    public WorkStation delete(Integer id);
+    public WorkStation byId(Long id);
+    public WorkStation delete(Long id);
     public WorkStation save(WorkStation workStation);
 }

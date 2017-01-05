@@ -12,7 +12,7 @@
                         <button class="dropdown-item" *ngFor="let user of users" (click)="selectedUser = user" >{{user.name}}</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+                <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="add(selectedUser)"></button>
             </div>
             <div class="row" >
                 <div class="col-md-8">
@@ -21,12 +21,12 @@
                 <div class="col-ms-4 pull-right">
                 </div>
             </div>
-            <div class="row" *ngFor="let user of users" >
+            <div class="row" *ngFor="let selectedUser of selectedUsers" >
                 <div class="col-md-8">
-                    {{user.name}}
+                    {{selectedUser.name}}
                 </div>
                 <div class="col-ms-4 pull-right">
-                    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(user)"></button>
+                    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(selectedUser)"></button>
                 </div>
             </div>
         </div>
