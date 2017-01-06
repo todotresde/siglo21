@@ -31,6 +31,7 @@ export class ManufacturingOrderProductComponent implements OnInit {
 
   saveManufacturingOrderProduct(manufacturingOrderProducts: ManufacturingOrderProduct[]): void{
     this.outputManufacturingOrderProducts.emit(manufacturingOrderProducts);
+    this.manufacturingOrderProducts = [];
   }
 
 }

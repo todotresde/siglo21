@@ -10,6 +10,8 @@ import { ManufacturingOrderCustomProduct } from './manufacturingOrderCustomProdu
   providers:[]
 })
 export class ManufacturingOrderCustomProductComponent implements OnInit {
+  @Output() outputManufacturingOrderCustomProducts = new EventEmitter<ManufacturingOrderCustomProduct[]>();
+
   selectedManufacturingOrderCustomProduct: ManufacturingOrderCustomProduct;
   manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[] = [];
 
@@ -25,5 +27,10 @@ export class ManufacturingOrderCustomProductComponent implements OnInit {
 
   setSelectedManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct) : void{
     this.selectedManufacturingOrderCustomProduct = manufacturingOrderCustomProduct;
+  }
+
+  saveManufacturingOrderCustomProduct(manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[]){
+    //this.selectedManufacturingOrderCustomProduct = manufacturingOrderCustomProducts;
+    //this.outputManufacturingOrderCustomProducts.em
   }
 }

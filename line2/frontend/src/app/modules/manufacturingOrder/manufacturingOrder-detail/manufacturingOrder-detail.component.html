@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         {{'manufacturingOrder'}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
+        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(manufacturingOrder)"></button>
     </div>
     <!--<app-message [messageType]="messageType" [message]="message"></app-message>-->
     <div class="card-block">
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <app-manufacturing-order-custom-product ></app-manufacturing-order-custom-product>
+            <app-manufacturing-order-custom-product (outputManufacturingOrderCustomProducts)="addManufacturingOrderCustomProducts($event)"></app-manufacturing-order-custom-product>
         </div>
     </div>
 </div>

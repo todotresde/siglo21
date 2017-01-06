@@ -4,5 +4,5 @@ export class ManufacturingOrder {
     id: number;
     code : string;
     date : Date;
-    customProducts : ManufacturingOrderCustomProduct[];
+    manufacturingOrderCustomProducts : ManufacturingOrderCustomProduct[];
 }

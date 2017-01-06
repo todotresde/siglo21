@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ManufacturingOrder } from '../manufacturingOrder';
 import { ManufacturingOrderService } from '../manufacturingOrder.service';
+import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
 
 @Component({
   selector: 'app-manufacturing-order-detail',
@@ -29,9 +30,9 @@ export class ManufacturingOrderDetailComponent implements OnInit {
     });
   }
 
-  save(): void {
+  save(manufacturingOrder: ManufacturingOrder): void {
     this.manufacturingOrderService
-        .save(this.manufacturingOrder)
+        .save(manufacturingOrder)
         .then(manufacturingOrder => {
           this.manufacturingOrder = manufacturingOrder; 
 
@@ -42,6 +43,10 @@ export class ManufacturingOrderDetailComponent implements OnInit {
           //this.messageType = MESSAGE_TYPE.Error;
           this.message = error;
         })
+  }
+
+  addManufacturingOrderCustomProducts(manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[]): void {
+    this.manufacturingOrder.manufacturingOrderCustomProducts = manufacturingOrderCustomProducts;
   }
 
 }
