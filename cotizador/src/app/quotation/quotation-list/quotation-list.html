@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{'quotations'|translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <button ion-item *ngFor="let quotation of quotations" (click)="itemTapped($event, quotation)">
+            {{quotation.title}}
+            <div class="item-note" item-right>
+                {{quotation.note}}
+            </div>
+        </button>
+    </ion-list>
+</ion-content>
