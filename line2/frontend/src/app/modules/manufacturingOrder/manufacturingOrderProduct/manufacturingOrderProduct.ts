@@ -5,5 +5,5 @@ export class ManufacturingOrderProduct {
     width : number;
     height : number;
     quantity : number;
-    product : Product;
+    product : Product = new Product();
 }

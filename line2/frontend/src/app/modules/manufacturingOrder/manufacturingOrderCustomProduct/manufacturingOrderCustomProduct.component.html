@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-header">
+        {{'maufacturingOrderCustomProduct'}}
+    </div>
+    <div class="card-block">
+        <div class="container-fluid">
+            <app-manufacturing-order-custom-product-detail [inputManufacturingOrderCustomProduct]="selectedManufacturingOrderCustomProduct" (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-detail>
+            <app-manufacturing-order-custom-product-list [inputManufacturingOrderCustomProducts]="manufacturingOrderCustomProducts" (outputManufacturingOrderCustomProducts)="setSelectedManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-list>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="row" >
+    <div class="col-md-2">
+        <strong>{{'description'}}</strong>
+    </div>
+    <div class="col-md-2">
+        <strong>{{'date'}}</strong>
+    </div>
+    <div class="col-md-2">
+        <strong>{{'width'}}</strong>
+    </div>
+    <div class="col-md-2">
+        <strong>{{'height'}}</strong>
+    </div>
+    <div class="col-md-2">
+        <strong>{{'quantity'}}</strong>
+    </div>
+    <div class="col-ms-2 pull-right">
+    </div>
+</div>
+<div class="row" *ngFor="let manufacturingOrderCustomProduct of manufacturingOrderCustomProducts" >
+    <div class="col-md-2">
+        {{manufacturingOrderCustomProduct.description}}
+    </div>
+    <div class="col-md-2">
+        {{manufacturingOrderCustomProduct.date}}
+    </div>
+    <div class="col-md-2">
+        {{manufacturingOrderCustomProduct.width}}
+    </div>
+    <div class="col-md-2">
+        {{manufacturingOrderCustomProduct.height}}
+    </div>
+    <div class="col-md-2">
+        {{manufacturingOrderCustomProduct.quantity}}
+    </div>
+    <div class="col-ms-2 pull-right">
+        <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrderCustomProduct)"></button>
+        <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrderCustomProduct)"></button>
+    </div>
+</div>

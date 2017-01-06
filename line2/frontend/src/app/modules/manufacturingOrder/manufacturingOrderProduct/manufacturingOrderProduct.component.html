@@ -1,34 +1,12 @@
 <div class="card">
     <div class="card-header">
-        {{'users'}}
+        {{'maufacturingOrderProduct'}}
+        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="saveManufacturingOrderProduct(manufacturingOrderProducts)"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
-            <div class="form-group row">
-                <label for="formGroupExampleInput">User</label>
-                <div ngbDropdown class="d-inline-block">
-                    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedUser.name}}</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
-                        <button class="dropdown-item" *ngFor="let user of users" (click)="selectedUser = user" >{{user.name}}</button>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="add(selectedUser)"></button>
-            </div>
-            <div class="row" >
-                <div class="col-md-8">
-                    <strong>{{'name'}}</strong>
-                </div>
-                <div class="col-ms-4 pull-right">
-                </div>
-            </div>
-            <div class="row" *ngFor="let selectedUser of selectedUsers" >
-                <div class="col-md-8">
-                    {{selectedUser.name}}
-                </div>
-                <div class="col-ms-4 pull-right">
-                    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(selectedUser)"></button>
-                </div>
-            </div>
+            <app-manufacturing-order-product-detail [inputManufacturingOrderProduct]="selectedManufacturingOrderProduct" (outputManufacturingOrderProduct)="addManufacturingOrderProduct($event)"></app-manufacturing-order-product-detail>
+            <app-manufacturing-order-product-list [inputManufacturingOrderProducts]="manufacturingOrderProducts" (outputManufacturingOrderProducts)="setSelectedManufacturingOrderProduct($event)"></app-manufacturing-order-product-list>
         </div>
     </div>
 </div>
