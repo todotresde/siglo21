@@ -1,1 +1,0 @@
-export const enum MESSAGE_TYPE { None, Success, Info, Warning, Error };
