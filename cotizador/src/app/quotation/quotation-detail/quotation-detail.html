@@ -16,9 +16,10 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-list-header>
-            {{'client'|translate}}
-        </ion-list-header>
+        <ion-item>
+            <ion-label floating>{{'description'|translate}}</ion-label>
+            <ion-input type="text" [(ngModel)]="quotation.description"></ion-input>
+        </ion-item>
         <ion-item>
             <ion-label floating>{{'name'|translate}}</ion-label>
             <ion-input type="text" [(ngModel)]="quotation.client.name"></ion-input>

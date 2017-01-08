@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{'client'|translate}}</ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="save(client)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>{{'name'|translate}}</ion-label>
+            <ion-input type="text" [(ngModel)]="client.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'email'|translate}}</ion-label>
+            <ion-input type="email" [(ngModel)]="client.email"></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>

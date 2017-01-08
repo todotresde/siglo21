@@ -3,25 +3,22 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>{{'quotations'|translate}}</ion-title>
+        <ion-title>{{'clients'|translate}}</ion-title>
         <ion-buttons end>
-          <button ion-button (click)="addQuotation()">
+          <button ion-button (click)="addClient()">
             <ion-icon name="add"></ion-icon>
           </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-list *ngFor="let quotation of quotations" >
+    <ion-list *ngFor="let client of clients" >
         <ion-item-sliding>
-            <ion-item (click)="select($event, quotation)">
-                {{quotation.client.name}}
-                <p class="item-note" item-right>
-                    {{quotation.total|currency}}
-                </p>
+            <ion-item (click)="select($event, client)">
+                {{client.name}} - {{client.email}}
             </ion-item>
             <ion-item-options side="right">
-              <button ion-button (click)="remove(quotation)">
+              <button ion-button (click)="remove(client)">
                   <ion-icon name="trash"></ion-icon>
               </button>
             </ion-item-options>

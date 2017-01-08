@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from './tabs/tabs';
 import { QuotationList } from './quotation/quotation-list/quotation-list';
+import { ClientList } from './client/client-list/client-list';
 
 
 @Component({
@@ -21,23 +22,20 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Quotations', component: QuotationList }
+      { title: 'Quotations', component: QuotationList },
+      { title: 'Clients', component: ClientList }
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 }
