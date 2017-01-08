@@ -4,14 +4,19 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>{{'quotations'|translate}}</ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="addQuotation()">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 <ion-content>
     <ion-list>
-        <button ion-item *ngFor="let quotation of quotations" (click)="itemTapped($event, quotation)">
-            {{quotation.title}}
+        <button ion-item *ngFor="let quotation of quotations" (click)="select($event, quotation)">
+            {{quotation.client.name}}
             <div class="item-note" item-right>
-                {{quotation.note}}
+                {{quotation.total|currency}}
             </div>
         </button>
     </ion-list>

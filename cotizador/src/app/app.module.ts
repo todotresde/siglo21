@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 import { TabsPage } from './tabs/tabs';
 import { QuotationList } from './quotation/quotation-list/quotation-list';
 import { QuotationDetail } from './quotation/quotation-detail/quotation-detail';
+import { ProductSearch } from './product/product-search/product-search';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -20,7 +21,8 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     TabsPage,
     QuotationList,
-    QuotationDetail
+    QuotationDetail,
+    ProductSearch
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -35,7 +37,8 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     TabsPage,
     QuotationList,
-    QuotationDetail
+    QuotationDetail,
+    ProductSearch
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

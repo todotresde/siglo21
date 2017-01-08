@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Quotation } from '../quotation'
 import { QuotationDetail } from '../quotation-detail/quotation-detail'
 
 @Component({
@@ -9,23 +10,23 @@ import { QuotationDetail } from '../quotation-detail/quotation-detail'
   templateUrl: 'quotation-list.html'
 })
 export class QuotationList {
-  quotations: Array<{title: string, note: string}>;
+  quotations: Quotation[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
-    this.quotations = [];
-    for (let i = 1; i < 11; i++) {
-      this.quotations.push({
-        title: 'Item ' + i,
-        note: 'This is quotation #' + i
-      });
+    if(navParams.get('quotation')){
+      this.quotations.push(navParams.get('quotation'));
     }
   }
 
-  itemTapped(event, quotation) {
-    // That's right, we're pushing to ourselves!
+  select(event, quotation) {
     this.navCtrl.push(QuotationDetail, {
       quotation: quotation
+    });
+  }
+
+  addQuotation(event) {
+    this.navCtrl.push(QuotationDetail, {
+      quotation: new Quotation()
     });
   }
 }

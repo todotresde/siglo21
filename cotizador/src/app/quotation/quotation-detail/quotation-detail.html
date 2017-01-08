@@ -4,17 +4,36 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>{{'quotation'|translate}}</ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="addProduct()">
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <button ion-button (click)="save(quotation)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 <ion-content>
     <ion-list>
+        <ion-list-header>
+            {{'client'|translate}}
+        </ion-list-header>
         <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-label floating>{{'name'|translate}}</ion-label>
+            <ion-input type="text" [(ngModel)]="quotation.client.name"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-label floating>{{'email'|translate}}</ion-label>
+            <ion-input type="email" [(ngModel)]="quotation.client.email"></ion-input>
         </ion-item>
+        <ion-list-header>
+            {{'products'|translate}}
+        </ion-list-header>
+        <ion-list *ngFor="let product of quotation.products">
+            <ion-item >
+                {{product.description}}
+            </ion-item>
+        </ion-list>
     </ion-list>
 </ion-content>

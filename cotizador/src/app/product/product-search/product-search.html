@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{'product-search'|translate}}</ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="addProducts(selectedProducts)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list *ngFor="let selectedProduct of selectedProducts">
+        <ion-item >
+            {{selectedProduct.description}}
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-label><ion-icon name="search"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="searchText" (input)="search($event.target.value)" ></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngFor="let product of products">
+        <ion-item (click)="add(product)">
+            {{product.description}}
+        </ion-item>
+    </ion-list>
+</ion-content>
