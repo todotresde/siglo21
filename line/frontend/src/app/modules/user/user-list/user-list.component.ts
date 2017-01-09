@@ -12,13 +12,17 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent implements OnInit {
   users: User[];
+  messageType: number = 0;
+  message: string = "";
 
   constructor(private router: Router, private userService: UserService, private r:ActivatedRoute) {
 
   }
 
   ngOnInit(): void{
-    this.userService.getUsers().then(users => this.users = users);
+    this.userService.getUsers()
+      .then(users => this.users = users)
+      .catch(error => { this.messageType = 4;});
   }
 
   create(): void {
@@ -30,7 +34,10 @@ export class UserListComponent implements OnInit {
   }
 
   remove(user: User): void {
-    this.userService.removeUser(user).then(user => this.users = this.users.filter(u => u.id !== user.id));
+    this.userService
+      .removeUser(user)
+      .then(user => this.users = this.users.filter(u => u.id !== user.id))
+      .catch(error => { this.messageType = 4; this.message = error.message;});
   }
 
 }

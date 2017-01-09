@@ -3,7 +3,6 @@
         {{'manufacturingOrder'}}
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(manufacturingOrder)"></button>
     </div>
-    <!--<app-message [messageType]="messageType" [message]="message"></app-message>-->
     <div class="card-block">
         <div class="container-fluid">
             <div class="row">
@@ -22,8 +21,9 @@
                     </div>
                 </div>
             </div>
-
-            <app-manufacturing-order-custom-product (outputManufacturingOrderCustomProducts)="addManufacturingOrderCustomProducts($event)"></app-manufacturing-order-custom-product>
+            <div class="row">
+                <app-manufacturing-order-custom-product (outputManufacturingOrderCustomProducts)="addManufacturingOrderCustomProducts($event)"></app-manufacturing-order-custom-product>
+            </div>
         </div>
     </div>
 </div>

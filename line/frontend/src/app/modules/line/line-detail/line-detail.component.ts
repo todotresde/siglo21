@@ -13,9 +13,7 @@ import { WorkStationConfiguration } from '../workStationConfiguration/workStatio
 })
 export class LineDetailComponent implements OnInit {
   line : Line;
-  messageType : Number = 0;
-  message : String = "";
-
+  
   constructor(private route: ActivatedRoute, private lineService: LineService) { 
     this.line = new Line();
   }
@@ -36,13 +34,10 @@ export class LineDetailComponent implements OnInit {
         .then(line => {
           this.line = line; 
 
-          //this.messageType = MESSAGE_TYPE.Success;
-          this.message = "save-success";
           
           this.goBack();
         }).catch(error => {
-          //this.messageType = MESSAGE_TYPE.Error;
-          this.message = error;
+          
         })
   }
 

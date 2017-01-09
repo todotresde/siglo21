@@ -1,3 +1,11 @@
 <div class="row">
+	<div class="row">
+        <div class="form-group">
+            <label for="id" class="col-md-2 col-form-label">{{'description'}}</label>
+            <div class="col-md-4">
+                <input class="form-control" type="number" id="id" [(ngModel)]="manufacturingOrderCustomProduct.description" placeholder="{{'someId'}}">
+            </div>
+        </div>
+    </div>
     <app-manufacturing-order-product (outputManufacturingOrderProducts)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-product>
 </div>

@@ -13,8 +13,6 @@ import { WorkStationService } from '../workStation.service';
 export class WorkStationDetailComponent implements OnInit {
 
   workStation : WorkStation;
-  messageType : Number = 0;
-  message : String = "";
 
   constructor(private route: ActivatedRoute, private workStationService: WorkStationService) { 
     this.workStation = new WorkStation(-1,"-1","0.0.0.0");
@@ -35,14 +33,9 @@ export class WorkStationDetailComponent implements OnInit {
         .save(this.workStation)
         .then(workStation => {
           this.workStation = workStation; 
-
-          //this.messageType = MESSAGE_TYPE.Success;
-          this.message = "save-success";
           
           this.goBack();
         }).catch(error => {
-          //this.messageType = MESSAGE_TYPE.Error;
-          this.message = error;
         })
   }
 

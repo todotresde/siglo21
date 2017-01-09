@@ -13,9 +13,7 @@ import { ProductTypeService } from '../productType.service';
 export class ProductTypeDetailComponent implements OnInit {
 
   productType : ProductType;
-  messageType : Number = 0;
-  message : String = "";
-
+  
   constructor(private route: ActivatedRoute, private productTypeService: ProductTypeService) { 
     this.productType = new ProductType();
   }
@@ -35,14 +33,9 @@ export class ProductTypeDetailComponent implements OnInit {
         .save(this.productType)
         .then(productType => {
           this.productType = productType; 
-
-          //this.messageType = MESSAGE_TYPE.Success;
-          this.message = "save-success";
           
           this.goBack();
         }).catch(error => {
-          //this.messageType = MESSAGE_TYPE.Error;
-          this.message = error;
         })
   }
 

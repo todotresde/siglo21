@@ -13,9 +13,7 @@ import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProd
 })
 export class ManufacturingOrderDetailComponent implements OnInit {
   manufacturingOrder : ManufacturingOrder;
-  messageType : Number = 0;
-  message : String = "";
-
+  
   constructor(private route: ActivatedRoute, private manufacturingOrderService: ManufacturingOrderService) { 
     this.manufacturingOrder = new ManufacturingOrder();
   }
@@ -35,13 +33,8 @@ export class ManufacturingOrderDetailComponent implements OnInit {
         .save(manufacturingOrder)
         .then(manufacturingOrder => {
           this.manufacturingOrder = manufacturingOrder; 
-
-          //this.messageType = MESSAGE_TYPE.Success;
-          this.message = "save-success";
           
         }).catch(error => {
-          //this.messageType = MESSAGE_TYPE.Error;
-          this.message = error;
         })
   }
 

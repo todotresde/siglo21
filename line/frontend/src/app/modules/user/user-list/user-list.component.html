@@ -1,22 +1,33 @@
 <div class="card">
-  <div class="card-header">
-    {{'users'}}
-    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
-  </div>
-  <div class="card-block">
-    <div class="container-fluid">
-      <div class="row" *ngFor="let user of users" >
-        <div class="col-md-2">
-          {{user.id}}
-        </div>
-        <div class="col-md-6">
-          {{user.name}}
-        </div>
-        <div class="col-ms-4 pull-right">
-          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(user)"></button>
-          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(user)"></button>
-        </div>
-      </div>
+    <div class="card-header">
+        {{'users'|translate}}
+        <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
     </div>
-  </div>
+    <app-message [type]="messageType" [message]="message"></app-message>
+    <div class="card-block">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>{{'id'|translate}}</strong>
+                </div>
+                <div class="col-md-6">
+                    <strong>{{'name'|translate}}</strong>
+                </div>
+                <div class="col-ms-4 pull-right">
+                </div>
+            </div>
+            <div class="row" *ngFor="let user of users">
+                <div class="col-md-2">
+                    {{user.id}}
+                </div>
+                <div class="col-md-6">
+                    {{user.name}}
+                </div>
+                <div class="col-ms-4 pull-right">
+                    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(user)"></button>
+                    <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(user)"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

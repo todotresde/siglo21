@@ -1,0 +1,22 @@
+{
+	"menu": "Menu",
+	"quotations": "Cotizaciones",
+	"quotation": "Cotización",
+	"users" : "Usuarios",
+	"work-stations" : "Puestos",
+	"products" : "Productos",
+	"product-types" : "Tipos de Productos",
+	"lines" : "Líneas",
+	"manufacturing-orders" : "Ordenes de Fabricación",
+	"id" : "Id",
+	"name" : "Nombre",
+	"login-title" : "Rielamericano",
+	"email" : "E-mail",
+	"password" : "Password",
+	"log-in" : "Ingresar",
+	"register" : "Registrarse",
+	"info": "Información",
+	"success": "Exito",
+	"warning": "Cuidado",
+	"error" : "Error"
+}
