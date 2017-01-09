@@ -3,23 +3,20 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Quotation } from '../../quotation/quotation';
+import { QuotationService } from '../quotation.service'
 import { QuotationList } from '../quotation-list/quotation-list';
 import { ProductSearch } from '../../product/product-search/product-search';
 
 @Component({
   selector: 'quotation-detail',
-  templateUrl: 'quotation-detail.html'
+  templateUrl: 'quotation-detail.html',
+  providers: [QuotationService]
 })
 export class QuotationDetail {
-  quotation: Quotation;
+  quotation: Quotation = new Quotation();
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.quotation = navParams.get('quotation');
-
-    if(navParams.get('products')){
-    	this.quotation.products = navParams.get('products');
-    }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private quotationService: QuotationService) {
+    this.quotationService.get(navParams.get('id')).then(quotation => this.quotation = quotation);
   }
 
   addProduct(): void{
@@ -29,8 +26,6 @@ export class QuotationDetail {
   }
 
   save(quotation: Quotation): void{
-  	this.navCtrl.push(QuotationList,{
-  		quotation: quotation
-  	});
+  	this.quotationService.save(quotation).then(quotation => this.navCtrl.pop());
   } 
 }
