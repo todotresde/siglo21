@@ -7,7 +7,6 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css'],
   providers:[UserService]
 })
 export class UserListComponent implements OnInit {
@@ -20,7 +19,7 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.userService.getUsers()
+    this.userService.getAll()
       .then(users => this.users = users)
       .catch(error => { this.messageType = 4;});
   }
@@ -35,9 +34,11 @@ export class UserListComponent implements OnInit {
 
   remove(user: User): void {
     this.userService
-      .removeUser(user)
+      .remove(user)
       .then(user => this.users = this.users.filter(u => u.id !== user.id))
       .catch(error => { this.messageType = 4; this.message = error.message;});
+
+    this.messageType = 0;
   }
 
 }

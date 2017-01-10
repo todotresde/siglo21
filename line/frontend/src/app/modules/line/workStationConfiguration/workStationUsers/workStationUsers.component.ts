@@ -24,7 +24,7 @@ export class WorkStationUsersComponent implements OnInit {
   }
 
   ngOnInit() : void{
-      this.userService.getUsers().then(users => this.users = users);
+      this.userService.getAll().then(users => this.users = users);
   }
 
   add(user: User): void {

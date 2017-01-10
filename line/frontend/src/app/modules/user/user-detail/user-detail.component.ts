@@ -7,7 +7,6 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css'],
   providers:[UserService]
 })
 export class UserDetailComponent implements OnInit {
@@ -21,7 +20,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() : void{
     this.route.params.subscribe(params => {
       if(params["id"]){
-        this.userService.getUser(params["id"]).then(user =>{ 
+        this.userService.get(params["id"]).then(user =>{ 
           this.user = user;
         });
       }
