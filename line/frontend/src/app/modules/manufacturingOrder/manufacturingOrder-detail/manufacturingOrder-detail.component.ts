@@ -38,7 +38,6 @@ export class ManufacturingOrderDetailComponent implements OnInit {
   }
 
   addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void {
-    debugger
     this.manufacturingOrder.addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
   }
 

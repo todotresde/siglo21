@@ -9,14 +9,46 @@
     </div>
 </div>
 <div class="row table" *ngFor="let manufacturingOrderCustomProduct of manufacturingOrderCustomProducts" >
-    <div class="col-md-2">
-        {{manufacturingOrderCustomProduct.description}}
+    <div class="row">
+        <div class="col-md-10">
+            {{manufacturingOrderCustomProduct.description}}
+        </div>
+        <div class="col-ms-2 pull-right">
+            <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrderCustomProduct)"></button>
+            <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrderCustomProduct)"></button>
+        </div>
     </div>
-    <div class="col-md-8">
-        {{manufacturingOrderCustomProduct.products}}
+    <div class="row">
+        <div class="col-md-4">
+            <strong>{{'product'|translate}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{'width'|translate}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{'height'|translate}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{'quantity'|translate}}</strong>
+        </div>
+        <div class="col-ms-2 pull-right">
+        </div>
     </div>
-    <div class="col-ms-2 pull-right">
-        <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrderCustomProduct)"></button>
-        <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrderCustomProduct)"></button>
+    <div class="row" *ngFor="let manufacturingOrderProduct of manufacturingOrderCustomProduct.manufacturingOrderProducts" >
+        <div class="col-md-4">
+            {{manufacturingOrderProduct.product.code}}
+        </div>
+        <div class="col-md-2">
+            {{manufacturingOrderProduct.width}}
+        </div>
+        <div class="col-md-2">
+            {{manufacturingOrderProduct.height}}
+        </div>
+        <div class="col-md-2">
+            {{manufacturingOrderProduct.quantity}}
+        </div>
+        <div class="col-md-2">
+        </div>
     </div>
+    
 </div>

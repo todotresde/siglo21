@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.ManufacturingOrderCustomProductDao;
+import com.todotresde.siglo21.line.dao.ManufacturingOrderProductDao;
 import com.todotresde.siglo21.line.model.ManufacturingOrderCustomProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

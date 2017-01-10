@@ -1,7 +1,8 @@
+import { Shared } from '../../../shared/shared';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct/manufacturingOrderProduct';
 
 export class ManufacturingOrderCustomProduct {
-    id: number;
+    id: number = Shared.generateId();
     description : string;
     manufacturingOrderProducts : ManufacturingOrderProduct[] = [];
 

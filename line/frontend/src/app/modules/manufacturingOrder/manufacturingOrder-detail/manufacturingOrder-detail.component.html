@@ -19,9 +19,9 @@
                 </div>
             </div>
             <div class="row">
-                <app-manufacturing-order-custom-product-list [inputManufacturingOrderCustomProducts]="manufacturingOrder.manufacturingOrderCustomProducts" (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-list>
+                <app-manufacturing-order-custom-product-list [inputManufacturingOrderCustomProducts]="manufacturingOrder.manufacturingOrderCustomProducts" (outputManufacturingOrderCustomProduct)="setSelectedManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-list>
             </div>
         </div>
     </div>
 </div>
-<app-manufacturing-order-custom-product></app-manufacturing-order-custom-product>
+<app-manufacturing-order-custom-product (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product>

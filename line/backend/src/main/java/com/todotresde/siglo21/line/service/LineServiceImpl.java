@@ -3,7 +3,6 @@ package com.todotresde.siglo21.line.service;
 import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
 import com.todotresde.siglo21.line.model.Line;
-import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +16,6 @@ import java.util.List;
 public class LineServiceImpl implements LineService{
     @Autowired
     private LineDao lineDao;
-    @Autowired
-    private WorkStationConfigurationDao workStationConfigurationDao;
 
     public List<Line> all() {
         ArrayList<Line> lines = new ArrayList<Line>();
@@ -41,9 +38,6 @@ public class LineServiceImpl implements LineService{
     }
 
     public Line save(Line line) {
-        for (WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()) {
-            workStationConfigurationDao.save(workStationConfiguration);
-        }
         lineDao.save(line);
         return line;
     }
