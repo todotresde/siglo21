@@ -6,3 +6,7 @@ body {
 .form-control {
 	font-size: 0.9rem !important;
 }
+
+.table.header{
+	background-color:#eceeef
+}

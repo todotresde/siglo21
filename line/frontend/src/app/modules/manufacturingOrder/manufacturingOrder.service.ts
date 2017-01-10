@@ -7,30 +7,46 @@ import { ManufacturingOrder } from './manufacturingOrder';
 
 @Injectable()
 export class ManufacturingOrderService {
+  temporalManufacturingOrder: ManufacturingOrder;
+
   constructor(private http: Http) { }
 
-  getManufacturingOrders(): Promise<ManufacturingOrder[]> {
+  getAll(): Promise<ManufacturingOrder[]> {
     return this.http.get("http://localhost:8080/manufacturingOrder")
-               .toPromise()
-               .then(response => response.json() as ManufacturingOrder[]);
+               .map(response => response.json() as ManufacturingOrder[])
+               .toPromise();
   }
 
-  getManufacturingOrder(id: Number): Promise<ManufacturingOrder> {
+  get(id: Number): Promise<ManufacturingOrder> {
     return this.http.get("http://localhost:8080/manufacturingOrder/" + id)
-               .toPromise()
-               .then(response => response.json() as ManufacturingOrder);
+               .map(response => response.json() as ManufacturingOrder)
+               .toPromise();
   }
 
-  removeManufacturingOrder(manufacturingOrder: ManufacturingOrder): Promise<ManufacturingOrder> {
+  remove(manufacturingOrder: ManufacturingOrder): Promise<ManufacturingOrder> {
     return this.http.delete("http://localhost:8080/manufacturingOrder/" + manufacturingOrder.id)
-               .toPromise()
-               .then(response => response.json() as ManufacturingOrder);
+               .map(response => response.json() as ManufacturingOrder)
+               .toPromise();
   }
 
   save(manufacturingOrder: ManufacturingOrder): Promise<ManufacturingOrder> {
     return this.http.post("http://localhost:8080/manufacturingOrder", manufacturingOrder)
-               .toPromise()
-               .then(response => response.json() as ManufacturingOrder);
+               .map(response => response.json() as ManufacturingOrder)
+               .toPromise();
   }
+
+  newTemporal(): ManufacturingOrder{
+    this.temporalManufacturingOrder = new ManufacturingOrder();
+    return this.temporalManufacturingOrder;
+  } 
+
+  getTemporal(): ManufacturingOrder{
+    return this.temporalManufacturingOrder;
+  } 
+
+  setTemporal(manufacturingOrder: ManufacturingOrder): ManufacturingOrder{
+    this.temporalManufacturingOrder = manufacturingOrder;
+    return this.temporalManufacturingOrder;
+  } 
 
 }

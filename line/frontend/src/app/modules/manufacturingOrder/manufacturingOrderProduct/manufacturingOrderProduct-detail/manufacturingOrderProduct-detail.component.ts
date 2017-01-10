@@ -11,7 +11,7 @@ import { ManufacturingOrderProduct } from '../manufacturingOrderProduct'
   styleUrls: ['./manufacturingOrderProduct-detail.component.css'],
   providers:[ProductService]
 })
-export class ManufacturingOrderProductDetailComponent implements OnInit {
+export class ManufacturingOrderProductDetailComponent implements OnInit, OnChanges {
   @Input() inputManufacturingOrderProduct = new ManufacturingOrderProduct();
   @Output() outputManufacturingOrderProduct = new EventEmitter<ManufacturingOrderProduct>();
 
@@ -26,9 +26,20 @@ export class ManufacturingOrderProductDetailComponent implements OnInit {
     this.productService.getProducts().then(products => this.products = products);
   }
 
+  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    if(changes["inputManufacturingOrderProduct"].currentValue)
+      this.manufacturingOrderProduct = changes["inputManufacturingOrderProduct"].currentValue;
+    else
+      this.manufacturingOrderProduct = new ManufacturingOrderProduct();
+  }
+
   add(manufacturingOrderProduct: ManufacturingOrderProduct): void{
     this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
     this.manufacturingOrderProduct = new ManufacturingOrderProduct();
+  }
+
+  update(manufacturingOrderProduct: ManufacturingOrderProduct): void{
+    this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
   }
 
 }

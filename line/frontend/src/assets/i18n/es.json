@@ -18,5 +18,15 @@
 	"info": "Información",
 	"success": "Exito",
 	"warning": "Cuidado",
-	"error" : "Error"
+	"error" : "Error",
+	"manufacturing-order" : "Orden de Fabricación",
+	"code" : "Código",
+	"date" : "Fecha",
+	"description" : "Descripción",
+	"custom-product" : "Producto a Medida",
+	"custom-products" : "Productos a Medida",
+	"product" : "Producto",
+	"width" : "Ancho",
+	"height" : "Alto",
+	"quantity" : "Cantidad"
 }

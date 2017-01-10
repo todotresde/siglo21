@@ -1,12 +1,18 @@
 <div class="card">
     <div class="card-header">
-        {{'maufacturingOrderCustomProduct'}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="saveManufacturingOrderCustomProduct(manufacturingOrderCustomProducts)"></button>
+        {{'custom-products'|translate}}
+        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="saveManufacturingOrderCustomProduct(selectedManufacturingOrderCustomProduct)"></button>
+        <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="newManufacturingOrderProduct()"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
-            <app-manufacturing-order-custom-product-detail [inputManufacturingOrderCustomProduct]="selectedManufacturingOrderCustomProduct" (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-detail>
-            <app-manufacturing-order-custom-product-list [inputManufacturingOrderCustomProducts]="manufacturingOrderCustomProducts" (outputManufacturingOrderCustomProducts)="setSelectedManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-list>
+            <div class="row">
+                <app-manufacturing-order-custom-product-detail [inputManufacturingOrderCustomProduct]="selectedManufacturingOrderCustomProduct" (outputManufacturingOrderCustomProduct)="setSelectedManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-detail>
+            </div>
+            <div class="row">
+                <app-manufacturing-order-product-list [inputManufacturingOrderProducts]="selectedManufacturingOrderCustomProduct.manufacturingOrderProducts" (outputManufacturingOrderProduct)="setSelectedManufacturingOrderProduct($event)"></app-manufacturing-order-product-list>
+            </div>
         </div>
     </div>
 </div>
+<app-manufacturing-order-product [inputManufacturingOrderProduct]="selectedManufacturingOrderProduct" (outputManufacturingOrderProduct)="addManufacturingOrderProduct($event)"></app-manufacturing-order-product>

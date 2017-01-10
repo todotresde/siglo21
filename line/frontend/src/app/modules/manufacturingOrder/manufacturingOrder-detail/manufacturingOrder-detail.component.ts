@@ -14,16 +14,15 @@ import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProd
 export class ManufacturingOrderDetailComponent implements OnInit {
   manufacturingOrder : ManufacturingOrder;
   
-  constructor(private route: ActivatedRoute, private manufacturingOrderService: ManufacturingOrderService) { 
+  constructor(private router: Router, private route: ActivatedRoute, private manufacturingOrderService: ManufacturingOrderService) { 
     this.manufacturingOrder = new ManufacturingOrder();
   }
 
   ngOnInit() : void{
     this.route.params.subscribe(params => {
       if(params["id"]){
-        this.manufacturingOrderService.getManufacturingOrder(params["id"]).then(manufacturingOrder =>{ 
-          this.manufacturingOrder = manufacturingOrder;
-        });
+        this.manufacturingOrderService.get(params["id"])
+          .then(manufacturingOrder =>{ this.manufacturingOrder = manufacturingOrder;});
       }
     });
   }
@@ -38,8 +37,13 @@ export class ManufacturingOrderDetailComponent implements OnInit {
         })
   }
 
-  addManufacturingOrderCustomProducts(manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[]): void {
-    this.manufacturingOrder.manufacturingOrderCustomProducts = manufacturingOrderCustomProducts;
+  addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void {
+    debugger
+    this.manufacturingOrder.addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
+  }
+
+  newManufacturingOrderCustomProduct(): void {
+    this.manufacturingOrder = new ManufacturingOrder();
   }
 
 }

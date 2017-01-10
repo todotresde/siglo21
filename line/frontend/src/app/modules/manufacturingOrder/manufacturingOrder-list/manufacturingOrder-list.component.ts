@@ -18,7 +18,7 @@ export class ManufacturingOrderListComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.manufacturingOrderService.getManufacturingOrders().then(manufacturingOrders => this.manufacturingOrders = manufacturingOrders);
+    this.manufacturingOrderService.getAll().then(manufacturingOrders => this.manufacturingOrders = manufacturingOrders);
   }
 
   create(): void {
@@ -30,7 +30,7 @@ export class ManufacturingOrderListComponent implements OnInit {
   }
 
   remove(manufacturingOrder: ManufacturingOrder): void {
-    this.manufacturingOrderService.removeManufacturingOrder(manufacturingOrder).then(manufacturingOrder => this.manufacturingOrders = this.manufacturingOrders.filter(u => u.id !== manufacturingOrder.id));
+    this.manufacturingOrderService.remove(manufacturingOrder).then(manufacturingOrder => this.manufacturingOrders = this.manufacturingOrders.filter(u => u.id !== manufacturingOrder.id));
   }
 
 }

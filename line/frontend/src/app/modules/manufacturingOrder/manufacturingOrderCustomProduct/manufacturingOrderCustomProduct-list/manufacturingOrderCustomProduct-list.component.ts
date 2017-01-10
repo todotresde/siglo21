@@ -11,7 +11,7 @@ import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProd
 })
 export class ManufacturingOrderCustomProductListComponent implements OnInit, OnChanges {
   @Input() inputManufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[];
-  @Output() outputManufacturingOrderCustomProducts = new EventEmitter<ManufacturingOrderCustomProduct>();
+  @Output() outputManufacturingOrderCustomProduct = new EventEmitter<ManufacturingOrderCustomProduct>();
 
   manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[];
   
@@ -34,6 +34,6 @@ export class ManufacturingOrderCustomProductListComponent implements OnInit, OnC
   }
 
   edit(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void {
-    this.outputManufacturingOrderCustomProducts.emit(manufacturingOrderCustomProduct);
+    this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
   }
 }

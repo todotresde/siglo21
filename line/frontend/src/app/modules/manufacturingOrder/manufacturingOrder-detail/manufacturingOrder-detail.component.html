@@ -1,29 +1,27 @@
 <div class="card">
     <div class="card-header">
-        {{'manufacturingOrder'}}
+        {{'manufacturing-order'|translate}}
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(manufacturingOrder)"></button>
+        <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="newManufacturingOrderCustomProduct()"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
-                    <label for="id" class="col-md-1 col-form-label">{{'id'}}</label>
+                    <label for="code" class="col-md-1 col-form-label">{{'code'|translate}}</label>
                     <div class="col-md-3">
-                        <input class="form-control" type="number" id="id" [(ngModel)]="manufacturingOrder.id" placeholder="{{'someId'}}">
+                        <input class="form-control" type="search" id="code" [(ngModel)]="manufacturingOrder.code" placeholder="{{'code'|translate}}">
                     </div>
-                    <label for="code" class="col-md-1 col-form-label">{{'code'}}</label>
+                    <label for="date" class="col-md-1 col-form-label">{{'date'|translate}}</label>
                     <div class="col-md-3">
-                        <input class="form-control" type="search" id="code" [(ngModel)]="manufacturingOrder.code" placeholder="{{'someCode'}}">
-                    </div>
-                    <label for="date" class="col-md-1 col-form-label">{{'date'}}</label>
-                    <div class="col-md-3">
-                        <input class="form-control" type="search" id="date" [(ngModel)]="manufacturingOrder.date" placeholder="{{'someDate'}}">
+                        <input class="form-control" type="search" id="date" [(ngModel)]="manufacturingOrder.date" placeholder="{{'date'|translate}}">
                     </div>
                 </div>
             </div>
             <div class="row">
-                <app-manufacturing-order-custom-product (outputManufacturingOrderCustomProducts)="addManufacturingOrderCustomProducts($event)"></app-manufacturing-order-custom-product>
+                <app-manufacturing-order-custom-product-list [inputManufacturingOrderCustomProducts]="manufacturingOrder.manufacturingOrderCustomProducts" (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-list>
             </div>
         </div>
     </div>
 </div>
+<app-manufacturing-order-custom-product></app-manufacturing-order-custom-product>

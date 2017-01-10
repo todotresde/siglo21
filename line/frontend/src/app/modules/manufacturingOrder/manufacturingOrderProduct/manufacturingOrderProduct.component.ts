@@ -1,4 +1,4 @@
-import { Component, OnInit , EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ManufacturingOrderProduct } from './manufacturingOrderProduct';
@@ -9,11 +9,11 @@ import { ManufacturingOrderProduct } from './manufacturingOrderProduct';
   styleUrls: ['./manufacturingOrderProduct.component.css'],
   providers:[]
 })
-export class ManufacturingOrderProductComponent implements OnInit {
-  @Output() outputManufacturingOrderProducts = new EventEmitter<ManufacturingOrderProduct[]>();
+export class ManufacturingOrderProductComponent implements OnInit, OnChanges {
+  @Input() inputManufacturingOrderProduct: ManufacturingOrderProduct = new ManufacturingOrderProduct();
+  @Output() outputManufacturingOrderProduct = new EventEmitter<ManufacturingOrderProduct>();
 
-  selectedManufacturingOrderProduct: ManufacturingOrderProduct;
-  manufacturingOrderProducts: ManufacturingOrderProduct[] = [];
+  manufacturingOrderProduct: ManufacturingOrderProduct = new ManufacturingOrderProduct();
 
   constructor(private route: ActivatedRoute) { 
   }
@@ -21,17 +21,20 @@ export class ManufacturingOrderProductComponent implements OnInit {
   ngOnInit() : void{
   }
 
-  addManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct): void {
-  	this.manufacturingOrderProducts.push(manufacturingOrderProduct);
+  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    if(changes["inputManufacturingOrderProduct"].currentValue)
+      this.manufacturingOrderProduct = changes["inputManufacturingOrderProduct"].currentValue;
+    else
+      this.manufacturingOrderProduct = new ManufacturingOrderProduct();
   }
 
-  setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
-    this.selectedManufacturingOrderProduct = manufacturingOrderProduct;
+  setManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
+    this.manufacturingOrderProduct = manufacturingOrderProduct;
   }
 
-  saveManufacturingOrderProduct(manufacturingOrderProducts: ManufacturingOrderProduct[]): void{
-    this.outputManufacturingOrderProducts.emit(manufacturingOrderProducts);
-    this.manufacturingOrderProducts = [];
+  saveManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct): void{
+    this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
+    this.manufacturingOrderProduct = new ManufacturingOrderProduct();
   }
 
 }

@@ -1,14 +1,14 @@
-<div class="row" >
+<div class="row table header" >
     <div class="col-md-2">
-        <strong>{{'description'}}</strong>
+        <strong>{{'description'|translate}}</strong>
     </div>
     <div class="col-md-8">
-        <strong>{{'products'}}</strong>
+        <strong>{{'products'|translate}}</strong>
     </div>
     <div class="col-ms-2 pull-right">
     </div>
 </div>
-<div class="row" *ngFor="let manufacturingOrderCustomProduct of manufacturingOrderCustomProducts" >
+<div class="row table" *ngFor="let manufacturingOrderCustomProduct of manufacturingOrderCustomProducts" >
     <div class="col-md-2">
         {{manufacturingOrderCustomProduct.description}}
     </div>

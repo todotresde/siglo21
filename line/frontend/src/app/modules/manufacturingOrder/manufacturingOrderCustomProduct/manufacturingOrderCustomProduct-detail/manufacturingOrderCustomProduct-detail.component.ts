@@ -28,4 +28,7 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit {
     this.outputManufacturingOrderCustomProduct.emit(this.manufacturingOrderCustomProduct);
   }
 
+  update(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void{
+    this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
+  }
 }

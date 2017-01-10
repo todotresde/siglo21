@@ -1,26 +1,26 @@
 <div class="card">
   <div class="card-header">
-    {{'manufacturingOrders'}}
+    {{'manufacturing-orders'|translate}}
     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
   </div>
   <div class="card-block">
     <div class="container-fluid">
-      <div class="row" >
-        <div class="col-md-2">
-          <strong>{{'id'}}</strong>
+      <div class="row table header" >
+        <div class="col-md-5">
+          <strong>{{'code'|translate}}</strong>
         </div>
-        <div class="col-md-6">
-          <strong>{{'code'}}</strong>
+        <div class="col-md-5">
+          <strong>{{'date'|translate}}</strong>
         </div>
         <div class="col-ms-4 pull-right">
         </div>
       </div>
       <div class="row" *ngFor="let manufacturingOrder of manufacturingOrders" >
-        <div class="col-md-2">
-          {{manufacturingOrder.id}}
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
           {{manufacturingOrder.code}}
+        </div>
+        <div class="col-md-5">
+          {{manufacturingOrder.date}}
         </div>
         <div class="col-ms-4 pull-right">
           <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrder)"></button>
