@@ -3,6 +3,8 @@ package com.todotresde.siglo21.line.service;
 import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
 import com.todotresde.siglo21.line.model.Line;
+import com.todotresde.siglo21.line.model.ProductType;
+import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,10 @@ public class LineServiceImpl implements LineService{
 
     public Line byId(Long id) {
         return lineDao.findById(id);
+    }
+
+    public Line byProductType(ProductType productType) {
+        return lineDao.findByProductType(productType);
     }
 
     public Line delete(Long id) {

@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.line.dao;
 
 import com.todotresde.siglo21.line.model.Line;
+import com.todotresde.siglo21.line.model.ProductType;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 @Transactional
 public interface LineDao extends CrudRepository<Line, Long>, LineDaoCustom {
     public Line findById(Long id);
+    public Line findByProductType(ProductType productType);
     public void delete(Long id);
     public Line save(Line line);
 }

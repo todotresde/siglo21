@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
+import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,18 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
 
     public WorkStationConfiguration byId(Long id) {
         return workStationConfigurationDao.findById(id);
+    }
+
+    public WorkStationConfiguration byProductTypeId(Long productTypeId){
+        for (WorkStationConfiguration workStationConfiguration : workStationConfigurationDao.findAll()) {
+            for(ProductType productType : workStationConfiguration.getProductTypes()){
+                if(productTypeId.equals(productType.getId())){
+                    return workStationConfiguration;
+                }
+            }
+        }
+
+        return null;
     }
 
     public WorkStationConfiguration delete(Long id) {

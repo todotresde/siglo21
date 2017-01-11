@@ -1,11 +1,7 @@
+import { Shared } from '../../shared/shared';
+
 export class WorkStation {
-    id: number;
+    id: number = Shared.generateId();
     name: string;
     ip: string;
-    
-    constructor(id: number, name: string, ip: string){
-        this.id = id;
-        this.name = name;
-        this.ip = ip;
-    }
 }

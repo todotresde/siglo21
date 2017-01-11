@@ -12,4 +12,5 @@ public interface ManufacturingOrderService {
     public ManufacturingOrder byId(Long id);
     public ManufacturingOrder delete(Long id);
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder);
+    public ManufacturingOrder send(Long id);
 }

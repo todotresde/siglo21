@@ -1,0 +1,34 @@
+<div class="row table header">
+    <div class="col-md-3">
+        {{'manufacturing-order'|translate}}
+    </div>
+    <div class="col-md-3">
+        {{'product-type'|translate}}
+    </div>
+    <div class="col-md-2">
+        {{'width'|translate}}
+    </div>
+    <div class="col-md-2">
+        {{'height'|translate}}
+    </div>
+    <div class="col-ms-2 pull-right">
+    </div>
+</div>
+<div class="row" *ngFor="let trace of traces">
+    <div class="col-md-3">
+        {{trace.manufacturingOrder.code}}
+    </div>
+    <div class="col-md-3">
+        {{trace.productType.name}}
+    </div>
+    <div class="col-md-2">
+        {{trace.manufacturingOrderProduct.width}}
+    </div>
+    <div class="col-md-2">
+        {{trace.manufacturingOrderProduct.height}}
+    </div>
+    <div class="col-ms-2 pull-right">
+        <button type="button" class="btn btn-secondary fa fa-clock" (click)="delay(trace)"></button>
+        <button type="button" class="btn btn-secondary fa fa-pencil" (click)="activate(trace)"></button>
+    </div>
+</div>

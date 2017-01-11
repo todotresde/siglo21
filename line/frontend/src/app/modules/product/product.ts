@@ -4,5 +4,5 @@ export class Product {
     id: number;
     code: string;
     description: string;
-    productType: ProductType;
+    productType: ProductType = new ProductType();
 }

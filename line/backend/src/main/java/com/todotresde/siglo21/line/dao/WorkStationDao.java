@@ -11,5 +11,6 @@ import javax.transaction.Transactional;
 @Transactional
 public interface WorkStationDao extends CrudRepository<WorkStation, Long> {
     public WorkStation findById(Long id);
+    public WorkStation findByIp(String ip);
     public void delete(Long id);
 }

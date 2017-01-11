@@ -28,5 +28,10 @@
 	"product" : "Producto",
 	"width" : "Ancho",
 	"height" : "Alto",
-	"quantity" : "Cantidad"
+	"quantity" : "Cantidad",
+	"trace-screen" : "Pantalla Lectura",
+	"product-type" : "Tipo de Producto",
+	"start-time" : "Inicio",
+	"end-time": "Fin",
+	"time" : "Tiempo"
 }

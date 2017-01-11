@@ -6,6 +6,7 @@ import { ProductRoutes } from './product/product.routes';
 import { ProductTypeRoutes } from './productType/productType.routes';
 import { LineRoutes } from './line/line.routes';
 import { ManufacturingOrderRoutes } from './manufacturingOrder/manufacturingOrder.routes';
+import { TraceRoutes } from './trace/trace.routes';
 
 import { ModulesComponent } from './modules.component';
 
@@ -19,7 +20,8 @@ export const ModulesRoutes: Route[] = [
 	    	...ProductRoutes,
         ...ProductTypeRoutes,
 			  ...LineRoutes,
-        ...ManufacturingOrderRoutes
+        ...ManufacturingOrderRoutes,
+        ...TraceRoutes
     	]
   	}
 ];

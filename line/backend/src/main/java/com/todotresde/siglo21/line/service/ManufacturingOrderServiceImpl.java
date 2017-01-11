@@ -1,12 +1,12 @@
 package com.todotresde.siglo21.line.service;
 
-import com.todotresde.siglo21.line.dao.ManufacturingOrderCustomProductDao;
-import com.todotresde.siglo21.line.dao.ManufacturingOrderDao;
-import com.todotresde.siglo21.line.model.ManufacturingOrder;
+import com.todotresde.siglo21.line.dao.*;
+import com.todotresde.siglo21.line.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +16,10 @@ import java.util.List;
 public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     @Autowired
     private ManufacturingOrderDao manufacturingOrderDao;
+    @Autowired
+    private WorkStationConfigurationService workStationConfigurationService;
+    @Autowired
+    private LineService lineService;
 
     public List<ManufacturingOrder> all() {
         ArrayList<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
@@ -39,6 +43,38 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
 
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder) {
         manufacturingOrderDao.save(manufacturingOrder);
+        return manufacturingOrder;
+    }
+
+    public ManufacturingOrder send(Long id) {
+        ManufacturingOrder manufacturingOrder = manufacturingOrderDao.findById(id);
+
+        for(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct : manufacturingOrder.getManufacturingOrderCustomProducts()){
+
+            for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()){
+                ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
+                Line line = lineService.byProductType(productType);
+
+                Trace trace = new Trace();
+
+                trace.setId(Math.round(Math.random() * 100000000));
+                trace.setManufacturingOrder(manufacturingOrder);
+                trace.setLine(line);
+                trace.setManufacturingOrderProduct(manufacturingOrderProduct);
+                trace.setStartTime(new Date());
+                trace.setState(1);
+                trace.setUser(new User());
+
+                for(WorkStationConfiguration workStationConfiguration: line.getWorkStationConfigurations()){
+                    WorkStationConfiguration tempWorkStationConfiguration = workStationConfigurationService.byProductTypeId(productType.getId());
+
+                    if(tempWorkStationConfiguration != null){
+                        trace.setWorkStation(workStationConfiguration.getWorkStation());
+                        break;
+                    }
+                }
+            }
+        }
         return manufacturingOrder;
     }
 }

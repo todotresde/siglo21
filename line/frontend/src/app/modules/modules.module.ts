@@ -10,6 +10,7 @@ import { ProductTypeModule } from './productType/productType.module';
 import { UserModule } from './user/user.module';
 import { WorkStationModule } from './workStation/workStation.module';
 import { ManufacturingOrderModule } from './manufacturingOrder/manufacturingOrder.module';
+import { TraceModule } from './trace/trace.module';
 
 import { ModulesComponent } from './modules.component';
 @NgModule({
@@ -22,7 +23,8 @@ import { ModulesComponent } from './modules.component';
     ProductModule,
     ProductTypeModule,
     LineModule,
-    ManufacturingOrderModule
+    ManufacturingOrderModule,
+    TraceModule
   ],
   declarations: [ModulesComponent]
 })

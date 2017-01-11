@@ -42,4 +42,10 @@ public class ManufacturingOrderController {
     ManufacturingOrder save(@RequestBody ManufacturingOrder manufacturingOrder) {
         return this.manufacturingOrderService.save(manufacturingOrder);
     }
+
+    @RequestMapping(value="/manufacturingOrder/{id}/send", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    ManufacturingOrder send(@PathVariable Long id) {
+        return this.manufacturingOrderService.send(id);
+    }
 }

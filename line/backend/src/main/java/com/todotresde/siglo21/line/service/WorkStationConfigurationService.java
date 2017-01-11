@@ -1,5 +1,6 @@
 package com.todotresde.siglo21.line.service;
 
+import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public interface WorkStationConfigurationService {
     public List<WorkStationConfiguration> all();
     public WorkStationConfiguration byId(Long id);
+    public WorkStationConfiguration byProductTypeId(Long productTypeId);
     public WorkStationConfiguration delete(Long id);
     public WorkStationConfiguration save(WorkStationConfiguration workStationConfiguration);
 }
