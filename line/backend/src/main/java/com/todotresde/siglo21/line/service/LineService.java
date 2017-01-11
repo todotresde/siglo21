@@ -12,7 +12,7 @@ import java.util.List;
 public interface LineService {
     public List<Line> all();
     public Line byId(Long id);
-    public Line byProductType(ProductType productType);
+    public Line byProductTypeId(Long productTypeId);
     public Line delete(Long id);
     public Line save(Line line);
 }

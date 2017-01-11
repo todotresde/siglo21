@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 @Transactional
 public interface LineDao extends CrudRepository<Line, Long>, LineDaoCustom {
     public Line findById(Long id);
-    public Line findByProductType(ProductType productType);
     public void delete(Long id);
     public Line save(Line line);
 }

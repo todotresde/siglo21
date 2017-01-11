@@ -53,7 +53,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
 
             for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()){
                 ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
-                Line line = lineService.byProductType(productType);
+                Line line = lineService.byProductTypeId(productType.getId());
 
                 Trace trace = new Trace();
 

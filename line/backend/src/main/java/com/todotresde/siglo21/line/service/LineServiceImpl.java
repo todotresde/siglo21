@@ -33,8 +33,18 @@ public class LineServiceImpl implements LineService{
         return lineDao.findById(id);
     }
 
-    public Line byProductType(ProductType productType) {
-        return lineDao.findByProductType(productType);
+    public Line byProductTypeId(Long productTypeId) {
+        for (Line line : lineDao.findAll()) {
+            for (WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()) {
+                for (ProductType productType : workStationConfiguration.getProductTypes()) {
+                    if(productType.getId().equals(productTypeId)){
+                        return line;
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     public Line delete(Long id) {
