@@ -35,5 +35,9 @@
 	"end-time": "Fin",
 	"time" : "Tiempo",
 	"work-station" : "Puesto",
-	"ip" : "IP"
+	"ip" : "IP",
+	"line" : "Línea",
+	"previous" : "Previo",
+	"next" : "Siguiente",
+	"current" : "Actual"
 }

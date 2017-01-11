@@ -1,24 +1,24 @@
 <div class="card">
     <div class="card-header">
-        {{'workstations'}}
+        {{'work-stations'|translate}}
         <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
-            <div class="row" >
+            <div class="row table header" >
                 <div class="col-md-3">
-                    <strong>{{'current'}}</strong>
+                    {{'current'|translate}}
                 </div>
                 <div class="col-md-3">
-                    <strong>{{'prev'}}</strong>
+                    {{'previous'|translate}}
                 </div>
                 <div class="col-md-3">
-                    <strong>{{'next'}}</strong>
+                    {{'next'|translate}}
                 </div>
                 <div class="col-ms-3 pull-right">
                 </div>
             </div>
-            <div class="row" *ngFor="let workStationConfiguration of workStationConfigurations" >
+            <div class="row table" *ngFor="let workStationConfiguration of workStationConfigurations" >
                 <div class="col-md-3">
                     {{workStationConfiguration.workStation.name}}
                 </div>

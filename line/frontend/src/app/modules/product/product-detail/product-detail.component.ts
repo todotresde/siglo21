@@ -31,7 +31,7 @@ export class ProductDetailComponent implements OnInit {
       }
     });
 
-    this.productTypeService.getProductTypes().then(productTypes => this.productTypes = productTypes);
+    this.productTypeService.getAll().then(productTypes => this.productTypes = productTypes);
   }
 
   save(): void {

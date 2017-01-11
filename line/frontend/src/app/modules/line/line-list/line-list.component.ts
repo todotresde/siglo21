@@ -7,7 +7,6 @@ import { LineService } from '../line.service';
 @Component({
   selector: 'app-line-list',
   templateUrl: './line-list.component.html',
-  styleUrls: ['./line-list.component.css'],
   providers:[LineService]
 })
 export class LineListComponent implements OnInit {
@@ -18,7 +17,9 @@ export class LineListComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.lineService.getLines().then(lines => this.lines = lines);
+    this.lineService
+      .getAll().then(lines => this.lines = lines)
+      .catch(error => {});
   }
 
   create(): void {
@@ -30,7 +31,9 @@ export class LineListComponent implements OnInit {
   }
 
   remove(line: Line): void {
-    this.lineService.removeLine(line).then(line => this.lines = this.lines.filter(u => u.id !== line.id));
+    this.lineService
+      .remove(line).then(line => this.lines = this.lines.filter(u => u.id !== line.id))
+      .catch(error => {});
   }
 
 }

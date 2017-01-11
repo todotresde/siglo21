@@ -3,12 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { WorkStation } from '../../../workStation/workStation';
 import { WorkStationConfiguration } from '../workStationConfiguration';
-import { WorkStationConfigurationService } from './workStationConfiguration-list.service';
+import { WorkStationConfigurationService } from '../workStationConfiguration.service';
 
 @Component({
   selector: 'app-workstation-configuration-list',
   templateUrl: './workStationConfiguration-list.component.html',
-  styleUrls: ['./workStationConfiguration-list.component.css'],
   providers:[WorkStationConfigurationService]
 })
 export class WorkStationConfigurationListComponent implements OnInit, OnChanges {

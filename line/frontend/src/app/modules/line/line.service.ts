@@ -3,34 +3,36 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../../environments/environment';
+
 import { Line } from './line';
 
 @Injectable()
 export class LineService {
   constructor(private http: Http) { }
 
-  getLines(): Promise<Line[]> {
-    return this.http.get("http://localhost:8080/line")
-               .toPromise()
-               .then(response => response.json() as Line[]);
+  getAll(): Promise<Line[]> {
+    return this.http.get(environment.host + "/line")
+               .map(response => response.json() as Line[])
+               .toPromise();
   }
 
-  getLine(id: Number): Promise<Line> {
-    return this.http.get("http://localhost:8080/line/" + id)
-               .toPromise()
-               .then(response => response.json() as Line);
+  get(id: Number): Promise<Line> {
+    return this.http.get(environment.host + "/line/" + id)
+               .map(response => response.json() as Line)
+               .toPromise();
   }
 
-  removeLine(line: Line): Promise<Line> {
-    return this.http.delete("http://localhost:8080/line/" + line.id)
-               .toPromise()
-               .then(response => response.json() as Line);
+  remove(line: Line): Promise<Line> {
+    return this.http.delete(environment.host + "/line/" + line.id)
+               .map(response => response.json() as Line)
+               .toPromise();
   }
 
   save(line: Line): Promise<Line> {
-    return this.http.post("http://localhost:8080/line", line)
-               .toPromise()
-               .then(response => response.json() as Line);
+    return this.http.post(environment.host + "/line", line)
+               .map(response => response.json() as Line)
+               .toPromise();
   }
 
 }

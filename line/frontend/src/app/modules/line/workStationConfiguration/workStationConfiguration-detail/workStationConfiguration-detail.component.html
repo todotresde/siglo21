@@ -1,34 +1,34 @@
 <div class="card">
     <div class="card-header">
-        {{'workstation'}}
+        {{'work-station'|translate}}
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="addWorkStation(prevWorkStation, currentWorkStation, nextWorkStation)"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group col-md-4">
-                    <label for="formGroupExampleInput">Previous</label>
+                    <label for="dropdownPrevious">{{'previous'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{prevWorkStation.name}}</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                        <button class="btn btn-outline-primary" id="dropdownPrevious" ngbDropdownToggle>{{prevWorkStation.name}}</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownPrevious" >
                             <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="prevWorkStation = workStation" >{{workStation.name}}</button>
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="formGroupExampleInput2">Current</label>
+                    <label for="dropdownCurrent">{{'current'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{currentWorkStation.name}}</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                        <button class="btn btn-outline-primary" id="dropdownCurrent" ngbDropdownToggle>{{currentWorkStation.name}}</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownCurrent" >
                             <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="currentWorkStation = workStation">{{workStation.name}}</button>
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="formGroupExampleInput2">Next</label>
+                    <label for="dropdownNext">{{'next'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{nextWorkStation.name}}</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                        <button class="btn btn-outline-primary" id="dropdownNext" ngbDropdownToggle>{{nextWorkStation.name}}</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownNext" >
                             <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="nextWorkStation = workStation">{{workStation.name}}</button>
                         </div>
                     </div>

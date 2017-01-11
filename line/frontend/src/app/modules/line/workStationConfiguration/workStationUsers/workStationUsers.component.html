@@ -1,27 +1,27 @@
 <div class="card">
     <div class="card-header">
-        {{'users'}}
+        {{'users'|translate}}
     </div>
     <div class="card-block">
         <div class="container-fluid">
             <div class="form-group row">
-                <label for="formGroupExampleInput">User</label>
+                <label for="dropdownUser">{{'user'|translate}}</label>
                 <div ngbDropdown class="d-inline-block">
-                    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedUser.name}}</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                    <button class="btn btn-outline-primary" id="dropdownUser" ngbDropdownToggle>{{selectedUser.name}}</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownUser" >
                         <button class="dropdown-item" *ngFor="let user of users" (click)="selectedUser = user" >{{user.name}}</button>
                     </div>
                 </div>
                 <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="add(selectedUser)"></button>
             </div>
-            <div class="row" >
+            <div class="row table header" >
                 <div class="col-md-8">
-                    <strong>{{'name'}}</strong>
+                    {{'name'|translate}}
                 </div>
                 <div class="col-ms-4 pull-right">
                 </div>
             </div>
-            <div class="row" *ngFor="let selectedUser of selectedUsers" >
+            <div class="row table" *ngFor="let selectedUser of selectedUsers" >
                 <div class="col-md-8">
                     {{selectedUser.name}}
                 </div>

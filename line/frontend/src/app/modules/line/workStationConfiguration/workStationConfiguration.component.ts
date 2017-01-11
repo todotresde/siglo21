@@ -8,7 +8,6 @@ import {Observable} from 'rxjs/Rx';
 @Component({
   selector: 'app-workstation-configuration',
   templateUrl: './workStationConfiguration.component.html',
-  styleUrls: ['./workStationConfiguration.component.css'],
   providers: [WorkStationConfigurationService]
 })
 export class WorkStationConfigurationComponent implements OnInit, OnChanges {

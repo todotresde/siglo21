@@ -23,7 +23,7 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   }
 
   ngOnInit() : void{
-    this.productService.getProducts().then(products => this.products = products);
+    this.productService.getAll().then(products => this.products = products);
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {

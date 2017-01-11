@@ -1,9 +1,10 @@
+import { Shared } from '../../../shared/shared';
 import { WorkStation } from '../../workStation/workStation';
 import { ProductType } from '../../productType/productType';
 import { User } from '../../user/user';
 
 export class WorkStationConfiguration {
-    id: number = Math.floor(Math.random() * 10000000);
+    id: number = Shared.generateId();
     workStation: WorkStation;
     nextWorkStation : WorkStation;
     prevWorkStation : WorkStation;

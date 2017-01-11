@@ -7,7 +7,6 @@ import { ProductTypeService } from '../../../productType/productType.service';
 @Component({
   selector: 'app-workstation-product-types',
   templateUrl: './workStationProductTypes.component.html',
-  styleUrls: ['./workStationProductTypes.component.css'],
   providers:[ProductTypeService]
 })
 export class WorkStationProductTypesComponent implements OnInit {
@@ -24,7 +23,7 @@ export class WorkStationProductTypesComponent implements OnInit {
   }
 
   ngOnInit() : void{
-      this.productTypeService.getProductTypes().then(productTypes => this.productTypes = productTypes);
+      this.productTypeService.getAll().then(productTypes => this.productTypes = productTypes);
   }
 
   add(productType: ProductType): void {

@@ -11,7 +11,6 @@ import { WorkStationConfigurationService } from '../workStationConfiguration.ser
 @Component({
   selector: 'app-workstation-configuration-detail',
   templateUrl: './workStationConfiguration-detail.component.html',
-  styleUrls: ['./workStationConfiguration-detail.component.css'],
   providers:[WorkStationService, WorkStationConfigurationService]
 })
 export class WorkStationConfigurationDetailComponent implements OnInit, OnChanges {
@@ -21,16 +20,16 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
   workStations : WorkStation[];
   workStationConfiguration: WorkStationConfiguration;
   
-  prevWorkStation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
-  currentWorkStation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
-  nextWorkStation : WorkStation = new WorkStation(-1,"Select...","0.0.0.0");
+  prevWorkStation : WorkStation = new WorkStation();
+  currentWorkStation : WorkStation = new WorkStation();
+  nextWorkStation : WorkStation = new WorkStation();
 
   constructor(private route: ActivatedRoute, private workStationService: WorkStationService, private workStationConfigurationService: WorkStationConfigurationService) { 
       this.workStationConfiguration = new WorkStationConfiguration();
   }
 
   ngOnInit() : void{
-    this.workStationService.getWorkStations().then(workStations => this.workStations = workStations);
+    this.workStationService.getAll().then(workStations => this.workStations = workStations);
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {

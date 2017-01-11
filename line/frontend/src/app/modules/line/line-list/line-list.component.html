@@ -1,25 +1,19 @@
 <div class="card">
   <div class="card-header">
-    {{'lines'}}
+    {{'lines'|translate}}
     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
   </div>
   <div class="card-block">
     <div class="container-fluid">
-      <div class="row" >
-        <div class="col-md-2">
-          <strong>{{'id'}}</strong>
-        </div>
-        <div class="col-md-6">
-          <strong>{{'name'}}</strong>
+      <div class="row table header" >
+        <div class="col-md-8">
+          {{'name'|translate}}
         </div>
         <div class="col-ms-4 pull-right">
         </div>
       </div>
       <div class="row" *ngFor="let line of lines" >
-        <div class="col-md-2">
-          {{line.id}}
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
           {{line.name}}
         </div>
         <div class="col-ms-4 pull-right">

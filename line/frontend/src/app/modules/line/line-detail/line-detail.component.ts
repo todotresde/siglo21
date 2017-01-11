@@ -8,7 +8,6 @@ import { WorkStationConfiguration } from '../workStationConfiguration/workStatio
 @Component({
   selector: 'app-line-detail',
   templateUrl: './line-detail.component.html',
-  styleUrls: ['./line-detail.component.css'],
   providers:[LineService]
 })
 export class LineDetailComponent implements OnInit {
@@ -21,7 +20,7 @@ export class LineDetailComponent implements OnInit {
   ngOnInit() : void{
     this.route.params.subscribe(params => {
       if(params["id"]){
-        this.lineService.getLine(params["id"]).then(line =>{ 
+        this.lineService.get(params["id"]).then(line =>{ 
           this.line = line;
         });
       }
