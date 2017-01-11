@@ -8,7 +8,6 @@ import { ManufacturingOrderProduct } from '../manufacturingOrderProduct'
 @Component({
   selector: 'app-manufacturing-order-product-detail',
   templateUrl: './manufacturingOrderProduct-detail.component.html',
-  styleUrls: ['./manufacturingOrderProduct-detail.component.css'],
   providers:[ProductService]
 })
 export class ManufacturingOrderProductDetailComponent implements OnInit, OnChanges {

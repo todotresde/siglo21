@@ -7,7 +7,9 @@ body {
 	font-size: 0.9rem !important;
 }
 
-.table.header{
+.table-header{
 	background-color:#eceeef;
 	font-weight: bold;
+	padding: 10px 0px 10px 0px;
+    margin-bottom: 10px;
 }

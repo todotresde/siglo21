@@ -39,5 +39,8 @@
 	"line" : "Línea",
 	"previous" : "Previo",
 	"next" : "Siguiente",
-	"current" : "Actual"
+	"current" : "Actual",
+	"log-out" : "Salir",
+	"profile" : "Perfil",
+	"title" : "Línea de Manufactura"
 }

@@ -7,7 +7,6 @@ import { ManufacturingOrderProduct } from '../manufacturingOrderProduct/manufact
 @Component({
   selector: 'app-manufacturing-order-custom-product',
   templateUrl: './manufacturingOrderCustomProduct.component.html',
-  styleUrls: ['./manufacturingOrderCustomProduct.component.css'],
   providers:[]
 })
 export class ManufacturingOrderCustomProductComponent implements OnInit {

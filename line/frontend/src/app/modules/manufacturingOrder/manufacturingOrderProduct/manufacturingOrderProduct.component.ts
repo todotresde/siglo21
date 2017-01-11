@@ -6,7 +6,6 @@ import { ManufacturingOrderProduct } from './manufacturingOrderProduct';
 @Component({
   selector: 'app-manufacturing-order-product',
   templateUrl: './manufacturingOrderProduct.component.html',
-  styleUrls: ['./manufacturingOrderProduct.component.css'],
   providers:[]
 })
 export class ManufacturingOrderProductComponent implements OnInit, OnChanges {

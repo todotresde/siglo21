@@ -7,7 +7,6 @@ import { ManufacturingOrderService } from '../manufacturingOrder.service';
 @Component({
   selector: 'app-manufacturing-order-list',
   templateUrl: './manufacturingOrder-list.component.html',
-  styleUrls: ['./manufacturingOrder-list.component.css'],
   providers:[ManufacturingOrderService]
 })
 export class ManufacturingOrderListComponent implements OnInit {

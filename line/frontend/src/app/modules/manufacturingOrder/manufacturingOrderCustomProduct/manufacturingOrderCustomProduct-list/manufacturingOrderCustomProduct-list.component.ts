@@ -6,7 +6,6 @@ import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProd
 @Component({
   selector: 'app-manufacturing-order-custom-product-list',
   templateUrl: './manufacturingOrderCustomProduct-list.component.html',
-  styleUrls: ['./manufacturingOrderCustomProduct-list.component.css'],
   providers:[]
 })
 export class ManufacturingOrderCustomProductListComponent implements OnInit, OnChanges {

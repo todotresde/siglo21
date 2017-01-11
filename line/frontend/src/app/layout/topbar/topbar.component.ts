@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-layout-topbar',
-  templateUrl: './topbar.component.html',
-  styleUrls: ['./topbar.component.css']
+  templateUrl: './topbar.component.html'
 })
 export class TopbarComponent implements OnInit {
 

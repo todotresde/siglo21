@@ -1,25 +1,39 @@
 <nav class="sidebar">
     <ul class="list-group">
-        <a [routerLink]="['users']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-group"></i> {{'users'|translate}}
-        </a>
-		<a [routerLink]="['workStations']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-cubes"></i> {{'work-stations'|translate}}
-        </a>
-        <a [routerLink]="['products']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-barcode"></i> {{'products'|translate}} 
-        </a>
-        <a [routerLink]="['productTypes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-barcode"></i> {{'product-types'|translate}}
-        </a>
-        <a [routerLink]="['lines']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-code-fork"></i> {{'lines'|translate}} 
-        </a>
-        <a [routerLink]="['manufacturingOrders']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-industry"></i> {{'manufacturing-orders'|translate}} 
-        </a>
-        <a [routerLink]="['trace']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-wrench"></i> {{'trace-screen'|translate}} 
-        </a>
+        <li>
+            <a [routerLink]="['users']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-group"></i> {{'users'|translate}}
+            </a>
+        </li>
+        <li>
+    		<a [routerLink]="['workStations']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-cubes"></i> {{'work-stations'|translate}}
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['products']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-barcode"></i> {{'products'|translate}} 
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['productTypes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-barcode"></i> {{'product-types'|translate}}
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['lines']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-code-fork"></i> {{'lines'|translate}} 
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['manufacturingOrders']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-industry"></i> {{'manufacturing-orders'|translate}} 
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['trace']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-wrench"></i> {{'trace-screen'|translate}} 
+            </a>
+        </li>
     </ul>
 </nav>
