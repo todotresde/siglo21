@@ -7,7 +7,6 @@ import { ProductTypeService } from '../productType.service';
 @Component({
   selector: 'app-productType-detail',
   templateUrl: './productType-detail.component.html',
-  styleUrls: ['./productType-detail.component.css'],
   providers:[ProductTypeService]
 })
 export class ProductTypeDetailComponent implements OnInit {
@@ -21,7 +20,7 @@ export class ProductTypeDetailComponent implements OnInit {
   ngOnInit() : void{
     this.route.params.subscribe(params => {
       if(params["id"]){
-        this.productTypeService.getProductType(params["id"]).then(productType =>{ 
+        this.productTypeService.get(params["id"]).then(productType =>{ 
           this.productType = productType;
         });
       }
@@ -34,13 +33,7 @@ export class ProductTypeDetailComponent implements OnInit {
         .then(productType => {
           this.productType = productType; 
           
-          this.goBack();
         }).catch(error => {
         })
   }
-
-  goBack(): void {
-    window.history.back();
-  }
-
 }

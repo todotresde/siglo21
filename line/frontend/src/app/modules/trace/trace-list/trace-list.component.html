@@ -19,16 +19,16 @@
         {{trace.manufacturingOrder.code}}
     </div>
     <div class="col-md-3">
-        {{trace.productType.name}}
+        {{trace.manufacturingOrderProduct.product.productType.name}}
     </div>
     <div class="col-md-2">
-        {{trace.manufacturingOrderProduct.width}}
+        {{trace.manufacturingOrderProduct.product.width}}
     </div>
     <div class="col-md-2">
-        {{trace.manufacturingOrderProduct.height}}
+        {{trace.manufacturingOrderProduct.product.height}}
     </div>
     <div class="col-ms-2 pull-right">
-        <button type="button" class="btn btn-secondary fa fa-clock" (click)="delay(trace)"></button>
-        <button type="button" class="btn btn-secondary fa fa-pencil" (click)="activate(trace)"></button>
+        <button type="button" class="btn btn-secondary fa fa-clock-o" (click)="delay(trace)"></button>
+        <button type="button" class="btn btn-secondary fa fa-wrench" (click)="activate(trace)"></button>
     </div>
 </div>

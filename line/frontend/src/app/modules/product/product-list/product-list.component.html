@@ -1,37 +1,31 @@
 <div class="card">
   <div class="card-header">
-    {{'products'}}
+    {{'products'|translate}}
     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
   </div>
   <div class="card-block">
     <div class="container-fluid">
-      <div class="row" >
-          <div class="col-md-1">
-              <strong>{{'id'}}</strong>
-          </div>
-          <div class="col-md-3">
-              <strong>{{'code'}}</strong>
+      <div class="row table header" >
+          <div class="col-md-2">
+              {{'code'|translate}}
           </div>
           <div class="col-md-4">
-              <strong>{{'description'}}</strong>
+              {{'description'|translate}}
           </div>
           <div class="col-md-4">
-              <strong>{{'productType'}}</strong>
+              {{'product-type'|translate}}
           </div>
           <div class="col-ms-2 pull-right">
           </div>
       </div>
-      <div class="row" *ngFor="let product of products" >
-        <div class="col-md-1">
-          {{product.id}}
-        </div>
-        <div class="col-md-3">
+      <div class="row table" *ngFor="let product of products" >
+        <div class="col-md-2">
           {{product.code}}
         </div>
         <div class="col-md-4">
           {{product.description}}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
           {{product.productType.name}}
         </div>
         <div class="col-ms-2 pull-right">

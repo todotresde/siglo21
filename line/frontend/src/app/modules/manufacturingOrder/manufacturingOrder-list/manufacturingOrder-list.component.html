@@ -3,6 +3,7 @@
     {{'manufacturing-orders'|translate}}
     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
   </div>
+  <app-message [type]="messageType" [message]="message"></app-message>
   <div class="card-block">
     <div class="container-fluid">
       <div class="row table header" >
@@ -25,6 +26,7 @@
         <div class="col-ms-4 pull-right">
           <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrder)"></button>
           <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrder)"></button>
+          <button type="button" class="btn btn-secondary fa fa-gears" (click)="send(manufacturingOrder)"></button>
         </div>
       </div>
     </div>

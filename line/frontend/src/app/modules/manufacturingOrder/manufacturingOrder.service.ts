@@ -5,48 +5,40 @@ import 'rxjs/add/operator/toPromise';
 
 import { ManufacturingOrder } from './manufacturingOrder';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class ManufacturingOrderService {
-  temporalManufacturingOrder: ManufacturingOrder;
-
   constructor(private http: Http) { }
 
   getAll(): Promise<ManufacturingOrder[]> {
-    return this.http.get("http://localhost:8080/manufacturingOrder")
+    return this.http.get(environment.host + "/manufacturingOrder")
                .map(response => response.json() as ManufacturingOrder[])
                .toPromise();
   }
 
   get(id: Number): Promise<ManufacturingOrder> {
-    return this.http.get("http://localhost:8080/manufacturingOrder/" + id)
+    return this.http.get(environment.host + "/manufacturingOrder/" + id)
                .map(response => response.json() as ManufacturingOrder)
                .toPromise();
   }
 
   remove(manufacturingOrder: ManufacturingOrder): Promise<ManufacturingOrder> {
-    return this.http.delete("http://localhost:8080/manufacturingOrder/" + manufacturingOrder.id)
+    return this.http.delete(environment.host + "/manufacturingOrder/" + manufacturingOrder.id)
                .map(response => response.json() as ManufacturingOrder)
                .toPromise();
   }
 
   save(manufacturingOrder: ManufacturingOrder): Promise<ManufacturingOrder> {
-    return this.http.post("http://localhost:8080/manufacturingOrder", manufacturingOrder)
+    return this.http.post(environment.host + "/manufacturingOrder", manufacturingOrder)
                .map(response => response.json() as ManufacturingOrder)
                .toPromise();
   }
 
-  newTemporal(): ManufacturingOrder{
-    this.temporalManufacturingOrder = new ManufacturingOrder();
-    return this.temporalManufacturingOrder;
-  } 
-
-  getTemporal(): ManufacturingOrder{
-    return this.temporalManufacturingOrder;
-  } 
-
-  setTemporal(manufacturingOrder: ManufacturingOrder): ManufacturingOrder{
-    this.temporalManufacturingOrder = manufacturingOrder;
-    return this.temporalManufacturingOrder;
-  } 
+  send(id: Number): Promise<ManufacturingOrder> {
+    return this.http.get(environment.host + "/manufacturingOrder/" + id + "/send")
+               .map(response => response.json() as ManufacturingOrder)
+               .toPromise();
+  }
 
 }

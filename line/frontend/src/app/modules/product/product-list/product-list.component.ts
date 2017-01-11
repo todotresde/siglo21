@@ -7,7 +7,6 @@ import { ProductService } from '../product.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
   providers:[ProductService]
 })
 export class ProductListComponent implements OnInit {
@@ -18,7 +17,10 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.productService.getProducts().then(products => this.products = products);
+    this.productService
+      .getAll()
+      .then(products => this.products = products)
+      .catch(error => {});
   }
 
   create(): void {
@@ -30,7 +32,10 @@ export class ProductListComponent implements OnInit {
   }
 
   remove(product: Product): void {
-    this.productService.removeProduct(product).then(product => this.products = this.products.filter(u => u.id !== product.id));
+    this.productService
+      .remove(product)
+      .then(product => this.products = this.products.filter(u => u.id !== product.id))
+      .catch(error => {});
   }
 
 }

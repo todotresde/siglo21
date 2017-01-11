@@ -8,5 +8,6 @@ body {
 }
 
 .table.header{
-	background-color:#eceeef
+	background-color:#eceeef;
+	font-weight: bold;
 }

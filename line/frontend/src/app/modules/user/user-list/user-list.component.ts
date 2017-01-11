@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void{
     this.userService.getAll()
-      .then(users => this.users = users)
+      .then(users => { this.messageType = 0; this.users = users})
       .catch(error => { this.messageType = 4;});
   }
 
@@ -35,10 +35,10 @@ export class UserListComponent implements OnInit {
   remove(user: User): void {
     this.userService
       .remove(user)
-      .then(user => this.users = this.users.filter(u => u.id !== user.id))
+      .then(user => {this.messageType = 0; this.users = this.users.filter(u => u.id !== user.id)})
       .catch(error => { this.messageType = 4; this.message = error.message;});
 
-    this.messageType = 0;
+    
   }
 
 }

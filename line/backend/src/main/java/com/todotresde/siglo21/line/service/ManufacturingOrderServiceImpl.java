@@ -20,6 +20,10 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     private WorkStationConfigurationService workStationConfigurationService;
     @Autowired
     private LineService lineService;
+    @Autowired
+    private TraceDao traceDao;
+    @Autowired
+    private UserDao userDao;
 
     public List<ManufacturingOrder> all() {
         ArrayList<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
@@ -63,7 +67,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                 trace.setManufacturingOrderProduct(manufacturingOrderProduct);
                 trace.setStartTime(new Date());
                 trace.setState(1);
-                trace.setUser(new User());
+                trace.setUser(userDao.findById(new Long(96838337)));
 
                 for(WorkStationConfiguration workStationConfiguration: line.getWorkStationConfigurations()){
                     WorkStationConfiguration tempWorkStationConfiguration = workStationConfigurationService.byProductTypeId(productType.getId());
@@ -73,6 +77,8 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                         break;
                     }
                 }
+
+                traceDao.save(trace);
             }
         }
         return manufacturingOrder;

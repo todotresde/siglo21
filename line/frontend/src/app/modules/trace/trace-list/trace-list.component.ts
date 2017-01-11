@@ -7,7 +7,6 @@ import { TraceService } from '../trace.service';
 @Component({
   selector: 'app-trace-list',
   templateUrl: './trace-list.component.html',
-  styleUrls: ['./trace-list.component.css'],
   providers:[TraceService]
 })
 export class TraceListComponent implements OnInit {

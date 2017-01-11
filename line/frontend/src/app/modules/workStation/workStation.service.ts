@@ -3,34 +3,36 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../../environments/environment';
+
 import { WorkStation } from './workStation';
 
 @Injectable()
 export class WorkStationService {
   constructor(private http: Http) { }
 
-  getWorkStations(): Promise<WorkStation[]> {
-    return this.http.get("http://localhost:8080/workStation")
-               .toPromise()
-               .then(response => response.json() as WorkStation[]);
+  getAll(): Promise<WorkStation[]> {
+    return this.http.get(environment.host + "/workStation")
+               .map(response => response.json() as WorkStation[])
+               .toPromise();
   }
 
-  getWorkStation(id: Number): Promise<WorkStation> {
-    return this.http.get("http://localhost:8080/workStation/" + id)
-               .toPromise()
-               .then(response => response.json() as WorkStation);
+  get(id: Number): Promise<WorkStation> {
+    return this.http.get(environment.host + "/workStation/" + id)
+               .map(response => response.json() as WorkStation)
+               .toPromise();
   }
 
-  removeWorkStation(workStation: WorkStation): Promise<WorkStation> {
-    return this.http.delete("http://localhost:8080/workStation/" + workStation.id)
-               .toPromise()
-               .then(response => response.json() as WorkStation);
+  remove(workStation: WorkStation): Promise<WorkStation> {
+    return this.http.delete(environment.host + "/workStation/" + workStation.id)
+               .map(response => response.json() as WorkStation)
+               .toPromise();
   }
 
   save(workStation: WorkStation): Promise<WorkStation> {
-    return this.http.post("http://localhost:8080/workStation", workStation)
-               .toPromise()
-               .then(response => response.json() as WorkStation);
+    return this.http.post(environment.host + "/workStation", workStation)
+               .map(response => response.json() as WorkStation)
+               .toPromise();
   }
 
 }

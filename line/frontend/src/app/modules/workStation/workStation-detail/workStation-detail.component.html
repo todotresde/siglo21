@@ -1,26 +1,20 @@
 <div class="card">
     <div class="card-header">
-        {{'workStation'}}2342342
+        {{'work-station'|translate}}
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
             <div class="form-group row">
-                <label for="id" class="col-xs-2 col-form-label">{{'id'}}</label>
-                <div class="col-xs-10">
-                    <input class="form-control" type="number" id="id" [(ngModel)]="workStation.id" placeholder="{{'someId'}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="name" class="col-xs-2 col-form-label">{{'name'}}</label>
+                <label for="name" class="col-xs-2 col-form-label">{{'name'|translate}}</label>
                 <div class="col-xs-10">
                     <input class="form-control" type="search" id="name" [(ngModel)]="workStation.name" placeholder="{{'someName'}}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="name" class="col-xs-2 col-form-label">{{'ip'}}</label>
+                <label for="ip" class="col-xs-2 col-form-label">{{'ip'|translate}}</label>
                 <div class="col-xs-10">
-                    <input class="form-control" type="search" id="name" [(ngModel)]="workStation.ip" placeholder="{{'someIp'}}">
+                    <input class="form-control" type="search" id="ip" [(ngModel)]="workStation.ip" placeholder="{{'someIp'}}">
                 </div>
             </div>
         </div>

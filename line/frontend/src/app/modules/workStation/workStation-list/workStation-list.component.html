@@ -1,18 +1,25 @@
 <div class="card">
   <div class="card-header">
-    {{'workStations'}}
+    {{'work-stations'|translate}}
     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
   </div>
   <div class="card-block">
     <div class="container-fluid">
-      <div class="row" *ngFor="let workStation of workStations" >
-        <div class="col-md-2">
-          {{workStation.id}}
-        </div>
+      <div class="row table header">
+          <div class="col-md-4">
+              {{'name'|translate}}
+          </div>
+          <div class="col-md-4">
+              {{'ip'|translate}}
+          </div>
+          <div class="col-ms-4 pull-right">
+          </div>
+      </div>
+      <div class="row table" *ngFor="let workStation of workStations" >
         <div class="col-md-4">
           {{workStation.name}}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
           {{workStation.ip}}
         </div>
         <div class="col-ms-4 pull-right">

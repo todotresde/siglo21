@@ -3,34 +3,36 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../../environments/environment';
+
 import { ProductType } from './productType';
 
 @Injectable()
 export class ProductTypeService {
   constructor(private http: Http) { }
 
-  getProductTypes(): Promise<ProductType[]> {
-    return this.http.get("http://localhost:8080/productType")
-               .toPromise()
-               .then(response => response.json() as ProductType[]);
+  getAll(): Promise<ProductType[]> {
+    return this.http.get(environment.host + "/productType")
+               .map(response => response.json() as ProductType[])
+               .toPromise();
   }
 
-  getProductType(id: Number): Promise<ProductType> {
-    return this.http.get("http://localhost:8080/productType/" + id)
-               .toPromise()
-               .then(response => response.json() as ProductType);
+  get(id: Number): Promise<ProductType> {
+    return this.http.get(environment.host + "/productType/" + id)
+               .map(response => response.json() as ProductType)
+               .toPromise();
   }
 
-  removeProductType(productType: ProductType): Promise<ProductType> {
-    return this.http.delete("http://localhost:8080/productType/" + productType.id)
-               .toPromise()
-               .then(response => response.json() as ProductType);
+  remove(productType: ProductType): Promise<ProductType> {
+    return this.http.delete(environment.host + "/productType/" + productType.id)
+               .map(response => response.json() as ProductType)
+               .toPromise();
   }
 
   save(productType: ProductType): Promise<ProductType> {
-    return this.http.post("http://localhost:8080/productType", productType)
-               .toPromise()
-               .then(response => response.json() as ProductType);
+    return this.http.post(environment.host + "/productType", productType)
+               .map(response => response.json() as ProductType)
+               .toPromise();
   }
 
 }

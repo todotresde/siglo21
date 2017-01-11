@@ -12,13 +12,18 @@ import { ManufacturingOrderService } from '../manufacturingOrder.service';
 })
 export class ManufacturingOrderListComponent implements OnInit {
   manufacturingOrders: ManufacturingOrder[];
+  messageType: number = 0;
+  message: string = "";
 
   constructor(private router: Router, private manufacturingOrderService: ManufacturingOrderService, private r:ActivatedRoute) {
 
   }
 
   ngOnInit(): void{
-    this.manufacturingOrderService.getAll().then(manufacturingOrders => this.manufacturingOrders = manufacturingOrders);
+    this.manufacturingOrderService
+      .getAll()
+      .then(manufacturingOrders => { this.messageType = 0; this.manufacturingOrders = manufacturingOrders})
+      .catch(error => { this.messageType = 4;});
   }
 
   create(): void {
@@ -30,7 +35,17 @@ export class ManufacturingOrderListComponent implements OnInit {
   }
 
   remove(manufacturingOrder: ManufacturingOrder): void {
-    this.manufacturingOrderService.remove(manufacturingOrder).then(manufacturingOrder => this.manufacturingOrders = this.manufacturingOrders.filter(u => u.id !== manufacturingOrder.id));
+    this.manufacturingOrderService
+      .remove(manufacturingOrder)
+      .then(manufacturingOrder => { this.messageType = 1; this.manufacturingOrders = this.manufacturingOrders.filter(u => u.id !== manufacturingOrder.id)})
+      .catch(error => { this.messageType = 4;});
+  }
+
+  send(manufacturingOrder: ManufacturingOrder): void {
+    this.manufacturingOrderService
+      .send(manufacturingOrder.id)
+      .catch(error => { this.messageType = 4;});
+
   }
 
 }

@@ -7,7 +7,6 @@ import { WorkStationService } from '../workStation.service';
 @Component({
   selector: 'app-workStation-list',
   templateUrl: './workStation-list.component.html',
-  styleUrls: ['./workStation-list.component.css'],
   providers:[WorkStationService]
 })
 export class WorkStationListComponent implements OnInit {
@@ -18,7 +17,9 @@ export class WorkStationListComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.workStationService.getWorkStations().then(workStations => this.workStations = workStations);
+    this.workStationService
+      .getAll()
+      .then(workStations => this.workStations = workStations);
   }
 
   create(): void {
@@ -30,7 +31,10 @@ export class WorkStationListComponent implements OnInit {
   }
 
   remove(workStation: WorkStation): void {
-    this.workStationService.removeWorkStation(workStation).then(workStation => this.workStations = this.workStations.filter(u => u.id !== workStation.id));
+    this.workStationService
+      .remove(workStation)
+      .then(workStation => this.workStations = this.workStations.filter(u => u.id !== workStation.id))
+      .catch(error => {});
   }
 
 }

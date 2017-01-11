@@ -1,33 +1,27 @@
 <div class="card">
     <div class="card-header">
-        {{'product'}}
+        {{'product'|translate}}
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
             <div class="form-group row">
-                <label for="id" class="col-md-2 col-form-label">{{'id'}}</label>
+                <label for="code" class="col-md-2 col-form-label">{{'code'|translate}}</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="number" id="id" [(ngModel)]="product.id" placeholder="{{'someId'}}">
+                    <input class="form-control" type="search" id="code" [(ngModel)]="product.code" placeholder="{{'code'|translate}}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="code" class="col-md-2 col-form-label">{{'code'}}</label>
+                <label for="description" class="col-md-2 col-form-label">{{'description'|translate}}</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="search" id="code" [(ngModel)]="product.code" placeholder="{{'someName'}}">
+                    <input class="form-control" type="search" id="description" [(ngModel)]="product.description" placeholder="{{'description'|translate}}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="description" class="col-md-2 col-form-label">{{'description'}}</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="search" id="description" [(ngModel)]="product.description" placeholder="{{'someDescription'}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="name" class="col-md-2 col-form-label">{{'productType'}}</label>
+                <label for="productType" class="col-md-2 col-form-label">{{'product-type'|translate}}</label>
                 <div ngbDropdown class="d-inline-block col-md-10">
-                    <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>{{selectedProductType.name}}</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                    <button class="btn btn-outline-primary" id="dropdownProductType" ngbDropdownToggle>{{selectedProductType.name}}</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownProductType" >
                         <button class="dropdown-item" *ngFor="let productType of productTypes" (click)="selectedProductType = productType" >{{productType.name}}</button>
                     </div>
                 </div>

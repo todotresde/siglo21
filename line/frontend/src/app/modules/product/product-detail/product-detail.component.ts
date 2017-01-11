@@ -9,7 +9,6 @@ import { ProductTypeService } from '../../productType/productType.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css'],
   providers:[ProductService, ProductTypeService]
 })
 export class ProductDetailComponent implements OnInit {
@@ -25,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() : void{
     this.route.params.subscribe(params => {
       if(params["id"]){
-        this.productService.getProduct(params["id"]).then(product =>{ 
+        this.productService.get(params["id"]).then(product =>{ 
           this.product = product;
           this.selectedProductType = this.product.productType;
         });
@@ -42,14 +41,8 @@ export class ProductDetailComponent implements OnInit {
         .save(this.product)
         .then(product => {
           this.product = product; 
-
-          this.goBack();
         }).catch(error => {
         })
-  }
-
-  goBack(): void {
-    window.history.back();
   }
 
 }

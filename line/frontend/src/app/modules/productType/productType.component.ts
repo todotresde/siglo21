@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-module-productType',
-  templateUrl: './productType.component.html',
-  styleUrls: ['./productType.component.css']
+  templateUrl: './productType.component.html'
 })
 export class ProductTypeComponent {
 

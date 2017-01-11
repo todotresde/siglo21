@@ -3,34 +3,36 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from '../../../environments/environment';
+
 import { Product } from './product';
 
 @Injectable()
 export class ProductService {
   constructor(private http: Http) { }
 
-  getProducts(): Promise<Product[]> {
-    return this.http.get("http://localhost:8080/product")
-               .toPromise()
-               .then(response => response.json() as Product[]);
+  getAll(): Promise<Product[]> {
+    return this.http.get(environment.host + "/product")
+               .map(response => response.json() as Product[])
+               .toPromise();
   }
 
-  getProduct(id: Number): Promise<Product> {
-    return this.http.get("http://localhost:8080/product/" + id)
-               .toPromise()
-               .then(response => response.json() as Product);
+  get(id: Number): Promise<Product> {
+    return this.http.get(environment.host + "/product/" + id)
+               .map(response => response.json() as Product)
+               .toPromise();
   }
 
-  removeProduct(product: Product): Promise<Product> {
-    return this.http.delete("http://localhost:8080/product/" + product.id)
-               .toPromise()
-               .then(response => response.json() as Product);
+  remove(product: Product): Promise<Product> {
+    return this.http.delete(environment.host + "/product/" + product.id)
+               .map(response => response.json() as Product)
+               .toPromise();
   }
 
   save(product: Product): Promise<Product> {
-    return this.http.post("http://localhost:8080/product", product)
-               .toPromise()
-               .then(response => response.json() as Product);
+    return this.http.post(environment.host + "/product", product)
+               .map(response => response.json() as Product)
+               .toPromise();
   }
 
 }

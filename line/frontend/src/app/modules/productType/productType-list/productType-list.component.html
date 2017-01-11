@@ -1,15 +1,19 @@
 <div class="card">
   <div class="card-header">
-    {{'productTypes'}}
+    {{'product-types'|translate}}
     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
   </div>
   <div class="card-block">
     <div class="container-fluid">
-      <div class="row" *ngFor="let productType of productTypes" >
-        <div class="col-md-2">
-          {{productType.id}}
-        </div>
-        <div class="col-md-6">
+      <div class="row table header">
+          <div class="col-md-8">
+              {{'name'|translate}}
+          </div>
+          <div class="col-ms-4 pull-right">
+          </div>
+      </div>
+      <div class="row table" *ngFor="let productType of productTypes" >
+        <div class="col-md-8">
           {{productType.name}}
         </div>
         <div class="col-ms-4 pull-right">

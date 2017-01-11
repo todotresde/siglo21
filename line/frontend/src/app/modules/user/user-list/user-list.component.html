@@ -6,17 +6,17 @@
     <app-message [type]="messageType" [message]="message"></app-message>
     <div class="card-block">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row table header">
                 <div class="col-md-2">
-                    <strong>{{'id'|translate}}</strong>
+                    {{'id'|translate}}
                 </div>
                 <div class="col-md-6">
-                    <strong>{{'name'|translate}}</strong>
+                    {{'name'|translate}}
                 </div>
                 <div class="col-ms-4 pull-right">
                 </div>
             </div>
-            <div class="row" *ngFor="let user of users">
+            <div class="row table" *ngFor="let user of users">
                 <div class="col-md-2">
                     {{user.id}}
                 </div>

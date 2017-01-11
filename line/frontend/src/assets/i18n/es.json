@@ -33,5 +33,7 @@
 	"product-type" : "Tipo de Producto",
 	"start-time" : "Inicio",
 	"end-time": "Fin",
-	"time" : "Tiempo"
+	"time" : "Tiempo",
+	"work-station" : "Puesto",
+	"ip" : "IP"
 }
