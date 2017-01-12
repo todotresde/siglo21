@@ -44,5 +44,10 @@
 	"profile" : "Perfil",
 	"title" : "Línea de Manufactura",
 	"delays" : "Demoras",
-	"delay" : "Demora"
+	"delay" : "Demora",
+	"configuration" : "Configuración",
+	"security" : "Seguridad",
+	"delay-type" : "Tipo de Demora",
+	"delay-types" : "Tipos de Demora"
+
 }

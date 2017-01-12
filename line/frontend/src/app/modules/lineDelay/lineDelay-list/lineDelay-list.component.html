@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    {{'lineDelays'|translate}}
+    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+  </div>
+  <div class="card-block">
+    <div class="container-fluid">
+      <div class="row table-header" >
+          <div class="col-md-2">
+              {{'code'|translate}}
+          </div>
+          <div class="col-md-4">
+              {{'description'|translate}}
+          </div>
+          <div class="col-md-4">
+              {{'lineDelay-type'|translate}}
+          </div>
+          <div class="col-ms-2 pull-right">
+          </div>
+      </div>
+      <div class="row table-content" *ngFor="let lineDelay of lineDelays" >
+        <div class="col-md-2">
+          {{lineDelay.code}}
+        </div>
+        <div class="col-md-4">
+          {{lineDelay.description}}
+        </div>
+        <div class="col-md-4">
+          {{lineDelay.lineDelayType.name}}
+        </div>
+        <div class="col-ms-2 pull-right">
+          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(lineDelay)"></button>
+          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(lineDelay)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

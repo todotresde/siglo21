@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   submenues: any = {
-  	"delays" : true
+  	"delays" : true,
+    "security" : true,
+    "configuration" : "true"
   };
 
   constructor() { }

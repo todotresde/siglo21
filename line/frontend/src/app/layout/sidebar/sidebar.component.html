@@ -1,23 +1,8 @@
 <nav class="sidebar">
     <ul class="list-group">
         <li>
-            <a [routerLink]="['users']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-group"></i> {{'users'|translate}}
-            </a>
-        </li>
-        <li>
     		<a [routerLink]="['workStations']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-fw fa-cubes"></i> {{'work-stations'|translate}}
-            </a>
-        </li>
-        <li>
-            <a [routerLink]="['products']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-barcode"></i> {{'products'|translate}} 
-            </a>
-        </li>
-        <li>
-            <a [routerLink]="['productTypes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-barcode"></i> {{'product-types'|translate}}
             </a>
         </li>
         <li>
@@ -33,10 +18,15 @@
         <li>
             <div class="nested-menu">
                 <a class="list-group-item" (click)="toogleSubmenu('delays')">
-                    <span><i class="fa fa-fw fa-clock-o"></i>{{'delays'|translate}}</span>
+                    <span><i class="fa fa-fw fa-clock-o"></i> {{'delays'|translate}}</span>
                 </a>
                 <li class="nested" [ngClass]="{'hidden' : submenues['delays'] }">
                     <ul class="list-group">
+                        <li>
+                            <a [routerLink]="['delays']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                <i class="fa fa-fw fa-clock-o"></i> {{'delays'|translate}} 
+                            </a>
+                        </li>
                         <li>
                             <a [routerLink]="['lineDelays']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
                                 <i class="fa fa-fw fa-clock-o"></i> {{'line'|translate}} 
@@ -56,6 +46,48 @@
             <a [routerLink]="['trace']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-fw fa-wrench"></i> {{'trace-screen'|translate}} 
             </a>
+        </li>
+        <li>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="toogleSubmenu('security')">
+                    <span><i class="fa fa-fw fa-lock"></i> {{'security'|translate}}</span>
+                </a>
+                <li class="nested" [ngClass]="{'hidden' : submenues['security'] }">
+                    <ul class="list-group">
+                        <li>
+                            <a [routerLink]="['users']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                <i class="fa fa-fw fa-group"></i> {{'users'|translate}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </li>
+        <li>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="toogleSubmenu('configuration')">
+                    <span><i class="fa fa-fw fa-cog"></i> {{'configuration'|translate}}</span>
+                </a>
+                <li class="nested" [ngClass]="{'hidden' : submenues['configuration'] }">
+                    <ul class="list-group">
+                        <li>
+                            <a [routerLink]="['delayTypes']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                <i class="fa fa-fw fa-clock-o"></i> {{'delay-types'|translate}} 
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['products']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                <i class="fa fa-fw fa-barcode"></i> {{'products'|translate}} 
+                            </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['productTypes']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                <i class="fa fa-fw fa-barcode"></i> {{'product-types'|translate}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
         </li>
     </ul>
 </nav>
