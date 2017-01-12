@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Trace } from '../trace';
@@ -9,7 +9,10 @@ import { TraceService } from '../trace.service';
   templateUrl: './trace-list.component.html',
   providers:[TraceService]
 })
-export class TraceListComponent implements OnInit {
+export class TraceListComponent implements OnInit, OnChanges {
+  @Input() inputTraces = new Trace();
+  @Output() outputTrace = new EventEmitter<Trace>();
+
   traces: Trace[];
 
   constructor(private router: Router, private traceService: TraceService, private r:ActivatedRoute) {
@@ -20,16 +23,12 @@ export class TraceListComponent implements OnInit {
     this.traceService.getAll().then(traces => this.traces = traces);
   }
 
-  create(): void {
-    this.router.navigate(['../trace'],{ relativeTo: this.r });
+  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    
   }
 
-  edit(trace: Trace): void {
-    this.router.navigate(['../trace', trace.id],{ relativeTo: this.r });
-  }
-
-  remove(trace: Trace): void {
-    this.traceService.remove(trace).then(trace => this.traces = this.traces.filter(u => u.id !== trace.id));
+  activate(trace: Trace): void {
+    this.outputTrace.emit(trace);
   }
 
 }

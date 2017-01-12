@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  submenues: any = {
+  	"delays" : true
+  };
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toogleSubmenu(element: string) {
+	this.submenues[element] = !this.submenues[element];
   }
 
 }

@@ -42,5 +42,7 @@
 	"current" : "Actual",
 	"log-out" : "Salir",
 	"profile" : "Perfil",
-	"title" : "Línea de Manufactura"
+	"title" : "Línea de Manufactura",
+	"delays" : "Demoras",
+	"delay" : "Demora"
 }
