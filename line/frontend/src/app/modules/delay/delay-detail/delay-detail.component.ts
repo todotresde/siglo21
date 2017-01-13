@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Delay } from '../delay';
@@ -11,7 +11,9 @@ import { DelayTypeService } from '../../delayType/delayType.service';
   templateUrl: './delay-detail.component.html',
   providers:[DelayService, DelayTypeService]
 })
-export class DelayDetailComponent implements OnInit {
+export class DelayDetailComponent implements OnInit, OnChanges {
+  @Input() inputDelay: Delay = new Delay();
+  @Output() outputDelay = new EventEmitter<Delay>()
 
   delay : Delay;
   delayTypes: DelayType[];
@@ -34,6 +36,13 @@ export class DelayDetailComponent implements OnInit {
     this.delayTypeService.getAll().then(delayTypes => this.delayTypes = delayTypes);
   }
 
+  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    if(changes["inputDelay"].currentValue)
+      this.delay = changes["inputDelay"].currentValue;
+    else
+      this.delay = new Delay();
+  }
+
   save(delay: Delay): void {
     this.delay.delayType = this.selectedDelayType;
 
@@ -41,6 +50,8 @@ export class DelayDetailComponent implements OnInit {
         .save(this.delay)
         .then(delay => {
           this.delay = delay; 
+
+          this.outputDelay.emit(delay);
         }).catch(error => {
         })
   }

@@ -13,6 +13,7 @@ import { ManufacturingOrderModule } from './manufacturingOrder/manufacturingOrde
 import { TraceModule } from './trace/trace.module';
 import { DelayModule } from './delay/delay.module';
 import { DelayTypeModule } from './delayType/delayType.module';
+import { LineDelayModule } from './lineDelay/lineDelay.module';
 
 import { ModulesComponent } from './modules.component';
 @NgModule({
@@ -28,7 +29,8 @@ import { ModulesComponent } from './modules.component';
     ManufacturingOrderModule,
     TraceModule,
     DelayModule,
-    DelayTypeModule
+    DelayTypeModule,
+    LineDelayModule
   ],
   declarations: [ModulesComponent]
 })

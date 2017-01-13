@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Delay } from '../delay';
@@ -9,7 +9,11 @@ import { DelayService } from '../delay.service';
   templateUrl: './delay-list.component.html',
   providers:[DelayService]
 })
-export class DelayListComponent implements OnInit {
+export class DelayListComponent implements OnInit, OnChanges {
+  @Input() inputDelay: Delay[];
+  @Input() inputDelays: Delay[];
+  @Output() outputDelay = new EventEmitter<Delay>();
+  
   delays: Delay[];
 
   constructor(private router: Router, private delayService: DelayService, private r:ActivatedRoute) {
@@ -17,18 +21,21 @@ export class DelayListComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.delayService
-      .getAll()
-      .then(delays => this.delays = delays)
-      .catch(error => {});
   }
+  
+  ngOnChanges(changes:  {[propKey: string]: SimpleChange}) {
 
-  create(): void {
-    this.router.navigate(['../delay'],{ relativeTo: this.r });
+    for (let propName in changes) {
+      switch(propName){
+        case "inputDelays": this.delays = changes["inputDelays"].currentValue; break;
+        case "inputDelay": this.ngOnInit(); break;
+      }
+    }
   }
 
   edit(delay: Delay): void {
-    this.router.navigate(['../delay', delay.id],{ relativeTo: this.r });
+    //this.router.navigate(['../delay', delay.id],{ relativeTo: this.r });
+    this.outputDelay.emit(delay);
   }
 
   remove(delay: Delay): void {

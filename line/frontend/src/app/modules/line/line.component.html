@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    {{'lines'|translate}}
+    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+  </div>
+  <div class="card-block">
+    <div class="container-fluid">
+      <app-line-list (outputLine)="setSelectedLine($event)"></app-line-list>
+    </div>
+  </div>
+</div>

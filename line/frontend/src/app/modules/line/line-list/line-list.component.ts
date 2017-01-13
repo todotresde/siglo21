@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter  } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Line } from '../line';
@@ -9,7 +9,11 @@ import { LineService } from '../line.service';
   templateUrl: './line-list.component.html',
   providers:[LineService]
 })
-export class LineListComponent implements OnInit {
+export class LineListComponent implements OnInit, OnChanges {
+  @Input() inputLines: Line[];
+  @Output() outputLine = new EventEmitter<Line>();
+  @Output() outputLines = new EventEmitter<Line[]>();
+
   lines: Line[];
 
   constructor(private router: Router, private lineService: LineService, private r:ActivatedRoute) {
@@ -22,12 +26,12 @@ export class LineListComponent implements OnInit {
       .catch(error => {});
   }
 
-  create(): void {
-    this.router.navigate(['../line'],{ relativeTo: this.r });
+  ngOnChanges(): void{
+
   }
 
   edit(line: Line): void {
-    this.router.navigate(['../line', line.id],{ relativeTo: this.r });
+    this.outputLine.emit(line);
   }
 
   remove(line: Line): void {

@@ -13,6 +13,6 @@ export const DelayRoutes: Route[] = [
 		component: DelayDetailComponent
 	},{
 		path: 'delays',
-		component: DelayListComponent
+		component: DelayComponent
 	}
 ];

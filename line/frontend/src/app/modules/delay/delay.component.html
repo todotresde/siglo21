@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-header">
+        {{'delay'|translate}}
+        <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+    </div>
+    <div class="card-block">
+        <div class="container-fluid">
+            <div class="form-group row">
+                <app-delay-detail [inputDelay]="selectedDelay" (outputDelay)="updateDelays($event)"></app-delay-detail>
+            </div>
+            <div class="form-group row">
+                <app-delay-list [inputDelays]="delays" (outputDelay)="setSelectedDelay($event)"></app-delay-list>
+            </div>
+        </div>
+    </div>
+</div>

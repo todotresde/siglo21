@@ -48,6 +48,8 @@
 	"configuration" : "Configuración",
 	"security" : "Seguridad",
 	"delay-type" : "Tipo de Demora",
-	"delay-types" : "Tipos de Demora"
-
+	"delay-types" : "Tipos de Demora",
+	"user" : "Usuario",
+	"line-delays" : "Demoras por Línea",
+	"save": "Guardar"
 }

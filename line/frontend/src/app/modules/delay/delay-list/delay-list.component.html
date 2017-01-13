@@ -1,50 +1,40 @@
-<div class="card">
-  <div class="card-header">
-    {{'delays'|translate}}
-    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
-  </div>
-  <div class="card-block">
-    <div class="container-fluid">
-      <div class="row table-header" >
-          <div class="col-md-2">
-              {{'start-time'|translate}}
-          </div>
-          <div class="col-md-2">
-              {{'end-time'|translate}}
-          </div>
-          <div class="col-md-1">
-              {{'time'|translate}}
-          </div>
-          <div class="col-md-3">
-              {{'description'|translate}}
-          </div>
-          <div class="col-md-2">
-              {{'delay-type'|translate}}
-          </div>
-          <div class="col-ms-2 pull-right">
-          </div>
-      </div>
-      <div class="row table-content" *ngFor="let delay of delays" >
-        <div class="col-md-2">
-          {{delay.startTime}}
-        </div>
-        <div class="col-md-2">
-          {{delay.endTime}}
-        </div>
-        <div class="col-md-1">
-          {{delay.time}}
-        </div>
-        <div class="col-md-3">
-          {{delay.description}}
-        </div>
-        <div class="col-md-2">
-          {{delay.delayType.name}}
-        </div>
-        <div class="col-ms-2 pull-right">
-          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(delay)"></button>
-          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(delay)"></button>
-        </div>
-      </div>
+<div class="row table-header" >
+    <div class="col-md-2">
+        {{'start-time'|translate}}
     </div>
+    <div class="col-md-2">
+        {{'end-time'|translate}}
+    </div>
+    <div class="col-md-1">
+        {{'time'|translate}}
+    </div>
+    <div class="col-md-3">
+        {{'description'|translate}}
+    </div>
+    <div class="col-md-2">
+        {{'delay-type'|translate}}
+    </div>
+    <div class="col-ms-2 pull-right">
+    </div>
+</div>
+<div class="row table-content" *ngFor="let delay of delays" >
+  <div class="col-md-2">
+    {{delay.startTime}}
+  </div>
+  <div class="col-md-2">
+    {{delay.endTime}}
+  </div>
+  <div class="col-md-1">
+    {{delay.time}}
+  </div>
+  <div class="col-md-3">
+    {{delay.description}}
+  </div>
+  <div class="col-md-2">
+    {{delay.delayType.name}}
+  </div>
+  <div class="col-ms-2 pull-right">
+    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(delay)"></button>
+    <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(delay)"></button>
   </div>
 </div>

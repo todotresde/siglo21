@@ -1,39 +1,32 @@
-<div class="card">
-    <div class="card-header">
-        {{'delay'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(delay)"></button>
+<div class="form-group row">
+    <label for="startTime" class="col-md-2 col-form-label">{{'start-time'|translate}}</label>
+    <div class="col-md-4">
+        <input class="form-control" type="datetime" id="startTime" [(ngModel)]="delay.startTime" placeholder="{{'start-time'|translate}}">
     </div>
-    <div class="card-block">
-        <div class="container-fluid">
-            <div class="form-group row">
-                <label for="startTime" class="col-md-2 col-form-label">{{'start-time'|translate}}</label>
-                <div class="col-md-4">
-                    <input class="form-control" type="datetime" id="startTime" [(ngModel)]="delay.startTime" placeholder="{{'start-time'|translate}}">
-                </div>
-                <label for="endTime" class="col-md-2 col-form-label">{{'end-time'|translate}}</label>
-                <div class="col-md-4">
-                    <input class="form-control" type="datetime" id="endTime" [(ngModel)]="delay.endTime" placeholder="{{'end-time'|translate}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="delayType" class="col-md-2 col-form-label">{{'delay-type'|translate}}</label>
-                <div ngbDropdown class="d-inline-block col-md-4">
-                    <button class="btn btn-outline-primary" id="dropdownDelayType" ngbDropdownToggle>{{selectedDelayType.description}}</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownDelayType" >
-                        <button class="dropdown-item" *ngFor="let delayType of delayTypes" (click)="selectedDelayType = delayType" >{{delayType.description}}</button>
-                    </div>
-                </div>
-                <label for="time" class="col-md-2 col-form-label">{{'time'|translate}}</label>
-                <div class="col-md-4">
-                    <input class="form-control" type="number" id="time" [(ngModel)]="delay.time" placeholder="{{'time'|translate}}">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="description" class="col-md-2 col-form-label">{{'description'|translate}}</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="search" id="description" [(ngModel)]="delay.description" placeholder="{{'description'|translate}}">
-                </div>
-            </div>
+    <label for="endTime" class="col-md-2 col-form-label">{{'end-time'|translate}}</label>
+    <div class="col-md-4">
+        <input class="form-control" type="datetime" id="endTime" [(ngModel)]="delay.endTime" placeholder="{{'end-time'|translate}}">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="delayType" class="col-md-2 col-form-label">{{'delay-type'|translate}}</label>
+    <div ngbDropdown class="d-inline-block col-md-4">
+        <button class="btn btn-outline-primary" id="dropdownDelayType" ngbDropdownToggle>{{selectedDelayType.description}}</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownDelayType" >
+            <button class="dropdown-item" *ngFor="let delayType of delayTypes" (click)="selectedDelayType = delayType" >{{delayType.description}}</button>
         </div>
+    </div>
+    <label for="time" class="col-md-2 col-form-label">{{'time'|translate}}</label>
+    <div class="col-md-4">
+        <input class="form-control" type="number" id="time" [(ngModel)]="delay.time" placeholder="{{'time'|translate}}">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="description" class="col-md-2 col-form-label">{{'description'|translate}}</label>
+    <div class="col-md-8">
+        <input class="form-control" type="search" id="description" [(ngModel)]="delay.description" placeholder="{{'description'|translate}}">
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-secondary pull-right" (click)="save(delay)">{{'save'|translate}}</button>
     </div>
 </div>

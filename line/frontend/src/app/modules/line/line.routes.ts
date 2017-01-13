@@ -21,6 +21,6 @@ export const LineRoutes: Route[] = [
     	]
 	},{
 		path: 'lines',
-		component: LineListComponent
+		component: LineComponent
 	}
 ];

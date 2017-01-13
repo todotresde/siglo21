@@ -9,6 +9,7 @@ import { ManufacturingOrderRoutes } from './manufacturingOrder/manufacturingOrde
 import { TraceRoutes } from './trace/trace.routes';
 import { DelayRoutes } from './delay/delay.routes';
 import { DelayTypeRoutes } from './delayType/delayType.routes';
+import { LineDelayRoutes } from './lineDelay/lineDelay.routes';
 
 import { ModulesComponent } from './modules.component';
 
@@ -20,12 +21,13 @@ export const ModulesRoutes: Route[] = [
 	    	...UserRoutes,
 	    	...WorkStationRoutes,
 	    	...ProductRoutes,
-        ...ProductTypeRoutes,
-			  ...LineRoutes,
-        ...ManufacturingOrderRoutes,
-        ...TraceRoutes,
-        ...DelayRoutes,
-        ...DelayTypeRoutes
+            ...ProductTypeRoutes,
+			...LineRoutes,
+            ...ManufacturingOrderRoutes,
+            ...TraceRoutes,
+            ...DelayRoutes,
+            ...DelayTypeRoutes,
+            ...LineDelayRoutes
     	]
   	}
 ];

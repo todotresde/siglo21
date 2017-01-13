@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-header">
-        {{'user'}}
+        {{'user'|translate}}
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
     </div>
     <div class="card-block">
         <div class="container-fluid">
             <div class="form-group row">
-                <label for="name" class="col-md-2 col-form-label">{{'name'}}</label>
+                <label for="name" class="col-md-2 col-form-label">{{'name'|translate}}</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="search" id="name" [(ngModel)]="user.name" placeholder="{{'someName'}}">
+                    <input class="form-control" type="search" id="name" [(ngModel)]="user.name" placeholder="{{'name'|translate}}">
                 </div>
             </div>
         </div>

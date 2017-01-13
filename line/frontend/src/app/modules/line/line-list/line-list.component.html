@@ -1,26 +1,16 @@
-<div class="card">
-  <div class="card-header">
-    {{'lines'|translate}}
-    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
+<div class="row table-header" >
+  <div class="col-md-8">
+    {{'name'|translate}}
   </div>
-  <div class="card-block">
-    <div class="container-fluid">
-      <div class="row table-header" >
-        <div class="col-md-8">
-          {{'name'|translate}}
-        </div>
-        <div class="col-ms-4 pull-right">
-        </div>
-      </div>
-      <div class="row" *ngFor="let line of lines" >
-        <div class="col-md-8">
-          {{line.name}}
-        </div>
-        <div class="col-ms-4 pull-right">
-          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(line)"></button>
-          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(line)"></button>
-        </div>
-      </div>
-    </div>
+  <div class="col-ms-4 pull-right">
+  </div>
+</div>
+<div class="row" *ngFor="let line of lines" >
+  <div class="col-md-8">
+    {{line.name}}
+  </div>
+  <div class="col-ms-4 pull-right">
+    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(line)"></button>
+    <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(line)"></button>
   </div>
 </div>

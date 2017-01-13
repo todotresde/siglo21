@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-header">
+        {{'line-delays'|translate}}
+    </div>
+    <div class="card-block">
+        <div class="container-fluid">
+            <div class="row">
+                <app-line-list (outputLine)="setSelectedLine($event)"></app-line-list>
+            </div>
+            <div class="row">
+                <app-delay-list [inputDelays]="selectedLine.delays"></app-delay-list>
+            </div>
+            
+        </div>
+    </div>
+</div>
