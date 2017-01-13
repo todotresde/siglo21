@@ -1,6 +1,8 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.WorkStationDao;
+import com.todotresde.siglo21.line.exception.BaseException;
+import com.todotresde.siglo21.line.helper.WorkStationHelper;
 import com.todotresde.siglo21.line.model.WorkStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,11 +34,25 @@ public class WorkStationServiceImpl implements WorkStationService{
 
     public WorkStation delete(Long id) {
         WorkStation workStation = workStationDao.findById(id);
-        workStationDao.delete(id);
+        try {
+            workStationDao.delete(id);
+        }catch(Exception e){
+            throw new BaseException("error-delete-database-problems");
+        }
         return workStation;
     }
 
-    public WorkStation save(WorkStation workStation) {
+    public WorkStation save(WorkStation workStation) throws BaseException {
+        WorkStation tempWorkStation = workStationDao.findByIp(workStation.getIp());
+
+        if(tempWorkStation != null && !tempWorkStation.getId().equals(workStation.getId())){
+            throw new BaseException("error-ip-already-exist");
+        }
+
+        if(!WorkStationHelper.validIP(workStation.getIp())){
+            throw new BaseException("error-ip-format-invalid");
+        }
+
         workStationDao.save(workStation);
         return workStation;
     }

@@ -51,5 +51,12 @@
 	"delay-types" : "Tipos de Demora",
 	"user" : "Usuario",
 	"line-delays" : "Demoras por Línea",
-	"save": "Guardar"
+	"save": "Guardar",
+	"operation-success" : "Operación Exitosa",
+	"operation-info" : "Información de la Operación",
+	"operation-warning" : "Atención",
+	"operation-error" : "Error en la Operación",
+	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
+	"error-ip-format-invalid" : "El formato de la IP es inválido",
+	"error-delete-database-problems" : "Error al intentar borrar el registro. Posiblemente el mismo se encuentra relacionado."
 }

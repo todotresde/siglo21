@@ -4,13 +4,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { WorkStation } from '../workStation';
 import { WorkStationService } from '../workStation.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-workStation-detail',
   templateUrl: './workStation-detail.component.html',
   providers:[WorkStationService]
 })
 export class WorkStationDetailComponent implements OnInit {
-
+  message: Message = new Message();
   workStation : WorkStation;
 
   constructor(private route: ActivatedRoute, private workStationService: WorkStationService) { 
@@ -30,8 +32,13 @@ export class WorkStationDetailComponent implements OnInit {
   save(): void {
     this.workStationService
         .save(this.workStation)
-        .then(workStation => { this.workStation = workStation; })
-        .catch(error => {})
+        .then(workStation => { 
+          this.workStation = workStation; 
+          this.message.success("");
+        })
+        .catch(error => {
+          this.message.error(JSON.parse(error._body).message);
+        })
   }
 
 }

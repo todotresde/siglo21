@@ -1,5 +1,7 @@
 import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
 
+import { Message } from './message';
+
 import { MESSAGE_TYPE } from './message.constant';
 import { TranslateService } from 'ng2-translate';
 
@@ -9,40 +11,37 @@ import { TranslateService } from 'ng2-translate';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnChanges  {
-  @Input() type : MESSAGE_TYPE;
-  @Input() message : String = "";
+  @Input() message : Message = new Message();
 
   constructor(private translateService: TranslateService) { 
   	
   }
 
   ngOnChanges(changes: SimpleChanges) {
-  	this.message = (changes["message"]) ? changes["message"].currentValue : "";
+    this.message = (changes["message"] && changes["message"].currentValue) ? changes["message"].currentValue : new Message();
     
-  	switch (changes["type"].currentValue) {
+    switch (this.message.type) {
   		case MESSAGE_TYPE.Success: 
-        this.type = MESSAGE_TYPE.Success;
-        this.message = this.translateService.instant("operation-success");
+        this.message.success();
         break;
   		case MESSAGE_TYPE.Info: 
-        this.type = MESSAGE_TYPE.Info;
-        this.message = this.translateService.instant("operation-info");
+        this.message.info();
         break;
   		case MESSAGE_TYPE.Warning: 
-        this.type = MESSAGE_TYPE.Warning;
-        this.message = this.translateService.instant("operation-wanring");
+        this.message.warning();
         break;
   		case MESSAGE_TYPE.Error: 
-        this.type = MESSAGE_TYPE.Error;
-        this.message = this.translateService.instant("operation-error");
+        this.message.error();
         break;
-  		default: this.type = MESSAGE_TYPE.None;break;
+  		default: 
+        this.message.none();
+        break;
   	}
   }
 
 
   showMessage(type : Number) : Boolean{
-  	return (this.type == type);
+  	return (this.message.type == type);
   }
 
 }
