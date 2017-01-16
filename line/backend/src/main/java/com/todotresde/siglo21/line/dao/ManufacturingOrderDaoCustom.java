@@ -8,7 +8,9 @@ import javax.transaction.Transactional;
 /**
  * Created by Leonardo on 27/12/2016.
  */
+/*
 @Transactional
 public interface ManufacturingOrderDaoCustom {
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder);
 }
+*/

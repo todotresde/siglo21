@@ -1,7 +1,9 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.ProductTypeDao;
+import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.ProductType;
+import com.todotresde.siglo21.line.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +34,23 @@ public class ProductTypeServiceImpl implements ProductTypeService{
 
     public ProductType delete(Long id) {
         ProductType productType = productTypeDao.findById(id);
-        productTypeDao.delete(id);
+
+        try {
+            productTypeDao.delete(id);
+        }catch(Exception e){
+            throw new BaseException("error-delete-database-problems");
+        }
+
         return productType;
     }
 
     public ProductType save(ProductType productType) {
+        ProductType tempProductType = productTypeDao.findByCode(productType.getCode());
+
+        if(tempProductType != null && !tempProductType.getId().equals(productType.getId())){
+            throw new BaseException("error-code-already-exist");
+        }
+
         productTypeDao.save(productType);
         return productType;
     }

@@ -23,9 +23,9 @@ export class LineService {
                .toPromise();
   }
 
-  remove(line: Line): Promise<Line> {
+  remove(line: Line): Promise<number> {
     return this.http.delete(environment.host + "/line/" + line.id)
-               .map(response => response.json() as Line)
+               .map(response => response.json() as number)
                .toPromise();
   }
 

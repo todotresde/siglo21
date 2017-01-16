@@ -4,13 +4,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   providers:[UserService]
 })
 export class UserDetailComponent implements OnInit {
-
+  message: Message = new Message();
   user : User;
 
   constructor(private route: ActivatedRoute, private userService: UserService) { 
@@ -33,8 +35,10 @@ export class UserDetailComponent implements OnInit {
         .then(user => {
           this.user = user; 
           
-          this.goBack();
-        }).catch(error => {
+          this.message.success("");
+        })
+        .catch(error => {
+          this.message.error(JSON.parse(error._body).message);
         })
   }
 

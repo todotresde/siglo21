@@ -1,9 +1,6 @@
 package com.todotresde.siglo21.line.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -16,6 +13,7 @@ public class Product {
     @NotNull
     private Long id;
     @NotNull
+    @Column(unique=true)
     private String code;
     @NotNull
     private String description;

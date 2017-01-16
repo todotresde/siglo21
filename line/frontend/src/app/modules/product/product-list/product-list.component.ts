@@ -4,12 +4,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   providers:[ProductService]
 })
 export class ProductListComponent implements OnInit {
+  message: Message = new Message();
   products: Product[];
 
   constructor(private router: Router, private productService: ProductService, private r:ActivatedRoute) {
@@ -20,7 +23,9 @@ export class ProductListComponent implements OnInit {
     this.productService
       .getAll()
       .then(products => this.products = products)
-      .catch(error => {});
+      .catch(error => {
+          this.message.error(JSON.parse(error._body).message);
+      })
   }
 
   create(): void {
@@ -35,7 +40,9 @@ export class ProductListComponent implements OnInit {
     this.productService
       .remove(product)
       .then(product => this.products = this.products.filter(u => u.id !== product.id))
-      .catch(error => {});
+      .catch(error => {
+        this.message.error(JSON.parse(error._body).message);
+      })
   }
 
 }

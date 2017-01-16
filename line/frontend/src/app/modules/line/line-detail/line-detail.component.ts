@@ -5,12 +5,15 @@ import { Line } from '../line';
 import { LineService } from '../line.service';
 import { WorkStationConfiguration } from '../workStationConfiguration/workStationConfiguration';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-line-detail',
   templateUrl: './line-detail.component.html',
   providers:[LineService]
 })
 export class LineDetailComponent implements OnInit {
+  message: Message = new Message();
   line : Line;
   
   constructor(private route: ActivatedRoute, private lineService: LineService) { 
@@ -20,9 +23,13 @@ export class LineDetailComponent implements OnInit {
   ngOnInit() : void{
     this.route.params.subscribe(params => {
       if(params["id"]){
-        this.lineService.get(params["id"]).then(line =>{ 
-          this.line = line;
-        });
+        this.lineService.get(params["id"])
+          .then(line =>{ 
+            this.line = line;
+          })
+          .catch(error => {
+            this.message.error(JSON.parse(error._body).message);
+          })
       }
     });
   }
@@ -33,11 +40,11 @@ export class LineDetailComponent implements OnInit {
         .then(line => {
           this.line = line; 
 
-          
+          this.message.none();
           this.goBack();
         }).catch(error => {
-          
-        })
+          this.message.error(JSON.parse(error._body).message);
+        });
   }
 
   addWorkStationConfigurations(workStationConfigurations: WorkStationConfiguration[]): void{

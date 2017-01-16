@@ -2,6 +2,6 @@ import { Shared } from '../../shared/shared';
 
 export class WorkStation {
     id: number = Shared.generateId();
-    name: string;
+    name: string = "";
     ip: string;
 }

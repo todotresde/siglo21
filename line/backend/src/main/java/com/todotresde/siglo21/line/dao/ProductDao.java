@@ -11,5 +11,6 @@ import javax.transaction.Transactional;
 @Transactional
 public interface ProductDao extends CrudRepository<Product, Long> {
     public Product findById(Long id);
+    public Product findByCode(String code);
     public void delete(Long id);
 }

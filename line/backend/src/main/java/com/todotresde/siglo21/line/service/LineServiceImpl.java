@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
+import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
@@ -47,13 +48,22 @@ public class LineServiceImpl implements LineService{
         return null;
     }
 
-    public Line delete(Long id) {
-        Line line = lineDao.findById(id);
-        lineDao.delete(id);
-        return line;
+    public Long delete(Long id) {
+        try {
+            lineDao.delete(id);
+        }catch(Exception e){
+            throw new BaseException("error-delete-database-problems");
+        }
+
+        return id;
     }
 
     public Line save(Line line) {
+
+        if(line.getWorkStationConfigurations().isEmpty()){
+            throw new BaseException("error-missing-workstation-configurations");
+        }
+
         lineDao.save(line);
         return line;
     }

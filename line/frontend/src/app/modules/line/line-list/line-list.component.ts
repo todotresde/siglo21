@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Line } from '../line';
 import { LineService } from '../line.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-line-list',
   templateUrl: './line-list.component.html',
@@ -14,6 +16,7 @@ export class LineListComponent implements OnInit, OnChanges {
   @Output() outputLine = new EventEmitter<Line>();
   @Output() outputLines = new EventEmitter<Line[]>();
 
+  message: Message = new Message();
   lines: Line[];
 
   constructor(private router: Router, private lineService: LineService, private r:ActivatedRoute) {
@@ -23,11 +26,17 @@ export class LineListComponent implements OnInit, OnChanges {
   ngOnInit(): void{
     this.lineService
       .getAll().then(lines => this.lines = lines)
-      .catch(error => {});
+      .catch(error => {
+        this.message.error(JSON.parse(error._body).message);
+      })
   }
 
   ngOnChanges(): void{
 
+  }
+
+  create(): void {
+      this.router.navigate(['../line'],{ relativeTo: this.r });
   }
 
   edit(line: Line): void {
@@ -36,8 +45,14 @@ export class LineListComponent implements OnInit, OnChanges {
 
   remove(line: Line): void {
     this.lineService
-      .remove(line).then(line => this.lines = this.lines.filter(u => u.id !== line.id))
-      .catch(error => {});
+      .remove(line)
+      .then(lineId => { 
+        this.lines = this.lines.filter(l => l.id !== lineId);
+        this.message.success("deleted-successfully");
+      })
+      .catch(error => {
+        this.message.error(JSON.parse(error._body).message);
+      })
   }
 
 }

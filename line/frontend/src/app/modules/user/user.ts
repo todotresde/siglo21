@@ -2,5 +2,8 @@ import { Shared } from '../../shared/shared';
 
 export class User {
     id: number = Shared.generateId();
-    name: string;
+    username: string;
+    name: string = "";
+    password: string;
+    email: string;
 }

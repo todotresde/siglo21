@@ -4,15 +4,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   providers:[UserService]
 })
 export class UserListComponent implements OnInit {
+  message: Message = new Message();
   users: User[];
-  messageType: number = 0;
-  message: string = "";
 
   constructor(private router: Router, private userService: UserService, private r:ActivatedRoute) {
 
@@ -20,8 +21,10 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void{
     this.userService.getAll()
-      .then(users => { this.messageType = 0; this.users = users})
-      .catch(error => { this.messageType = 4;});
+      .then(users => { this.users = users;})
+      .catch(error => { 
+        this.message.error(JSON.parse(error._body).message);
+      });
   }
 
   create(): void {
@@ -35,8 +38,14 @@ export class UserListComponent implements OnInit {
   remove(user: User): void {
     this.userService
       .remove(user)
-      .then(user => {this.messageType = 0; this.users = this.users.filter(u => u.id !== user.id)})
-      .catch(error => { this.messageType = 4; this.message = error.message;});
+      .then(user => {
+         this.users = this.users.filter(u => u.id !== user.id);
+         this.message.success();
+      })
+      .catch(error => {
+          this.message.error(JSON.parse(error._body).message);
+      })
+      
 
     
   }

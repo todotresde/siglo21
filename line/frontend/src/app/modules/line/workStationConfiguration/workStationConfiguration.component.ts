@@ -3,7 +3,7 @@ import { Component, OnChanges, SimpleChange, OnInit, Input, Output, EventEmitter
 import { WorkStationConfiguration } from '../workStationConfiguration/workStationConfiguration';
 import { WorkStationConfigurationService } from '../workStationConfiguration/workStationConfiguration.service';
 
-import {Observable} from 'rxjs/Rx';
+import { Message } from '../../../shared/message/message';
 
 @Component({
   selector: 'app-workstation-configuration',
@@ -13,7 +13,8 @@ import {Observable} from 'rxjs/Rx';
 export class WorkStationConfigurationComponent implements OnInit, OnChanges {
 	@Input() inputWorkStationConfigurations: WorkStationConfiguration[];
 	@Output() outputWorkStationConfigurations = new EventEmitter<WorkStationConfiguration[]>();
-  	
+  
+  message: Message = new Message();
   workStationConfigurations: WorkStationConfiguration[];
   selectedWorkStationConfiguration: WorkStationConfiguration;
 
@@ -39,6 +40,21 @@ export class WorkStationConfigurationComponent implements OnInit, OnChanges {
   }
 
   addWorkStationConfiguration(workStationConfiguration: WorkStationConfiguration) : void{
-    this.workStationConfigurations.push(workStationConfiguration);
+    if(this.exist(workStationConfiguration)){
+      this.message.error("error-worksation-configuration-already-assigned");
+    }else{
+      this.workStationConfigurations.push(workStationConfiguration);
+      this.selectedWorkStationConfiguration = new WorkStationConfiguration();
+      this.message.none();
+    }
+  }
+
+  private exist(workStationConfiguration: WorkStationConfiguration): boolean{
+    let result: WorkStationConfiguration[] = this.workStationConfigurations.filter(w => {
+      return w.workStation.id === workStationConfiguration.workStation.id && 
+        w.nextWorkStation.id === workStationConfiguration.nextWorkStation.id && 
+        w.prevWorkStation.id === workStationConfiguration.prevWorkStation.id;
+    });
+    return result.length > 0;
   }
 }

@@ -13,6 +13,6 @@ public interface LineService {
     public List<Line> all();
     public Line byId(Long id);
     public Line byProductTypeId(Long productTypeId);
-    public Line delete(Long id);
+    public Long delete(Long id);
     public Line save(Line line);
 }

@@ -2,6 +2,7 @@
     <div class="card-header">
         {{'users'|translate}}
     </div>
+    <app-message [message]="message"></app-message>
     <div class="card-block">
         <div class="container-fluid">
             <div class="form-group row">
@@ -12,7 +13,9 @@
                         <button class="dropdown-item" *ngFor="let user of users" (click)="selectedUser = user" >{{user.name}}</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="add(selectedUser)"></button>
+                <button type="button" class="btn btn-secondary pull-right fa fa-plus" 
+                    [attr.disabled]="selectedUser.name === '' ? true : null" 
+                    (click)="add(selectedUser)"></button>
             </div>
             <div class="row table-header" >
                 <div class="col-md-8">

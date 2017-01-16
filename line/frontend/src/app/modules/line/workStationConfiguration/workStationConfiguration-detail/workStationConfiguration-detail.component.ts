@@ -8,6 +8,8 @@ import { WorkStationService } from '../../../workStation/workStation.service';
 import { WorkStationConfiguration } from '../workStationConfiguration';
 import { WorkStationConfigurationService } from '../workStationConfiguration.service';
 
+import { Message } from '../../../../shared/message/message';
+
 @Component({
   selector: 'app-workstation-configuration-detail',
   templateUrl: './workStationConfiguration-detail.component.html',
@@ -17,12 +19,16 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
   @Input() inputWorkStationConfiguration = new WorkStationConfiguration();
   @Output() outputWorkStationConfiguration = new EventEmitter<WorkStationConfiguration>();
 
+  message: Message = new Message();
   workStations : WorkStation[];
   workStationConfiguration: WorkStationConfiguration;
   
   prevWorkStation : WorkStation = new WorkStation();
   currentWorkStation : WorkStation = new WorkStation();
   nextWorkStation : WorkStation = new WorkStation();
+
+  cleanUsers: boolean = false;
+  cleanProductTypes: boolean = false;
 
   constructor(private route: ActivatedRoute, private workStationService: WorkStationService, private workStationConfigurationService: WorkStationConfigurationService) { 
       this.workStationConfiguration = new WorkStationConfiguration();
@@ -37,14 +43,31 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
       this.workStationConfiguration = changes["inputWorkStationConfiguration"].currentValue;
     else
       this.workStationConfiguration = new WorkStationConfiguration();
+
+    this.prevWorkStation = this.workStationConfiguration.prevWorkStation;
+    this.currentWorkStation = this.workStationConfiguration.workStation;
+    this.nextWorkStation = this.workStationConfiguration.nextWorkStation;
+    
   }
 
   addWorkStation(prevWorkStation: WorkStation, currentWorkStation: WorkStation, nextWorkStation: WorkStation): void {
-    this.workStationConfiguration.prevWorkStation = prevWorkStation;
-    this.workStationConfiguration.workStation = currentWorkStation;
-    this.workStationConfiguration.nextWorkStation = nextWorkStation;
+    if(this.valid(this.workStationConfiguration)){
+      this.workStationConfiguration.prevWorkStation = prevWorkStation;
+      this.workStationConfiguration.workStation = currentWorkStation;
+      this.workStationConfiguration.nextWorkStation = nextWorkStation;
 
-    this.outputWorkStationConfiguration.emit(this.workStationConfiguration);
+      this.outputWorkStationConfiguration.emit(this.workStationConfiguration);
+
+      this.prevWorkStation = new WorkStation();
+      this.currentWorkStation = new WorkStation();
+      this.nextWorkStation = new WorkStation();
+      this.cleanUsers = true;
+      this.cleanProductTypes = true;
+
+      this.message.none();
+    }else{
+      this.message.error("error-missing-values");
+    }
   }
 
   setUsers(users: User[]): void {
@@ -53,6 +76,10 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
 
   setProductTypes(productTypes: ProductType[]){
     this.workStationConfiguration.productTypes = productTypes;
+  }
+
+  private valid(workStationConfiguration: WorkStationConfiguration): boolean{
+    return (workStationConfiguration.users.length > 0 && workStationConfiguration.productTypes.length > 0);
   }
 
 }

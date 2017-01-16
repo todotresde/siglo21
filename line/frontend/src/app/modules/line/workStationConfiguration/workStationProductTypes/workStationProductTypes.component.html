@@ -2,6 +2,7 @@
     <div class="card-header">
         {{'product-types'|translate}}
     </div>
+    <app-message [message]="message"></app-message>
     <div class="card-block">
         <div class="container-fluid">
             <div class="form-group row">
@@ -12,7 +13,9 @@
                         <button class="dropdown-item" *ngFor="let productType of productTypes" (click)="selectedProductType = productType" >{{productType.name}}</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="add(selectedProductType)"></button>
+                <button type="button" class="btn btn-secondary pull-right fa fa-plus" 
+                    [attr.disabled]="selectedProductType.name === '' ? true : null" 
+                    (click)="add(selectedProductType)"></button>
             </div>
             <div class="row table-header" >
                 <div class="col-md-8">

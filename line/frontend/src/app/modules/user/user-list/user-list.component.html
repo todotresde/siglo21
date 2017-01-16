@@ -29,20 +29,32 @@
                 <div class="col-md-2">
                     {{'id'|translate}}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
+                    {{'username'|translate}}
+                </div>
+                <div class="col-md-3">
                     {{'name'|translate}}
                 </div>
-                <div class="col-ms-4 pull-right">
+                <div class="col-md-3">
+                    {{'email'|translate}}
+                </div>
+                <div class="col-ms-2 pull-right">
                 </div>
             </div>
             <div class="row table-content" *ngFor="let user of users">
                 <div class="col-md-2">
                     {{user.id}}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
+                    {{user.username}}
+                </div>
+                <div class="col-md-3">
                     {{user.name}}
                 </div>
-                <div class="col-ms-4 pull-right">
+                <div class="col-md-3">
+                    {{user.email}}
+                </div>
+                <div class="col-ms-2 pull-right">
                     <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(user)"></button>
                     <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(user)"></button>
                 </div>

@@ -24,7 +24,7 @@ public class UserControllerTests {
 
     @Before
     public void setup() {
-        given(this.userService.byId(new Long(1))).willReturn(new User(new Long(1), "User 1"));
+        //given(this.userService.byId(new Long(1))).willReturn(new User(new Long(1), "User 1"));
     }
 
     @Test

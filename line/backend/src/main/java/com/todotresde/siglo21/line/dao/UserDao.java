@@ -11,5 +11,6 @@ import org.springframework.data.repository.CrudRepository;
 @Transactional
 public interface UserDao extends CrudRepository<User, Long> {
     public User findById(Long id);
+    public User findByUsername(String username);
     public void delete(Long id);
 }

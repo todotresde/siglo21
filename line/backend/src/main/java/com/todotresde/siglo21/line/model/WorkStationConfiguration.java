@@ -22,10 +22,10 @@ public class WorkStationConfiguration {
     @OneToOne
     @NotNull
     private WorkStation nextWorkStation;
-    @OneToMany
+    @ManyToMany
     @NotNull
     private List<ProductType> productTypes;
-    @OneToMany
+    @ManyToMany
     @NotNull
     private List<User> users;
 

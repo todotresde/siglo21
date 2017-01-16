@@ -24,7 +24,6 @@ export class DelayListComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes:  {[propKey: string]: SimpleChange}) {
-
     for (let propName in changes) {
       switch(propName){
         case "inputDelays": this.delays = changes["inputDelays"].currentValue; break;

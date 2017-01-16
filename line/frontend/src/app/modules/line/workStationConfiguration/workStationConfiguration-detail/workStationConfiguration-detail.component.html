@@ -1,12 +1,11 @@
 <div class="card">
-    <div class="card-header">
-        {{'work-station'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="addWorkStation(prevWorkStation, currentWorkStation, nextWorkStation)"></button>
-    </div>
     <div class="card-block">
+        <h6 class="card-title">{{'work-station'|translate}}</h6>
+        <hr/>
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="dropdownPrevious">{{'previous'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
                         <button class="btn btn-outline-primary" id="dropdownPrevious" ngbDropdownToggle>{{prevWorkStation.name}}</button>
@@ -15,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="dropdownCurrent">{{'current'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
                         <button class="btn btn-outline-primary" id="dropdownCurrent" ngbDropdownToggle>{{currentWorkStation.name}}</button>
@@ -24,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="dropdownNext">{{'next'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
                         <button class="btn btn-outline-primary" id="dropdownNext" ngbDropdownToggle>{{nextWorkStation.name}}</button>
@@ -33,13 +32,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="addWorkStation(prevWorkStation, currentWorkStation, nextWorkStation)"></button>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <app-workstation-product-types [inputProductTypes]="workStationConfiguration.productTypes" (outputProductTypes)="setProductTypes($event)"></app-workstation-product-types>
+                    <app-workstation-product-types 
+                        [inputClean]="cleanProductTypes"
+                        [inputProductTypes]="workStationConfiguration.productTypes" 
+                        (outputProductTypes)="setProductTypes($event)"></app-workstation-product-types>
                 </div>
                 <div class="col-md-6">
-                    <app-workstation-users [inputUsers]="workStationConfiguration.users" (outputUsers)="setUsers($event)"></app-workstation-users>
+                    <app-workstation-users 
+                        [inputClean]="cleanUsers" 
+                        [inputUsers]="workStationConfiguration.users" 
+                        (outputUsers)="setUsers($event)"></app-workstation-users>
                 </div>
             </div>
         </div>

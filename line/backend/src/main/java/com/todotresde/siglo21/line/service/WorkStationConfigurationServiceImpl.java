@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
+import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,14 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
     }
 
     public WorkStationConfiguration save(WorkStationConfiguration workStationConfiguration) {
+        if(workStationConfiguration.getProductTypes().isEmpty()){
+            throw new BaseException("error-missing-product-types");
+        }
+
+        if(workStationConfiguration.getUsers().isEmpty()){
+            throw new BaseException("error-missing-users");
+        }
+
         workStationConfigurationDao.save(workStationConfiguration);
         return workStationConfiguration;
     }

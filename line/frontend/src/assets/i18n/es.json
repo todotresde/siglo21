@@ -56,7 +56,20 @@
 	"operation-info" : "Información de la Operación",
 	"operation-warning" : "Atención",
 	"operation-error" : "Error en la Operación",
+	"username" : "Username",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",
-	"error-delete-database-problems" : "Error al intentar borrar el registro. Posiblemente el mismo se encuentra relacionado."
+	"error-delete-database-problems" : "Error al intentar borrar el registro. Posiblemente el mismo se encuentra relacionado.",
+	"error-username-already-exist" : "El Username ya existe",
+	"error-email-format-invalid" : "El formato del E-mail es inválido",
+	"error-code-already-exist" : "El Código ya existe",
+	"error-product-type-already-assigned" : "El Tipo de Producto ya fue asignado",
+	"error-user-already-assigned" : "El Usuario ya fue asignado",
+	"error-worksation-configuration-already-assigned" : "La Configuración de Puestos ya fue asignada",
+	"error-missing-values" : "Hay campos sin asignarle un valor",
+	"error-missing-workstation-configuration" : "No existen Configuraciónes de Puestos asignados",
+	"error-missing-product-types" : "No existen Tipos de Productos asignados",
+	"error-missing-users" : "No eisten Usuarios asignados",
+	"error-missing-workstation-configurations" : "No existen Puestos asignados",
+	"deleted-successfully" : "Borrado exitosamente"
 }

@@ -33,7 +33,7 @@ public class LineController {
 
     @RequestMapping(value="/line/{id}", method= RequestMethod.DELETE, produces="application/json")
     public @ResponseBody
-    Line delete(@PathVariable Long id) {
+    Long delete(@PathVariable Long id) {
         return this.lineService.delete(id);
     }
 

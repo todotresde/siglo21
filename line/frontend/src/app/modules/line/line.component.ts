@@ -19,8 +19,4 @@ export class LineComponent {
 
 		this.router.navigate(['../line', line.id],{ relativeTo: this.r });
 	}
-
-	create(): void {
-	    this.router.navigate(['../line'],{ relativeTo: this.r });
-	}
 }
