@@ -1,10 +1,8 @@
 <div class="card">
-    <div class="card-header">
-        {{'manufacturing-order'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(manufacturingOrder)"></button>
-        <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="newManufacturingOrderCustomProduct()"></button>
-    </div>
     <div class="card-block">
+        <h6 class="card-title">{{'manufacturing-order'|translate}}</h6>
+        <hr/>
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="row">
                 <div class="form-group">
@@ -12,16 +10,25 @@
                     <div class="col-md-3">
                         <input class="form-control" type="search" id="code" [(ngModel)]="manufacturingOrder.code" placeholder="{{'code'|translate}}">
                     </div>
+                </div>
+                <div class="form-group">
                     <label for="date" class="col-md-1 col-form-label">{{'date'|translate}}</label>
                     <div class="col-md-3">
                         <input class="form-control" type="search" id="date" [(ngModel)]="manufacturingOrder.date" placeholder="{{'date'|translate}}">
                     </div>
                 </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-secondary fa fa-check pull-right " (click)="save(manufacturingOrder)"></button>
+                </div>
             </div>
+            <div class="row">&nbsp;</div>
             <div class="row">
-                <app-manufacturing-order-custom-product-list [inputManufacturingOrderCustomProducts]="manufacturingOrder.manufacturingOrderCustomProducts" (outputManufacturingOrderCustomProduct)="setSelectedManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product-list>
+                <app-manufacturing-order-custom-product-list 
+                    [inputManufacturingOrderCustomProducts]="manufacturingOrder.manufacturingOrderCustomProducts" 
+                    (outputManufacturingOrderCustomProduct)="setSelectedManufacturingOrderCustomProduct($event)">
+                    </app-manufacturing-order-custom-product-list>
             </div>
         </div>
     </div>
 </div>
-<app-manufacturing-order-custom-product (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product>
+<app-manufacturing-order-custom-product [inputManufacturingOrderCustomProduct]="selectedManufacturingOrderCustomProduct" (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)"></app-manufacturing-order-custom-product>

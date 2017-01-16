@@ -1,6 +1,22 @@
-<div class="form-group">
-    <label for="description" class="col-md-2 col-form-label">{{'description'|translate}}</label>
-    <div class="col-md-4">
-        <input class="form-control" type="text" id="description" [(ngModel)]="manufacturingOrderCustomProduct.description" (change)="update(manufacturingOrderCustomProduct)" placeholder="{{'description'|translate}}">
-    </div>
+<app-message [message]="message"></app-message>
+<div class="row">
+	<div class="form-group">
+	    <label for="description" class="col-md-2 col-form-label">{{'description'|translate}}</label>
+	    <div class="col-md-4">
+	        <input class="form-control" type="text" id="description" placeholder="{{'description'|translate}}"
+	        	[(ngModel)]="manufacturingOrderCustomProduct.description">
+	    </div>
+	</div>
+	<div class="form-group">
+		<button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct)"></button>
+	</div>
+</div>
+<div class="row">&nbsp;</div>
+<div class="row">
+	<div class="col-md-12">
+	    <app-manufacturing-order-product-list 
+	        [inputManufacturingOrderProducts]="manufacturingOrderCustomProduct.manufacturingOrderProducts" 
+	        (outputManufacturingOrderProduct)="setSelectedManufacturingOrderProduct($event)">
+	        </app-manufacturing-order-product-list>
+	</div>
 </div>

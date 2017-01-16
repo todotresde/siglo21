@@ -1,9 +1,6 @@
 package com.todotresde.siglo21.line.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class ManufacturingOrderCustomProduct {
     @NotNull
     private String description;
     @NotNull
-    @OneToMany
+    @OneToMany(cascade = { CascadeType.ALL })
     private List<ManufacturingOrderProduct> manufacturingOrderProducts;
 
     public ManufacturingOrderCustomProduct(){

@@ -23,9 +23,9 @@ export class ManufacturingOrderService {
                .toPromise();
   }
 
-  remove(manufacturingOrder: ManufacturingOrder): Promise<ManufacturingOrder> {
+  remove(manufacturingOrder: ManufacturingOrder): Promise<number> {
     return this.http.delete(environment.host + "/manufacturingOrder/" + manufacturingOrder.id)
-               .map(response => response.json() as ManufacturingOrder)
+               .map(response => response.json() as number)
                .toPromise();
   }
 

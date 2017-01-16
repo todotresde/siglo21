@@ -1,54 +1,62 @@
+<app-message [message]="message"></app-message>
 <div class="row table-header" >
     <div class="col-md-2">
-        <strong>{{'description'|translate}}</strong>
+        {{'description'|translate}}
     </div>
     <div class="col-md-8">
-        <strong>{{'products'|translate}}</strong>
+        {{'products'|translate}}
     </div>
-    <div class="col-ms-2 pull-right">
+    <div class="col-md-2 pull-right">
     </div>
 </div>
 <div class="row table-content" *ngFor="let manufacturingOrderCustomProduct of manufacturingOrderCustomProducts" >
-    <div class="row">
-        <div class="col-md-10">
-            {{manufacturingOrderCustomProduct.description}}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-10">
+                {{manufacturingOrderCustomProduct.description}}
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-secondary fa fa-trash pull-right" (click)="remove(manufacturingOrderCustomProduct)"></button>
+                <button type="button" class="btn btn-secondary fa fa-pencil pull-right" (click)="edit(manufacturingOrderCustomProduct)"></button>
+            </div>
         </div>
-        <div class="col-ms-2 pull-right">
-            <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrderCustomProduct)"></button>
-            <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrderCustomProduct)"></button>
+        <div class="row">&nbsp;</div>
+    </div>
+    <div class="col-md-12">
+        <div class="row table-header">
+            <div class="col-md-4">
+                {{'product'|translate}}
+            </div>
+            <div class="col-md-2">
+                {{'width'|translate}}
+            </div>
+            <div class="col-md-2">
+                {{'height'|translate}}
+            </div>
+            <div class="col-md-2">
+                {{'quantity'|translate}}
+            </div>
+            <div class="col-md-2 pull-right">
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <strong>{{'product'|translate}}</strong>
-        </div>
-        <div class="col-md-2">
-            <strong>{{'width'|translate}}</strong>
-        </div>
-        <div class="col-md-2">
-            <strong>{{'height'|translate}}</strong>
-        </div>
-        <div class="col-md-2">
-            <strong>{{'quantity'|translate}}</strong>
-        </div>
-        <div class="col-ms-2 pull-right">
-        </div>
-    </div>
-    <div class="row" *ngFor="let manufacturingOrderProduct of manufacturingOrderCustomProduct.manufacturingOrderProducts" >
-        <div class="col-md-4">
-            {{manufacturingOrderProduct.product.code}}
-        </div>
-        <div class="col-md-2">
-            {{manufacturingOrderProduct.width}}
-        </div>
-        <div class="col-md-2">
-            {{manufacturingOrderProduct.height}}
-        </div>
-        <div class="col-md-2">
-            {{manufacturingOrderProduct.quantity}}
-        </div>
-        <div class="col-md-2">
+    <div class="col-md-12" >
+        <div class="row" *ngFor="let manufacturingOrderProduct of manufacturingOrderCustomProduct.manufacturingOrderProducts" >
+            <div class="col-md-4">
+                {{manufacturingOrderProduct.product.code}}
+            </div>
+            <div class="col-md-2">
+                {{manufacturingOrderProduct.width}}
+            </div>
+            <div class="col-md-2">
+                {{manufacturingOrderProduct.height}}
+            </div>
+            <div class="col-md-2">
+                {{manufacturingOrderProduct.quantity}}
+            </div>
+            <div class="col-md-2">
+            </div>
+            <hr/>
         </div>
     </div>
-    
 </div>

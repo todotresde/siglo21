@@ -34,6 +34,7 @@ export class ManufacturingOrderProductListComponent implements OnInit, OnChanges
   }
 
   edit(manufacturingOrderProduct: ManufacturingOrderProduct): void {
+    debugger
     this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
   }
 }

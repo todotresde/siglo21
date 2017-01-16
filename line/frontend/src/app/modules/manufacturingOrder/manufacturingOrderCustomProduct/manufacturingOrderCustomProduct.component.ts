@@ -1,4 +1,4 @@
-import { Component, OnInit , EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit , EventEmitter, Input, Output, SimpleChange, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ManufacturingOrderCustomProduct } from './manufacturingOrderCustomProduct';
@@ -9,7 +9,8 @@ import { ManufacturingOrderProduct } from '../manufacturingOrderProduct/manufact
   templateUrl: './manufacturingOrderCustomProduct.component.html',
   providers:[]
 })
-export class ManufacturingOrderCustomProductComponent implements OnInit {
+export class ManufacturingOrderCustomProductComponent implements OnInit, OnChanges {
+  @Input() inputManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   @Output() outputManufacturingOrderCustomProduct = new EventEmitter<ManufacturingOrderCustomProduct>();
 
   selectedManufacturingOrderCustomProduct: ManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
@@ -22,16 +23,21 @@ export class ManufacturingOrderCustomProductComponent implements OnInit {
   ngOnInit() : void{
   }
 
+  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    for (let propName in changes) {
+      switch(propName){
+          case "inputManufacturingOrderCustomProduct": this.selectedManufacturingOrderCustomProduct = changes["inputManufacturingOrderCustomProduct"].currentValue; break;
+      }
+    }
+  }
+
   addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void {
   	this.manufacturingOrderCustomProducts.push(manufacturingOrderCustomProduct);
   }
 
-  setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
-    this.selectedManufacturingOrderProduct = manufacturingOrderProduct;
-  }
-
   setSelectedManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct) : void{
     this.selectedManufacturingOrderCustomProduct = manufacturingOrderCustomProduct;
+    this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
   }
 
   saveManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct){
@@ -45,5 +51,10 @@ export class ManufacturingOrderCustomProductComponent implements OnInit {
 
   newManufacturingOrderProduct(): void {
     this.selectedManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
+  }
+
+  setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
+    debugger
+    this.selectedManufacturingOrderProduct = manufacturingOrderProduct;
   }
 }

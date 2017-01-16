@@ -10,7 +10,7 @@ import java.util.List;
 public interface ManufacturingOrderService {
     public List<ManufacturingOrder> all();
     public ManufacturingOrder byId(Long id);
-    public ManufacturingOrder delete(Long id);
+    public Long delete(Long id);
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder);
     public ManufacturingOrder send(Long id);
 }

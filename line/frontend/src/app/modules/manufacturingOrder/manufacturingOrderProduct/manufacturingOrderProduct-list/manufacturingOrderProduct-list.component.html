@@ -1,17 +1,17 @@
 <div class="row table-header" >
     <div class="col-md-4">
-        <strong>{{'product'|translate}}</strong>
+        {{'product'|translate}}
     </div>
     <div class="col-md-2">
-        <strong>{{'width'|translate}}</strong>
+        {{'width'|translate}}
     </div>
     <div class="col-md-2">
-        <strong>{{'height'|translate}}</strong>
+        {{'height'|translate}}
     </div>
     <div class="col-md-2">
-        <strong>{{'quantity'|translate}}</strong>
+        {{'quantity'|translate}}
     </div>
-    <div class="col-ms-2 pull-right">
+    <div class="col-md-2 pull-right">
     </div>
 </div>
 <div class="row" *ngFor="let manufacturingOrderProduct of manufacturingOrderProducts" >
@@ -27,8 +27,8 @@
     <div class="col-md-2">
         {{manufacturingOrderProduct.quantity}}
     </div>
-    <div class="col-ms-3 pull-right">
-        <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrderProduct)"></button>
-        <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrderProduct)"></button>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-secondary fa fa-trash pull-right" (click)="remove(manufacturingOrderProduct)"></button>
+        <button type="button" class="btn btn-secondary fa fa-pencil pull-right" (click)="edit(manufacturingOrderProduct)"></button>
     </div>
 </div>

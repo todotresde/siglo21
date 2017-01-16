@@ -21,6 +21,7 @@ export class ManufacturingOrderProductComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    debugger
     if(changes["inputManufacturingOrderProduct"].currentValue)
       this.manufacturingOrderProduct = changes["inputManufacturingOrderProduct"].currentValue;
     else
@@ -29,6 +30,7 @@ export class ManufacturingOrderProductComponent implements OnInit, OnChanges {
 
   setManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
     this.manufacturingOrderProduct = manufacturingOrderProduct;
+    this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
   }
 
   saveManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct): void{

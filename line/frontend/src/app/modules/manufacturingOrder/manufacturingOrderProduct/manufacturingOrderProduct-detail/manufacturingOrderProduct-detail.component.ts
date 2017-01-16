@@ -5,6 +5,8 @@ import { Product } from '../../../product/product';
 import { ProductService } from '../../../product/product.service';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct'
 
+import { Message } from '../../../../shared/message/message';
+
 @Component({
   selector: 'app-manufacturing-order-product-detail',
   templateUrl: './manufacturingOrderProduct-detail.component.html',
@@ -14,6 +16,7 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   @Input() inputManufacturingOrderProduct = new ManufacturingOrderProduct();
   @Output() outputManufacturingOrderProduct = new EventEmitter<ManufacturingOrderProduct>();
 
+  message : Message = new Message();
   products : Product[];
   manufacturingOrderProduct: ManufacturingOrderProduct;
   
@@ -33,12 +36,25 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   }
 
   add(manufacturingOrderProduct: ManufacturingOrderProduct): void{
-    this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
-    this.manufacturingOrderProduct = new ManufacturingOrderProduct();
+    if(this.validForm(manufacturingOrderProduct)){
+      this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
+      this.manufacturingOrderProduct = new ManufacturingOrderProduct();
+      this.message.none();
+    }else{
+      this.message.error("error-missing-values");
+    }
   }
 
   update(manufacturingOrderProduct: ManufacturingOrderProduct): void{
     this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
+  }
+
+  validForm(manufacturingOrderProduct: ManufacturingOrderProduct): boolean{
+    return (
+        manufacturingOrderProduct.product != undefined && 
+        manufacturingOrderProduct.width != undefined && 
+        manufacturingOrderProduct.height != undefined && 
+        manufacturingOrderProduct.quantity != undefined);
   }
 
 }

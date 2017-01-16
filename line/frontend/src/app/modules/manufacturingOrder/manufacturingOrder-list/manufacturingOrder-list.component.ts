@@ -4,15 +4,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ManufacturingOrder } from '../manufacturingOrder';
 import { ManufacturingOrderService } from '../manufacturingOrder.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-manufacturing-order-list',
   templateUrl: './manufacturingOrder-list.component.html',
   providers:[ManufacturingOrderService]
 })
 export class ManufacturingOrderListComponent implements OnInit {
+  message : Message = new Message();
   manufacturingOrders: ManufacturingOrder[];
-  messageType: number = 0;
-  message: string = "";
 
   constructor(private router: Router, private manufacturingOrderService: ManufacturingOrderService, private r:ActivatedRoute) {
 
@@ -21,8 +22,10 @@ export class ManufacturingOrderListComponent implements OnInit {
   ngOnInit(): void{
     this.manufacturingOrderService
       .getAll()
-      .then(manufacturingOrders => { this.messageType = 0; this.manufacturingOrders = manufacturingOrders})
-      .catch(error => { this.messageType = 4;});
+      .then(manufacturingOrders => { this.manufacturingOrders = manufacturingOrders})
+      .catch(error => {
+            this.message.error(JSON.parse(error._body).message);
+          })
   }
 
   create(): void {
@@ -36,14 +39,18 @@ export class ManufacturingOrderListComponent implements OnInit {
   remove(manufacturingOrder: ManufacturingOrder): void {
     this.manufacturingOrderService
       .remove(manufacturingOrder)
-      .then(manufacturingOrder => { this.messageType = 1; this.manufacturingOrders = this.manufacturingOrders.filter(u => u.id !== manufacturingOrder.id)})
-      .catch(error => { this.messageType = 4;});
+      .then(manufacturingOrderId => { this.manufacturingOrders = this.manufacturingOrders.filter(u => u.id !== manufacturingOrderId)})
+      .catch(error => {
+        this.message.error(JSON.parse(error._body).message);
+      })
   }
 
   send(manufacturingOrder: ManufacturingOrder): void {
     this.manufacturingOrderService
       .send(manufacturingOrder.id)
-      .catch(error => { this.messageType = 4;});
+      .catch(error => {
+        this.message.error(JSON.parse(error._body).message);
+      })
 
   }
 

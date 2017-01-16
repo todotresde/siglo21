@@ -33,7 +33,7 @@ public class ManufacturingOrderController {
 
     @RequestMapping(value="/manufacturingOrder/{id}", method= RequestMethod.DELETE, produces="application/json")
     public @ResponseBody
-    ManufacturingOrder delete(@PathVariable Long id) {
+    Long delete(@PathVariable Long id) {
         return this.manufacturingOrderService.delete(id);
     }
 

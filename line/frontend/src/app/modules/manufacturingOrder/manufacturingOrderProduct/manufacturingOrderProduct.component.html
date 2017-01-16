@@ -1,12 +1,12 @@
 <div class="card">
-    <div class="card-header">
-        {{'product'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="saveManufacturingOrderProduct(manufacturingOrderProduct)"></button>
-    </div>
     <div class="card-block">
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="row">
-                <app-manufacturing-order-product-detail [inputManufacturingOrderProduct]="manufacturingOrderProduct" (outputManufacturingOrderProduct)="setManufacturingOrderProduct($event)"></app-manufacturing-order-product-detail>
+                <app-manufacturing-order-product-detail 
+                    [inputManufacturingOrderProduct]="manufacturingOrderProduct" 
+                    (outputManufacturingOrderProduct)="setManufacturingOrderProduct($event)">
+                    </app-manufacturing-order-product-detail>
             </div>
         </div>
     </div>

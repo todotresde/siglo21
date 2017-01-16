@@ -66,7 +66,7 @@
 	"error-product-type-already-assigned" : "El Tipo de Producto ya fue asignado",
 	"error-user-already-assigned" : "El Usuario ya fue asignado",
 	"error-worksation-configuration-already-assigned" : "La Configuración de Puestos ya fue asignada",
-	"error-missing-values" : "Hay campos sin asignarle un valor",
+	"error-missing-values" : "Existen campos sin completar",
 	"error-missing-workstation-configuration" : "No existen Configuraciónes de Puestos asignados",
 	"error-missing-product-types" : "No existen Tipos de Productos asignados",
 	"error-missing-users" : "No eisten Usuarios asignados",

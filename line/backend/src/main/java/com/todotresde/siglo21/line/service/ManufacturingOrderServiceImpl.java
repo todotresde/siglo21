@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.*;
+import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,14 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
         return manufacturingOrderDao.findById(id);
     }
 
-    public ManufacturingOrder delete(Long id) {
-        ManufacturingOrder manufacturingOrder = manufacturingOrderDao.findById(id);
-        manufacturingOrderDao.delete(id);
-        return manufacturingOrder;
+    public Long delete(Long id) {
+        try {
+            manufacturingOrderDao.delete(id);
+        }catch(Exception e){
+            throw new BaseException("error-delete-database-problems");
+        }
+
+        return id;
     }
 
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder) {
