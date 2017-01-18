@@ -10,7 +10,6 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class WorkStationConfigurationController {
     private WorkStationConfigurationService workStationConfigurationService;
 

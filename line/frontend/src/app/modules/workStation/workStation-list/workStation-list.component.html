@@ -1,10 +1,8 @@
 <div class="card">
-  <div class="card-header">
-    {{'work-stations'|translate}}
-    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
-  </div>
-  <app-message [message]="message"></app-message>
   <div class="card-block">
+    <h5 class="card-title">{{'work-stations'|translate}}</h5>
+    <hr/>
+    <app-message [message]="message"></app-message>
     <div class="container-fluid">
       <div class="row table-header">
           <div class="col-md-4">
@@ -14,6 +12,7 @@
               {{'ip'|translate}}
           </div>
           <div class="col-ms-4 pull-right">
+            <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
           </div>
       </div>
       <div class="row table-content" *ngFor="let workStation of workStations" >

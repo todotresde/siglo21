@@ -14,6 +14,8 @@ import { ProductSearch } from './product/product-search/product-search';
 import { ClientList } from './client/client-list/client-list';
 import { ClientDetail } from './client/client-detail/client-detail';
 
+import { QuotationService } from './quotation/quotation.service'
+
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
 }
@@ -46,7 +48,7 @@ export function createTranslateLoader(http: Http) {
     ClientDetail,
     ClientList
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, QuotationService]
 })
 export class AppModule {
   constructor(translate: TranslateService) {

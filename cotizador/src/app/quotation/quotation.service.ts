@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -7,6 +7,7 @@ import { Quotation } from './quotation';
 
 @Injectable()
 export class QuotationService {
+  temporalQuotation: Quotation;
   quotations: Quotation[] = [];
 
   constructor(private http: Http) { }
@@ -45,7 +46,18 @@ export class QuotationService {
 
     return new Promise((resolve, reject) => {
 	    resolve(quotation);
-	});
+	  });
   }
 
+  //*************************************************************
+
+  newTemporal(): Quotation{
+    this.temporalQuotation = new Quotation();
+    return this.temporalQuotation;
+  }
+
+  getTemporal(): Quotation{
+    if(!this.temporalQuotation) this.newTemporal();
+    return this.temporalQuotation;
+  }
 }
