@@ -29,4 +29,11 @@ export class LoginService extends Service{
                .toPromise();
   }
 
+  login(username: string, password: string): Promise<User> {
+    this.setHeader("Content-Type","application/x-www-form-urlencoded");
+
+    return this.http.post(environment.host + "/login", "username="+username+"&password="+password,this.getRequestOptions() )
+               .toPromise();
+  }
+
 }

@@ -57,6 +57,9 @@
 	"operation-warning" : "Atención",
 	"operation-error" : "Error en la Operación",
 	"username" : "Username",
+	"deleted-successfully" : "Borrado exitosamente",
+	"roles" : "Roles",
+	"role" : "Rol",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",
 	"error-delete-database-problems" : "Error al intentar borrar el registro. Posiblemente el mismo se encuentra relacionado.",
@@ -70,6 +73,5 @@
 	"error-missing-workstation-configuration" : "No existen Configuraciónes de Puestos asignados",
 	"error-missing-product-types" : "No existen Tipos de Productos asignados",
 	"error-missing-users" : "No eisten Usuarios asignados",
-	"error-missing-workstation-configurations" : "No existen Puestos asignados",
-	"deleted-successfully" : "Borrado exitosamente"
+	"error-missing-workstation-configurations" : "No existen Puestos asignados"
 }

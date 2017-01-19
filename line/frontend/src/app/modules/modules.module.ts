@@ -8,6 +8,7 @@ import { LineModule } from './line/line.module';
 import { ProductModule } from './product/product.module';
 import { ProductTypeModule } from './productType/productType.module';
 import { UserModule } from './user/user.module';
+import { RoleModule } from './role/role.module';
 import { WorkStationModule } from './workStation/workStation.module';
 import { ManufacturingOrderModule } from './manufacturingOrder/manufacturingOrder.module';
 import { TraceModule } from './trace/trace.module';
@@ -22,6 +23,7 @@ import { ModulesComponent } from './modules.component';
     CommonModule,
     RouterModule,
     UserModule,
+    RoleModule,
     WorkStationModule,
     ProductModule,
     ProductTypeModule,

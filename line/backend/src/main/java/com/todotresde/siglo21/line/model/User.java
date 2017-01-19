@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Leonardo on 26/12/2016.
@@ -23,6 +24,8 @@ public class User {
     private String name;
     @NotNull
     private String email;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Role> roles;
 
     public User(){
 
@@ -76,6 +79,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
 }

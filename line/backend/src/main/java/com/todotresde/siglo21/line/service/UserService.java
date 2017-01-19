@@ -9,6 +9,7 @@ import java.util.List;
 public interface UserService {
     public List<User> all();
     public User byId(Long id);
+    public User byUsername(String username);
     public User delete(Long id);
     public User save(User user);
 }

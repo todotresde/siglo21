@@ -32,6 +32,10 @@ public class UserServiceImpl implements UserService{
         return userDao.findById(id);
     }
 
+    public User byUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
     public User delete(Long id) {
         User user = userDao.findById(id);
 

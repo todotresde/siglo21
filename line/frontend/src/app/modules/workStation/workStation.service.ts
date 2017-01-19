@@ -15,25 +15,25 @@ export class WorkStationService extends Service{
   }
 
   getAll(): Promise<WorkStation[]> {
-    return this.http.get(environment.host + "/workStation", { headers : this.getHeaders() })
+    return this.http.get(environment.host + "/workStation")
                .map(response => response.json() as WorkStation[])
                .toPromise();
   }
 
   get(id: Number): Promise<WorkStation> {
-    return this.http.get(environment.host + "/workStation/" + id, { headers : this.getHeaders() })
+    return this.http.get(environment.host + "/workStation/" + id)
                .map(response => response.json() as WorkStation)
                .toPromise();
   }
 
   remove(workStation: WorkStation): Promise<WorkStation> {
-    return this.http.delete(environment.host + "/workStation/" + workStation.id, { headers : this.getHeaders() })
+    return this.http.delete(environment.host + "/workStation/" + workStation.id)
                .map(response => response.json() as WorkStation)
                .toPromise();
   }
 
   save(workStation: WorkStation): Promise<WorkStation> {
-    return this.http.post(environment.host + "/workStation", workStation, { headers : this.getHeaders() })
+    return this.http.post(environment.host + "/workStation", workStation)
                .map(response => response.json() as WorkStation)
                .toPromise();
   }

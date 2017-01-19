@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { requestOptionsProvider } from './shared/default-request-options.service'; 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -37,7 +36,7 @@ export function createTranslateLoader(http: Http) {
       deps: [Http]
     })
   ],
-  providers: [requestOptionsProvider],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

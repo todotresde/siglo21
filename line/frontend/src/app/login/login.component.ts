@@ -22,18 +22,20 @@ export class LoginComponent {
 	}
 
 	login(username: string, password: string): void{
-		this.loginService.getToken()
-			.then( response => {
-				this.loginService.setHeader('X-Auth-Token', response.token);
-
-				this.loginService.get(username, password)
-					.then(user => this.router.navigate(['./modules'],{ relativeTo: this.r }))
+		this.loginService.login(username, password)
+			.then(response => {
+				this.loginService.getToken()
+					.then( response => {
+						this.loginService.setHeader('X-Auth-Token', response.token);
+						
+						this.router.navigate(['/modules'],{ relativeTo: this.r })
+					})
 					.catch(error => {
 						this.message.error("invalid-username-password");
 					})
 			})
 			.catch(error => {
 				this.message.error("invalid-username-password");
-			})	
+			})
 	}
 }
