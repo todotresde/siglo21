@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
@@ -75,7 +76,8 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping("/token")
+    @RequestMapping(value="/token", method = RequestMethod.GET)
+    @ResponseBody
     public Map<String,String> token(HttpSession session) {
         return Collections.singletonMap("token", session.getId());
     }

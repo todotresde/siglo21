@@ -15,7 +15,10 @@ export class WorkStationService extends Service{
   }
 
   getAll(): Promise<WorkStation[]> {
-    return this.http.get(environment.host + "/workStation")
+    this.setHeader('X-Auth-Token', localStorage.getItem("X-Auth-Token"));
+    this.setHeader('Authorization', localStorage.getItem("Authorization"));
+
+    return this.http.get(environment.host + "/workStation", this.getRequestOptions())
                .map(response => response.json() as WorkStation[])
                .toPromise();
   }

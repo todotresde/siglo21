@@ -24,9 +24,14 @@ export class LoginComponent {
 	login(username: string, password: string): void{
 		this.loginService.login(username, password)
 			.then(response => {
+				this.router.navigate(['/modules'],{ relativeTo: this.r })
 				this.loginService.getToken()
 					.then( response => {
 						this.loginService.setHeader('X-Auth-Token', response.token);
+						this.loginService.setHeader("Authorization","Basic " + btoa(username + ":" + password));
+    
+						localStorage.setItem("X-Auth-Token", response.token);
+						localStorage.setItem("Authorization","Basic " + btoa(username + ":" + password))
 						
 						this.router.navigate(['/modules'],{ relativeTo: this.r })
 					})
