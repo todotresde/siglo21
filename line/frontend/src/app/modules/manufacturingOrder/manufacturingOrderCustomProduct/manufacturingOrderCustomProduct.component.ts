@@ -54,7 +54,6 @@ export class ManufacturingOrderCustomProductComponent implements OnInit, OnChang
   }
 
   setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
-    debugger
     this.selectedManufacturingOrderProduct = manufacturingOrderProduct;
   }
 }

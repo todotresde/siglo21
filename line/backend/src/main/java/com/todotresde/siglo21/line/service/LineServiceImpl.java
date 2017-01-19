@@ -35,17 +35,19 @@ public class LineServiceImpl implements LineService{
     }
 
     public Line byProductTypeId(Long productTypeId) {
+        Line selectedLine = null;
+
         for (Line line : lineDao.findAll()) {
             for (WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()) {
                 for (ProductType productType : workStationConfiguration.getProductTypes()) {
                     if(productType.getId().equals(productTypeId)){
-                        return line;
+                        selectedLine = line;
                     }
                 }
             }
         }
 
-        return null;
+        return selectedLine;
     }
 
     public Long delete(Long id) {

@@ -60,6 +60,7 @@
 	"deleted-successfully" : "Borrado exitosamente",
 	"roles" : "Roles",
 	"role" : "Rol",
+	"trace-screens" : "Pantallas",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",
 	"error-delete-database-problems" : "Error al intentar borrar el registro. Posiblemente el mismo se encuentra relacionado.",

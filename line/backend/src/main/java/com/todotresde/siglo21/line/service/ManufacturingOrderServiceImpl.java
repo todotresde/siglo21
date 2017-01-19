@@ -63,6 +63,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
             for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()){
                 ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
                 Line line = lineService.byProductTypeId(productType.getId());
+                User user = userDao.findAll().iterator().next();
 
                 Trace trace = new Trace();
 
@@ -72,7 +73,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                 trace.setManufacturingOrderProduct(manufacturingOrderProduct);
                 trace.setStartTime(new Date());
                 trace.setState(1);
-                trace.setUser(userDao.findById(new Long(96838337)));
+                trace.setUser(user);
 
                 for(WorkStationConfiguration workStationConfiguration: line.getWorkStationConfigurations()){
                     WorkStationConfiguration tempWorkStationConfiguration = workStationConfigurationService.byProductTypeId(productType.getId());

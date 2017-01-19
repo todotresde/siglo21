@@ -48,7 +48,6 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
   }
 
   setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
-    debugger
     this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
   }
 

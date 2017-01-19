@@ -43,9 +43,20 @@
             
         </li>
         <li>
-            <a [routerLink]="['trace']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-fw fa-wrench"></i> {{'trace-screen'|translate}} 
-            </a>
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="toogleSubmenu('trace-screens')">
+                    <span><i class="fa fa-fw fa-wrench"></i> {{'trace-screens'|translate}}</span>
+                </a>
+                <li class="nested" [ngClass]="{'hidden' : submenues['trace-screens'] }">
+                    <ul class="list-group">
+                        <li *ngFor="let workStation of workStations">
+                            <a [routerLink]="['trace/' + workStation.ip]" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                <i class="fa fa-fw fa-wrench"></i> {{'trace-screen'|translate}} {{workStation.ip}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
         </li>
         <li>
             <div class="nested-menu">
