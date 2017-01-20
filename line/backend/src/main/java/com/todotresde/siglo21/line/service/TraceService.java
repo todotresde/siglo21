@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface TraceService {
     public List<Trace> all();
+    public List<Trace> allByWorkStation(Long id);
     public Trace byId(Long id);
     public Trace delete(Long id);
     public Trace save(Trace trace);

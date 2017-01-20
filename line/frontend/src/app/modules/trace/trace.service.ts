@@ -5,30 +5,38 @@ import 'rxjs/add/operator/toPromise';
 
 import { Trace } from './trace';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class TraceService {
   constructor(private http: Http) { }
 
   getAll(): Promise<Trace[]> {
-    return this.http.get("http://localhost:8080/trace")
+    return this.http.get(environment.host + "/trace")
+               .map(response => response.json() as Trace[])
+               .toPromise();
+  }
+
+  getAllByWorkStation(id: Number): Promise<Trace[]> {
+    return this.http.get(environment.host + "/trace/workStation/" + id)
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   get(id: Number): Promise<Trace> {
-    return this.http.get("http://localhost:8080/trace/" + id)
+    return this.http.get(environment.host + "/trace/" + id)
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   remove(trace: Trace): Promise<Trace> {
-    return this.http.delete("http://localhost:8080/trace/" + trace.id)
+    return this.http.delete(environment.host + "/trace/" + trace.id)
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   save(trace: Trace): Promise<Trace> {
-    return this.http.post("http://localhost:8080/trace", trace)
+    return this.http.post(environment.host + "/trace", trace)
                .map(response => response.json() as Trace)
                .toPromise();
   }

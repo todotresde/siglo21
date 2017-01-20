@@ -24,6 +24,12 @@ public class TraceController {
         return this.traceService.all();
     }
 
+    @RequestMapping(value="/trace/workStation/{id}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<Trace> allByWorkstation(@PathVariable Long id) {
+        return this.traceService.allByWorkStation(id);
+    }
+
     @RequestMapping(value="/trace/{id}", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody
     Trace get(@PathVariable Long id) {

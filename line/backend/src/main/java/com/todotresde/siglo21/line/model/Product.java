@@ -12,12 +12,12 @@ public class Product {
     @Id
     @NotNull
     private Long id;
-    @NotNull
+    @NotNull(message = "not-empty")
     @Column(unique=true)
     private String code;
     @NotNull
     private String description;
-    @NotNull
+    @NotNull(message = "not-empty")
     @OneToOne
     private ProductType productType;
 

@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Trace } from '../trace';
 import { TraceService } from '../trace.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-trace-list',
   templateUrl: './trace-list.component.html',
@@ -13,14 +15,24 @@ export class TraceListComponent implements OnInit, OnChanges {
   @Input() inputTraces = new Trace();
   @Output() outputTrace = new EventEmitter<Trace>();
 
+  message: Message = new Message();
   traces: Trace[];
 
-  constructor(private router: Router, private traceService: TraceService, private r:ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router, private traceService: TraceService, private r:ActivatedRoute) {
 
   }
 
   ngOnInit(): void{
-    this.traceService.getAll().then(traces => this.traces = traces);
+    this.route.params.subscribe(params => {
+      if(params["id"]){
+        this.traceService.getAllByWorkStation(params["id"])
+          .then(traces => this.traces = traces)
+          .catch(error => { 
+            this.message.error(JSON.parse(error._body).message);
+          });
+      }
+    });
+    
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {

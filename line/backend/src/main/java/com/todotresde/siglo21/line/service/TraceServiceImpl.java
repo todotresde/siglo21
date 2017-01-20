@@ -1,7 +1,9 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.TraceDao;
+import com.todotresde.siglo21.line.dao.WorkStationDao;
 import com.todotresde.siglo21.line.model.Trace;
+import com.todotresde.siglo21.line.model.WorkStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +16,24 @@ import java.util.List;
 @Service
 public class TraceServiceImpl implements TraceService{
     @Autowired
+    private WorkStationDao workStationDao;
+    @Autowired
     private TraceDao traceDao;
 
     public List<Trace> all() {
         ArrayList<Trace> traces = new ArrayList<Trace>();
 
         for (Trace trace : traceDao.findAll()) {
+            traces.add(trace);
+        }
+
+        return traces;
+    }
+
+    public List<Trace> allByWorkStation(Long id) {
+        ArrayList<Trace> traces = new ArrayList<Trace>();
+
+        for (Trace trace : traceDao.findByWorkStation(workStationDao.findById(id))) {
             traces.add(trace);
         }
 
