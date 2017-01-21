@@ -2,10 +2,10 @@
 <div class="form-group">
     <label for="id" class="col-md-1 col-form-label">{{'product'|translate}}</label>
     <div class="col-md-2">
-        <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-primary" id="dropdown-products" ngbDropdownToggle>{{manufacturingOrderProduct.product.code}}</button>
+        <div ngbDropdown [up]="true" class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdown-products" ngbDropdownToggle>{{manufacturingOrderProduct.product.code}} - {{manufacturingOrderProduct.product.description}}</button>
             <div class="dropdown-menu" aria-labelledby="dropdown-products" >
-                <button class="dropdown-item" *ngFor="let product of products" (click)="manufacturingOrderProduct.product = product" >{{product.code}}</button>
+                <button class="dropdown-item" *ngFor="let product of products" (click)="manufacturingOrderProduct.product = product" >{{product.code}} - {{product.description}}</button>
             </div>
         </div>
     </div>

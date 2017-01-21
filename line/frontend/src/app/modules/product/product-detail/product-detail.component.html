@@ -1,10 +1,8 @@
 <div class="card">
-    <div class="card-header">
-        {{'product'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
-    </div>
-    <app-message [message]="message"></app-message>
     <div class="card-block">
+        <h5 class="card-title">{{'product'|translate}}</h5>
+        <hr/>
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="form-group row">
                 <label for="code" class="col-md-2 col-form-label">{{'code'|translate}}</label>
@@ -25,6 +23,11 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownProductType" >
                         <button class="dropdown-item" *ngFor="let productType of productTypes" (click)="selectedProductType = productType" >{{productType.name}}</button>
                     </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(product, selectedProductType)"></button>
                 </div>
             </div>
         </div>

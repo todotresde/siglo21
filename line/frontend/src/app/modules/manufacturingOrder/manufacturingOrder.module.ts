@@ -11,10 +11,13 @@ import { ManufacturingOrderComponent } from './manufacturingOrder.component';
 import { ManufacturingOrderListComponent } from './manufacturingOrder-list/manufacturingOrder-list.component';
 import { ManufacturingOrderDetailComponent } from './manufacturingOrder-detail/manufacturingOrder-detail.component';
 
+import { ManufacturingOrderService } from './manufacturingOrder.service';
+
 @NgModule({
     imports: [RouterModule, CommonModule, FormsModule, NgbModule, ManufacturingOrderCustomProductModule, SharedModule],
     declarations: [ManufacturingOrderComponent, ManufacturingOrderListComponent, ManufacturingOrderDetailComponent],
-    exports: [ManufacturingOrderComponent, ManufacturingOrderListComponent, ManufacturingOrderDetailComponent, ]
+    exports: [ManufacturingOrderComponent, ManufacturingOrderListComponent, ManufacturingOrderDetailComponent],
+    providers: [ManufacturingOrderService]
 })
 
 export class ManufacturingOrderModule { }

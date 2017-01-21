@@ -38,6 +38,7 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   add(manufacturingOrderProduct: ManufacturingOrderProduct): void{
     if(this.validForm(manufacturingOrderProduct)){
       this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
+      
       this.manufacturingOrderProduct = new ManufacturingOrderProduct();
       this.message.none();
     }else{

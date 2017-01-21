@@ -29,7 +29,7 @@ export class ManufacturingOrderListComponent implements OnInit {
   }
 
   create(): void {
-    this.router.navigate(['../manufacturingOrder'],{ relativeTo: this.r });
+    this.router.navigate(['../manufacturingOrder/0'],{ relativeTo: this.r });
   }
 
   edit(manufacturingOrder: ManufacturingOrder): void {

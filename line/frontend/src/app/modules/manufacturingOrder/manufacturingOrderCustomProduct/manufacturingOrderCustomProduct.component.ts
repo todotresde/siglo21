@@ -36,22 +36,24 @@ export class ManufacturingOrderCustomProductComponent implements OnInit, OnChang
   }
 
   setSelectedManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct) : void{
-    this.selectedManufacturingOrderCustomProduct = manufacturingOrderCustomProduct;
     this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
+    this.selectedManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   }
-
+  /*
   saveManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct){
     this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
     this.newManufacturingOrderProduct();
   }
-
+  */
   addManufacturingOrderProduct(manufacturingOrderProduct : ManufacturingOrderProduct): void {
     this.selectedManufacturingOrderCustomProduct.addManufacturingOrderProduct(manufacturingOrderProduct);
   }
 
+  /*
   newManufacturingOrderProduct(): void {
     this.selectedManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   }
+  */
 
   setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
     this.selectedManufacturingOrderProduct = manufacturingOrderProduct;

@@ -1,5 +1,7 @@
 package com.todotresde.siglo21.line.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -28,6 +30,10 @@ public class WorkStationConfiguration {
     @ManyToMany
     @NotNull
     private List<User> users;
+    @NotNull
+    private Boolean first = false;
+    @NotNull
+    private Boolean last = false;
 
     public WorkStationConfiguration(){
 
@@ -81,5 +87,19 @@ public class WorkStationConfiguration {
         this.users = users;
     }
 
+    public Boolean getFirst() {
+        return first;
+    }
 
+    public void setFirst(Boolean first) {
+        this.first = first;
+    }
+
+    public Boolean getLast() {
+        return last;
+    }
+
+    public void setLast(Boolean last) {
+        this.last = last;
+    }
 }

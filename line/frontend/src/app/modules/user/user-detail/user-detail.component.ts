@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -7,6 +8,7 @@ import { Role } from '../../role/role';
 import { RoleService } from '../../role/role.service';
 
 import { Message } from '../../../shared/message/message';
+import { Commons } from '../../../shared/commons';
 
 @Component({
   selector: 'app-user-detail',
@@ -19,7 +21,7 @@ export class UserDetailComponent implements OnInit {
   roles: Role[];
   selectedRole: Role = new Role(); 
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private roleService: RoleService) { 
+  constructor(private location: Location, private route: ActivatedRoute, private userService: UserService, private roleService: RoleService) { 
     this.user = new User();
   }
 
@@ -41,23 +43,22 @@ export class UserDetailComponent implements OnInit {
       })
   }
 
-  save(): void {
-    this.user.roles = [this.selectedRole];
+  save(user: User, selectedRole: Role): void {
+    user.roles = [selectedRole];
 
     this.userService
-        .save(this.user)
+        .save(user)
         .then(user => {
-          this.user = user; 
-          
           this.message.success("");
+
+          Commons.delay().then(() => {
+            this.location.back();
+          });
         })
         .catch(error => {
           this.message.error(JSON.parse(error._body).message);
         })
   }
 
-  goBack(): void {
-    window.history.back();
-  }
 
 }

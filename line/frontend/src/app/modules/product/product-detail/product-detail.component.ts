@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -7,6 +8,7 @@ import { ProductType } from '../../productType/productType';
 import { ProductTypeService } from '../../productType/productType.service';
 
 import { Message } from '../../../shared/message/message';
+import { Commons } from '../../../shared/commons';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
   productTypes: ProductType[];
   selectedProductType: ProductType = new ProductType(); 
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, private productTypeService: ProductTypeService) { 
+  constructor(private location: Location, private route: ActivatedRoute, private productService: ProductService, private productTypeService: ProductTypeService) { 
     this.product = new Product();
   }
 
@@ -45,13 +47,17 @@ export class ProductDetailComponent implements OnInit {
       })
   }
 
-  save(): void {
-    this.product.productType = this.selectedProductType;
+  save(product: Product, selectedProductType: ProductType): void {
+    product.productType = selectedProductType;
 
     this.productService
-        .save(this.product)
+        .save(product)
         .then(product => {
-          this.product = product; 
+          this.message.success("");
+
+          Commons.delay().then(() => {
+            this.location.back();
+          });
         })
         .catch(error => {
           this.message.error(JSON.parse(error._body).message);

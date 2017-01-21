@@ -1,30 +1,9 @@
 <div class="card">
-    <div class="card-header">
-        {{'users'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
-    </div>
-    <app-message [message]="message"></app-message>
     <div class="card-block">
+        <h5 class="card-title">{{'users'|translate}}</h5>
+        <hr/>
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
-            <!--
-            <table class="table">
-              <thead class="thead-default">
-                <tr>
-                  <th>{{'name'|translate}}</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of users">
-                  <td>{{user.name}}</td>
-                  <td class="pull-right">
-                    <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(user)"></button>
-                    <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(user)"></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            -->
             <div class="row table-header">
                 <div class="col-md-2">
                     {{'id'|translate}}
@@ -41,7 +20,8 @@
                 <div class="col-md-2">
                     {{'role'|translate}}
                 </div>
-                <div class="col-ms-2 pull-right">
+                <div class="col-ms-2">
+                    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
                 </div>
             </div>
             <div class="row table-content" *ngFor="let user of users">

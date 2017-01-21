@@ -10,6 +10,8 @@ export class WorkStationConfiguration {
     prevWorkStation : WorkStation = new WorkStation();
     productTypes : ProductType[] = [];
     users : User[] = [];
+    first : boolean = false;
+    last : boolean = false;
 
     constructor(){
 

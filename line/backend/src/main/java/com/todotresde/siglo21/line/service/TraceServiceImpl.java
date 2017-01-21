@@ -54,4 +54,9 @@ public class TraceServiceImpl implements TraceService{
         traceDao.save(trace);
         return trace;
     }
+
+    public Trace finish(Trace trace) {
+        traceDao.save(trace);
+        return trace;
+    }
 }

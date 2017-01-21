@@ -13,4 +13,5 @@ public interface TraceService {
     public Trace byId(Long id);
     public Trace delete(Long id);
     public Trace save(Trace trace);
+    public Trace finish(Trace trace);
 }

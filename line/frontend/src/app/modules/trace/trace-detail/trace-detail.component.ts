@@ -19,13 +19,7 @@ export class TraceDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
-    this.route.params.subscribe(params => {
-      if(params["id"]){
-        this.traceService.get(params["id"]).then(trace =>{ 
-          this.trace = trace;
-        });
-      }
-    });
+
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
@@ -35,9 +29,9 @@ export class TraceDetailComponent implements OnInit, OnChanges {
       this.inputTrace = new Trace();
   }
 
-  save(): void {
+  finish(): void {
     this.traceService
-        .save(this.trace)
+        .finish(this.trace)
         .then(trace => {
           this.trace = trace; 
 

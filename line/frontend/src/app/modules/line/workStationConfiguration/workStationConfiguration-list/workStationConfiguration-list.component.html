@@ -20,10 +20,10 @@
             </div>
             <div class="row table-content" *ngFor="let workStationConfiguration of workStationConfigurations" >
                 <div class="col-md-3">
-                    {{workStationConfiguration.workStation.name}}
+                    {{workStationConfiguration.prevWorkStation.name}}
                 </div>
                 <div class="col-md-3">
-                    {{workStationConfiguration.prevWorkStation.name}}
+                    {{workStationConfiguration.workStation.name}}
                 </div>
                 <div class="col-md-3">
                     {{workStationConfiguration.nextWorkStation.name}}

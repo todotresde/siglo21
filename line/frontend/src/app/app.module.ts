@@ -13,6 +13,7 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
 
 import { LoginModule } from './login/login.module';
 import { ModulesModule } from './modules/modules.module';
+import { SessionService } from './shared/session.service';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -36,7 +37,7 @@ export function createTranslateLoader(http: Http) {
       deps: [Http]
     })
   ],
-  providers: [],
+  providers: [SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

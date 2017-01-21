@@ -14,7 +14,7 @@ export class ManufacturingOrderCustomProductListComponent implements OnInit, OnC
 
   manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[];
   
-  constructor(private router: Router, private route: ActivatedRoute) { 
+  constructor(private router: Router, private route: ActivatedRoute, private r:ActivatedRoute) { 
       
   }
 
@@ -34,5 +34,9 @@ export class ManufacturingOrderCustomProductListComponent implements OnInit, OnC
 
   edit(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void {
     this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
+  }
+
+  create(): void {
+    this.router.navigate(['./manufacturingOrderCustomProduct'],{ relativeTo: this.r });
   }
 }

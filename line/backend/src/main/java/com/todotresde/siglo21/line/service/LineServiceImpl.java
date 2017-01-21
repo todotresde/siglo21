@@ -61,10 +61,14 @@ public class LineServiceImpl implements LineService{
     }
 
     public Line save(Line line) {
-
-        if(line.getWorkStationConfigurations().isEmpty()){
+        List<WorkStationConfiguration> workStationConfigurations = line.getWorkStationConfigurations();
+        if(workStationConfigurations.isEmpty()){
             throw new BaseException("error-missing-workstation-configurations");
         }
+
+        //Set the first and the last workStation of the line
+        workStationConfigurations.get(0).setFirst(true);
+        workStationConfigurations.get(workStationConfigurations.size()-1).setLast(true);
 
         lineDao.save(line);
         return line;

@@ -7,7 +7,7 @@ export class ManufacturingOrder {
     date : Date = new Date();
     manufacturingOrderCustomProducts : ManufacturingOrderCustomProduct[] = [];
 
-    addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct) : void{
+    addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct) : ManufacturingOrder{
     	let found : boolean = false;
 
 	    this.manufacturingOrderCustomProducts = this.manufacturingOrderCustomProducts.map(mOCP => {
@@ -22,5 +22,7 @@ export class ManufacturingOrder {
 	    if(!found){
 	      this.manufacturingOrderCustomProducts.push(manufacturingOrderCustomProduct);
 	    }
+
+	    return this;
     }
 }

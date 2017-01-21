@@ -47,4 +47,10 @@ public class TraceController {
     Trace save(@RequestBody Trace trace) {
         return this.traceService.save(trace);
     }
+
+    @RequestMapping(value="/trace/finish", method= RequestMethod.POST, produces="application/json")
+    public @ResponseBody
+    Trace finish(@RequestBody Trace trace) {
+        return this.traceService.finish(trace);
+    }
 }

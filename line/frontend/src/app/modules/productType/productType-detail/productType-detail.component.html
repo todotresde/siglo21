@@ -22,8 +22,10 @@
                     <input class="form-control" type="text" id="description" [(ngModel)]="productType.description" placeholder="{{'description'|translate}}">
                 </div>
             </div>
-            <div class="row">
-                <button type="button" class="col-md-2 btn btn-secondary pull-right fa fa-check" (click)="save()"></button>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(productType)"></button>
+                </div>
             </div>
         </div>
     </div>

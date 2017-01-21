@@ -41,4 +41,10 @@ export class TraceService {
                .toPromise();
   }
 
+  finish(trace: Trace): Promise<Trace> {
+    return this.http.post(environment.host + "/trace/finish", trace)
+               .map(response => response.json() as Trace)
+               .toPromise();
+  }
+
 }
