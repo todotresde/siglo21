@@ -5,27 +5,27 @@
     <app-message [message]="message"></app-message>
     <div class="container-fluid">
       <div class="row table-header" >
-        <div class="col-md-5">
+        <div class="col-md-4">
           {{'code'|translate}}
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           {{'date'|translate}}
         </div>
-        <div class="col-ms-4 pull-right">
+        <div class="col-md-4">
           <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
         </div>
       </div>
-      <div class="row" *ngFor="let manufacturingOrder of manufacturingOrders" >
-        <div class="col-md-5">
+      <div class="row table-content" *ngFor="let manufacturingOrder of manufacturingOrders" >
+        <div class="col-md-4">
           {{manufacturingOrder.code}}
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           {{manufacturingOrder.date}}
         </div>
-        <div class="col-ms-4 pull-right">
-          <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(manufacturingOrder)"></button>
-          <button type="button" class="btn btn-secondary fa fa-pencil" (click)="edit(manufacturingOrder)"></button>
-          <button type="button" class="btn btn-secondary fa fa-gears" (click)="send(manufacturingOrder)"></button>
+        <div class="col-md-4 pull-right">
+          <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="remove(manufacturingOrder)"></button>
+          <button type="button" class="btn btn-secondary pull-right fa fa-pencil" (click)="edit(manufacturingOrder)"></button>
+          <button type="button" class="btn btn-secondary pull-right fa fa-gears" (click)="send(manufacturingOrder)"></button>
         </div>
       </div>
     </div>

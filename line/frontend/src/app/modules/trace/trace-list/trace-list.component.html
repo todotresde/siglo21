@@ -12,10 +12,10 @@
     <div class="col-md-2">
         {{'height'|translate}}
     </div>
-    <div class="col-ms-2 pull-right">
+    <div class="col-md-2 pull-right">
     </div>
 </div>
-<div class="row" *ngFor="let trace of traces">
+<div class="row table-content" *ngFor="let trace of traces">
     <div class="col-md-3">
         {{trace.manufacturingOrder.code}}
     </div>
@@ -28,8 +28,8 @@
     <div class="col-md-2">
         {{trace.manufacturingOrderProduct.product.height}}
     </div>
-    <div class="col-ms-2 pull-right">
-        <button type="button" class="btn btn-secondary fa fa-clock-o" (click)="delay(trace)"></button>
-        <button type="button" class="btn btn-secondary fa fa-wrench" (click)="activate(trace)"></button>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(trace)"></button>
+        <button type="button" class="btn btn-secondary fa fa-wrench pull-right" (click)="activate(trace)"></button>
     </div>
 </div>

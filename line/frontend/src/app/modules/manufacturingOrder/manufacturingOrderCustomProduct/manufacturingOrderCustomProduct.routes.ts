@@ -9,14 +9,19 @@ import { ManufacturingOrderProductRoutes } from '../manufacturingOrderProduct/ma
 export const ManufacturingOrderCustomProductRoutes: Route[] = [
 	{
 		path: 'manufacturingOrderCustomProduct',
-		component: ManufacturingOrderCustomProductComponent,
 		children: [
-			...ManufacturingOrderProductRoutes
-    	]
-	},{
-		path: 'manufacturingOrderCustomProduct/:id',
-		component: ManufacturingOrderCustomProductComponent,
-		children: [
+            {
+                path: ':id',
+                children: [
+                    {
+                        path: '',    
+                        component: ManufacturingOrderCustomProductComponent,
+                        children: [
+							...ManufacturingOrderProductRoutes
+				    	]
+                    }
+				]
+			}
     	]
 	},{
 		path: 'manufacturingOrderCustomProducts',

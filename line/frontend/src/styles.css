@@ -12,8 +12,11 @@ body {
 	font-weight: bold;
 	padding: 10px 0px 10px 0px;
     margin-bottom: 10px;
+    padding: .75rem;
 }
 
 .table-content{
-
+	border-bottom: 1px solid #eceeef;
+	padding: .75rem;
+	vertical-align: middle;
 }

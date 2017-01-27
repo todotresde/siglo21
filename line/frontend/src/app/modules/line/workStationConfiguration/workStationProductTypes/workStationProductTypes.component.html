@@ -21,14 +21,14 @@
                 <div class="col-md-8">
                     {{'name'|translate}}
                 </div>
-                <div class="col-ms-4 pull-right">
+                <div class="col-md-4 pull-right">
                 </div>
             </div>
             <div class="row table-content" *ngFor="let selectedProductType of selectedProductTypes" >
                 <div class="col-md-8">
                     {{selectedProductType.name}}
                 </div>
-                <div class="col-ms-4 pull-right">
+                <div class="col-md-4 pull-right">
                     <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(selectedProductType)"></button>
                 </div>
             </div>
