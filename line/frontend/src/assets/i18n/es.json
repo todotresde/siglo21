@@ -74,5 +74,6 @@
 	"error-missing-workstation-configuration" : "No existen Configuraciónes de Puestos asignados",
 	"error-missing-product-types" : "No existen Tipos de Productos asignados",
 	"error-missing-users" : "No eisten Usuarios asignados",
-	"error-missing-workstation-configurations" : "No existen Puestos asignados"
+	"error-missing-workstation-configurations" : "No existen Puestos asignados",
+	"error-missing-manufacturing-custom-order" : "No existe el Producto a Medida"
 }

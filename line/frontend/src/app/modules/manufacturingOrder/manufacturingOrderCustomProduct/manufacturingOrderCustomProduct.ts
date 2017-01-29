@@ -6,7 +6,13 @@ export class ManufacturingOrderCustomProduct {
     description : string;
     manufacturingOrderProducts : ManufacturingOrderProduct[] = [];
 
-    addManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
+    constructor(config?: any){
+    	this.id = (config && config.id) ? config.id : Shared.generateId();
+    	this.description = (config && config.description) ? config.description : "";
+    	this.manufacturingOrderProducts = (config && config.manufacturingOrderProducts) ? config.manufacturingOrderProducts : [];
+    }
+
+    addManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : ManufacturingOrderCustomProduct{
     	let found : boolean = false;
 
 	    this.manufacturingOrderProducts = this.manufacturingOrderProducts.map(mOP => {
@@ -19,7 +25,9 @@ export class ManufacturingOrderCustomProduct {
 	    })
 
 	    if(!found){
-	      this.manufacturingOrderProducts.push(manufacturingOrderProduct);
+	      this.manufacturingOrderProducts.push(new ManufacturingOrderProduct(manufacturingOrderProduct));
 	    }
+
+	    return this;
     }
 }

@@ -25,14 +25,17 @@ export class ManufacturingOrderDetailComponent implements OnInit {
 
   ngOnInit() : void{
     this.route.params.subscribe(params => {
-      if(params["id"] && params["id"] != 0){
+      if(this.sessionService.has("manufacturingOrder")){
+        this.manufacturingOrder = this.sessionService.get("manufacturingOrder");
+      }else if(params["id"] && params["id"] != 0){
         this.manufacturingOrderService.get(params["id"])
-          .then(manufacturingOrder =>{ this.manufacturingOrder = manufacturingOrder;})
+          .then(manufacturingOrder =>{ 
+            this.manufacturingOrder = manufacturingOrder;
+            this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
+          })
           .catch(error => {
             this.message.error(JSON.parse(error._body).message);
-          })
-      }else if(this.sessionService.has("manufacturingOrder")){
-        this.manufacturingOrder = this.sessionService.get("manufacturingOrder");
+          });
       }else{
         this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
       }

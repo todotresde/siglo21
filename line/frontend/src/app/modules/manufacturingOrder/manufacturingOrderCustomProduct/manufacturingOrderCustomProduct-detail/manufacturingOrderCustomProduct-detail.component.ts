@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChange, Output, Input, EventEmitter
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { ManufacturingOrder } from '../../manufacturingOrder'
 import { ManufacturingOrderProduct } from '../../manufacturingOrderProduct/manufacturingOrderProduct'
 import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProduct'
 
@@ -21,12 +22,23 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
 
   message: Message = new Message();
   manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct;
+  manufacturingOrder: ManufacturingOrder = new ManufacturingOrder();
   
   constructor(private location: Location, private route: ActivatedRoute, private sessionService: SessionService) { 
       this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   }
 
   ngOnInit() : void{
+    this.route.params.subscribe(params => {
+      if(params["id"] && params["id"] != 0){
+        if(this.sessionService.has("manufacturingOrder")){
+          this.manufacturingOrder = new ManufacturingOrder(this.sessionService.get("manufacturingOrder"));
+          this.manufacturingOrderCustomProduct = this.manufacturingOrder.getManufacturingOrderCustomProduct(params["id"]);
+        }else{
+          this.message.error("error-missing-manufacturing-order");
+        }
+      }
+    });
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
@@ -43,8 +55,10 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
       this.message.none();
       this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
 
-      this.sessionService.get("manufacturingOrder").addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
-      
+      this.manufacturingOrder = new ManufacturingOrder(this.sessionService.get("manufacturingOrder"));
+      this.manufacturingOrder.addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
+      this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
+
       Commons.delay().then(() => {
         this.location.back();
       });

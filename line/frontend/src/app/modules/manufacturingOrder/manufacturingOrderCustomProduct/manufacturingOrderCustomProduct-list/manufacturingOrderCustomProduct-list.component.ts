@@ -33,10 +33,11 @@ export class ManufacturingOrderCustomProductListComponent implements OnInit, OnC
   }
 
   edit(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): void {
-    this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
+    //this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
+    this.router.navigate(['../manufacturingOrderCustomProduct', manufacturingOrderCustomProduct.id],{ relativeTo: this.r });
   }
 
   create(): void {
-    this.router.navigate(['./manufacturingOrderCustomProduct'],{ relativeTo: this.r });
+    this.router.navigate(['./manufacturingOrderCustomProduct/0'],{ relativeTo: this.r });
   }
 }

@@ -7,6 +7,13 @@ export class ManufacturingOrder {
     date : Date = new Date();
     manufacturingOrderCustomProducts : ManufacturingOrderCustomProduct[] = [];
 
+    constructor(options?: any){
+    	this.id = (options && options.id) ? options.id : Shared.generateId();
+    	this.code = (options && options.code) ? options.code : "";
+    	this.date = (options && options.date) ? options.date : new Date();
+    	this.manufacturingOrderCustomProducts = (options && options.manufacturingOrderCustomProducts) ? options.manufacturingOrderCustomProducts : [];
+    }
+
     addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct) : ManufacturingOrder{
     	let found : boolean = false;
 
@@ -17,12 +24,24 @@ export class ManufacturingOrder {
 	      }else{
 	      	return mOCP;
 	      }
-	    })
+	    });
 
 	    if(!found){
 	      this.manufacturingOrderCustomProducts.push(manufacturingOrderCustomProduct);
 	    }
 
 	    return this;
+    }
+
+    getManufacturingOrderCustomProduct(id: number) : ManufacturingOrderCustomProduct{
+    	let manufacturingOrderCustomProduct : ManufacturingOrderCustomProduct = null;
+
+    	this.manufacturingOrderCustomProducts.forEach(mOCP => {
+	      if(mOCP.id == id){
+	        manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct(mOCP);
+	      }
+	    });
+
+	    return manufacturingOrderCustomProduct;
     }
 }

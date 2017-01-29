@@ -11,7 +11,7 @@ import { ManufacturingOrderProduct } from '../manufacturingOrderProduct';
 export class ManufacturingOrderProductListComponent implements OnInit, OnChanges {
   @Input() inputManufacturingOrderProducts: ManufacturingOrderProduct[];
   @Output() outputManufacturingOrderProduct = new EventEmitter<ManufacturingOrderProduct>();
-  @Output() outputManufacturingOrderProducts = new EventEmitter<ManufacturingOrderProduct>();
+  @Output() outputManufacturingOrderProducts = new EventEmitter<ManufacturingOrderProduct[]>();
 
   manufacturingOrderProducts: ManufacturingOrderProduct[];
   

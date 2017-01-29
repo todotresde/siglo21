@@ -1,8 +1,12 @@
 import { Component, OnInit , EventEmitter, Input, Output, SimpleChange, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { ManufacturingOrder } from '../manufacturingOrder'
 import { ManufacturingOrderCustomProduct } from './manufacturingOrderCustomProduct';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct/manufacturingOrderProduct';
+
+import { Message } from '../../../shared/message/message';
+import { SessionService } from '../../../shared/session.service';
 
 @Component({
   selector: 'app-manufacturing-order-custom-product',
@@ -13,14 +17,27 @@ export class ManufacturingOrderCustomProductComponent implements OnInit, OnChang
   @Input() inputManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   @Output() outputManufacturingOrderCustomProduct = new EventEmitter<ManufacturingOrderCustomProduct>();
 
+  message: Message = new Message();
+
   selectedManufacturingOrderCustomProduct: ManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   manufacturingOrderCustomProducts: ManufacturingOrderCustomProduct[] = [];
   selectedManufacturingOrderProduct: ManufacturingOrderProduct = new ManufacturingOrderProduct();
+  manufacturingOrder: ManufacturingOrder = new ManufacturingOrder();
 
-  constructor(private router: Router, private route: ActivatedRoute) { 
+  constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService) { 
   }
 
   ngOnInit() : void{
+    this.route.params.subscribe(params => {
+      if(params["id"] && params["id"] != 0){
+        if(this.sessionService.has("manufacturingOrder")){
+          this.manufacturingOrder = new ManufacturingOrder(this.sessionService.get("manufacturingOrder"));
+          this.selectedManufacturingOrderCustomProduct = this.manufacturingOrder.getManufacturingOrderCustomProduct(params["id"]);
+        }else{
+          this.message.error("error-missing-manufacturing-order");
+        }
+      }
+    });
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
@@ -46,7 +63,8 @@ export class ManufacturingOrderCustomProductComponent implements OnInit, OnChang
   }
   */
   addManufacturingOrderProduct(manufacturingOrderProduct : ManufacturingOrderProduct): void {
-    this.selectedManufacturingOrderCustomProduct.addManufacturingOrderProduct(manufacturingOrderProduct);
+    //this.selectedManufacturingOrderCustomProduct.addManufacturingOrderProduct(manufacturingOrderProduct);
+    this.selectedManufacturingOrderCustomProduct.manufacturingOrderProducts.push(manufacturingOrderProduct);
   }
 
   /*
