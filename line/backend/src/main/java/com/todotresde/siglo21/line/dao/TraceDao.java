@@ -1,5 +1,6 @@
 package com.todotresde.siglo21.line.dao;
 
+import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.Trace;
 import com.todotresde.siglo21.line.model.WorkStation;
 import org.springframework.data.repository.CrudRepository;
@@ -14,5 +15,6 @@ import java.util.List;
 public interface TraceDao extends CrudRepository<Trace, Long> {
     public Trace findById(Long id);
     public List<Trace> findByWorkStation(WorkStation workStation);
+    public List<Trace> findByLine(Line line);
     public void delete(Long id);
 }

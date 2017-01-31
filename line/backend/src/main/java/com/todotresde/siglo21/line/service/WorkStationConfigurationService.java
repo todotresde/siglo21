@@ -14,4 +14,5 @@ public interface WorkStationConfigurationService {
     public WorkStationConfiguration byProductTypeId(Long productTypeId);
     public WorkStationConfiguration delete(Long id);
     public WorkStationConfiguration save(WorkStationConfiguration workStationConfiguration);
+    public Boolean hasProductType(WorkStationConfiguration workStationConfiguration, Long productTypeId);
 }

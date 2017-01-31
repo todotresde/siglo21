@@ -24,8 +24,8 @@ export class TraceListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void{
     this.route.params.subscribe(params => {
-      if(params["id"]){
-        this.traceService.getAllByWorkStation(params["id"])
+      if(params["lineId"] && params["workStationId"]){
+        this.traceService.getAllByLineAndWorkStation(params["lineId"], params["workStationId"])
           .then(traces => this.traces = traces)
           .catch(error => { 
             this.message.error(JSON.parse(error._body).message);

@@ -30,7 +30,9 @@ export class ManufacturingOrderProductListComponent implements OnInit, OnChanges
   }
 
   remove(manufacturingOrderProduct: ManufacturingOrderProduct): void {
+    debugger
     this.manufacturingOrderProducts = this.manufacturingOrderProducts.filter(w => w.id !== manufacturingOrderProduct.id);
+    this.outputManufacturingOrderProducts.emit(this.manufacturingOrderProducts);
   }
 
   edit(manufacturingOrderProduct: ManufacturingOrderProduct): void {

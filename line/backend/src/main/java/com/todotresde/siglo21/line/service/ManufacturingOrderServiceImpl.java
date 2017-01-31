@@ -76,13 +76,13 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                 trace.setStartTime(new Date());
                 trace.setUser(user);
 
+                Boolean found = false;
                 for(WorkStationConfiguration workStationConfiguration: line.getWorkStationConfigurations()){
-                    WorkStationConfiguration tempWorkStationConfiguration = workStationConfigurationService.byProductTypeId(productType.getId());
 
-                    if(tempWorkStationConfiguration != null){
+                    if(workStationConfigurationService.hasProductType(workStationConfiguration, productType.getId()) && !found){
                         trace.setWorkStation(workStationConfiguration.getWorkStation());
-                        trace.setState(tempWorkStationConfiguration.getFirst() ? 1 : 0);
-                        break;
+                        trace.setState(workStationConfiguration.getFirst() ? 1 : 0);
+                        found = true;
                     }
                 }
 

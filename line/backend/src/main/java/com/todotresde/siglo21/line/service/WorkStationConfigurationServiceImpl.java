@@ -62,4 +62,14 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
         workStationConfigurationDao.save(workStationConfiguration);
         return workStationConfiguration;
     }
+
+    public Boolean hasProductType(WorkStationConfiguration workStationConfiguration, Long productTypeId){
+        for(ProductType productType : workStationConfiguration.getProductTypes()){
+            if(productTypeId.equals(productType.getId())){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

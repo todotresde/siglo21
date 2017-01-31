@@ -5,30 +5,46 @@
         <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="row table-header" >
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{'previous'|translate}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{'current'|translate}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{'next'|translate}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    {{'products'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'users'|translate}}
+                </div>
+                <div class="col-md-2">
                     <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
                 </div>
             </div>
             <div class="row table-content" *ngFor="let workStationConfiguration of workStationConfigurations" >
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{workStationConfiguration.prevWorkStation.name}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{workStationConfiguration.workStation.name}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{workStationConfiguration.nextWorkStation.name}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    <div *ngFor="let productType of workStationConfiguration.productTypes">
+                        {{productType.name}}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div *ngFor="let user of workStationConfiguration.users">
+                        {{user.name}}
+                    </div>
+                </div>
+                <div class="col-md-2">
                     <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="remove(workStationConfiguration)"></button>
                     <button type="button" class="btn btn-secondary pull-right fa fa-pencil" (click)="edit(workStationConfiguration)"></button>
                 </div>

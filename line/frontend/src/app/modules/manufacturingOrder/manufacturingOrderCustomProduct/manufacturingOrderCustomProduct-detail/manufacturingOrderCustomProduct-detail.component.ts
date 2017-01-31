@@ -53,13 +53,13 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
     if(this.validForm(manufacturingOrderCustomProduct)){
       this.outputManufacturingOrderCustomProduct.emit(manufacturingOrderCustomProduct);
       this.message.none();
-      this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
 
-      this.manufacturingOrder = new ManufacturingOrder(this.sessionService.get("manufacturingOrder"));
+      //this.manufacturingOrder = new ManufacturingOrder(this.sessionService.get("manufacturingOrder"));
       this.manufacturingOrder.addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
       this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
 
       Commons.delay().then(() => {
+        this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
         this.location.back();
       });
     }else{
@@ -73,6 +73,11 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
 
   setSelectedManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
     this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
+  }
+
+  setSelectedManufacturingOrderProducts(manufacturingOrderProducts: ManufacturingOrderProduct[]) : void{
+    debugger
+    this.manufacturingOrderCustomProduct.manufacturingOrderProducts = manufacturingOrderProducts;
   }
 
   private validForm(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): boolean{

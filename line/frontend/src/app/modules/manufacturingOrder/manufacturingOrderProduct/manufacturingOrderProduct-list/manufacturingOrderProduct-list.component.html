@@ -1,6 +1,9 @@
 <div class="row table-header" >
-    <div class="col-md-4">
+    <div class="col-md-2">
         {{'product'|translate}}
+    </div>
+    <div class="col-md-2">
+        {{'product-type'|translate}}
     </div>
     <div class="col-md-2">
         {{'width'|translate}}
@@ -15,8 +18,11 @@
     </div>
 </div>
 <div class="row table-content" *ngFor="let manufacturingOrderProduct of manufacturingOrderProducts" >
-    <div class="col-md-4">
+    <div class="col-md-2">
         {{manufacturingOrderProduct.product.code}}
+    </div>
+    <div class="col-md-2">
+        {{manufacturingOrderProduct.product.productType.name}}
     </div>
     <div class="col-md-2">
         {{manufacturingOrderProduct.width}}

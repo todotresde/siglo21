@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WorkStation } from '../../modules/workStation/workStation';
-import { WorkStationService } from '../../modules/workStation/workStation.service';
+import { Line } from '../../modules/line/line';
+import { LineService } from '../../modules/line/line.service';
 
 @Component({
   selector: 'app-layout-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  providers:[WorkStationService]
+  providers:[LineService]
 })
 export class SidebarComponent implements OnInit {
   submenues: any = {
@@ -17,14 +17,14 @@ export class SidebarComponent implements OnInit {
     "trace-screens" : true
   };
 
-  workStations: WorkStation[];
+  lines: Line[];
 
-  constructor(private workStationService: WorkStationService) { }
+  constructor(private lineService: LineService) { }
 
   ngOnInit() {
-    this.workStationService
+    this.lineService
       .getAll()
-      .then(workStations => this.workStations = workStations)
+      .then(lines => this.lines = lines)
   }
 
   toogleSubmenu(element: string) {

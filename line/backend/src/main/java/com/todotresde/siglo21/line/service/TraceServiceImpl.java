@@ -1,5 +1,6 @@
 package com.todotresde.siglo21.line.service;
 
+import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.dao.TraceDao;
 import com.todotresde.siglo21.line.dao.WorkStationDao;
 import com.todotresde.siglo21.line.model.Trace;
@@ -15,6 +16,8 @@ import java.util.List;
  */
 @Service
 public class TraceServiceImpl implements TraceService{
+    @Autowired
+    private LineDao lineDao;
     @Autowired
     private WorkStationDao workStationDao;
     @Autowired
@@ -35,6 +38,18 @@ public class TraceServiceImpl implements TraceService{
 
         for (Trace trace : traceDao.findByWorkStation(workStationDao.findById(id))) {
             traces.add(trace);
+        }
+
+        return traces;
+    }
+
+    public List<Trace> allByLineAndWorkStation(Long lineId, Long workStationId) {
+        ArrayList<Trace> traces = new ArrayList<Trace>();
+
+        for (Trace traceByLine : traceDao.findByLine(lineDao.findById(lineId))) {
+            if (traceByLine.getWorkStation().getId().equals(workStationId)) {
+                traces.add(traceByLine);
+            }
         }
 
         return traces;

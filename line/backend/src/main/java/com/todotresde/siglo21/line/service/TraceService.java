@@ -10,6 +10,7 @@ import java.util.List;
 public interface TraceService {
     public List<Trace> all();
     public List<Trace> allByWorkStation(Long id);
+    public List<Trace> allByLineAndWorkStation(Long lineId, Long workStationId);
     public Trace byId(Long id);
     public Trace delete(Long id);
     public Trace save(Trace trace);

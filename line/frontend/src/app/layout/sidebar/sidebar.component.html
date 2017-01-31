@@ -49,11 +49,13 @@
                 </a>
                 <li class="nested" [ngClass]="{'hidden' : submenues['trace-screens'] }">
                     <ul class="list-group">
-                        <li *ngFor="let workStation of workStations">
-                            <a [routerLink]="['trace/' + workStation.id]" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
-                                <i class="fa fa-fw fa-wrench"></i> {{workStation.ip}}
-                            </a>
-                        </li>
+                        <div *ngFor="let line of lines">
+                            <li *ngFor="let workStationConfiguration of line.workStationConfigurations">
+                                <a [routerLink]="['trace/line/' + line.id + '/workStation/' + workStationConfiguration.workStation.id]" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
+                                    <i class="fa fa-fw fa-wrench"></i>{{line.name}}-{{workStationConfiguration.workStation.ip}}
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </li>
             </div>
