@@ -29,6 +29,12 @@ export class TraceService {
                .toPromise();
   }
 
+  getAllByLineAndWorkStationAndStatus(lineId: Number, workStationID: Number, status: Number): Promise<Trace[]> {
+    return this.http.get(environment.host + "/trace/line/" + lineId + "/workStation/" + workStationID + "/status/" + status)
+               .map(response => response.json() as Trace[])
+               .toPromise();
+  }
+
   get(id: Number): Promise<Trace> {
     return this.http.get(environment.host + "/trace/" + id)
                .map(response => response.json() as Trace)

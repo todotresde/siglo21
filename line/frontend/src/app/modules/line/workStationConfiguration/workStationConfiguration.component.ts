@@ -43,7 +43,7 @@ export class WorkStationConfigurationComponent implements OnInit, OnChanges {
     if(this.exist(workStationConfiguration)){
       this.message.error("error-worksation-configuration-already-assigned");
     }else{
-      this.workStationConfigurations.push(workStationConfiguration);
+      this.pushWorkStationConfiguration(workStationConfiguration);
       this.selectedWorkStationConfiguration = new WorkStationConfiguration();
       this.message.none();
     }
@@ -53,8 +53,23 @@ export class WorkStationConfigurationComponent implements OnInit, OnChanges {
     let result: WorkStationConfiguration[] = this.workStationConfigurations.filter(w => {
       return w.workStation.id === workStationConfiguration.workStation.id && 
         w.nextWorkStation.id === workStationConfiguration.nextWorkStation.id && 
-        w.prevWorkStation.id === workStationConfiguration.prevWorkStation.id;
+        w.prevWorkStation.id === workStationConfiguration.prevWorkStation.id &&
+        w.id !== workStationConfiguration.id;
     });
     return result.length > 0;
+  }
+
+  private pushWorkStationConfiguration(workStationConfiguration: WorkStationConfiguration): WorkStationConfiguration[]{
+   
+      this.workStationConfigurations.map(wSC => {
+        if(wSC.id === workStationConfiguration.id){
+          return workStationConfiguration;
+        }else{
+          return wSC;
+        }
+
+      });
+
+      return this.workStationConfigurations;
   }
 }

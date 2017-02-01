@@ -5,6 +5,7 @@ import { ManufacturingOrder } from '../manufacturingOrder';
 import { ManufacturingOrderService } from '../manufacturingOrder.service';
 
 import { Message } from '../../../shared/message/message';
+import { SessionService } from '../../../shared/session.service';
 
 @Component({
   selector: 'app-manufacturing-order-list',
@@ -15,17 +16,13 @@ export class ManufacturingOrderListComponent implements OnInit {
   message : Message = new Message();
   manufacturingOrders: ManufacturingOrder[];
 
-  constructor(private router: Router, private manufacturingOrderService: ManufacturingOrderService, private r:ActivatedRoute) {
+  constructor(private router: Router, private manufacturingOrderService: ManufacturingOrderService, private r:ActivatedRoute, private sessionService: SessionService) {
 
   }
 
   ngOnInit(): void{
-    this.manufacturingOrderService
-      .getAll()
-      .then(manufacturingOrders => { this.manufacturingOrders = manufacturingOrders})
-      .catch(error => {
-            this.message.error(JSON.parse(error._body).message);
-          })
+    this.sessionService.remove("manufacturingOrder");
+    this.getAll();
   }
 
   create(): void {
@@ -48,10 +45,23 @@ export class ManufacturingOrderListComponent implements OnInit {
   send(manufacturingOrder: ManufacturingOrder): void {
     this.manufacturingOrderService
       .send(manufacturingOrder.id)
+      .then(manufacturingOrder => {
+        this.message.success("success-sending-to-production");
+        this.getAll();
+      })
       .catch(error => {
         this.message.error(JSON.parse(error._body).message);
       })
 
+  }
+
+  private getAll(): void{
+    this.manufacturingOrderService
+      .getAll()
+      .then(manufacturingOrders => { this.manufacturingOrders = manufacturingOrders})
+      .catch(error => {
+            this.message.error(JSON.parse(error._body).message);
+          })
   }
 
 }

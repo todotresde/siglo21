@@ -6,18 +6,24 @@
         <div class="container-fluid">
             <div class="row table-header" >
                 <div class="col-md-2">
-                    {{'previous'|translate}}
+                    {{'current'|translate}}
+                </div>
+                <div class="col-md-1">
+                    {{'first'|translate}}
+                </div>
+                <div class="col-md-1">
+                    {{'last'|translate}}
                 </div>
                 <div class="col-md-2">
-                    {{'current'|translate}}
+                    {{'previous'|translate}}
                 </div>
                 <div class="col-md-2">
                     {{'next'|translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{'products'|translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{'users'|translate}}
                 </div>
                 <div class="col-md-2">
@@ -26,20 +32,32 @@
             </div>
             <div class="row table-content" *ngFor="let workStationConfiguration of workStationConfigurations" >
                 <div class="col-md-2">
-                    {{workStationConfiguration.prevWorkStation.name}}
+                    {{workStationConfiguration.workStation.name}}
+                </div>
+                <div class="col-md-1 text-md-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" [(ngModel)]="workStationConfiguration.first" class="custom-control-input" readonly>
+                        <span class="custom-control-indicator"></span>
+                    </label>
+                </div>
+                <div class="col-md-1 text-md-center">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" [(ngModel)]="workStationConfiguration.last" class="custom-control-input" readonly>
+                        <span class="custom-control-indicator"></span>
+                    </label>
                 </div>
                 <div class="col-md-2">
-                    {{workStationConfiguration.workStation.name}}
+                    {{workStationConfiguration.prevWorkStation.name}}
                 </div>
                 <div class="col-md-2">
                     {{workStationConfiguration.nextWorkStation.name}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <div *ngFor="let productType of workStationConfiguration.productTypes">
                         {{productType.name}}
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <div *ngFor="let user of workStationConfiguration.users">
                         {{user.name}}
                     </div>

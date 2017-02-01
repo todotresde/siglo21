@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Line } from '../../modules/line/line';
+import { WorkStation } from '../../modules/workStation/workStation';
 import { LineService } from '../../modules/line/line.service';
 
 @Component({
@@ -24,11 +25,15 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.lineService
       .getAll()
-      .then(lines => this.lines = lines)
+      .then(lines => {this.lines = lines})
   }
 
   toogleSubmenu(element: string) {
 	  this.submenues[element] = !this.submenues[element];
+  }
+
+  getWorkStations(line: Line): WorkStation[]{
+    return (new Line(line)).getWorkStations();
   }
 
 }

@@ -31,7 +31,7 @@ public class Trace {
     private Date endTime;
     private Long time;
     @NotNull
-    private Integer state;
+    private Integer status;
     @OneToMany
     private List<Delay> delays;
     @NotNull
@@ -106,12 +106,12 @@ public class Trace {
         this.time = time;
     }
 
-    public Integer getState() {
-        return state;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public List<Delay> getDelays() {

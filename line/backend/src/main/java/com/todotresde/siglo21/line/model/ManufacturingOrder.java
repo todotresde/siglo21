@@ -19,6 +19,8 @@ public class ManufacturingOrder {
     @NotNull
     private Date date;
     @NotNull
+    private Integer status;
+    @NotNull
     @OneToMany(cascade = { CascadeType.ALL })
     private List<ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts;
 
@@ -54,6 +56,14 @@ public class ManufacturingOrder {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public List<ManufacturingOrderCustomProduct> getManufacturingOrderCustomProducts() {

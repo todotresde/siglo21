@@ -5,16 +5,7 @@
         <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="row">
-                <div class="form-group col-md-3">
-                    <label for="dropdownPrevious">{{'previous'|translate}}</label>
-                    <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownPrevious" ngbDropdownToggle>{{prevWorkStation.name}}</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownPrevious" >
-                            <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="prevWorkStation = workStation" >{{workStation.name}}</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for="dropdownCurrent">{{'current'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
                         <button class="btn btn-outline-primary" id="dropdownCurrent" ngbDropdownToggle>{{currentWorkStation.name}}</button>
@@ -23,7 +14,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
+                    <label for="dropdownPrevious">{{'previous'|translate}}</label>
+                    <div ngbDropdown class="d-inline-block">
+                        <button class="btn btn-outline-primary" id="dropdownPrevious" ngbDropdownToggle>{{prevWorkStation.name}}</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownPrevious" >
+                            <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="prevWorkStation = workStation" >{{workStation.name}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
                     <label for="dropdownNext">{{'next'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
                         <button class="btn btn-outline-primary" id="dropdownNext" ngbDropdownToggle>{{nextWorkStation.name}}</button>
@@ -32,7 +32,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="custom-control custom-checkbox">
+                      <input type="checkbox" id="first" [(ngModel)]="workStationConfiguration.first" class="custom-control-input">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">{{'first'|translate}}</span>
+                    </label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="custom-control custom-checkbox">
+                      <input type="checkbox" id="last" [(ngModel)]="workStationConfiguration.last" class="custom-control-input">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">{{'last'|translate}}</span>
+                    </label>
+                </div>
+                <div class="col-md-4">
                     <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="addWorkStation(prevWorkStation, currentWorkStation, nextWorkStation)"></button>
                 </div>
             </div>

@@ -37,6 +37,10 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
         }else{
           this.message.error("error-missing-manufacturing-order");
         }
+      }else{
+        if(this.sessionService.has("manufacturingOrder")){
+          this.manufacturingOrder = new ManufacturingOrder(this.sessionService.get("manufacturingOrder"));
+        }
       }
     });
   }

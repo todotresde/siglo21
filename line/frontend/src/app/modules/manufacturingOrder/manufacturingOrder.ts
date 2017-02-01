@@ -5,6 +5,7 @@ export class ManufacturingOrder {
     id: number = Shared.generateId();
     code : string;
     date : Date = new Date();
+    status : Number = 0;
     manufacturingOrderCustomProducts : ManufacturingOrderCustomProduct[] = [];
 
     constructor(options?: any){

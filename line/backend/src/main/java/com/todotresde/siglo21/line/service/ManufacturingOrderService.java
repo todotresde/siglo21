@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ManufacturingOrderService {
     public List<ManufacturingOrder> all();
+    public List<ManufacturingOrder> allByStatus(Integer status);
     public ManufacturingOrder byId(Long id);
     public Long delete(Long id);
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder);

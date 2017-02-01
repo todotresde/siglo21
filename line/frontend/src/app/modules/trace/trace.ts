@@ -14,6 +14,6 @@ export class Trace {
     startTime: Date;
     endTime : Date;
     time: number;
-    state: number;
+    status: number;
     user: User = new User();
 }

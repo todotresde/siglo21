@@ -1,35 +1,41 @@
 <app-message [message]="message"></app-message>
 <div class="row table-header">
-    <div class="col-md-3">
+    <div class="col-md-2">
         {{'manufacturing-order'|translate}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         {{'product-type'|translate}}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         {{'width'|translate}}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         {{'height'|translate}}
     </div>
-    <div class="col-md-2 pull-right">
+    <div class="col-md-1">
+        {{'status'|translate}}
+    </div>
+    <div class="col-md-3 pull-right">
     </div>
 </div>
 <div class="row table-content" *ngFor="let trace of traces">
-    <div class="col-md-3">
+    <div class="col-md-2">
         {{trace.manufacturingOrder.code}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         {{trace.manufacturingOrderProduct.product.productType.name}}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         {{trace.manufacturingOrderProduct.product.width}}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         {{trace.manufacturingOrderProduct.product.height}}
     </div>
-    <div class="col-md-2">
-        <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(trace)"></button>
+    <div class="col-md-1">
+        {{trace.status }}
+    </div>
+    <div class="col-md-3">
         <button type="button" class="btn btn-secondary fa fa-wrench pull-right" (click)="activate(trace)"></button>
+        <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(trace)"></button>
     </div>
 </div>

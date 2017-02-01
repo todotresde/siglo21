@@ -5,6 +5,7 @@ import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
 import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.ProductType;
+import com.todotresde.siglo21.line.model.WorkStation;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,10 +68,22 @@ public class LineServiceImpl implements LineService{
         }
 
         //Set the first and the last workStation of the line
-        workStationConfigurations.get(0).setFirst(true);
-        workStationConfigurations.get(workStationConfigurations.size()-1).setLast(true);
+        //workStationConfigurations.get(0).setFirst(true);
+        //workStationConfigurations.get(workStationConfigurations.size()-1).setLast(true);
 
         lineDao.save(line);
         return line;
+    }
+
+    public List<WorkStation> getWorkStations(Line line){
+        List<WorkStation> workStations = new ArrayList<WorkStation>();
+
+        for (WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()) {
+            if(workStations.contains(workStationConfiguration.getWorkStation())){
+                workStations.add(workStationConfiguration.getWorkStation());
+            }
+        }
+
+        return workStations;
     }
 }

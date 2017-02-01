@@ -24,6 +24,12 @@ public class ManufacturingOrderController {
         return this.manufacturingOrderService.all();
     }
 
+    @RequestMapping(value="/manufacturingOrder/status/{status}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<ManufacturingOrder> allByStatus(@PathVariable Integer status) {
+        return this.manufacturingOrderService.allByStatus(status);
+    }
+
     @RequestMapping(value="/manufacturingOrder/{id}", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody
     ManufacturingOrder get(@PathVariable Long id) {

@@ -55,6 +55,18 @@ public class TraceServiceImpl implements TraceService{
         return traces;
     }
 
+    public List<Trace> allByLineAndWorkStationAndStatus(Long lineId, Long workStationId, Integer status) {
+        ArrayList<Trace> traces = new ArrayList<Trace>();
+
+        for (Trace traceByLine : traceDao.findByLine(lineDao.findById(lineId))) {
+            if (traceByLine.getWorkStation().getId().equals(workStationId) && traceByLine.getStatus().equals(status)) {
+                traces.add(traceByLine);
+            }
+        }
+
+        return traces;
+    }
+
     public Trace byId(Long id) {
         return traceDao.findById(id);
     }

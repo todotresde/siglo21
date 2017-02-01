@@ -17,6 +17,12 @@ export class ManufacturingOrderService {
                .toPromise();
   }
 
+  getAllByStatus(status: Number): Promise<ManufacturingOrder[]> {
+    return this.http.get(environment.host + "/manufacturingOrder/status/" + status)
+               .map(response => response.json() as ManufacturingOrder[])
+               .toPromise();
+  }
+
   get(id: Number): Promise<ManufacturingOrder> {
     return this.http.get(environment.host + "/manufacturingOrder/" + id)
                .map(response => response.json() as ManufacturingOrder)

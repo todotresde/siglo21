@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.ProductType;
+import com.todotresde.siglo21.line.model.WorkStation;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface LineService {
     public Line byProductTypeId(Long productTypeId);
     public Long delete(Long id);
     public Line save(Line line);
+    public List<WorkStation> getWorkStations(Line line);
 }
