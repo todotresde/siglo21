@@ -64,6 +64,7 @@
 	"trace-screens" : "Pantallas",
 	"first": "Primero",
 	"last": "Ultimo",
+	"work-finished" : "Trabajo Finalizado",
 	"success-sending-to-production" : "Enviado a Producción Correctamente!",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",

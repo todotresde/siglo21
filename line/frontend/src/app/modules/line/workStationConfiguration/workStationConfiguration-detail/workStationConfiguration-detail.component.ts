@@ -23,9 +23,9 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
   workStations : WorkStation[];
   workStationConfiguration: WorkStationConfiguration;
   
-  prevWorkStation : WorkStation = new WorkStation();
-  currentWorkStation : WorkStation = new WorkStation();
-  nextWorkStation : WorkStation = new WorkStation();
+  prevWorkStation? : WorkStation = null;
+  currentWorkStation? : WorkStation = null;
+  nextWorkStation? : WorkStation = null;
 
   cleanUsers: boolean = false;
   cleanProductTypes: boolean = false;
@@ -51,16 +51,17 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
   }
 
   addWorkStation(prevWorkStation: WorkStation, currentWorkStation: WorkStation, nextWorkStation: WorkStation): void {
+    this.workStationConfiguration.prevWorkStation = prevWorkStation;
+    this.workStationConfiguration.workStation = currentWorkStation;
+    this.workStationConfiguration.nextWorkStation = nextWorkStation;
+
     if(this.valid(this.workStationConfiguration)){
-      this.workStationConfiguration.prevWorkStation = prevWorkStation;
-      this.workStationConfiguration.workStation = currentWorkStation;
-      this.workStationConfiguration.nextWorkStation = nextWorkStation;
 
       this.outputWorkStationConfiguration.emit(this.workStationConfiguration);
 
-      this.prevWorkStation = new WorkStation();
-      this.currentWorkStation = new WorkStation();
-      this.nextWorkStation = new WorkStation();
+      this.prevWorkStation = null;
+      this.currentWorkStation = null;
+      this.nextWorkStation = null;
       this.cleanUsers = true;
       this.cleanProductTypes = true;
 
@@ -79,7 +80,13 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
   }
 
   private valid(workStationConfiguration: WorkStationConfiguration): boolean{
-    return (workStationConfiguration.users.length > 0 && workStationConfiguration.productTypes.length > 0);
+    return (
+       workStationConfiguration.users.length > 0 && 
+       workStationConfiguration.productTypes.length > 0 && (
+            workStationConfiguration.prevWorkStation != null && workStationConfiguration.workStation != null ||
+            workStationConfiguration.nextWorkStation != null && workStationConfiguration.workStation != null 
+          )
+       );
   }
 
 }

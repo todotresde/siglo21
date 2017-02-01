@@ -42,7 +42,6 @@ export class TraceComponent implements OnInit{
 	          });
 	      }
 	    });
-	    
 	}
 
 	activeTrace(trace: Trace): void{

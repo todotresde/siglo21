@@ -47,10 +47,10 @@
                     </label>
                 </div>
                 <div class="col-md-2">
-                    {{workStationConfiguration.prevWorkStation.name}}
+                    {{workStationConfiguration.prevWorkStation?.name}}
                 </div>
                 <div class="col-md-2">
-                    {{workStationConfiguration.nextWorkStation.name}}
+                    {{workStationConfiguration.nextWorkStation?.name}}
                 </div>
                 <div class="col-md-1">
                     <div *ngFor="let productType of workStationConfiguration.productTypes">

@@ -17,7 +17,7 @@
                 <div class="form-group col-md-4">
                     <label for="dropdownPrevious">{{'previous'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownPrevious" ngbDropdownToggle>{{prevWorkStation.name}}</button>
+                        <button class="btn btn-outline-primary" id="dropdownPrevious" ngbDropdownToggle>{{prevWorkStation?.name}}</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownPrevious" >
                             <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="prevWorkStation = workStation" >{{workStation.name}}</button>
                         </div>
@@ -26,7 +26,7 @@
                 <div class="form-group col-md-4">
                     <label for="dropdownNext">{{'next'|translate}}</label>
                     <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownNext" ngbDropdownToggle>{{nextWorkStation.name}}</button>
+                        <button class="btn btn-outline-primary" id="dropdownNext" ngbDropdownToggle>{{nextWorkStation?.name}}</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownNext" >
                             <button class="dropdown-item" *ngFor="let workStation of workStations" (click)="nextWorkStation = workStation">{{workStation.name}}</button>
                         </div>

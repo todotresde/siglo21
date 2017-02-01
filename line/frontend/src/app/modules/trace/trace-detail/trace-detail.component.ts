@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Trace } from '../trace';
 import { TraceService } from '../trace.service';
 
+import { Message } from '../../../shared/message/message';
+
 @Component({
   selector: 'app-trace-detail',
   templateUrl: './trace-detail.component.html',
@@ -12,6 +14,8 @@ import { TraceService } from '../trace.service';
 export class TraceDetailComponent implements OnInit, OnChanges {
   @Input() inputTrace = new Trace();
   @Output() outputTrace = new EventEmitter<Trace>();
+  
+  message: Message = new Message();
   trace : Trace;
   
   constructor(private route: ActivatedRoute, private traceService: TraceService) { 
@@ -29,13 +33,15 @@ export class TraceDetailComponent implements OnInit, OnChanges {
       this.inputTrace = new Trace();
   }
 
-  finish(): void {
+  finish(trace: Trace): void {
     this.traceService
-        .finish(this.trace)
+        .finish(trace)
         .then(trace => {
-          this.trace = trace; 
+          this.message.success("work-finished");
 
-          this.outputTrace.emit(this.trace);
+          this.outputTrace.emit(trace);
+
+          this.trace = new Trace();
         }).catch(error => {
           
         })

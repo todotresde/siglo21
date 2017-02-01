@@ -3,8 +3,8 @@
         <h5 class="card-title">{{'trace-screen'|translate}}: {{line.name}} - {{workStation.ip}}</h5>
         <hr/>
         <div class="container-fluid">
-            <app-trace-detail [inputTrace]="selectedTrace"></app-trace-detail>
-            <app-trace-list (outputTrace)="activeTrace($event)"></app-trace-list>
+            <app-trace-detail [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)"></app-trace-detail>
+            <app-trace-list [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)"></app-trace-list>
         </div>
     </div>
 </div>

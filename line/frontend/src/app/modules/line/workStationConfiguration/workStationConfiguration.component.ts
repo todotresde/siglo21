@@ -60,15 +60,21 @@ export class WorkStationConfigurationComponent implements OnInit, OnChanges {
   }
 
   private pushWorkStationConfiguration(workStationConfiguration: WorkStationConfiguration): WorkStationConfiguration[]{
-   
+      let found: boolean = false;
+
       this.workStationConfigurations.map(wSC => {
         if(wSC.id === workStationConfiguration.id){
+          found = true;
           return workStationConfiguration;
         }else{
           return wSC;
         }
 
       });
+
+      if(!found){
+        this.workStationConfigurations.push(workStationConfiguration);
+      }
 
       return this.workStationConfigurations;
   }

@@ -1,5 +1,8 @@
 package com.todotresde.siglo21.line.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -23,6 +26,12 @@ public class Trace {
     @NotNull
     @OneToOne
     private WorkStation workStation;
+    @OneToOne
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+    private WorkStation nextWorkStation;
+    @OneToOne
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+    private WorkStation previousWorkStation;
     @NotNull
     @OneToOne
     private ManufacturingOrderProduct manufacturingOrderProduct;
@@ -37,6 +46,12 @@ public class Trace {
     @NotNull
     @OneToOne
     private User user;
+    @OneToOne
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+    private Trace nextTrace;
+    @OneToOne
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+    private Trace previousTrace;
 
     public Trace(){
 
@@ -72,6 +87,22 @@ public class Trace {
 
     public void setWorkStation(WorkStation workStation) {
         this.workStation = workStation;
+    }
+
+    public WorkStation getNextWorkStation() {
+        return nextWorkStation;
+    }
+
+    public void setNextWorkStation(WorkStation nextWorkStation) {
+        this.nextWorkStation = nextWorkStation;
+    }
+
+    public WorkStation getPreviousWorkStation() {
+        return previousWorkStation;
+    }
+
+    public void setPreviousWorkStation(WorkStation previousWorkStation) {
+        this.previousWorkStation = previousWorkStation;
     }
 
     public ManufacturingOrderProduct getManufacturingOrderProduct() {
@@ -128,5 +159,21 @@ public class Trace {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Trace getNextTrace() {
+        return nextTrace;
+    }
+
+    public void setNextTrace(Trace nextTrace) {
+        this.nextTrace = nextTrace;
+    }
+
+    public Trace getPreviousTrace() {
+        return previousTrace;
+    }
+
+    public void setPreviousTrace(Trace previousTrace) {
+        this.previousTrace = previousTrace;
     }
 }

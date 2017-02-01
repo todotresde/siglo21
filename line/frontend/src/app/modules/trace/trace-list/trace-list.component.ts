@@ -12,6 +12,7 @@ import { Message } from '../../../shared/message/message';
   providers:[TraceService]
 })
 export class TraceListComponent implements OnInit, OnChanges {
+  @Input() inputTrace = new Trace();
   @Input() inputTraces = new Trace();
   @Output() outputTrace = new EventEmitter<Trace>();
 
@@ -23,24 +24,35 @@ export class TraceListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void{
+    this.load();
+    
+  }
+
+  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    for (let propName in changes) {
+      switch(propName){
+          case "inputTrace": if(changes["inputTrace"].currentValue){this.load();} break;
+          case "inputTraces": break;
+      }
+    }
+  }
+
+  activate(trace: Trace): void {
+    this.outputTrace.emit(trace);
+  }
+
+  private load(): void{
     this.route.params.subscribe(params => {
       if(params["lineId"] && params["workStationId"]){
         this.traceService.getAllByLineAndWorkStationAndStatus(params["lineId"], params["workStationId"], 1)
-          .then(traces => this.traces = traces)
+          .then(traces => {
+            this.traces = traces;
+          })
           .catch(error => { 
             this.message.error(JSON.parse(error._body).message);
           });
       }
     });
-    
-  }
-
-  ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
-    
-  }
-
-  activate(trace: Trace): void {
-    this.outputTrace.emit(trace);
   }
 
 }

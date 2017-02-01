@@ -3,10 +3,13 @@ package com.todotresde.siglo21.line.service;
 import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.dao.TraceDao;
 import com.todotresde.siglo21.line.dao.WorkStationDao;
+import com.todotresde.siglo21.line.model.Line;
+import com.todotresde.siglo21.line.model.ManufacturingOrder;
 import com.todotresde.siglo21.line.model.Trace;
 import com.todotresde.siglo21.line.model.WorkStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @Service
+@Transactional
 public class TraceServiceImpl implements TraceService{
     @Autowired
     private LineDao lineDao;
@@ -83,7 +87,20 @@ public class TraceServiceImpl implements TraceService{
     }
 
     public Trace finish(Trace trace) {
+        trace.setStatus(2);
         traceDao.save(trace);
+
+        this.enableNextTrace(trace);
+
         return trace;
+    }
+
+    private void enableNextTrace(Trace trace){
+        Trace nextTrace = trace.getNextTrace();
+
+        if(nextTrace != null) {
+            nextTrace.setStatus(1);
+            traceDao.save(nextTrace);
+        }
     }
 }

@@ -19,10 +19,8 @@ public class WorkStationConfiguration {
     @NotNull
     private WorkStation workStation;
     @OneToOne
-    @NotNull
     private WorkStation prevWorkStation;
     @OneToOne
-    @NotNull
     private WorkStation nextWorkStation;
     @ManyToMany
     @NotNull

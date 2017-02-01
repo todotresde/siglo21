@@ -69,12 +69,14 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
 
     public ManufacturingOrder send(Long id) {
         ManufacturingOrder manufacturingOrder = manufacturingOrderDao.findById(id);
+        List<Trace> traces = new ArrayList<Trace>();
 
         for(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct : manufacturingOrder.getManufacturingOrderCustomProducts()){
 
             for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()){
                 ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
                 Line line = lineService.byProductTypeId(productType.getId());
+                //Used for repeat Traces for the same workStation
                 List<WorkStation> workStations = new ArrayList<WorkStation>();
 
                 for(WorkStationConfiguration workStationConfiguration: line.getWorkStationConfigurations()){
@@ -94,15 +96,43 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                         trace.setUser(user);
 
                         trace.setWorkStation(workStationConfiguration.getWorkStation());
+                        trace.setNextWorkStation(workStationConfiguration.getNextWorkStation());
+                        trace.setPreviousWorkStation(workStationConfiguration.getPrevWorkStation());
+
                         trace.setStatus(workStationConfiguration.getFirst() ? 1 : 0);
 
                         workStations.add(workStationConfiguration.getWorkStation());
 
                         traceDao.save(trace);
+
+                        traces.add(trace);
                     }
                 }
-
             }
+        }
+
+        for(Trace trace: traces){
+            Trace previousTrace = null;
+            Trace nextTrace = null;
+
+            for(Trace subTrace: traces){
+                //Previous Trace
+                if(subTrace.getNextWorkStation().getId().equals(trace.getWorkStation().getId())
+                        && subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId())){
+                    previousTrace = subTrace;
+                }
+
+                //Next Trace
+                if(subTrace.getWorkStation().getId().equals(trace.getNextWorkStation().getId())
+                        && subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId())){
+                    nextTrace = subTrace;
+                }
+            }
+
+            trace.setPreviousTrace(previousTrace);
+            trace.setNextTrace(nextTrace);
+
+            traceDao.save(trace);
         }
 
         //In progress
