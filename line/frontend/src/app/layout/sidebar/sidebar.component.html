@@ -1,6 +1,11 @@
 <nav class="sidebar">
     <ul class="list-group">
         <li>
+            <a [routerLink]="['dashboard']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-dashboard"></i> {{'dashboard'|translate}}
+            </a>
+        </li>
+        <li>
     		<a [routerLink]="['workStations']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                 <i class="fa fa-fw fa-cubes"></i> {{'work-stations'|translate}}
             </a>
@@ -25,11 +30,6 @@
                         <li>
                             <a [routerLink]="['lineDelays']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
                                 <i class="fa fa-fw fa-clock-o"></i> {{'line'|translate}} 
-                            </a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['workStationDelays']" [routerLinkActive]="['router-link-active']" class="list-group-item pl-3">
-                                <i class="fa fa-fw fa-clock-o"></i> {{'work-station'|translate}} 
                             </a>
                         </li>
                     </ul>

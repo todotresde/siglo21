@@ -15,6 +15,7 @@ import { TraceModule } from './trace/trace.module';
 import { DelayModule } from './delay/delay.module';
 import { DelayTypeModule } from './delayType/delayType.module';
 import { LineDelayModule } from './lineDelay/lineDelay.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 import { ModulesComponent } from './modules.component';
 @NgModule({
@@ -32,7 +33,8 @@ import { ModulesComponent } from './modules.component';
     TraceModule,
     DelayModule,
     DelayTypeModule,
-    LineDelayModule
+    LineDelayModule,
+    DashboardModule
   ],
   declarations: [ModulesComponent]
 })

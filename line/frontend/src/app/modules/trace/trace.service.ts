@@ -65,4 +65,17 @@ export class TraceService {
                .toPromise();
   }
 
+  getAverageByLineAndWorkStation(lineId: Number, workStationId: Number): Promise<number>{
+    let average = 0;
+    return new Promise((resolve, reject) => {
+        this.getAllByLineAndWorkStationAndStatus(lineId, workStationId, 2)
+          .then(traces => {
+            traces.forEach(trace => average =+ trace.time / traces.length);
+            resolve(average);
+          })
+          .catch(error => reject(error))
+    });
+
+  }
+
 }

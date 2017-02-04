@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -96,6 +97,9 @@ public class TraceServiceImpl implements TraceService{
 
     public Trace finish(Trace trace) {
         trace.setStatus(2);
+        trace.setEndTime(new Date());
+        trace.setTime((trace.getEndTime().getTime() - trace.getStartTime().getTime()) / 60000);
+        
         traceDao.save(trace);
 
         this.enableNextTrace(trace);

@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-block">
+        <h5 class="card-title">{{'dashboard'|translate}}</h5>
+        <hr/>
+        <app-message [message]="message"></app-message> 
+        <div class="container-fluid">
+        	<div *ngFor="let line of lines">
+	            <div class="row" >
+	            	<div class="col-md-3">
+					    <div class="card">
+					        <div class="card-header" >
+					        	<h2>{{line.name}}</h2>
+					        </div>
+					        <div class="card-footer">
+					        	<div class="row">
+					                <div class="col-md-3"> <i class="fa fa-clock-o fa-5x"></i> </div>
+					                <div class="col-md-9 text-xs-right">
+					                    <h2>26 min.</h2>
+					                    <h2>-3 min.</h2>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					<div class="col-md-9">
+						<div class="col-md-3" *ngFor="let workStation of getWorkStations(line)">
+							<div class="card">
+						        <div class="card-header" >
+						        	<h4>{{workStation.name}}</h4>
+						        </div>
+						        <div class="card-footer">
+						        	<div class="row">
+						                <div class="col-md-12">
+						                    <h4>{{averages[line.id +''+ workStation.id]}} min.</h4>
+						                    <h4>-3 min.</h4>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+				<hr/>	
+			</div>
+        </div>
+    </div>
+</div>
+

@@ -11,6 +11,7 @@ import { TraceRoutes } from './trace/trace.routes';
 import { DelayRoutes } from './delay/delay.routes';
 import { DelayTypeRoutes } from './delayType/delayType.routes';
 import { LineDelayRoutes } from './lineDelay/lineDelay.routes';
+import { DashboardRoutes } from './dashboard/dashboard.routes';
 
 import { ModulesComponent } from './modules.component';
 
@@ -29,7 +30,8 @@ export const ModulesRoutes: Route[] = [
             ...TraceRoutes,
             ...DelayRoutes,
             ...DelayTypeRoutes,
-            ...LineDelayRoutes
+            ...LineDelayRoutes,
+            ...DashboardRoutes
     	]
   	}
 ];
