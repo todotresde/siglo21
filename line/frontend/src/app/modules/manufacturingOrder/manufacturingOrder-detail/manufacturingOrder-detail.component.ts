@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { ManufacturingOrder } from '../manufacturingOrder';
 import { ManufacturingOrderService } from '../manufacturingOrder.service';
 import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
+import { Line } from '../../line/line';
+import { LineService } from '../../line/line.service';
 
 import { Message } from '../../../shared/message/message';
 import { Commons } from '../../../shared/commons';
@@ -12,14 +14,16 @@ import { SessionService } from '../../../shared/session.service';
 
 @Component({
   selector: 'app-manufacturing-order-detail',
-  templateUrl: './manufacturingOrder-detail.component.html'
+  templateUrl: './manufacturingOrder-detail.component.html',
+  providers: [LineService]
 })
 export class ManufacturingOrderDetailComponent implements OnInit {
   message : Message = new Message();
   manufacturingOrder : ManufacturingOrder = new ManufacturingOrder();
   selectedManufacturingOrderCustomProduct: ManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
-  
-  constructor(private location: Location, private router: Router, private route: ActivatedRoute, private manufacturingOrderService: ManufacturingOrderService, private sessionService: SessionService) { 
+  lines: Line[] = [];
+
+  constructor(private location: Location, private router: Router, private route: ActivatedRoute, private manufacturingOrderService: ManufacturingOrderService, private sessionService: SessionService, private lineService: LineService) { 
     this.manufacturingOrder = new ManufacturingOrder();
   }
 
@@ -40,6 +44,10 @@ export class ManufacturingOrderDetailComponent implements OnInit {
         this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
       }
     });
+
+    this.lineService
+      .getAll()
+      .then(lines => {this.lines = lines})
   }
 
   save(manufacturingOrder: ManufacturingOrder): void {
@@ -48,7 +56,7 @@ export class ManufacturingOrderDetailComponent implements OnInit {
           .save(manufacturingOrder)
           .then(mO => {
             //this.manufacturingOrder = manufacturingOrder; 
-            this.message.none();
+            this.message.success("");
 
             Commons.delay().then(() => {
               this.location.back();

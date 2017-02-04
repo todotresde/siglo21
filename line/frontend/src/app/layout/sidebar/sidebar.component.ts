@@ -12,10 +12,9 @@ import { LineService } from '../../modules/line/line.service';
 })
 export class SidebarComponent implements OnInit {
   submenues: any = {
-  	"delays" : true,
+  	"queries" : true,
     "security" : true,
-    "configuration" : true,
-    "trace-screens" : true
+    "configuration" : true
   };
 
   lines: Line[];
@@ -25,10 +24,17 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.lineService
       .getAll()
-      .then(lines => {this.lines = lines})
+      .then(lines => {
+        this.lines = lines;
+        this.lines.forEach(line => this.submenues["trace-screens" + line.id] = true)
+      })
   }
 
   toogleSubmenu(element: string) {
+    for(let submenu in this.submenues){
+      this.submenues[submenu] = true;
+    }
+    
 	  this.submenues[element] = !this.submenues[element];
   }
 

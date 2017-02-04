@@ -1,9 +1,22 @@
 <div class="card">
     <div class="card-block">
-        <h5 class="card-title">{{'trace-screen'|translate}}: {{line.name}} - {{workStation.ip}}</h5>
+    	<div class="row">
+    		<div class="col-md-10">
+        		<h5 class="card-title">{{'trace-screen'|translate}}: {{line.name}} - {{workStation.name}}</h5>
+        	</div>
+        	<div class="col-md-2">
+        		<button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="workStationDelay(line, workStation)"></button>
+        	</div>
+    	</div>
         <hr/>
         <div class="container-fluid">
             <app-trace-detail [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)"></app-trace-detail>
+            <div *ngIf="selectedTrace.delays.length > 0" >
+            	<hr/>
+            	<h6 class="card-title">{{'delays'|translate}}</h6>
+            	<app-delay-list [inputDelays]="selectedTrace.delays"></app-delay-list>
+            </div>
+            <div class="row">&nbsp;</div>
             <app-trace-list [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)"></app-trace-list>
         </div>
     </div>

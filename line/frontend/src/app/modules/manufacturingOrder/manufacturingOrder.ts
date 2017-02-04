@@ -1,4 +1,5 @@
 import { Shared } from '../../shared/shared';
+import { Line } from '../line/line';
 import { ManufacturingOrderCustomProduct } from './manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
 
 export class ManufacturingOrder {
@@ -6,12 +7,14 @@ export class ManufacturingOrder {
     code : string;
     date : Date = new Date();
     status : Number = 0;
+    line : Line; 
     manufacturingOrderCustomProducts : ManufacturingOrderCustomProduct[] = [];
 
     constructor(options?: any){
     	this.id = (options && options.id) ? options.id : Shared.generateId();
     	this.code = (options && options.code) ? options.code : "";
     	this.date = (options && options.date) ? options.date : new Date();
+        this.line = (options && options.line) ? options.line : null;
     	this.manufacturingOrderCustomProducts = (options && options.manufacturingOrderCustomProducts) ? options.manufacturingOrderCustomProducts : [];
     }
 

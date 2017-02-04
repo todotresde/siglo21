@@ -5,8 +5,6 @@
         <app-message [message]="message"></app-message> 
         <div class="container-fluid">
             <app-delay-detail [inputDelay]="selectedDelay" (outputDelay)="updateDelays($event)"></app-delay-detail>
-            <div class="row">&nbsp;</div>
-            <app-delay-list [inputDelays]="delays" (outputDelay)="setSelectedDelay($event)"></app-delay-list>
         </div>
     </div>
 </div>

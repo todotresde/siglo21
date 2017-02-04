@@ -1,6 +1,12 @@
 <div class="row table-header" >
     <div class="col-md-2">
+        {{'start-date'|translate}}
+    </div>
+    <div class="col-md-2">
         {{'start-time'|translate}}
+    </div>
+    <div class="col-md-2">
+        {{'end-date'|translate}}
     </div>
     <div class="col-md-2">
         {{'end-time'|translate}}
@@ -8,33 +14,37 @@
     <div class="col-md-1">
         {{'time'|translate}}
     </div>
-    <div class="col-md-3">
-        {{'description'|translate}}
-    </div>
     <div class="col-md-2">
         {{'delay-type'|translate}}
     </div>
-    <div class="col-md-2">
+    <!--
+    <div class="col-md-1">
     </div>
+    -->
 </div>
 <div class="row table-content" *ngFor="let delay of delays" >
   <div class="col-md-2">
-    {{delay.startTime}}
+    {{delay.startTime | date : "yyyy-MM-dd" }}
   </div>
   <div class="col-md-2">
-    {{delay.endTime}}
+    {{delay.startTime | date : "hh:mm a" }}
+  </div>
+  <div class="col-md-2">
+    {{delay.endTime | date : "yyyy-MM-dd" }}
+  </div>
+  <div class="col-md-2">
+    {{delay.endTime | date : "hh:mm a" }}
   </div>
   <div class="col-md-1">
     {{delay.time}}
   </div>
-  <div class="col-md-3">
-    {{delay.description}}
-  </div>
   <div class="col-md-2">
-    {{delay.delayType.name}}
+    {{delay.delayType.description}}
   </div>
-  <div class="col-md-2">
+  <!--
+  <div class="col-md-1">
     <button type="button" class="btn btn-secondary fa fa-trash pull-right" (click)="remove(delay)"></button>
     <button type="button" class="btn btn-secondary fa fa-pencil pull-right" (click)="edit(delay)"></button>
   </div>
+  -->
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Trace } from './trace';
@@ -15,19 +15,20 @@ import { Message } from '../../shared/message/message';
   templateUrl: './trace.component.html',
   providers: [LineService, WorkStationService]
 })
-export class TraceComponent implements OnInit{
+export class TraceComponent implements OnInit, OnChanges{
 	line: Line = new Line();
 	workStation: WorkStation = new WorkStation();
 	selectedTrace: Trace = new Trace();
 
 	message: Message = new Message();
 
-	constructor(private route: ActivatedRoute, private lineService: LineService, private workStationService: WorkStationService){
-
+	constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private workStationService: WorkStationService, private r:ActivatedRoute){
 	}
 
 	ngOnInit(): void{
 	    this.route.params.subscribe(params => {
+	      this.selectedTrace = new Trace();
+
 	      if(params["lineId"] && params["workStationId"]){
 	        this.lineService.get(params["lineId"])
 	          .then(line => this.line = line)
@@ -44,7 +45,14 @@ export class TraceComponent implements OnInit{
 	    });
 	}
 
+	ngOnChanges(changes:  {[propKey: string]: SimpleChange}): void{
+	}
+
 	activeTrace(trace: Trace): void{
 		this.selectedTrace = trace;
+	}
+
+	workStationDelay(line: Line, workStation: WorkStation): void{
+		this.router.navigate(['./workStationDelay'],{ relativeTo: this.r });
 	}
 }

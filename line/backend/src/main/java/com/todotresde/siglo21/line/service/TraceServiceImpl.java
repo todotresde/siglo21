@@ -86,6 +86,14 @@ public class TraceServiceImpl implements TraceService{
         return trace;
     }
 
+    public List<Trace> multipleSave(List<Trace> traces){
+        for(Trace trace : traces){
+            traceDao.save(trace);
+        }
+
+        return traces;
+    }
+
     public Trace finish(Trace trace) {
         trace.setStatus(2);
         traceDao.save(trace);

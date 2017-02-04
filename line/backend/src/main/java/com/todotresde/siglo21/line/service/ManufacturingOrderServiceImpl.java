@@ -63,6 +63,10 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     }
 
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder) {
+        if(!lineService.hasWorkStationsForProductTypes(manufacturingOrder.getLine(), this.getProductTypes(manufacturingOrder))){
+            throw new BaseException("error-missing-workstations-for-line");
+        }
+
         manufacturingOrderDao.save(manufacturingOrder);
         return manufacturingOrder;
     }
@@ -70,12 +74,12 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     public ManufacturingOrder send(Long id) {
         ManufacturingOrder manufacturingOrder = manufacturingOrderDao.findById(id);
         List<Trace> traces = new ArrayList<Trace>();
+        Line line = manufacturingOrder.getLine();
 
         for(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct : manufacturingOrder.getManufacturingOrderCustomProducts()){
 
             for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()){
                 ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
-                Line line = lineService.byProductTypeId(productType.getId());
                 //Used for repeat Traces for the same workStation
                 List<WorkStation> workStations = new ArrayList<WorkStation>();
 
@@ -117,14 +121,18 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
 
             for(Trace subTrace: traces){
                 //Previous Trace
-                if(subTrace.getNextWorkStation().getId().equals(trace.getWorkStation().getId())
-                        && subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId())){
+                if(subTrace.getNextWorkStation() != null &&
+                        subTrace.getNextWorkStation().getId().equals(trace.getWorkStation().getId()) &&
+                        subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId()))
+                {
                     previousTrace = subTrace;
                 }
 
                 //Next Trace
-                if(subTrace.getWorkStation().getId().equals(trace.getNextWorkStation().getId())
-                        && subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId())){
+                if(trace.getNextWorkStation() != null &&
+                        subTrace.getWorkStation().getId().equals(trace.getNextWorkStation().getId()) &&
+                        subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId()))
+                {
                     nextTrace = subTrace;
                 }
             }
@@ -141,5 +149,22 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
         this.save(manufacturingOrder);
 
         return manufacturingOrder;
+    }
+
+    public List<ProductType> getProductTypes(ManufacturingOrder manufacturingOrder){
+        List<ProductType> productTypes = new ArrayList<ProductType>();
+
+        for(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct : manufacturingOrder.getManufacturingOrderCustomProducts()){
+
+            for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()) {
+                ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
+
+                if(!productTypes.contains(productType)){
+                    productTypes.add(productType);
+                }
+            }
+        }
+
+        return productTypes;
     }
 }

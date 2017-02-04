@@ -3,45 +3,43 @@
     <div class="form-group">
         <label for="manufacturingOrder" class="col-md-2 col-form-label">{{'manufacturing-order'|translate}}</label>
         <div class="col-md-2">
-            <input class="form-control" type="text" id="manufacturingOrder" [(ngModel)]="trace.manufacturingOrder.code" placeholder="{{'code'|translate}}">
+            <input class="form-control" type="text" id="manufacturingOrder" [(ngModel)]="trace.manufacturingOrder.code" placeholder="" readonly>
         </div>
     </div>
+    <div class="form-group">
+        <label for="product" class="col-md-1 col-form-label">{{'product'|translate}}</label>
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="product" [(ngModel)]="trace.manufacturingOrderProduct.product.description" placeholder="" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="width" class="col-md-1 col-form-label">{{'width'|translate}}</label>
+        <div class="col-md-1">
+            <input class="form-control" type="text" id="width" [(ngModel)]="trace.manufacturingOrderProduct.width" placeholder="" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="height" class="col-md-1 col-form-label">{{'height'|translate}}</label>
+        <div class="col-md-1">
+            <input class="form-control" type="text" id="height" [(ngModel)]="trace.manufacturingOrderProduct.height" placeholder="" readonly>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="form-group">
         <label for="startTime" class="col-md-2 col-form-label">{{'start-time'|translate}}</label>
         <div class="col-md-2">
-            <input class="form-control" type="text" id="startTime" [(ngModel)]="trace.startTime" placeholder="{{'time'|translate}}">
+            <input class="form-control" type="text" id="startTime" [(ngModel)]="trace.startTime" placeholder="" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label for="endTime" class="col-md-2 col-form-label">{{'end-time'|translate}}</label>
+        <label for="endTime" class="col-md-1 col-form-label">{{'end-time'|translate}}</label>
         <div class="col-md-2">
-            <input class="form-control" type="text" id="endTime" [(ngModel)]="trace.endTime" placeholder="{{'time'|translate}}">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="form-group">
-        <label for="productType" class="col-md-2 col-form-label">{{'product-type'|translate}}</label>
-        <div class="col-md-2">
-            <input class="form-control" type="text" id="productType" [(ngModel)]="trace.manufacturingOrderProduct.product.productType.name" placeholder="{{'name'|translate}}">
+            <input class="form-control" type="text" id="endTime" [(ngModel)]="trace.endTime" placeholder="" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label for="width" class="col-md-2 col-form-label">{{'width'|translate}}</label>
-        <div class="col-md-2">
-            <input class="form-control" type="text" id="width" [(ngModel)]="trace.manufacturingOrderProduct.width" placeholder="{{'width'|translate}}">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="height" class="col-md-2 col-form-label">{{'height'|translate}}</label>
-        <div class="col-md-2">
-            <input class="form-control" type="text" id="height" [(ngModel)]="trace.manufacturingOrderProduct.height" placeholder="{{'height'|translate}}">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="form-group">
-        <div class="col-md-12">
+        <div class="col-md-5">
             <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="finish(trace)"></button>
         </div>
     </div>

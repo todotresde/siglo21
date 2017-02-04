@@ -23,7 +23,6 @@ export class TraceDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
-
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {

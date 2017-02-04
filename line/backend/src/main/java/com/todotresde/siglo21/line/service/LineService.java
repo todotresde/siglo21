@@ -13,8 +13,9 @@ import java.util.List;
 public interface LineService {
     public List<Line> all();
     public Line byId(Long id);
-    public Line byProductTypeId(Long productTypeId);
+    public List<Line> byProductTypeId(Long productTypeId);
     public Long delete(Long id);
     public Line save(Line line);
     public List<WorkStation> getWorkStations(Line line);
+    public Boolean hasWorkStationsForProductTypes(Line line, List<ProductType> productTypes);
 }

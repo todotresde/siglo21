@@ -60,6 +60,12 @@ public class TraceController {
         return this.traceService.save(trace);
     }
 
+    @RequestMapping(value="/traces", method= RequestMethod.POST, produces="application/json")
+    public @ResponseBody
+    List<Trace> multipleSave(@RequestBody List<Trace> traces) {
+        return this.traceService.multipleSave(traces);
+    }
+
     @RequestMapping(value="/trace/finish", method= RequestMethod.POST, produces="application/json")
     public @ResponseBody
     Trace finish(@RequestBody Trace trace) {

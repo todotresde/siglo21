@@ -31,8 +31,10 @@
 	"quantity" : "Cantidad",
 	"trace-screen" : "Pantalla Lectura",
 	"product-type" : "Tipo de Producto",
-	"start-time" : "Inicio",
-	"end-time": "Fin",
+	"start-date" : "Fecha Inicio",
+	"end-date": "Fecha Fin",
+	"start-time" : "Hora Inicio",
+	"end-time": "Hora Fin",
 	"time" : "Tiempo",
 	"work-station" : "Puesto",
 	"ip" : "IP",
@@ -65,6 +67,7 @@
 	"first": "Primero",
 	"last": "Ultimo",
 	"work-finished" : "Trabajo Finalizado",
+	"queries" : "Consultas",
 	"success-sending-to-production" : "Enviado a Producción Correctamente!",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",
@@ -80,5 +83,6 @@
 	"error-missing-product-types" : "No existen Tipos de Productos asignados",
 	"error-missing-users" : "No eisten Usuarios asignados",
 	"error-missing-workstation-configurations" : "No existen Puestos asignados",
-	"error-missing-manufacturing-custom-order" : "No existe el Producto a Medida"
+	"error-missing-manufacturing-custom-order" : "No existe el Producto a Medida",
+	"error-missing-workstations-for-line" : "La Línea no posee las Puestos de Trabajo para porcesar alguno o todos los productos."
 }

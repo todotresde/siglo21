@@ -18,9 +18,10 @@ public class Delay {
     private Long id;
     @NotNull
     private Date startTime;
-    private Date endTime;
-    private Long time;
     @NotNull
+    private Date endTime;
+    @NotNull
+    private Long time;
     private String description;
     @OneToOne
     private DelayType delayType;

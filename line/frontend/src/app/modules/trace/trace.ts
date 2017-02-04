@@ -4,6 +4,7 @@ import { Line } from '../line/line';
 import { WorkStation } from '../workStation/workStation';
 import { ManufacturingOrderProduct } from '../manufacturingOrder/manufacturingOrderProduct/manufacturingOrderProduct';
 import { User } from '../user/user';
+import { Delay } from '../delay/delay';
 
 export class Trace {
     id: number = Shared.generateId();
@@ -16,4 +17,5 @@ export class Trace {
     time: number;
     status: number;
     user: User = new User();
+    delays : Delay[] = [];
 }

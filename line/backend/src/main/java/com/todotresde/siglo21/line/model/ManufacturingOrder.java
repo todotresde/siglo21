@@ -23,6 +23,9 @@ public class ManufacturingOrder {
     @NotNull
     @OneToMany(cascade = { CascadeType.ALL })
     private List<ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts;
+    @NotNull
+    @OneToOne
+    private Line line;
 
     public ManufacturingOrder(){
 
@@ -72,5 +75,13 @@ public class ManufacturingOrder {
 
     public void setManufacturingOrderCustomProducts(List<ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts) {
         this.manufacturingOrderCustomProducts = manufacturingOrderCustomProducts;
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public void setLine(Line line) {
+        this.line = line;
     }
 }

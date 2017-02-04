@@ -53,6 +53,12 @@ export class TraceService {
                .toPromise();
   }
 
+  multipleSave(traces: Trace[]): Promise<Trace> {
+    return this.http.post(environment.host + "/traces", traces)
+               .map(response => response.json() as Trace[])
+               .toPromise();
+  }
+
   finish(trace: Trace): Promise<Trace> {
     return this.http.post(environment.host + "/trace/finish", trace)
                .map(response => response.json() as Trace)

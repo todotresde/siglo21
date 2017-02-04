@@ -35,20 +35,20 @@ public class LineServiceImpl implements LineService{
         return lineDao.findById(id);
     }
 
-    public Line byProductTypeId(Long productTypeId) {
-        Line selectedLine = null;
+    public List<Line> byProductTypeId(Long productTypeId) {
+        List<Line> lines = new ArrayList<Line>();
 
         for (Line line : lineDao.findAll()) {
             for (WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()) {
                 for (ProductType productType : workStationConfiguration.getProductTypes()) {
                     if(productType.getId().equals(productTypeId)){
-                        selectedLine = line;
+                        lines.add(line);
                     }
                 }
             }
         }
 
-        return selectedLine;
+        return lines;
     }
 
     public Long delete(Long id) {
@@ -85,5 +85,9 @@ public class LineServiceImpl implements LineService{
         }
 
         return workStations;
+    }
+
+    public Boolean hasWorkStationsForProductTypes(Line line, List<ProductType> productTypes){
+        return true;
     }
 }

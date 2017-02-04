@@ -4,7 +4,7 @@
         {{'manufacturing-order'|translate}}
     </div>
     <div class="col-md-4">
-        {{'product-type'|translate}}
+        {{'product'|translate}}
     </div>
     <div class="col-md-1">
         {{'width'|translate}}
@@ -23,13 +23,13 @@
         {{trace.manufacturingOrder.code}}
     </div>
     <div class="col-md-4">
-        {{trace.manufacturingOrderProduct.product.productType.name}}
+        {{trace.manufacturingOrderProduct.product.description}}
     </div>
     <div class="col-md-1">
-        {{trace.manufacturingOrderProduct.product.width}}
+        {{trace.manufacturingOrderProduct.width}}
     </div>
     <div class="col-md-1">
-        {{trace.manufacturingOrderProduct.product.height}}
+        {{trace.manufacturingOrderProduct.height}}
     </div>
     <div class="col-md-1">
         {{trace.status }}
@@ -39,3 +39,4 @@
         <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(trace)"></button>
     </div>
 </div>
+<template ngbModalContainer></template>
