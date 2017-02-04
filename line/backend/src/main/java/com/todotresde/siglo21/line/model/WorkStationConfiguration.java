@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "workStationConfiguration")
-public class WorkStationConfiguration {
+public class WorkStationConfiguration implements Cloneable{
     @Id
     @NotNull
     private Long id;
@@ -32,6 +32,8 @@ public class WorkStationConfiguration {
     private Boolean first = false;
     @NotNull
     private Boolean last = false;
+    @OneToMany
+    private List<Delay> delays;
 
     public WorkStationConfiguration(){
 
@@ -99,5 +101,18 @@ public class WorkStationConfiguration {
 
     public void setLast(Boolean last) {
         this.last = last;
+    }
+
+    public List<Delay> getDelays() {
+        return delays;
+    }
+
+    public void setDelays(List<Delay> delays) {
+        this.delays = delays;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

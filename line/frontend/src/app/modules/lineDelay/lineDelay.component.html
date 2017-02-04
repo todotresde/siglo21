@@ -4,13 +4,42 @@
         <hr/>
         <app-message [message]="message"></app-message> 
         <div class="container-fluid">
-            <div class="row">
-                <app-line-list (outputLine)="setSelectedLine($event)"></app-line-list>
+            <div class="form-group row">
+                <label for="startDate" class="col-md-2 col-form-label">{{'start-date'|translate}}</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="date" id="startDate" [(ngModel)]="time.startDate" placeholder="">
+                </div>
+                <label for="startTime" class="col-md-2 col-form-label">{{'start-time'|translate}}</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="time" id="startTime" [(ngModel)]="time.startTime" placeholder="">
+                </div>
             </div>
-            <div class="row">
-                <app-delay-list [inputDelays]="selectedLine.delays"></app-delay-list>
+            <div class="form-group row">
+                <label for="endDate" class="col-md-2 col-form-label">{{'end-date'|translate}}</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="date" id="endDate" [(ngModel)]="time.endDate" placeholder="">
+                </div>
+                <label for="endTime" class="col-md-2 col-form-label">{{'end-time'|translate}}</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="time" id="endTime" [(ngModel)]="time.endTime" placeholder="">
+                </div>
             </div>
-            
+            <div class="form-group row">
+                <label for="line" class="col-md-2 col-form-label">{{'line'|translate}}</label>
+                <div ngbDropdown class="d-inline-block col-md-4">
+                    <button class="btn btn-outline-primary" id="dropdownLine" ngbDropdownToggle>{{selectedLine.name}}</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownLine" >
+                        <button class="dropdown-item" *ngFor="let line of lines" (click)="selectedLine = line" >{{line.name}}</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-secondary pull-right fa fa-search" (click)="search(selectedLine, time)"></button>
+                </div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <app-line-delay-list [inputWorkStationConfigurations]="workStationConfigurations"></app-line-delay-list>
+            </div>
         </div>
     </div>
 </div>

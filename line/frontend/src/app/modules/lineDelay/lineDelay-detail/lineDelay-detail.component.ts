@@ -1,40 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LineDelay } from '../lineDelay';
-import { LineDelayService } from '../lineDelay.service';
+import { Delay } from '../../delay/delay';
+import { DelayService } from '../../delay/delay.service';
 
 @Component({
-  selector: 'app-lineDelay-detail',
-  templateUrl: './lineDelay-detail.component.html',
-  providers:[LineDelayService]
+    selector: 'app-line-delay-detail',
+    templateUrl: './lineDelay-detail.component.html',
+    providers: [DelayService]
 })
 export class LineDelayDetailComponent implements OnInit {
 
-  lineDelay : LineDelay;
-  
-  constructor(private route: ActivatedRoute, private lineDelayService: LineDelayService) { 
-    this.lineDelay = new LineDelay();
-  }
+    delay: Delay;
 
-  ngOnInit() : void{
-    this.route.params.subscribe(params => {
-      if(params["id"]){
-        this.lineDelayService.get(params["id"]).then(lineDelay =>{ 
-          this.lineDelay = lineDelay;
+    constructor(private route: ActivatedRoute, private lineDelayService: DelayService) {
+        this.delay = new Delay();
+    }
+
+    ngOnInit(): void {
+        this.route.params.subscribe(params => {
+            if (params["id"]) {
+                this.lineDelayService.get(params["id"]).then(delay => {
+                    this.delay = delay;
+                });
+            }
         });
-      }
-    });
 
-  }
+    }
 
-  save(): void {
-    this.lineDelayService
-        .save(this.lineDelay)
-        .then(lineDelay => {
-          this.lineDelay = lineDelay; 
-        }).catch(error => {
-        })
-  }
+        save(): void {
+        this.lineDelayService
+            .save(this.delay)
+            .then(delay => {
+                this.delay = delay;
+            }).catch(error => {})
+    }
 
 }

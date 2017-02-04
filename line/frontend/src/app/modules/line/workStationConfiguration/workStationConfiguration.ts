@@ -2,6 +2,7 @@ import { Shared } from '../../../shared/shared';
 import { WorkStation } from '../../workStation/workStation';
 import { ProductType } from '../../productType/productType';
 import { User } from '../../user/user';
+import { Delay } from '../../delay/delay';
 
 export class WorkStationConfiguration {
     id: number = Shared.generateId();
@@ -12,6 +13,7 @@ export class WorkStationConfiguration {
     users : User[] = [];
     first : boolean = false;
     last : boolean = false;
+    delays : Delay[] = [];
 
     constructor(){
 

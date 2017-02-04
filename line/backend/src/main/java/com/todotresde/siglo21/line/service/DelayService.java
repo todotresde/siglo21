@@ -1,7 +1,9 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.model.Delay;
+import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,4 +14,5 @@ public interface DelayService {
     public Delay byId(Long id);
     public Delay delete(Long id);
     public Delay save(Delay delay);
+    public List<WorkStationConfiguration> search(Long lineId, Date fromDate, Date toDate);
 }

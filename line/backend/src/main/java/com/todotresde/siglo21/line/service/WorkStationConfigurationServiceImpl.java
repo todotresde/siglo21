@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
 import com.todotresde.siglo21.line.exception.BaseException;
+import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import java.util.List;
 public class WorkStationConfigurationServiceImpl implements WorkStationConfigurationService{
     @Autowired
     private WorkStationConfigurationDao workStationConfigurationDao;
+    @Autowired
+    private LineService lineService;
 
     public List<WorkStationConfiguration> all() {
         ArrayList<WorkStationConfiguration> workStationConfigurations = new ArrayList<WorkStationConfiguration>();
@@ -30,6 +33,19 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
 
     public WorkStationConfiguration byId(Long id) {
         return workStationConfigurationDao.findById(id);
+    }
+
+    public WorkStationConfiguration byLineAndWorkStation(Long lineId, Long workStationId){
+        WorkStationConfiguration resultWorkStationConfiguration = null;
+
+        Line line = lineService.byId(lineId);
+        for(WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()){
+            if(workStationConfiguration.getWorkStation().getId().equals(workStationId)){
+                resultWorkStationConfiguration = workStationConfiguration;
+            }
+        }
+
+        return resultWorkStationConfiguration;
     }
 
     public WorkStationConfiguration byProductTypeId(Long productTypeId){

@@ -11,19 +11,25 @@ import { WorkStationConfiguration } from './workStationConfiguration';
 export class WorkStationConfigurationService {
   constructor(private http: Http) { }
 
-  getWorkStationConfigurations(): Promise<WorkStationConfiguration[]> {
+  getAll(): Promise<WorkStationConfiguration[]> {
     return this.http.get(environment.host + "/workStationConfiguration")
                .map(response => response.json() as WorkStationConfiguration[])
                .toPromise();
   }
 
-  getWorkStationConfiguration(id: Number): Promise<WorkStationConfiguration> {
+  get(id: Number): Promise<WorkStationConfiguration> {
     return this.http.get(environment.host + "/workStationConfiguration/" + id)
                .map(response => response.json() as WorkStationConfiguration)
                .toPromise();
   }
 
-  removeWorkStationConfiguration(workStationConfiguration: WorkStationConfiguration): Promise<WorkStationConfiguration> {
+  getByLineAndWorkStation(lineId: Number, workStationId: Number): Promise<WorkStationConfiguration> {
+    return this.http.get(environment.host + "/workStationConfiguration/line/" + lineId + "/workStation/" + workStationId)
+               .map(response => response.json() as WorkStationConfiguration)
+               .toPromise();
+  }
+
+  remove(workStationConfiguration: WorkStationConfiguration): Promise<WorkStationConfiguration> {
     return this.http.delete(environment.host + "/workStationConfiguration/" + workStationConfiguration.id)
                .map(response => response.json() as WorkStationConfiguration)
                .toPromise();

@@ -1,41 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { LineDelay } from '../lineDelay';
-import { LineDelayService } from '../lineDelay.service';
+import { Delay } from '../../delay/delay';
+import { WorkStationConfiguration } from '../../line/workStationConfiguration/workStationConfiguration';
 
 @Component({
-  selector: 'app-lineDelay-list',
-  templateUrl: './lineDelay-list.component.html',
-  providers:[LineDelayService]
+    selector: 'app-line-delay-list',
+    templateUrl: './lineDelay-list.component.html',
+    providers: []
 })
-export class LineDelayListComponent implements OnInit {
-  lineDelays: LineDelay[];
+export class LineDelayListComponent implements OnInit, OnChanges {
+    @Input() inputWorkStationConfigurations: WorkStationConfiguration[];
+    
+    workStationConfigurations: WorkStationConfiguration[];
 
-  constructor(private router: Router, private lineDelayService: LineDelayService, private r:ActivatedRoute) {
+    constructor(private router: Router, private r: ActivatedRoute) {
 
-  }
+    }
 
-  ngOnInit(): void{
-    this.lineDelayService
-      .getAll()
-      .then(lineDelays => this.lineDelays = lineDelays)
-      .catch(error => {});
-  }
+    ngOnInit(): void {
+        
+    }
 
-  create(): void {
-    this.router.navigate(['../lineDelay'],{ relativeTo: this.r });
-  }
-
-  edit(lineDelay: LineDelay): void {
-    this.router.navigate(['../lineDelay', lineDelay.id],{ relativeTo: this.r });
-  }
-
-  remove(lineDelay: LineDelay): void {
-    this.lineDelayService
-      .remove(lineDelay)
-      .then(lineDelay => this.lineDelays = this.lineDelays.filter(u => u.id !== lineDelay.id))
-      .catch(error => {});
-  }
+    ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+      if(changes["inputWorkStationConfigurations"].currentValue)
+        this.workStationConfigurations = changes["inputWorkStationConfigurations"].currentValue;
+    }
 
 }

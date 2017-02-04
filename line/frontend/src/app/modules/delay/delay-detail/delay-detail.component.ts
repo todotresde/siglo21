@@ -30,13 +30,7 @@ export class DelayDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
-    this.time = {
-      startDate : this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
-      startTime : this.datePipe.transform(new Date(), 'hh:mm'),
-      endDate : this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
-      endTime : this.datePipe.transform(new Date(), 'hh:mm')
-    }
-
+    this.time = Delay.newDelayTime();
 
     this.route.params.subscribe(params => {
       if(params["id"]){
@@ -62,10 +56,9 @@ export class DelayDetailComponent implements OnInit, OnChanges {
   }
 
   save(delay: Delay): void {
-    debugger
     this.delay.delayType = this.selectedDelayType;
-    this.delay.startTime = this.convertDateTimeToDate(this.time.startDate, this.time.startTime);
-    this.delay.endTime = this.convertDateTimeToDate(this.time.endDate, this.time.endTime);
+    this.delay.startTime = Delay.convertStartDateTimeToDate(this.time);
+    this.delay.endTime = Delay.convertEndDateTimeToDate(this.time);
     this.delay.time = Math.floor((this.delay.endTime.getTime() - this.delay.startTime.getTime()) / 60000);
 
     this.delayService
@@ -80,13 +73,6 @@ export class DelayDetailComponent implements OnInit, OnChanges {
         }).catch(error => {
            this.message.error(JSON.parse(error._body).message);
         })
-  }
-
-  private convertDateTimeToDate(dateString: String, timeString: String): Date{
-    let patternDate = /(\d{4})\-(\d{2})\-(\d{2})/;
-    let patternTime = /(\d{2})\:(\d{2})/;
-
-    return new Date(dateString.replace(patternDate, '$1-$2-$3') + " " + timeString.replace(patternDate, '$1:$2'));
   }
 
 }

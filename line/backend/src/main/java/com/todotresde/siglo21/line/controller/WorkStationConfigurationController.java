@@ -30,6 +30,12 @@ public class WorkStationConfigurationController {
         return this.workStationConfigurationService.byId(id);
     }
 
+    @RequestMapping(value="/workStationConfiguration/line/{lineId}/workStation/{workStationId}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    WorkStationConfiguration getByLineAndWorkStation(@PathVariable Long lineId, @PathVariable Long workStationId) {
+        return this.workStationConfigurationService.byLineAndWorkStation(lineId, workStationId);
+    }
+
     @RequestMapping(value="/workStationConfiguration/{id}", method= RequestMethod.DELETE, produces="application/json")
     public @ResponseBody
     WorkStationConfiguration delete(@PathVariable Long id) {
