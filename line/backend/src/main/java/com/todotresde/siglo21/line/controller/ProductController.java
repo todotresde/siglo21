@@ -30,6 +30,12 @@ public class ProductController {
         return this.productService.byId(id);
     }
 
+    @RequestMapping(value="/product/byDescription/{description}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<Product> byDescriptionContaining(@PathVariable String description) {
+        return this.productService.byDescriptionContaining(description);
+    }
+
     @RequestMapping(value="/product/{id}", method= RequestMethod.DELETE, produces="application/json")
     public @ResponseBody
     Product delete(@PathVariable Long id) {

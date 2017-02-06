@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2CompleterModule } from "ng2-completer";
 
 import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
 
@@ -30,6 +31,7 @@ export function createTranslateLoader(http: Http) {
     LoginModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
+    Ng2CompleterModule,
     ModulesModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,

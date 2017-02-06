@@ -10,6 +10,7 @@ import java.util.List;
 public interface ProductService {
     public List<Product> all();
     public Product byId(Long id);
+    public List<Product> byDescriptionContaining(String description);
     public Product delete(Long id);
     public Product save(Product product);
 }

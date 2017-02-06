@@ -4,6 +4,7 @@ import com.todotresde.siglo21.line.model.Product;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by Leonardo on 27/12/2016.
@@ -12,5 +13,6 @@ import javax.transaction.Transactional;
 public interface ProductDao extends CrudRepository<Product, Long> {
     public Product findById(Long id);
     public Product findByCode(String code);
+    public List<Product> findByDescriptionContaining(String description);
     public void delete(Long id);
 }

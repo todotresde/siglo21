@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService{
     private ProductDao productDao;
 
     public List<Product> all() {
-        ArrayList<Product> products = new ArrayList<Product>();
+        List<Product> products = new ArrayList<Product>();
 
         for (Product product : productDao.findAll()) {
             products.add(product);
@@ -29,6 +29,16 @@ public class ProductServiceImpl implements ProductService{
 
     public Product byId(Long id) {
         return productDao.findById(id);
+    }
+
+    public List<Product> byDescriptionContaining(String description){
+        List<Product> products = new ArrayList<Product>();
+
+        for (Product product : productDao.findByDescriptionContaining(description)) {
+            products.add(product);
+        }
+
+        return products;
     }
 
     public Product delete(Long id) {

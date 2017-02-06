@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
+
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { ProductType } from '../../productType/productType';
@@ -13,7 +15,7 @@ import { Commons } from '../../../shared/commons';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  providers:[ProductService, ProductTypeService]
+  providers:[ProductService, ProductTypeService, CompleterService]
 })
 export class ProductDetailComponent implements OnInit {
   message: Message = new Message();
@@ -21,7 +23,10 @@ export class ProductDetailComponent implements OnInit {
   productTypes: ProductType[];
   selectedProductType: ProductType = new ProductType(); 
 
-  constructor(private location: Location, private route: ActivatedRoute, private productService: ProductService, private productTypeService: ProductTypeService) { 
+  private dataService: CompleterData;
+
+  constructor(private location: Location, private route: ActivatedRoute, private productService: ProductService, private productTypeService: ProductTypeService, private completerService: CompleterService) { 
+    this.dataService = completerService.remote(this.productTypeService.getByNameURL(), 'code,name', 'name');
     this.product = new Product();
   }
 
@@ -62,6 +67,10 @@ export class ProductDetailComponent implements OnInit {
         .catch(error => {
           this.message.error(JSON.parse(error._body).message);
         })
+  }
+
+  onProductTypeSelected(selected: CompleterItem): void{
+    this.selectedProductType = selected.originalObject;
   }
 
 }

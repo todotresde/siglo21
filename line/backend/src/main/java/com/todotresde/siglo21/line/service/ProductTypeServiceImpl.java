@@ -32,6 +32,16 @@ public class ProductTypeServiceImpl implements ProductTypeService{
         return productTypeDao.findById(id);
     }
 
+    public List<ProductType> byNameContaining(String name){
+        List<ProductType> productTypes = new ArrayList<ProductType>();
+
+        for (ProductType productType : productTypeDao.findByNameContaining(name)) {
+            productTypes.add(productType);
+        }
+
+        return productTypes;
+    }
+
     public ProductType delete(Long id) {
         ProductType productType = productTypeDao.findById(id);
 

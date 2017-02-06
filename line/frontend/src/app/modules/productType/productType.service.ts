@@ -23,6 +23,16 @@ export class ProductTypeService {
                .toPromise();
   }
 
+  getByNameURL(name: string = ""): string{
+    return environment.host + "/product/byName/" + name;
+  }
+
+  getByName(name: string): Promise<ProductType[]> {
+    return this.http.get(this.getByNameURL(name))
+               .map(response => response.json() as ProductType[])
+               .toPromise();
+  }
+
   remove(productType: ProductType): Promise<ProductType> {
     return this.http.delete(environment.host + "/productType/" + productType.id)
                .map(response => response.json() as ProductType)
