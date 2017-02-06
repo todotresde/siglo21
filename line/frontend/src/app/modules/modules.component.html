@@ -1,5 +1,10 @@
-<app-layout-topbar></app-layout-topbar>
-<app-layout-sidebar></app-layout-sidebar>
-<section class="main-container" >	
-	<router-outlet></router-outlet>
-</section>
+<div class="row">
+	<app-layout-topbar class="col-md-12"></app-layout-topbar>
+</div>
+<div class="row">
+	<app-layout-sidebar class="col-md-2"></app-layout-sidebar>
+
+	<section class="main-container col-md-10" >	
+		<router-outlet></router-outlet>
+	</section>
+</div>

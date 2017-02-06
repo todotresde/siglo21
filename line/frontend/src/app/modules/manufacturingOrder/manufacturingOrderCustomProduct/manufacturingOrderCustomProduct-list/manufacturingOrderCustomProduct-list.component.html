@@ -25,12 +25,13 @@
                 </div>
                 <div class="row">&nbsp;</div>
             </div>
-            <div class="col-md-12">
-                <div class="row table-header">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="row sub-table-header">
                     <div class="col-md-2">
                         {{'product'|translate}}
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         {{'product-type'|translate}}
                     </div>
                     <div class="col-md-2">
@@ -42,28 +43,29 @@
                     <div class="col-md-2">
                         {{'quantity'|translate}}
                     </div>
-                    <div class="col-md-2 pull-right">
-                    </div>
                 </div>
             </div>
-            <div class="col-md-12" >
+            <div class="col-md-2" ></div>
+            <div class="col-md-10" >
                 <div class="row" *ngFor="let manufacturingOrderProduct of manufacturingOrderCustomProduct.manufacturingOrderProducts" >
                     <div class="col-md-2">
                         {{manufacturingOrderProduct.product.code}}
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         {{manufacturingOrderProduct.product.productType.name}}
                     </div>
                     <div class="col-md-2">
-                        {{manufacturingOrderProduct.width}}
+                        <span *ngIf="manufacturingOrderProduct.product.productType.hasWidth">
+                            {{manufacturingOrderProduct.width}}
+                        </span>
                     </div>
                     <div class="col-md-2">
-                        {{manufacturingOrderProduct.height}}
+                        <span *ngIf="manufacturingOrderProduct.product.productType.hasHeight">
+                            {{manufacturingOrderProduct.height}}
+                        </span>
                     </div>
                     <div class="col-md-2">
                         {{manufacturingOrderProduct.quantity}}
-                    </div>
-                    <div class="col-md-2">
                     </div>
                     <hr/>
                 </div>

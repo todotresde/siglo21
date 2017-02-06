@@ -19,7 +19,8 @@ import { Message } from '../../shared/message/message';
 export class TraceComponent implements OnInit, OnChanges{
 	line: Line = new Line();
 	workStation: WorkStation = new WorkStation();
-	selectedTrace: Trace = new Trace();
+	selectedTrace: Trace;
+	selectedTraceToBeFinished: Trace;
 	average: number = 0;
 
 	message: Message = new Message();
@@ -29,8 +30,7 @@ export class TraceComponent implements OnInit, OnChanges{
 
 	ngOnInit(): void{
 	    this.route.params.subscribe(params => {
-	      this.selectedTrace = new Trace();
-
+	      
 	      if(params["lineId"] && params["workStationId"]){
 	        this.lineService.get(params["lineId"])
 	          .then(line => this.line = line)
@@ -57,6 +57,10 @@ export class TraceComponent implements OnInit, OnChanges{
 
 	activeTrace(trace: Trace): void{
 		this.selectedTrace = trace;
+	}
+
+	finishTrace(trace: Trace): void{
+		this.selectedTraceToBeFinished = trace;
 	}
 
 	workStationDelay(line: Line, workStation: WorkStation): void{

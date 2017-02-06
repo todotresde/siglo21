@@ -12,7 +12,8 @@ import { Message } from '../../../shared/message/message';
   providers:[TraceService]
 })
 export class TraceDetailComponent implements OnInit, OnChanges {
-  @Input() inputTrace = new Trace();
+  @Input() inputTrace;
+  @Input() inputTraceToBeFinished;
   @Output() outputTrace = new EventEmitter<Trace>();
   
   message: Message = new Message();
@@ -26,10 +27,20 @@ export class TraceDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
-    if(changes["inputTrace"].currentValue)
-      this.trace = changes["inputTrace"].currentValue;
-    else
-      this.inputTrace = new Trace();
+    this.message.none();
+    
+    for (let propName in changes) {
+      switch(propName){
+          case "inputTrace": 
+            if(changes["inputTrace"].currentValue != null)
+              this.trace = changes["inputTrace"].currentValue; 
+            break;
+          case "inputTraceToBeFinished": 
+            if(changes["inputTraceToBeFinished"].currentValue != null)
+              this.finish(changes["inputTraceToBeFinished"].currentValue); 
+            break;
+      }
+    }
   }
 
   finish(trace: Trace): void {
@@ -42,9 +53,8 @@ export class TraceDetailComponent implements OnInit, OnChanges {
 
           this.trace = new Trace();
         }).catch(error => {
-          
+          this.message.error(JSON.parse(error._body).message);
         })
   }
-
 
 }

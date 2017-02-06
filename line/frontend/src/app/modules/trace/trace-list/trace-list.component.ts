@@ -16,9 +16,11 @@ export class TraceListComponent implements OnInit, OnChanges {
   @Input() inputTrace = new Trace();
   @Input() inputTraces = new Trace();
   @Output() outputTrace = new EventEmitter<Trace>();
+  @Output() outputFinishTrace = new EventEmitter<Trace>();
 
   message: Message = new Message();
   traces: Trace[];
+  code: String = "";
 
   constructor(private route: ActivatedRoute, private router: Router, private traceService: TraceService, private r:ActivatedRoute, private sessionService: SessionService) {
 
@@ -40,6 +42,19 @@ export class TraceListComponent implements OnInit, OnChanges {
 
   activate(trace: Trace): void {
     this.outputTrace.emit(trace);
+  }
+
+  selectByCode(code: String): void{
+    let trace: Trace;
+
+    this.traces.forEach(t => {
+      if(t.code == code){
+        trace = t;
+      }
+    });
+    
+    if(trace != null)
+      this.outputFinishTrace.emit(trace);
   }
 
   delay(trace: Trace): void{

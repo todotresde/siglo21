@@ -18,6 +18,8 @@ public class Trace {
     @NotNull
     private Long id;
     @NotNull
+    private String code;
+    @NotNull
     @OneToOne
     private ManufacturingOrder manufacturingOrder;
     @NotNull
@@ -63,6 +65,17 @@ public class Trace {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode() {
+        this.code = this.manufacturingOrder.getCode()
+                .concat(this.getManufacturingOrderProduct().getProduct().getCode())
+                .concat(this.getManufacturingOrderProduct().getWidth().toString())
+                .concat(this.getManufacturingOrderProduct().getHeight().toString());
     }
 
     public ManufacturingOrder getManufacturingOrder() {

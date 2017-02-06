@@ -19,16 +19,20 @@ public class ProductType {
     private String name;
     @NotNull
     private String description;
+    private Boolean hasWidth;
+    private Boolean hasHeight;
 
     public ProductType(){
 
     }
 
-    public ProductType(Long id, String code, String name, String description) {
+    public ProductType(Long id, String code, String name, String description, Boolean hasWidth, Boolean hasHeight) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;
+        this.hasWidth = hasWidth;
+        this.hasHeight = hasHeight;
     }
 
     public Long getId() {
@@ -61,5 +65,21 @@ public class ProductType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getHasWidth() {
+        return hasWidth;
+    }
+
+    public void setHasWidth(Boolean hasWidth) {
+        this.hasWidth = hasWidth;
+    }
+
+    public Boolean getHasHeight() {
+        return hasHeight;
+    }
+
+    public void setHasHeight(Boolean hasHeight) {
+        this.hasHeight = hasHeight;
     }
 }

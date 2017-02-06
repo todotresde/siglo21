@@ -99,7 +99,7 @@ public class TraceServiceImpl implements TraceService{
         trace.setStatus(2);
         trace.setEndTime(new Date());
         trace.setTime((trace.getEndTime().getTime() - trace.getStartTime().getTime()) / 60000);
-        
+
         traceDao.save(trace);
 
         this.enableNextTrace(trace);

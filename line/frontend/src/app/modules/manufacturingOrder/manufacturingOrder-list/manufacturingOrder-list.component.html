@@ -5,10 +5,13 @@
     <app-message [message]="message"></app-message>
     <div class="container-fluid">
       <div class="row table-header" >
+        <div class="col-md-2">
+          {{'line'|translate}}
+        </div>
         <div class="col-md-4">
           {{'code'|translate}}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           {{'date'|translate}}
         </div>
         <div class="col-md-4">
@@ -16,10 +19,13 @@
         </div>
       </div>
       <div class="row table-content" *ngFor="let manufacturingOrder of manufacturingOrders" >
+        <div class="col-md-2">
+          {{manufacturingOrder.line.name}}
+        </div>
         <div class="col-md-4">
           {{manufacturingOrder.code}}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           {{manufacturingOrder.date}}
         </div>
         <div class="col-md-4 pull-right">

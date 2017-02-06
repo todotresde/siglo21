@@ -11,8 +11,14 @@
           <div class="col-md-2">
               {{'name'|translate}}
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
               {{'description'|translate}}
+          </div>
+          <div class="col-md-1">
+              {{'has-width'|translate}}
+          </div>
+          <div class="col-md-1">
+              {{'has-height'|translate}}
           </div>
           <div class="col-md-2">
             <button type="button" class="btn btn-secondary fa fa-plus pull-right" (click)="create()"></button>
@@ -25,8 +31,20 @@
         <div class="col-md-2">
           {{productType.name}}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           {{productType.description}}
+        </div>
+        <div class="col-md-1">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" id="hasWidth" [(ngModel)]="productType.hasWidth" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+          </label>
+        </div>
+        <div class="col-md-1">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" id="hasHeight" [(ngModel)]="productType.hasHeight" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+          </label>
         </div>
         <div class="col-md-2">
           <button type="button" class="btn btn-secondary fa fa-trash pull-right" (click)="remove(productType)"></button>

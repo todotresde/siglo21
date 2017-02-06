@@ -13,14 +13,14 @@
     	</div>
         <hr/>
         <div class="container-fluid">
-            <app-trace-detail [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)"></app-trace-detail>
-            <div *ngIf="selectedTrace.delays.length > 0" >
+            <app-trace-detail [inputTrace]="selectedTrace" [inputTraceToBeFinished]="selectedTraceToBeFinished" (outputTrace)="activeTrace($event)"></app-trace-detail>
+            <div *ngIf="selectedTrace?.delays.length < 0" >
             	<hr/>
             	<h6 class="card-title">{{'delays'|translate}}</h6>
             	<app-delay-list [inputDelays]="selectedTrace.delays"></app-delay-list>
             </div>
-            <div class="row">&nbsp;</div>
-            <app-trace-list [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)"></app-trace-list>
+            <hr/>
+            <app-trace-list [inputTrace]="selectedTrace" (outputTrace)="activeTrace($event)" (outputFinishTrace)="finishTrace($event)"></app-trace-list>
         </div>
     </div>
 </div>

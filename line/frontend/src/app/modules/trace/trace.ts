@@ -8,6 +8,7 @@ import { Delay } from '../delay/delay';
 
 export class Trace {
     id: number = Shared.generateId();
+    code: String;
     manufacturingOrder : ManufacturingOrder = new ManufacturingOrder();
     line : Line = new Line();
     workStation : WorkStation = new WorkStation();

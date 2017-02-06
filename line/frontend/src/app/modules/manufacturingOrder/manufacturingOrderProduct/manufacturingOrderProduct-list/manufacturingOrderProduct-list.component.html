@@ -25,10 +25,14 @@
         {{manufacturingOrderProduct.product.productType.name}}
     </div>
     <div class="col-md-2">
-        {{manufacturingOrderProduct.width}}
+        <span *ngIf="manufacturingOrderProduct.product.productType.hasWidth">
+            {{manufacturingOrderProduct.width}}
+        </span>
     </div>
     <div class="col-md-2">
-        {{manufacturingOrderProduct.height}}
+        <span *ngIf="manufacturingOrderProduct.product.productType.hasHeight">
+            {{manufacturingOrderProduct.height}}
+        </span>
     </div>
     <div class="col-md-2">
         {{manufacturingOrderProduct.quantity}}

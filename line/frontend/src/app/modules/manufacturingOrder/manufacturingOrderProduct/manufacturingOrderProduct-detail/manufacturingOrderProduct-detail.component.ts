@@ -51,11 +51,23 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   }
 
   validForm(manufacturingOrderProduct: ManufacturingOrderProduct): boolean{
-    return (
-        manufacturingOrderProduct.product != undefined && 
-        manufacturingOrderProduct.width != undefined && 
-        manufacturingOrderProduct.height != undefined && 
-        manufacturingOrderProduct.quantity != undefined);
+    let result: boolean = true;
+
+    result = manufacturingOrderProduct.product != undefined &&  manufacturingOrderProduct.width != undefined;
+
+    if(manufacturingOrderProduct.product.productType.hasWidth && manufacturingOrderProduct.product.productType.hasHeight){
+      result = result && manufacturingOrderProduct.width != undefined && manufacturingOrderProduct.height != undefined;
+    }
+
+    if(manufacturingOrderProduct.product.productType.hasWidth && !manufacturingOrderProduct.product.productType.hasHeight){
+      result = result && manufacturingOrderProduct.width != undefined;
+    }
+
+    if(!manufacturingOrderProduct.product.productType.hasWidth && manufacturingOrderProduct.product.productType.hasHeight){
+      result = result && manufacturingOrderProduct.height != undefined;
+    }
+
+    return result;
   }
 
 }

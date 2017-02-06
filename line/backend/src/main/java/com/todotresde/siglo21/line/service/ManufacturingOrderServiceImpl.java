@@ -107,6 +107,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
 
                         workStations.add(workStationConfiguration.getWorkStation());
 
+                        trace.setCode();
                         traceDao.save(trace);
 
                         traces.add(trace);

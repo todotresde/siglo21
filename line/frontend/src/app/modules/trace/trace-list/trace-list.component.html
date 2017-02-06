@@ -1,4 +1,18 @@
 <app-message [message]="message"></app-message>
+<div class="row">
+    <div class="form-group">
+        <label for="code" class="col-md-2 col-form-label">{{'code'|translate}}</label>
+        <div class="col-md-9">
+            <input class="form-control" type="text" id="code" [(ngModel)]="code" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-1">
+            <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="selectByCode(code)"></button>
+        </div>
+    </div>
+</div>
+<hr/>
 <div class="row table-header">
     <div class="col-md-2">
         {{'manufacturing-order'|translate}}

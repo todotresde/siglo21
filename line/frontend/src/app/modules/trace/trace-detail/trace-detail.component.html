@@ -1,6 +1,14 @@
 <app-message [message]="message"></app-message>
 <div class="row">
     <div class="form-group">
+        <label for="code" class="col-md-2 col-form-label">{{'code'|translate}}</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" id="code" [(ngModel)]="trace.code" placeholder="" readonly>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
         <label for="manufacturingOrder" class="col-md-2 col-form-label">{{'manufacturing-order'|translate}}</label>
         <div class="col-md-2">
             <input class="form-control" type="text" id="manufacturingOrder" [(ngModel)]="trace.manufacturingOrder.code" placeholder="" readonly>

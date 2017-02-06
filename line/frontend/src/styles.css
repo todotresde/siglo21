@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
 	font-size: 0.9rem !important;
+	overflow-x: hidden !important;
 }
 
 .form-control {
@@ -19,4 +20,17 @@ body {
 	border-bottom: 1px solid #eceeef;
 	padding: .75rem;
 	vertical-align: middle;
+}
+
+.sub-table-header{
+	font-weight: bold;
+	padding: 10px 0px 10px 0px;
+    margin-bottom: 10px;
+    padding: .75rem;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: lightgray;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: lightgray;
 }
