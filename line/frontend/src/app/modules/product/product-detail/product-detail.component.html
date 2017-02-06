@@ -20,14 +20,20 @@
                 <label for="productType" class="col-md-2 col-form-label">{{'product-type'|translate}}</label>
                 <!--
                 <div ngbDropdown class="d-inline-block col-md-10">
-                    <button class="btn btn-outline-primary" id="dropdownProductType" ngbDropdownToggle>{{selectedProductType.name}}</button>
+                    <button class="btn btn-secondary" id="dropdownProductType" ngbDropdownToggle>{{selectedProductType.name}}</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownProductType" >
                         <button class="dropdown-item" *ngFor="let productType of productTypes" (click)="selectedProductType = productType" >{{productType.name}}</button>
                     </div>
                 </div>
                 -->
                 <div class="col-md-10">
-                    <ng2-completer [(ngModel)]="selectedProductType.name" [dataService]="dataService" [minSearchLength]="3" [inputClass]="'form-control'" (selected)="onProductTypeSelected($event)"></ng2-completer>
+                    <ng2-completer 
+                        [(ngModel)]="selectedProductType.name" 
+                        [dataService]="dataService" [minSearchLength]="3" 
+                        [inputClass]="'form-control'" 
+                        (selected)="onProductTypeSelected($event)"
+                        [textNoResults]="'Sin Resultados'"
+                        [textSearching]="'Buscando ...'"></ng2-completer>
                 </div>
             </div>
             <div class="form-group row">

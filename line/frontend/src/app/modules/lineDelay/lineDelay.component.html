@@ -27,8 +27,8 @@
             <div class="form-group row">
                 <label for="line" class="col-md-2 col-form-label">{{'line'|translate}}</label>
                 <div ngbDropdown class="d-inline-block col-md-4">
-                    <button class="btn btn-outline-primary" id="dropdownLine" ngbDropdownToggle>{{selectedLine.name}}</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownLine" >
+                    <button class="btn btn-secondary " id="dropdownLine" ngbDropdownToggle>{{selectedLine.name}}</button>
+                    <div class="dropdown-menu " aria-labelledby="dropdownLine" >
                         <button class="dropdown-item" *ngFor="let line of lines" (click)="selectedLine = line" >{{line.name}}</button>
                     </div>
                 </div>

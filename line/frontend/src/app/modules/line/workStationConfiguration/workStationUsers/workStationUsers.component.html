@@ -8,7 +8,7 @@
             <div class="form-group row">
                 <label for="dropdownUser">{{'user'|translate}}</label>
                 <div ngbDropdown class="d-inline-block">
-                    <button class="btn btn-outline-primary" id="dropdownUser" ngbDropdownToggle>{{selectedUser.name}}</button>
+                    <button class="btn btn-secondary" id="dropdownUser" ngbDropdownToggle>{{selectedUser.name}}</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownUser" >
                         <button class="dropdown-item" *ngFor="let user of users" (click)="selectedUser = user" >{{user.name}}</button>
                     </div>

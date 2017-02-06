@@ -1,7 +1,7 @@
 <div class="form-group row">
     <label for="delayType" class="col-md-2 col-form-label">{{'delay-type'|translate}}</label>
     <div ngbDropdown class="d-inline-block col-md-4">
-        <button class="btn btn-outline-primary" id="dropdownDelayType" ngbDropdownToggle>{{selectedDelayType.description}}</button>
+        <button class="btn btn-secondary" id="dropdownDelayType" ngbDropdownToggle>{{selectedDelayType.description}}</button>
         <div class="dropdown-menu" aria-labelledby="dropdownDelayType" >
             <button class="dropdown-item" *ngFor="let delayType of delayTypes" (click)="selectedDelayType = delayType" >{{delayType.description}}</button>
         </div>

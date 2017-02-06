@@ -26,8 +26,8 @@ export class ProductDetailComponent implements OnInit {
   private dataService: CompleterData;
 
   constructor(private location: Location, private route: ActivatedRoute, private productService: ProductService, private productTypeService: ProductTypeService, private completerService: CompleterService) { 
-    this.dataService = completerService.remote(this.productTypeService.getByNameURL(), 'code,name', 'name');
     this.product = new Product();
+    this.dataService = completerService.remote(this.productTypeService.getByNameURL(), 'code,name', 'name');
   }
 
   ngOnInit() : void{

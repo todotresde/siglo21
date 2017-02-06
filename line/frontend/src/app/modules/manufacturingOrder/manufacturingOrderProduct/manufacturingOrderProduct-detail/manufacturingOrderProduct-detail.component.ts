@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChange, Output, Input, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
+
 import { Product } from '../../../product/product';
 import { ProductService } from '../../../product/product.service';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct'
@@ -10,7 +12,7 @@ import { Message } from '../../../../shared/message/message';
 @Component({
   selector: 'app-manufacturing-order-product-detail',
   templateUrl: './manufacturingOrderProduct-detail.component.html',
-  providers:[ProductService]
+  providers:[ProductService, CompleterService]
 })
 export class ManufacturingOrderProductDetailComponent implements OnInit, OnChanges {
   @Input() inputManufacturingOrderProduct = new ManufacturingOrderProduct();
@@ -20,8 +22,11 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   products : Product[];
   manufacturingOrderProduct: ManufacturingOrderProduct;
   
-  constructor(private route: ActivatedRoute, private productService: ProductService) { 
+  private dataService: CompleterData;
+
+  constructor(private route: ActivatedRoute, private productService: ProductService, private completerService: CompleterService) { 
       this.manufacturingOrderProduct = new ManufacturingOrderProduct();
+      this.dataService = completerService.remote(this.productService.getByDescriptionURL(), 'code,description', 'description');
   }
 
   ngOnInit() : void{
@@ -29,10 +34,11 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
-    if(changes["inputManufacturingOrderProduct"].currentValue)
+    if(changes["inputManufacturingOrderProduct"].currentValue){
       this.manufacturingOrderProduct = changes["inputManufacturingOrderProduct"].currentValue;
-    else
+    }else{
       this.manufacturingOrderProduct = new ManufacturingOrderProduct();
+    }
   }
 
   add(manufacturingOrderProduct: ManufacturingOrderProduct): void{
@@ -53,7 +59,7 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   validForm(manufacturingOrderProduct: ManufacturingOrderProduct): boolean{
     let result: boolean = true;
 
-    result = manufacturingOrderProduct.product != undefined &&  manufacturingOrderProduct.width != undefined;
+    result = manufacturingOrderProduct.product != undefined &&  manufacturingOrderProduct.quantity != undefined;
 
     if(manufacturingOrderProduct.product.productType.hasWidth && manufacturingOrderProduct.product.productType.hasHeight){
       result = result && manufacturingOrderProduct.width != undefined && manufacturingOrderProduct.height != undefined;
@@ -68,6 +74,11 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
     }
 
     return result;
+  }
+
+  onProductSelected(selected: CompleterItem): void{
+    if(selected)
+      this.manufacturingOrderProduct.product = selected.originalObject;
   }
 
 }

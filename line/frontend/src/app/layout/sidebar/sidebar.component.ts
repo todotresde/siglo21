@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SortPipe } from '../../shared/sort.pipe';
+
 import { Line } from '../../modules/line/line';
 import { WorkStation } from '../../modules/workStation/workStation';
 import { LineService } from '../../modules/line/line.service';
@@ -25,7 +27,7 @@ export class SidebarComponent implements OnInit {
     this.lineService
       .getAll()
       .then(lines => {
-        this.lines = lines;
+        this.lines = SortPipe.transform(lines,"name");
         this.lines.forEach(line => this.submenues["trace-screens" + line.id] = true)
       })
   }
@@ -39,7 +41,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getWorkStations(line: Line): WorkStation[]{
-    return (new Line(line)).getWorkStations();
+    return SortPipe.transform((new Line(line)).getWorkStations(),"name");
   }
 
 }

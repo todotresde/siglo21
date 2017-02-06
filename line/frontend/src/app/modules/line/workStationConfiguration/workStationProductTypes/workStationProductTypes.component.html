@@ -8,7 +8,7 @@
             <div class="form-group row">
                 <label for="dropdownProductType">{{'product-type'|translate}}</label>
                 <div ngbDropdown class="d-inline-block">
-                    <button class="btn btn-outline-primary" id="dropdownProductType" ngbDropdownToggle>{{selectedProductType.name}}</button>
+                    <button class="btn btn-secondary" id="dropdownProductType" ngbDropdownToggle>{{selectedProductType.name}}</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownProductType" >
                         <button class="dropdown-item" *ngFor="let productType of productTypes" (click)="selectedProductType = productType" >{{productType.name}}</button>
                     </div>

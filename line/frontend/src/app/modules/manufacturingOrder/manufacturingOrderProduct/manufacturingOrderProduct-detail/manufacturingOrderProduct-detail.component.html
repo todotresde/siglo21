@@ -2,13 +2,25 @@
 <div class="row">
     <div class="form-group">
         <label for="id" class="col-md-1 col-form-label">{{'product'|translate}}</label>
+        <!--
         <div class="col-md-2">
             <div ngbDropdown [up]="true" class="d-inline-block">
-                <button class="btn btn-outline-primary" id="dropdown-products" ngbDropdownToggle>{{manufacturingOrderProduct.product.code}} - {{manufacturingOrderProduct.product.description}}</button>
+                <button class="btn btn-secondary" id="dropdown-products" ngbDropdownToggle>{{manufacturingOrderProduct.product.code}} - {{manufacturingOrderProduct.product.description}}</button>
                 <div class="dropdown-menu" aria-labelledby="dropdown-products" >
                     <button class="dropdown-item" *ngFor="let product of products" (click)="manufacturingOrderProduct.product = product" >{{product.code}} - {{product.description}}</button>
                 </div>
             </div>
+        </div>
+        -->
+        <div class="col-md-4">
+            <ng2-completer 
+                [(ngModel)]="manufacturingOrderProduct.product.description" 
+                [dataService]="dataService" 
+                [minSearchLength]="3" 
+                [inputClass]="'form-control'" 
+                (selected)="onProductSelected($event)"
+                [textNoResults]="'Sin Resultados'"
+                [textSearching]="'Buscando ...'"></ng2-completer>
         </div>
     </div>
     <div class="form-group" *ngIf="manufacturingOrderProduct.product.productType.hasWidth" >
@@ -36,6 +48,8 @@
         </div>
     </div>
     <div class="form-group">
-        <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="add(manufacturingOrderProduct)"></button>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="add(manufacturingOrderProduct)"></button>
+        </div>
     </div>
 </div>

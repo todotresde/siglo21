@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label for="role" class="col-md-2 col-form-label">{{'role'|translate}}</label>
                 <div ngbDropdown class="d-inline-block col-md-10">
-                    <button class="btn btn-outline-primary" id="dropdownRole" ngbDropdownToggle>{{selectedRole.name}}</button>
+                    <button class="btn btn-secondary" id="dropdownRole" ngbDropdownToggle>{{selectedRole.name}}</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownRole" >
                         <button class="dropdown-item" *ngFor="let role of roles" (click)="selectedRole = role" >{{role.name}}</button>
                     </div>
