@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-block">
-    <h5 class="card-title">{{'work-stations'|translate}}</h5>
+    <h5 class="card-title"><i class="fa fa-cubes"></i> {{'work-stations'|translate}}</h5>
     <hr/>
     <app-message [message]="message"></app-message>
     <div class="container-fluid">
@@ -9,9 +9,12 @@
               {{'name'|translate}}
           </div>
           <div class="col-md-4">
+              {{'short-name'|translate}}
+          </div>
+          <div class="col-md-2">
               {{'ip'|translate}}
           </div>
-          <div class="col-md-4 pull-right ">
+          <div class="col-md-2 pull-right ">
             <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
           </div>
       </div>
@@ -20,9 +23,12 @@
           {{workStation.name}}
         </div>
         <div class="col-md-4">
+          {{workStation.shortName}}
+        </div>
+        <div class="col-md-2">
           {{workStation.ip}}
         </div>
-        <div class="col-md-4 pull-right ">
+        <div class="col-md-2 pull-right ">
           <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="remove(workStation)"></button>
           <button type="button" class="btn btn-secondary pull-right fa fa-pencil" (click)="edit(workStation)"></button>
         </div>

@@ -1,19 +1,25 @@
 <div class="card">
     <div class="card-block">
-        <h5 class="card-title">{{'work-station'|translate}}</h5>
+        <h5 class="card-title"><i class="fa fa-cubes"></i> {{'work-station'|translate}}</h5>
         <hr/>
         <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="form-group row">
                 <label for="name" class="col-md-2 col-form-label">{{'name'|translate}}</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="search" id="name" [(ngModel)]="workStation.name" placeholder="{{'name'|translate}}">
+                    <input class="form-control" type="text" id="name" [(ngModel)]="workStation.name" placeholder="{{'name'|translate}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="short-name" class="col-md-2 col-form-label">{{'short-name'|translate}}</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" id="short-name" [(ngModel)]="workStation.shortName" placeholder="{{'short-name'|translate}}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ip" class="col-md-2 col-form-label">{{'ip'|translate}}</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="search" id="ip" [(ngModel)]="workStation.ip" placeholder="{{'192.168.1.1'}}">
+                    <input class="form-control" type="text" id="ip" [(ngModel)]="workStation.ip" placeholder="{{'192.168.1.1'}}">
                 </div>
             </div>
             <div class="form-group row">

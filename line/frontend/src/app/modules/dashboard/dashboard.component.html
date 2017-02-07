@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-block">
-        <h5 class="card-title">{{'dashboard'|translate}}</h5>
+        <h5 class="card-title"><i class="fa fa-dashboard"></i> {{'dashboard'|translate}}</h5>
         <hr/>
         <app-message [message]="message"></app-message> 
         <div class="container-fluid">
@@ -9,7 +9,7 @@
 	            	<div class="col-md-3">
 					    <div class="card">
 					        <div class="card-header" >
-					        	<h2>{{line.name}}</h2>
+					        	<h2><i class="fa fa-code-fork"></i> {{line.name}}</h2>
 					        </div>
 					        <div class="card-footer">
 					        	<div class="row">
@@ -24,15 +24,17 @@
 					</div>
 					<div class="col-md-9">
 						<div class="col-md-3" *ngFor="let workStation of getWorkStations(line)">
-							<div class="card">
+							<div class="card" 
+								[ngClass]="{'card-danger' : averages[line.id +''+ workStation.id]?.difference < -5 }"
+								[ngClass]="{'card-success' : averages[line.id +''+ workStation.id]?.difference > 5 }">
 						        <div class="card-header" >
-						        	<h4>{{workStation.name}}</h4>
+						        	<h4><i class="fa fa-cubes"></i> {{workStation.shortName}}</h4>
 						        </div>
 						        <div class="card-footer">
 						        	<div class="row">
-						                <div class="col-md-12">
-						                    <h4>{{averages[line.id +''+ workStation.id]}} min.</h4>
-						                    <h4>-3 min.</h4>
+						        		<div class="col-md-12">
+						                    <h4>{{averages[line.id +''+ workStation.id]?.currentAverage}} min.</h4>
+						                    <h4>{{averages[line.id +''+ workStation.id]?.difference}} min.</h4>
 						                </div>
 						            </div>
 						        </div>

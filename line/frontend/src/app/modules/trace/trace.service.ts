@@ -53,7 +53,7 @@ export class TraceService {
                .toPromise();
   }
 
-  multipleSave(traces: Trace[]): Promise<Trace> {
+  multipleSave(traces: Trace[]): Promise<Trace[]> {
     return this.http.post(environment.host + "/traces", traces)
                .map(response => response.json() as Trace[])
                .toPromise();
@@ -65,17 +65,42 @@ export class TraceService {
                .toPromise();
   }
 
-  getAverageByLineAndWorkStation(lineId: Number, workStationId: Number): Promise<number>{
-    let average = 0;
-    return new Promise((resolve, reject) => {
+  getAverageByLineAndWorkStation(lineId: Number, workStationId: Number): Promise<any>{
+    let previousTraces: Trace[] = [];
+    let currentTraces: Trace[] = [];
+    let result: any = {
+      previousAverage : 0,
+      currentAverage : 0,
+      difference : 0
+    };
+    let today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+
+    return new Promise((resolve: any, reject) => {
         this.getAllByLineAndWorkStationAndStatus(lineId, workStationId, 2)
           .then(traces => {
-            traces.forEach(trace => average =+ trace.time / traces.length);
-            resolve(average);
+            traces.forEach(t => {
+              let trace = new Trace(t);
+              (trace.endTime.getTime() < today.getTime()) ? previousTraces.push(trace) : currentTraces.push(trace);
+            });
+
+            previousTraces.forEach(t => {
+              result.previousAverage =+ t.time / previousTraces.length;
+            });
+
+            currentTraces.forEach(t => {
+              result.currentAverage =+ t.time / currentTraces.length;
+            });
+
+            result.difference = result.previousAverage - result.currentAverage;
+            
+            resolve(result);
           })
           .catch(error => reject(error))
     });
 
   }
 
+  
 }

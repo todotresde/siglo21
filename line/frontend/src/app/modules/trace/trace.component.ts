@@ -46,7 +46,7 @@ export class TraceComponent implements OnInit, OnChanges{
 
 	        this.average = 0;
 	    	this.traceService.getAverageByLineAndWorkStation(params["lineId"], params["workStationId"])
-	    		.then(average => this.average = Math.round(average));
+	    		.then(result => this.average = Math.round(result.currentAverage));
 	      }
 	    });
 

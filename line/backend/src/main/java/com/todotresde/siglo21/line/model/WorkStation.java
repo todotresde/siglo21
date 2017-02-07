@@ -17,6 +17,8 @@ public class WorkStation {
     @NotNull
     private String name;
     @NotNull
+    private String shortName;
+    @NotNull
     private String ip;
 
     public WorkStation(){
@@ -43,6 +45,14 @@ public class WorkStation {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     public String getIp() {

@@ -46,8 +46,8 @@ export class DashboardComponent implements OnInit {
 
   private setAverage(line: Line, workStation: WorkStation): void{
     this.traceService.getAverageByLineAndWorkStation(line.id, workStation.id)
-      .then(average => this.averages[line.id + '' + workStation.id] = Math.round(average));
-
+      .then(result => this.averages[line.id + '' + workStation.id] = result);
   }
+
 
 }

@@ -1,35 +1,28 @@
 <div class="card">
-    <div class="card-header">
-        {{'roles'|translate}}
-        <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
-    </div>
-    <app-message [message]="message"></app-message>
     <div class="card-block">
+        <h5 class="card-title"><i class="fa fa-group"></i> {{'roles'|translate}}</h5>
+        <hr/>
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="row table-header">
-                <div class="col-md-2">
-                    {{'id'|translate}}
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{'name'|translate}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{'description'|translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
                 </div>
             </div>
             <div class="row table-content" *ngFor="let role of roles">
-                <div class="col-md-2">
-                    {{role.id}}
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{role.name}}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     {{role.description}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <button type="button" class="btn btn-secondary fa fa-trash pull-right" (click)="remove(role)"></button>
                     <button type="button" class="btn btn-secondary fa fa-pencil pull-right" (click)="edit(role)"></button>
                 </div>
