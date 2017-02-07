@@ -8,16 +8,11 @@ import { ManufacturingOrderCustomProductComponent } from './manufacturingOrderCu
 import { ManufacturingOrderCustomProductListComponent } from './manufacturingOrderCustomProduct/manufacturingOrderCustomProduct-list/manufacturingOrderCustomProduct-list.component';
 import { ManufacturingOrderCustomProductDetailComponent } from './manufacturingOrderCustomProduct/manufacturingOrderCustomProduct-detail/manufacturingOrderCustomProduct-detail.component';
 
+import { ManufacturingOrderQueryComponent } from './manufacturingOrderQuery/manufacturingOrderQuery.component';
+
 import { ManufacturingOrderCustomProductRoutes } from './manufacturingOrderCustomProduct/manufacturingOrderCustomProduct.routes';
 
 export const ManufacturingOrderRoutes: Route[] = [
-	/*{
-		path: 'manufacturingOrder',
-		component: ManufacturingOrderDetailComponent,
-		children: [
-			...ManufacturingOrderCustomProductRoutes
-    	]
-	},*/
 	{
 		path: 'manufacturingOrder',
 		children: [
@@ -47,5 +42,9 @@ export const ManufacturingOrderRoutes: Route[] = [
 	},{
 		path: 'manufacturingOrders',
 		component: ManufacturingOrderListComponent
+	},{
+		path: 'manufacturingOrderQuery',
+		component: ManufacturingOrderQueryComponent,
+		children: []
 	}
 ];

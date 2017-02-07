@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-block">
+        <h5 class="card-title">{{'query-manufacturing-orders'|translate}}</h5>
+        <hr/>
+        <div class="container-fluid">
+            <app-message [message]="message"></app-message>
+            <div class="row">
+                <div class="form-group">
+                    <label for="startDate" class="col-md-2 col-form-label">{{'from'|translate}}</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="date" id="startDate" [(ngModel)]="time.startDate" placeholder="">
+                    </div>
+                    <label for="endDate" class="col-md-2 col-form-label">{{'to'|translate}}</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="date" id="endDate" [(ngModel)]="time.endDate" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="manufacturing-order-code" class="col-md-2 col-form-label">{{'manufacturing-order-code'|translate}}</label>
+                    <div class="col-md-4">
+                        <input class="form-control" type="text" id="manufacturing-order-code" [(ngModel)]="manufacturingOrderCode" placeholder="">
+                    </div>
+                    <label for="id" class="col-md-2 col-form-label">{{'line'|translate}}</label>
+                    <div class="col-md-4">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-secondary" id="dropdown-lines" ngbDropdownToggle>{{selectedLine?.name}}</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-lines" >
+                                <button class="dropdown-item" *ngFor="let line of lines" (click)="selectedLine = line" >{{line.name}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="trace-code" class="col-md-2 col-form-label">{{'trace-code'|translate}}</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" id="trace-code" [(ngModel)]="traceCode" placeholder="">
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-secondary pull-right fa fa-search" (click)="search(time, selectedLine, manufacturingOrderCode, traceCode)"></button>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="row table-header" >
+                    <div class="col-md-2">
+                      {{'line'|translate}}
+                    </div>
+                    <div class="col-md-4">
+                      {{'code'|translate}}
+                    </div>
+                    <div class="col-md-2">
+                      {{'date'|translate}}
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                  </div>
+                  <div class="row table-content" *ngFor="let manufacturingOrder of manufacturingOrders" >
+                    <div class="col-md-2">
+                      {{manufacturingOrder.line.name}}
+                    </div>
+                    <div class="col-md-4">
+                      {{manufacturingOrder.code}}
+                    </div>
+                    <div class="col-md-2">
+                      {{manufacturingOrder.date | date : "dd-MM-yyyy"}}
+                    </div>
+                    <div class="col-md-4 pull-right">
+                      <button type="button" class="btn btn-secondary pull-right fa fa-search" (click)="select(manufacturingOrder)"></button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

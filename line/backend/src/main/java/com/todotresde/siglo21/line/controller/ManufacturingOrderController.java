@@ -2,21 +2,19 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.ManufacturingOrder;
 import com.todotresde.siglo21.line.service.ManufacturingOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Leonardo on 26/12/2016.
  */
 @RestController
-public class ManufacturingOrderController {
+public class ManufacturingOrderController{
+    @Autowired
     private ManufacturingOrderService manufacturingOrderService;
-
-    public ManufacturingOrderController(ManufacturingOrderService manufacturingOrderService) {
-        this.manufacturingOrderService = manufacturingOrderService;
-    }
-
 
     @RequestMapping(value="/manufacturingOrder", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody
@@ -28,6 +26,12 @@ public class ManufacturingOrderController {
     public @ResponseBody
     List<ManufacturingOrder> allByStatus(@PathVariable Integer status) {
         return this.manufacturingOrderService.allByStatus(status);
+    }
+
+    @RequestMapping(value="/manufacturingOrder/search/from/{from}/to/{to}/lineId/{lineId}/manufacturingOrderCode/{manufacturingOrderCode}/traceCode/{traceCode}/", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<ManufacturingOrder> search(@PathVariable Date from, @PathVariable Date to, @PathVariable Long lineId, @PathVariable String manufacturingOrderCode, @PathVariable String traceCode) {
+        return this.manufacturingOrderService.search(from, to, lineId, manufacturingOrderCode, traceCode);
     }
 
     @RequestMapping(value="/manufacturingOrder/{id}", method= RequestMethod.GET, produces="application/json")

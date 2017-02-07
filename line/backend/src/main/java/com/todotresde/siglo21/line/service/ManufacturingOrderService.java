@@ -3,6 +3,7 @@ package com.todotresde.siglo21.line.service;
 import com.todotresde.siglo21.line.model.ManufacturingOrder;
 import com.todotresde.siglo21.line.model.ProductType;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
 public interface ManufacturingOrderService {
     public List<ManufacturingOrder> all();
     public List<ManufacturingOrder> allByStatus(Integer status);
+    public List<ManufacturingOrder> search(Date from, Date to, Long lineId, String manufacturingOrderCode, String traceCode);
     public ManufacturingOrder byId(Long id);
     public Long delete(Long id);
     public ManufacturingOrder save(ManufacturingOrder manufacturingOrder);

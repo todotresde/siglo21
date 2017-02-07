@@ -22,6 +22,7 @@ export class ManufacturingOrderDetailComponent implements OnInit {
   manufacturingOrder : ManufacturingOrder = new ManufacturingOrder();
   selectedManufacturingOrderCustomProduct: ManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
   lines: Line[] = [];
+  date: String = Commons.convertDateToDateString(new Date());
 
   constructor(private location: Location, private router: Router, private route: ActivatedRoute, private manufacturingOrderService: ManufacturingOrderService, private sessionService: SessionService, private lineService: LineService) { 
     this.manufacturingOrder = new ManufacturingOrder();
@@ -35,6 +36,8 @@ export class ManufacturingOrderDetailComponent implements OnInit {
         this.manufacturingOrderService.get(params["id"])
           .then(manufacturingOrder =>{ 
             this.manufacturingOrder = manufacturingOrder;
+            this.date = Commons.convertDateToDateString(this.manufacturingOrder.date);
+
             this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
           })
           .catch(error => {
@@ -50,7 +53,9 @@ export class ManufacturingOrderDetailComponent implements OnInit {
       .then(lines => {this.lines = lines})
   }
 
-  save(manufacturingOrder: ManufacturingOrder): void {
+  save(manufacturingOrder: ManufacturingOrder, date: String): void {
+    manufacturingOrder.date = Commons.convertDateStringToDate(date);
+
     if(this.valid(manufacturingOrder)){
       this.manufacturingOrderService
           .save(manufacturingOrder)

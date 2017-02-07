@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
     "configuration" : true
   };
 
+  sortPipe: SortPipe = new SortPipe();
   lines: Line[];
 
   constructor(private lineService: LineService) { }
@@ -27,7 +28,7 @@ export class SidebarComponent implements OnInit {
     this.lineService
       .getAll()
       .then(lines => {
-        this.lines = SortPipe.transform(lines,"name");
+        this.lines = this.sortPipe.transform(lines,"name");
         this.lines.forEach(line => this.submenues["trace-screens" + line.id] = true)
       })
   }
@@ -41,7 +42,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getWorkStations(line: Line): WorkStation[]{
-    return SortPipe.transform((new Line(line)).getWorkStations(),"name");
+    return this.sortPipe.transform((new Line(line)).getWorkStations(),"name");
   }
 
 }

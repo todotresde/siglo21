@@ -23,6 +23,12 @@ export class ManufacturingOrderService {
                .toPromise();
   }
 
+  search(from: Date, to: Date, lineId: number, manufacturingOrderCode: string, traceCode: string): Promise<ManufacturingOrder[]> {
+    return this.http.get(environment.host + "/manufacturingOrder/search/from/" + from + "/to/" + to + "/lineId/" + lineId + "/manufacturingOrderCode/" + manufacturingOrderCode + "/traceCode/" + traceCode + "/")
+               .map(response => response.json() as ManufacturingOrder[])
+               .toPromise();
+  }
+
   get(id: Number): Promise<ManufacturingOrder> {
     return this.http.get(environment.host + "/manufacturingOrder/" + id)
                .map(response => response.json() as ManufacturingOrder)

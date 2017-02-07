@@ -8,13 +8,13 @@
                 <div class="form-group">
                     <label for="code" class="col-md-1 col-form-label">{{'code'|translate}}</label>
                     <div class="col-md-2">
-                        <input class="form-control" type="search" id="code" [(ngModel)]="manufacturingOrder.code" placeholder="{{'code'|translate}}">
+                        <input class="form-control" type="text" id="code" [(ngModel)]="manufacturingOrder.code" placeholder="{{'code'|translate}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="date" class="col-md-1 col-form-label">{{'date'|translate}}</label>
                     <div class="col-md-3">
-                        <input class="form-control" type="search" id="date" [(ngModel)]="manufacturingOrder.date" placeholder="{{'date'|translate}}">
+                        <input class="form-control" type="date" id="date" [(ngModel)]="date" placeholder="{{'date'|translate}}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-secondary fa fa-check pull-right " (click)="save(manufacturingOrder)"></button>
+                        <button type="button" class="btn btn-secondary fa fa-check pull-right " (click)="save(manufacturingOrder, date)"></button>
                     </div>
                 </div>
             </div>
@@ -44,9 +44,3 @@
         </div>
     </div>
 </div>
-<!--
-<app-manufacturing-order-custom-product 
-    [inputManufacturingOrderCustomProduct]="selectedManufacturingOrderCustomProduct" 
-    (outputManufacturingOrderCustomProduct)="addManufacturingOrderCustomProduct($event)">
-    </app-manufacturing-order-custom-product>
--->

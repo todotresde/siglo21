@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { SortPipe } from '../../shared/sort.pipe';
+
 import { Line } from '../line/line';
 import { LineService } from '../line/line.service';
 import { WorkStation } from '../workStation/workStation';
@@ -18,6 +20,7 @@ export class DashboardComponent implements OnInit {
   lines: Line[] = [];
   message: Message = new Message();
   averages: any = {};
+  sortPipe: SortPipe = new SortPipe();
   
   constructor(private route: ActivatedRoute, private lineService: LineService, private traceService: TraceService) { 
  
@@ -38,7 +41,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getWorkStations(line: Line): WorkStation[]{
-    return (new Line(line)).getWorkStations();
+    return this.sortPipe.transform((new Line(line)).getWorkStations(),"name");
   }
 
   private setAverage(line: Line, workStation: WorkStation): void{

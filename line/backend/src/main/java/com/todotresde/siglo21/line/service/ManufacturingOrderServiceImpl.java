@@ -29,7 +29,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     private UserDao userDao;
 
     public List<ManufacturingOrder> all() {
-        ArrayList<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
+        List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
 
         for (ManufacturingOrder manufacturingOrder : manufacturingOrderDao.findAll()) {
             manufacturingOrders.add(manufacturingOrder);
@@ -39,10 +39,47 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     }
 
     public List<ManufacturingOrder> allByStatus(Integer status) {
-        ArrayList<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
+        List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
 
         for (ManufacturingOrder manufacturingOrder : manufacturingOrderDao.findByStatus(status)) {
             manufacturingOrders.add(manufacturingOrder);
+        }
+
+        return manufacturingOrders;
+    }
+
+
+    public List<ManufacturingOrder> search(Date from, Date to, Long lineId, String manufacturingOrderCode, String traceCode){
+        List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
+
+        if(from != null && to != null) {
+            manufacturingOrders = manufacturingOrderDao.findByDateBetween(from, to);
+        }
+
+        if(manufacturingOrderCode != ""){
+            if(manufacturingOrders.size()==0) {
+                manufacturingOrders = manufacturingOrderDao.findByCodeContaining(manufacturingOrderCode);
+            }else{
+                manufacturingOrders.removeIf(manufacturingOrder -> !manufacturingOrder.getCode().contains(manufacturingOrderCode));
+            }
+        }
+        /*
+        if(traceCode != ""){
+            if(manufacturingOrders.size()==0) {
+                manufacturingOrders = manufacturingOrderDao.findByCodeContaining(manufacturingOrderCode);
+            }else{
+                manufacturingOrders.removeIf(manufacturingOrder -> !manufacturingOrder.getCode().contains(manufacturingOrderCode));
+            }
+        }
+        */
+
+        if(lineId != 0){
+            Line line = lineService.byId(lineId);
+            if(manufacturingOrders.size()==0) {
+                manufacturingOrders = manufacturingOrderDao.findByLine(line);
+            }else{
+                manufacturingOrders.removeIf(manufacturingOrder -> !manufacturingOrder.getLine().getId().equals(lineId));
+            }
         }
 
         return manufacturingOrders;

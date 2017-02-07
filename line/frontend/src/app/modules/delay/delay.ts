@@ -1,4 +1,5 @@
 import { Shared } from '../../shared/shared';
+import { Commons } from '../../shared/commons';
 import { DelayType } from '../delayType/delayType';
 import { DatePipe } from '@angular/common';
 
@@ -11,28 +12,21 @@ export class Delay {
     time: number;
 
     static newDelayTime(startDate?: Date, startTime?: Date, endDate?: Date, endTime?: Date): any {
-        let datePipe = new DatePipe("es");
-
         return {
-            startDate: datePipe.transform(startDate ? startDate : new Date(), 'yyyy-MM-dd'),
-            startTime: datePipe.transform(startTime ? startTime : new Date(), 'hh:mm'),
-            endDate: datePipe.transform(endDate ? endDate : new Date(), 'yyyy-MM-dd'),
-            endTime: datePipe.transform(endTime ? endTime : new Date(), 'hh:mm')
+            startDate: Commons.convertDateToDateString(startDate),
+            startTime: Commons.convertDateToTimeString(startTime),
+            endDate: Commons.convertDateToDateString(endDate),
+            endTime: Commons.convertDateToTimeString(endTime)
         }
     }
 
     static convertStartDateTimeToDate(time: any): Date {
-    	return this.convertDateTimeToDate(time.startDate, time.startTime);
+    	return Commons.convertDateTimeStringToDate(time.startDate, time.startTime);
     }
 
     static convertEndDateTimeToDate(time: any): Date {
-    	return this.convertDateTimeToDate(time.endDate, time.endTime);
+    	return Commons.convertDateTimeStringToDate(time.endDate, time.endTime);
     }
 
-    private static convertDateTimeToDate(dateString: String, timeString: String): Date {
-	    let patternDate = /(\d{4})\-(\d{2})\-(\d{2})/;
-	    let patternTime = /(\d{2})\:(\d{2})/;
-
-	    return new Date(dateString.replace(patternDate, '$1-$2-$3') + " " + timeString.replace(patternDate, '$1:$2'));
-	  }
+    
 }
