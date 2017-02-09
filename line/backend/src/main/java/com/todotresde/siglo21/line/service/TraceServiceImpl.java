@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.LineDao;
+import com.todotresde.siglo21.line.dao.ManufacturingOrderDao;
 import com.todotresde.siglo21.line.dao.TraceDao;
 import com.todotresde.siglo21.line.dao.WorkStationDao;
 import com.todotresde.siglo21.line.model.Line;
@@ -27,9 +28,11 @@ public class TraceServiceImpl implements TraceService{
     private WorkStationDao workStationDao;
     @Autowired
     private TraceDao traceDao;
+    @Autowired
+    private ManufacturingOrderDao manufacturingOrderDao;
 
     public List<Trace> all() {
-        ArrayList<Trace> traces = new ArrayList<Trace>();
+        List<Trace> traces = new ArrayList<Trace>();
 
         for (Trace trace : traceDao.findAll()) {
             traces.add(trace);
@@ -39,7 +42,7 @@ public class TraceServiceImpl implements TraceService{
     }
 
     public List<Trace> allByWorkStation(Long id) {
-        ArrayList<Trace> traces = new ArrayList<Trace>();
+        List<Trace> traces = new ArrayList<Trace>();
 
         for (Trace trace : traceDao.findByWorkStation(workStationDao.findById(id))) {
             traces.add(trace);
@@ -49,7 +52,7 @@ public class TraceServiceImpl implements TraceService{
     }
 
     public List<Trace> allByLineAndWorkStation(Long lineId, Long workStationId) {
-        ArrayList<Trace> traces = new ArrayList<Trace>();
+        List<Trace> traces = new ArrayList<Trace>();
 
         for (Trace traceByLine : traceDao.findByLine(lineDao.findById(lineId))) {
             if (traceByLine.getWorkStation().getId().equals(workStationId)) {
@@ -61,7 +64,7 @@ public class TraceServiceImpl implements TraceService{
     }
 
     public List<Trace> allByLineAndWorkStationAndStatus(Long lineId, Long workStationId, Integer status) {
-        ArrayList<Trace> traces = new ArrayList<Trace>();
+        List<Trace> traces = new ArrayList<Trace>();
 
         for (Trace traceByLine : traceDao.findByLine(lineDao.findById(lineId))) {
             if (traceByLine.getWorkStation().getId().equals(workStationId) && traceByLine.getStatus().equals(status)) {
@@ -70,6 +73,17 @@ public class TraceServiceImpl implements TraceService{
         }
 
         return traces;
+    }
+
+    public List<Trace> allByManufacturingOrder(Long manufacturingOrderId){
+        List<Trace> traces = new ArrayList<Trace>();
+
+        for (Trace trace : traceDao.findByManufacturingOrder(manufacturingOrderDao.findById(manufacturingOrderId))) {
+            traces.add(trace);
+        }
+
+        return traces;
+
     }
 
     public Trace byId(Long id) {

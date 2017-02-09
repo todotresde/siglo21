@@ -64,7 +64,7 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
 
       Commons.delay().then(() => {
         this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
-        this.location.back();
+        this.back();
       });
     }else{
       this.message.error("error-missing-values");
@@ -80,8 +80,11 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
   }
 
   setSelectedManufacturingOrderProducts(manufacturingOrderProducts: ManufacturingOrderProduct[]) : void{
-    debugger
     this.manufacturingOrderCustomProduct.manufacturingOrderProducts = manufacturingOrderProducts;
+  }
+
+  back(): void{
+    this.location.back();
   }
 
   private validForm(manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct): boolean{

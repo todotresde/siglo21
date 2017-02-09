@@ -18,7 +18,7 @@ public class RoleServiceImpl implements RoleService{
     private RoleDao roleDao;
 
     public List<Role> all() {
-        ArrayList<Role> roles = new ArrayList<Role>();
+        List<Role> roles = new ArrayList<Role>();
 
         for (Role role : roleDao.findAll()) {
             roles.add(role);

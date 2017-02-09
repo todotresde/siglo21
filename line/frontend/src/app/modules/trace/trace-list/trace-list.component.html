@@ -40,10 +40,14 @@
         {{trace.manufacturingOrderProduct.product.description}}
     </div>
     <div class="col-md-1">
-        {{trace.manufacturingOrderProduct.width}}
+        <span *ngIf="trace.manufacturingOrderProduct.product.productType.hasWidth">
+            {{trace.manufacturingOrderProduct.width}}
+        </span>
     </div>
     <div class="col-md-1">
-        {{trace.manufacturingOrderProduct.height}}
+        <span *ngIf="trace.manufacturingOrderProduct.product.productType.hasHeight">
+            {{trace.manufacturingOrderProduct.height}}
+        </span>
     </div>
     <div class="col-md-1">
         {{trace.status }}
@@ -53,4 +57,3 @@
         <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(trace)"></button>
     </div>
 </div>
-<template ngbModalContainer></template>

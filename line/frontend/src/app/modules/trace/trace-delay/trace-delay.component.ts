@@ -39,7 +39,7 @@ export class TraceDelayComponent implements OnInit, OnChanges {
     this.traceService
         .save(this.trace)
         .then(trace => {
-          this.message.success("success-delay-addedd");
+          this.message.success("");
 
           Commons.delay().then(() => {
             this.location.back();

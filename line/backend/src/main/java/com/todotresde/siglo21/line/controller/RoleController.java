@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.Role;
 import com.todotresde.siglo21.line.service.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +12,8 @@ import java.util.List;
  */
 @RestController
 public class RoleController {
+    @Autowired
     private RoleService roleService;
-
-    public RoleController(RoleService roleService) {
-        this.roleService = roleService;
-    }
-
 
     @RequestMapping(value="/role", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

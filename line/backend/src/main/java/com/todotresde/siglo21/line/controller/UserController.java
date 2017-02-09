@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.User;
 import com.todotresde.siglo21.line.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -10,12 +11,8 @@ import java.util.List;
  */
 @RestController
 public class UserController {
+    @Autowired
     private UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
 
     @RequestMapping(value="/user", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

@@ -24,11 +24,11 @@ export class Commons {
 	    return array;
     }
 
-    public static convertDateToDateString(date: Date): String{
+    public static convertDateToDateString(date: Date): string{
     	return this.datePipe.transform(date ? date : new Date(), 'yyyy-MM-dd');
     }
 
-    public static convertDateToTimeString(date: Date): String{
+    public static convertDateToTimeString(date: Date): string{
     	return this.datePipe.transform(date ? date : new Date(), 'hh:mm');
     }
 

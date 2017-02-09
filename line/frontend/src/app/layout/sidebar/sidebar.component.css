@@ -17,6 +17,7 @@
     border-radius: 0;
     text-decoration: none;
     color: rgba(0,0,0,.9);
+    padding: .75rem 1.25rem;
 }
 
 .sidebar .list-group li a.list-group-item:hover {

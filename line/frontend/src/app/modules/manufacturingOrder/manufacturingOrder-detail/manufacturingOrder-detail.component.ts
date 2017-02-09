@@ -64,7 +64,7 @@ export class ManufacturingOrderDetailComponent implements OnInit {
             this.message.success("");
 
             Commons.delay().then(() => {
-              this.location.back();
+              this.back();
             });
           }).catch(error => {
             this.message.error(JSON.parse(error._body).message);
@@ -86,8 +86,11 @@ export class ManufacturingOrderDetailComponent implements OnInit {
     this.manufacturingOrder = new ManufacturingOrder();
   }
 
+  back(): void{
+    this.location.back();
+  }
+
   private valid(manufacturingOrder: ManufacturingOrder): boolean{
     return (manufacturingOrder.manufacturingOrderCustomProducts.length > 0 && manufacturingOrder.code != undefined);
   }
-
 }

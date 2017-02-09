@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Role } from '../role';
 import { RoleService } from '../role.service';
 
 import { Message } from '../../../shared/message/message';
+import { Commons } from '../../../shared/commons';
 
 @Component({
   selector: 'app-role-detail',
@@ -15,7 +17,7 @@ export class RoleDetailComponent implements OnInit {
   message: Message = new Message();
   role : Role;
 
-  constructor(private route: ActivatedRoute, private roleService: RoleService) { 
+  constructor(private location: Location, private route: ActivatedRoute, private roleService: RoleService) { 
     this.role = new Role();
   }
 
@@ -33,17 +35,19 @@ export class RoleDetailComponent implements OnInit {
     this.roleService
         .save(this.role)
         .then(role => {
-          this.role = role; 
-          
           this.message.success("");
+
+          Commons.delay().then(() => {
+            this.back();
+          });
         })
         .catch(error => {
           this.message.error(JSON.parse(error._body).message);
         })
   }
 
-  goBack(): void {
-    window.history.back();
+  back(): void {
+    this.location.back();
   }
 
 }

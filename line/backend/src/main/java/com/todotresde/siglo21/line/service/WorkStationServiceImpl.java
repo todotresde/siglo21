@@ -19,7 +19,7 @@ public class WorkStationServiceImpl implements WorkStationService{
     private WorkStationDao workStationDao;
 
     public List<WorkStation> all() {
-        ArrayList<WorkStation> workStations = new ArrayList<WorkStation>();
+        List<WorkStation> workStations = new ArrayList<WorkStation>();
 
         for (WorkStation workStation : workStationDao.findAll()) {
             workStations.add(workStation);

@@ -16,6 +16,8 @@ import { LoginModule } from './login/login.module';
 import { ModulesModule } from './modules/modules.module';
 import { SessionService } from './shared/session.service';
 
+import { StatusPipe } from './shared/status.pipe';
+
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
 }

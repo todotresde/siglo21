@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.WorkStation;
 import com.todotresde.siglo21.line.service.WorkStationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +12,8 @@ import java.util.List;
  */
 @RestController
 public class WorkStationController {
+    @Autowired
     private WorkStationService workStationService;
-
-    public WorkStationController(WorkStationService workStationService) {
-        this.workStationService = workStationService;
-    }
-
 
     @RequestMapping(value="/workStation", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     public List<User> all() {
-        ArrayList<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<User>();
 
         for (User user : userDao.findAll()) {
             users.add(user);

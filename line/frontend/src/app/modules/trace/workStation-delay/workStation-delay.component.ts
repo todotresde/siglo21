@@ -72,7 +72,7 @@ export class WorkStationDelayComponent implements OnInit, OnChanges {
     this.traceService
         .multipleSave(traces)
         .then(trace => {
-          this.message.success("success-delay-addedd");
+          this.message.success("");
 
           Commons.delay().then(() => {
             this.location.back();

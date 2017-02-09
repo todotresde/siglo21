@@ -52,12 +52,16 @@ export class UserDetailComponent implements OnInit {
           this.message.success("");
 
           Commons.delay().then(() => {
-            this.location.back();
+            this.back();
           });
         })
         .catch(error => {
           this.message.error(JSON.parse(error._body).message);
         })
+  }
+
+  back(): void{
+    this.location.back();
   }
 
 

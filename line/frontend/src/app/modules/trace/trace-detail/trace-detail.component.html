@@ -20,18 +20,20 @@
             <input class="form-control" type="text" id="product" [(ngModel)]="trace.manufacturingOrderProduct.product.description" placeholder="" readonly>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="trace.manufacturingOrderProduct.product.productType.hasWidth" >
         <label for="width" class="col-md-1 col-form-label">{{'width'|translate}}</label>
         <div class="col-md-1">
             <input class="form-control" type="text" id="width" [(ngModel)]="trace.manufacturingOrderProduct.width" placeholder="" readonly>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-2" *ngIf="!trace.manufacturingOrderProduct.product.productType.hasWidth" ></div>
+    <div class="form-group" *ngIf="trace.manufacturingOrderProduct.product.productType.hasHeight" >
         <label for="height" class="col-md-1 col-form-label">{{'height'|translate}}</label>
         <div class="col-md-1">
             <input class="form-control" type="text" id="height" [(ngModel)]="trace.manufacturingOrderProduct.height" placeholder="" readonly>
         </div>
     </div>
+    <div class="form-group col-md-2" *ngIf="!trace.manufacturingOrderProduct.product.productType.hasHeight" ></div>
 </div>
 <div class="row">
     <div class="form-group">

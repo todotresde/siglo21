@@ -24,7 +24,7 @@ public class DelayServiceImpl implements DelayService{
     private LineService lineService;
 
     public List<Delay> all() {
-        ArrayList<Delay> delays = new ArrayList<Delay>();
+        List<Delay> delays = new ArrayList<Delay>();
 
         for (Delay delay : delayDao.findAll()) {
             delays.add(delay);
@@ -49,7 +49,7 @@ public class DelayServiceImpl implements DelayService{
     }
 
     public List<WorkStationConfiguration> search(Long lineId, Date fromDate, Date toDate){
-        ArrayList<WorkStationConfiguration> workStationConfigurations = new ArrayList<WorkStationConfiguration>();
+        List<WorkStationConfiguration> workStationConfigurations = new ArrayList<WorkStationConfiguration>();
         Line line = lineService.byId(lineId);
 
         for(WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()){

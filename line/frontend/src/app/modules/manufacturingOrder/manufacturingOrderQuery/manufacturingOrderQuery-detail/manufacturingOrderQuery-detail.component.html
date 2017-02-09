@@ -1,0 +1,119 @@
+<div class="card">
+    <div class="card-block">
+        <h5 class="card-title"><i class="fa fa-industry"></i> {{'manufacturing-order'|translate}}</h5>
+        <hr/>
+        <app-message [message]="message"></app-message>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="form-group">
+                    <label for="code" class="col-md-1 col-form-label">{{'code'|translate}}</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" id="code" [(ngModel)]="manufacturingOrder.code" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="col-md-1 col-form-label">{{'date'|translate}}</label>
+                    <div class="col-md-3">
+                        <input class="form-control" type="date" id="date" [(ngModel)]="date" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id" class="col-md-1 col-form-label">{{'line'|translate}}</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" id="line" [(ngModel)]="line.name" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-secondary fa fa-close pull-right " (click)="back()"></button>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <h5 class="card-title">{{'traces'|translate}}</h5>
+            <div class="row table-header">
+                <div class="col-md-2">
+                    {{'manufacturing-order'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'product'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'work-station'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'user'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'status'|translate}}
+                </div>
+                <div class="col-md-1">
+                    {{'start-time'|translate}}
+                </div>
+                <div class="col-md-1">
+                    {{'end-time'|translate}}
+                </div>
+            </div>
+            <div class="row table-content" *ngFor="let trace of traces">
+                <div class="col-md-2">
+                    {{trace.manufacturingOrder.code}}
+                </div>
+                <div class="col-md-2">
+                    {{trace.manufacturingOrderProduct.product.description}}
+                </div>
+                <div class="col-md-2">
+                    {{trace.workStation.name}}
+                </div>
+                <div class="col-md-2">
+                    {{trace.user.name }}
+                </div>
+                <div class="col-md-2">
+                    {{trace.status | status | translate}}
+                </div>
+                <div class="col-md-1">
+                    {{trace.startTime | date : "dd-MM-yyyy hh:mm"}}
+                </div>
+                <div class="col-md-1">
+                    {{trace.endTime | date : "dd-MM-yyyy hh:mm" }}
+                </div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <h5 class="card-title">{{'delays'|translate}}</h5>
+            <div class="row table-header" >
+                <div class="col-md-2">
+                    {{'work-station'|translate}}
+                </div>
+                <div class="col-md-4">
+                    {{'delay-type'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'start'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'end'|translate}}
+                </div>
+                <div class="col-md-2">
+                    {{'time'|translate}}
+                </div>
+            </div>
+            <div class="row table-content" *ngFor="let delay of delays" >
+              <div class="col-md-2">
+                {{delay.workStation.name}}
+              </div>
+              <div class="col-md-4">
+                {{delay.delayType.description}}
+              </div>
+              <div class="col-md-2">
+                {{delay.startTime | date : "dd-MM-yyyy hh:mm a" }}
+              </div>
+              <div class="col-md-2">
+                {{delay.endTime | date : "dd-MM-yyyy hh:mm a" }}
+              </div>
+              <div class="col-md-2">
+                {{delay.time}}
+              </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

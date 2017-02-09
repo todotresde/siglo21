@@ -1,11 +1,13 @@
 import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Line } from '../line';
 import { LineService } from '../line.service';
 import { WorkStationConfiguration } from '../workStationConfiguration/workStationConfiguration';
 
 import { Message } from '../../../shared/message/message';
+import { Commons } from '../../../shared/commons';
 
 @Component({
   selector: 'app-line-detail',
@@ -16,7 +18,7 @@ export class LineDetailComponent implements OnInit {
   message: Message = new Message();
   line : Line;
   
-  constructor(private route: ActivatedRoute, private lineService: LineService) { 
+  constructor(private location: Location, private route: ActivatedRoute, private lineService: LineService) { 
     this.line = new Line();
   }
 
@@ -38,10 +40,12 @@ export class LineDetailComponent implements OnInit {
     this.lineService
         .save(this.line)
         .then(line => {
-          this.line = line; 
-
-          this.message.none();
-          this.goBack();
+          
+          this.message.success("");
+          
+          Commons.delay().then(() => {
+            this.back();
+          });
         }).catch(error => {
           this.message.error(JSON.parse(error._body).message);
         });
@@ -51,8 +55,8 @@ export class LineDetailComponent implements OnInit {
     this.line.workStationConfigurations = workStationConfigurations;
   }
 
-  goBack(): void {
-    window.history.back();
+  back(): void{
+    this.location.back();
   }
 
 }

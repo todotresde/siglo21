@@ -12,6 +12,7 @@ public interface TraceService {
     public List<Trace> allByWorkStation(Long id);
     public List<Trace> allByLineAndWorkStation(Long lineId, Long workStationId);
     public List<Trace> allByLineAndWorkStationAndStatus(Long lineId, Long workStationId, Integer status);
+    public List<Trace> allByManufacturingOrder(Long manufacturingOrderId);
     public Trace byId(Long id);
     public Trace delete(Long id);
     public Trace save(Trace trace);

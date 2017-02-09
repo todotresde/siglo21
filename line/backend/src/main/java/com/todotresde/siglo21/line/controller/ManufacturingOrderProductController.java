@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.ManufacturingOrderProduct;
 import com.todotresde.siglo21.line.service.ManufacturingOrderProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +12,8 @@ import java.util.List;
  */
 @RestController
 public class ManufacturingOrderProductController {
+    @Autowired
     private ManufacturingOrderProductService manufacturingOrderProductService;
-
-    public ManufacturingOrderProductController(ManufacturingOrderProductService manufacturingOrderProductService) {
-        this.manufacturingOrderProductService = manufacturingOrderProductService;
-    }
-
 
     @RequestMapping(value="/manufacturingOrderProduct", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

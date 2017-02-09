@@ -35,7 +35,7 @@ export class TraceListComponent implements OnInit, OnChanges {
     for (let propName in changes) {
       switch(propName){
           case "inputTrace": if(changes["inputTrace"].currentValue){this.load();} break;
-          case "inputTraces": break;
+          case "inputTraces": if(changes["inputTraces"].currentValue){this.traces = changes["inputTraces"].currentValue;} break;
       }
     }
   }

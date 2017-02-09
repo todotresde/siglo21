@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.DelayType;
 import com.todotresde.siglo21.line.service.DelayTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +12,8 @@ import java.util.List;
  */
 @RestController
 public class DelayTypeController {
+    @Autowired
     private DelayTypeService delayTypeService;
-
-    public DelayTypeController(DelayTypeService delayTypeService) {
-        this.delayTypeService = delayTypeService;
-    }
-
 
     @RequestMapping(value="/delayType", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

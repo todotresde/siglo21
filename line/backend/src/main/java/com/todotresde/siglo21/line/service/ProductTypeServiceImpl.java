@@ -19,7 +19,7 @@ public class ProductTypeServiceImpl implements ProductTypeService{
     private ProductTypeDao productTypeDao;
 
     public List<ProductType> all() {
-        ArrayList<ProductType> productTypes = new ArrayList<ProductType>();
+        List<ProductType> productTypes = new ArrayList<ProductType>();
 
         for (ProductType productType : productTypeDao.findAll()) {
             productTypes.add(productType);

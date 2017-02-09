@@ -60,4 +60,8 @@ export class ManufacturingOrderQueryComponent implements OnInit {
         this.message.error(JSON.parse(error._body).message);
       })
   }
+
+  select(manufacturingOrder: ManufacturingOrder): void{
+    this.router.navigate(['../manufacturingOrderQuery/', manufacturingOrder.id],{ relativeTo: this.r });
+  }
 }

@@ -35,6 +35,12 @@ export class TraceService {
                .toPromise();
   }
 
+  getAllByManufacturingOrder(manufacturingOrderId: Number): Promise<Trace[]> {
+    return this.http.get(environment.host + "/trace/manufacturingOrder/" + manufacturingOrderId)
+               .map(response => response.json() as Trace[])
+               .toPromise();
+  }
+
   get(id: Number): Promise<Trace> {
     return this.http.get(environment.host + "/trace/" + id)
                .map(response => response.json() as Trace)

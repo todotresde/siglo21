@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.controller;
 
 import com.todotresde.siglo21.line.model.Trace;
 import com.todotresde.siglo21.line.service.TraceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,12 +12,8 @@ import java.util.List;
  */
 @RestController
 public class TraceController {
+    @Autowired
     private TraceService traceService;
-
-    public TraceController(TraceService traceService) {
-        this.traceService = traceService;
-    }
-
 
     @RequestMapping(value="/trace", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody
@@ -40,6 +37,12 @@ public class TraceController {
     public @ResponseBody
     List<Trace> allByLineAndWorkstationAndStatus(@PathVariable Long lineId, @PathVariable Long workStationId, @PathVariable Integer status) {
         return this.traceService.allByLineAndWorkStationAndStatus(lineId, workStationId, status);
+    }
+
+    @RequestMapping(value="/trace/manufacturingOrder/{id}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<Trace> allByManufacturingOrder(@PathVariable Long id) {
+        return this.traceService.allByManufacturingOrder(id);
     }
 
     @RequestMapping(value="/trace/{id}", method= RequestMethod.GET, produces="application/json")

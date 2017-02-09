@@ -4,6 +4,7 @@ import com.todotresde.siglo21.line.model.Delay;
 import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
 import com.todotresde.siglo21.line.service.DelayService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -14,12 +15,8 @@ import java.util.List;
  */
 @RestController
 public class DelayController {
+    @Autowired
     private DelayService delayService;
-
-    public DelayController(DelayService delayService) {
-        this.delayService = delayService;
-    }
-
 
     @RequestMapping(value="/delay", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

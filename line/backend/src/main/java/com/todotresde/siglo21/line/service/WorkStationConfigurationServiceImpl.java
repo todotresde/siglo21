@@ -22,7 +22,7 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
     private LineService lineService;
 
     public List<WorkStationConfiguration> all() {
-        ArrayList<WorkStationConfiguration> workStationConfigurations = new ArrayList<WorkStationConfiguration>();
+        List<WorkStationConfiguration> workStationConfigurations = new ArrayList<WorkStationConfiguration>();
 
         for (WorkStationConfiguration workStationConfiguration : workStationConfigurationDao.findAll()) {
             workStationConfigurations.add(workStationConfiguration);

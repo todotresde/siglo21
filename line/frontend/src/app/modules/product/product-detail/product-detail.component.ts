@@ -61,7 +61,7 @@ export class ProductDetailComponent implements OnInit {
           this.message.success("");
 
           Commons.delay().then(() => {
-            this.location.back();
+            this.back();
           });
         })
         .catch(error => {
@@ -71,6 +71,10 @@ export class ProductDetailComponent implements OnInit {
 
   onProductTypeSelected(selected: CompleterItem): void{
     this.selectedProductType = selected.originalObject;
+  }
+
+  back(): void{
+    this.location.back()
   }
 
 }

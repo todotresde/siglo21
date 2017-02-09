@@ -11,13 +11,14 @@
                         <input class="form-control" type="text" id="name" [(ngModel)]="line.name" placeholder="{{'name'}}">
                     </div>
                 </div>
-                <div class="form-group pull-right">
+                <div class="form-group">
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-secondary fa fa-check" (click)="save()"></button>
+                        <button type="button" class="btn btn-secondary fa fa-check pull-right" (click)="save()"></button>
+                        <button type="button" class="btn btn-secondary fa fa-close pull-right" (click)="back()"></button>
                     </div>
                 </div>
             </div>
-
+            <div class="row">&nbsp;</div>
             <app-workstation-configuration 
                 [inputWorkStationConfigurations]="line.workStationConfigurations" 
                 (outputWorkStationConfigurations)="addWorkStationConfigurations($event)"></app-workstation-configuration>
