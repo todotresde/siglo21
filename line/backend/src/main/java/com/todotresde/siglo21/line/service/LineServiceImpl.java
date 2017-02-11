@@ -22,7 +22,7 @@ public class LineServiceImpl implements LineService{
     private LineDao lineDao;
 
     public List<Line> all() {
-        ArrayList<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<Line>();
 
         for (Line line : lineDao.findAll()) {
             lines.add(line);

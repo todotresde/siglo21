@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
  * Created by Leonardo on 27/12/2016.
  */
 @Transactional
-public interface ManufacturingOrderCustomProductDao extends CrudRepository<ManufacturingOrderCustomProduct, Long> {
+public interface ManufacturingOrderCustomProductDao extends CrudRepository<ManufacturingOrderCustomProduct, Long>{
     public ManufacturingOrderCustomProduct findById(Long id);
     public void delete(Long id);
     public ManufacturingOrderCustomProduct save(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct);
