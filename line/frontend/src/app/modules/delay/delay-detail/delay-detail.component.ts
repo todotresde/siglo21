@@ -75,4 +75,8 @@ export class DelayDetailComponent implements OnInit, OnChanges {
         })
   }
 
+  back(): void{
+    this.location.back();
+  }
+
 }

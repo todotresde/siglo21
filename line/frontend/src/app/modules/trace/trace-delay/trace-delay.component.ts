@@ -17,7 +17,7 @@ import { SessionService } from '../../../shared/session.service';
 })
 export class TraceDelayComponent implements OnInit, OnChanges {
   
-  trace: Trace;
+  traces: Trace[];
   message: Message = new Message();
   selectedDelay : Delay;
   
@@ -26,7 +26,7 @@ export class TraceDelayComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
-    this.trace = this.sessionService.get("traceDelay");
+    this.traces = this.sessionService.get("tracesDelay");
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
@@ -34,10 +34,12 @@ export class TraceDelayComponent implements OnInit, OnChanges {
   }
 
   updateDelays(delay: Delay): void {
-    this.trace.delays.push(delay);
+    this.traces.forEach(trace => {
+      trace.delays.push(delay);
+    });
 
     this.traceService
-        .save(this.trace)
+        .multipleSave(this.traces)
         .then(trace => {
           this.message.success("");
 
@@ -47,8 +49,6 @@ export class TraceDelayComponent implements OnInit, OnChanges {
         }).catch(error => {
           
         })
-
-    
   }
 
 }

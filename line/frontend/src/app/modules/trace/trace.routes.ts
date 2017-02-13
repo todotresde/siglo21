@@ -17,7 +17,7 @@ export const TraceRoutes: Route[] = [
 		children: [
     	]
 	},{
-		path: 'trace/line/:lineId/workStation/:workStationId/traceDelay/:traceId',
+		path: 'trace/line/:lineId/workStation/:workStationId/tracesDelay',
 		component: TraceDelayComponent,
 		children: [
     	]

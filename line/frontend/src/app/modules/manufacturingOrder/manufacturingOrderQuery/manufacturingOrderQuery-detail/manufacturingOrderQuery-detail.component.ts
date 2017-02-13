@@ -74,7 +74,6 @@ export class ManufacturingOrderQueryDetailComponent implements OnInit {
             this.delays.push(delayQuery);
           })
         })
-        debugger
         this.traces = this.sortPipe.transform(traces,"code,workStation.name");
       })
       .catch(error => {

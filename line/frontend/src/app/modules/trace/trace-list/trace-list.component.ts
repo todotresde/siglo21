@@ -52,8 +52,8 @@ export class TraceListComponent implements OnInit, OnChanges {
     }
   }
 
-  activate(traceByCode: any): void {
-    this.outputTraces.emit(traceByCode);
+  activate(traceGroupByCode: TraceGroupByCode): void {
+    this.outputTraces.emit(traceGroupByCode.traces);
   }
 
   selectByCode(code: String): void{
@@ -69,9 +69,9 @@ export class TraceListComponent implements OnInit, OnChanges {
       this.outputFinishTraces.emit(traces);
   }
 
-  delay(trace: Trace): void{
-    this.sessionService.set("traceDelay", trace);
-    this.router.navigate(['./traceDelay', trace.id],{ relativeTo: this.r });
+  delay(traceGroupByCode: TraceGroupByCode): void{
+    this.sessionService.set("tracesDelay", traceGroupByCode.traces);
+    this.router.navigate(['./tracesDelay'],{ relativeTo: this.r });
   }
 
   private load(): void{

@@ -10,11 +10,11 @@
 <div class="form-group row">
     <label for="startDate" class="col-md-2 col-form-label">{{'start-date'|translate}}</label>
     <div class="col-md-4">
-        <input class="form-control" type="date" id="startDate" [(ngModel)]="time.startDate" placeholder="" readonly>
+        <input class="form-control" type="date" id="startDate" [(ngModel)]="time.startDate" placeholder="">
     </div>
     <label for="startTime" class="col-md-2 col-form-label">{{'start-time'|translate}}</label>
     <div class="col-md-4">
-        <input class="form-control" type="time" id="startTime" [(ngModel)]="time.startTime" placeholder="" readonly>
+        <input class="form-control" type="time" id="startTime" [(ngModel)]="time.startTime" placeholder="">
     </div>
 </div>
 <div class="form-group row">
@@ -34,5 +34,6 @@
     </div>
     <div class="col-md-2">
         <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="save(delay)"></button>
+        <button type="button" class="btn btn-secondary pull-right fa fa-close" (click)="back(delay)"></button>
     </div>
 </div>

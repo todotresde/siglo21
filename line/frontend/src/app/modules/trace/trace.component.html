@@ -9,17 +9,20 @@
             </div>
         	<div class="col-md-2">
         		<button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="workStationDelay(line, workStation)"></button>
+                <button type="button" class="btn btn-secondary fa fa-check pull-right" (click)="finishTraces(selectedTraces)"></button>
         	</div>
     	</div>
         <hr/>
         <div class="container-fluid">
-            <app-trace-detail [inputTrace]="selectedTrace" [inputTracesToBeFinished]="selectedTracesToBeFinished" (outputTraces)="activeTraces($event)"></app-trace-detail>
+            <app-trace-detail [inputTraces]="selectedTraces" [inputTracesToBeFinished]="selectedTracesToBeFinished" (outputTraces)="activeTraces($event)"></app-trace-detail>
+            <!--
             <div *ngIf="selectedTrace?.delays.length < 0" >
             	<hr/>
             	<h6 class="card-title">{{'delays'|translate}}</h6>
             	<app-delay-list [inputDelays]="selectedTrace.delays"></app-delay-list>
             </div>
             <hr/>
+            -->
             <app-trace-list [reload]="selectedTraces" (outputTraces)="activeTraces($event)" (outputFinishTraces)="finishTraces($event)"></app-trace-list>
         </div>
     </div>

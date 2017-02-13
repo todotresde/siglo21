@@ -5,6 +5,7 @@ import { Trace } from '../trace';
 import { TraceService } from '../trace.service';
 
 import { Message } from '../../../shared/message/message';
+import { Commons } from '../../../shared/commons';
 
 @Component({
   selector: 'app-trace-detail',
@@ -12,15 +13,15 @@ import { Message } from '../../../shared/message/message';
   providers:[TraceService]
 })
 export class TraceDetailComponent implements OnInit, OnChanges {
-  @Input() inputTrace;
+  @Input() inputTraces;
   @Input() inputTracesToBeFinished;
   @Output() outputTraces = new EventEmitter<Trace[]>();
   
   message: Message = new Message();
-  trace : Trace;
+  traces : Trace[];
   
   constructor(private route: ActivatedRoute, private traceService: TraceService) { 
-    this.trace = new Trace();
+    this.traces = [];
   }
 
   ngOnInit() : void{
@@ -33,9 +34,9 @@ export class TraceDetailComponent implements OnInit, OnChanges {
     
     for (let propName in changes) {
       switch(propName){
-          case "inputTrace": 
-            if(changes["inputTrace"].currentValue != null)
-              this.trace = changes["inputTrace"].currentValue; 
+          case "inputTraces": 
+            if(changes["inputTraces"].currentValue != null)
+              this.traces = this.setStartTime(changes["inputTraces"].currentValue);
             break;
           case "inputTracesToBeFinished": 
             if(changes["inputTracesToBeFinished"].currentValue != null)
@@ -53,10 +54,18 @@ export class TraceDetailComponent implements OnInit, OnChanges {
 
           this.outputTraces.emit(traces);
 
-          this.trace = new Trace();
+          this.traces = [];
         }).catch(error => {
           this.message.error(JSON.parse(error._body).message);
         })
+  }
+
+  private setStartTime(traces: Trace[]): Trace[]{
+    traces.forEach(trace => {
+      trace.startTime = new Date();
+    })
+
+    return traces;
   }
 
 }

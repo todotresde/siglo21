@@ -147,7 +147,7 @@ public class TraceServiceImpl implements TraceService{
         Trace nextTrace = trace.getNextTrace();
 
         if(nextTrace != null) {
-            nextTrace.setStartTime(new Date());
+            nextTrace.setInTime(new Date());
             nextTrace.setStatus(1);
             traceDao.save(nextTrace);
         }

@@ -15,6 +15,7 @@ export class Trace {
     workStation : WorkStation = new WorkStation();
     manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
     manufacturingOrderProduct: ManufacturingOrderProduct = new ManufacturingOrderProduct();
+    inTime: Date;
     startTime: Date;
     endTime : Date;
     time: number;
@@ -24,6 +25,7 @@ export class Trace {
 
     constructor(options?: any){
         if(options){
+            let inTime = new Date(); (options.inTime) ? inTime.setTime(options.inTime) : new Date();
             let startTime = new Date(); (options.startTime) ? startTime.setTime(options.startTime) : new Date();
             let endTime = new Date(); (options.endDate) ? endTime.setTime(options.endDate) : new Date();
 
@@ -34,6 +36,7 @@ export class Trace {
             this.workStation = (options.workStation) ? new WorkStation(options.workStation) : null;
             this.manufacturingOrderCustomProduct = (options.manufacturingOrderCustomProduct) ? new ManufacturingOrderCustomProduct(options.manufacturingOrderCustomProduct) : null;
             this.manufacturingOrderProduct = (options.manufacturingOrderProduct) ? new ManufacturingOrderProduct(options.manufacturingOrderProduct) : null;
+            this.inTime = inTime;
             this.startTime = startTime;
             this.endTime = endTime;
             this.time = (options.time) ? options.time : 0;

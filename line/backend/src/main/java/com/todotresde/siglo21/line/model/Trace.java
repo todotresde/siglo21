@@ -39,6 +39,7 @@ public class Trace {
     private ManufacturingOrderCustomProduct manufacturingOrderCustomProduct;
     @OneToOne
     private ManufacturingOrderProduct manufacturingOrderProduct;
+    private Date inTime;
     private Date startTime;
     private Date endTime;
     private Long time;
@@ -132,6 +133,14 @@ public class Trace {
 
     public void setManufacturingOrderCustomProduct(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct) {
         this.manufacturingOrderCustomProduct = manufacturingOrderCustomProduct;
+    }
+
+    public Date getInTime() {
+        return inTime;
+    }
+
+    public void setInTime(Date inTime) {
+        this.inTime = inTime;
     }
 
     public Date getStartTime() {

@@ -135,10 +135,10 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                         trace.setManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
                         trace.setManufacturingOrderProduct(manufacturingOrderProduct);
                         trace.setUser(user);
-
                         trace.setWorkStation(workStationConfiguration.getWorkStation());
                         trace.setNextWorkStation(workStationConfiguration.getNextWorkStation());
                         trace.setPreviousWorkStation(workStationConfiguration.getPrevWorkStation());
+                        trace.setInTime(new Date());
 
                         if(workStationConfiguration.getFirst()) {
                             trace.setStatus(1);

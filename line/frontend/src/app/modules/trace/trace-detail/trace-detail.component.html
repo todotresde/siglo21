@@ -1,56 +1,59 @@
 <app-message [message]="message"></app-message>
-<div class="row">
-    <div class="form-group">
-        <label for="code" class="col-md-2 col-form-label">{{'code'|translate}}</label>
-        <div class="col-md-10">
-            <input class="form-control" type="text" id="code" [(ngModel)]="trace.code" placeholder="" readonly>
+<div *ngFor="let trace of traces; let isFirst= first;">
+    <div class="row" *ngIf="isFirst">
+        <div class="form-group">
+            <label for="manufacturingOrder" class="col-md-1 col-form-label">{{'manufacturing-order-acronym'|translate}}</label>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="manufacturingOrder" [(ngModel)]="trace.manufacturingOrder.code" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="code" class="col-md-1 col-form-label">{{'code'|translate}}</label>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="code" [(ngModel)]="trace.code" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inTime" class="col-md-1 col-form-label">{{'in'|translate}}</label>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="inTime" value="{{trace.inTime | date: 'dd-MM-yyyy hh:mm'}}" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="startTime" class="col-md-1 col-form-label">{{'start'|translate}}</label>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="startTime" value="{{trace.startTime | date: 'dd-MM-yyyy hh:mm'}}" placeholder="" readonly>
+            </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="form-group">
-        <label for="manufacturingOrder" class="col-md-2 col-form-label">{{'manufacturing-order'|translate}}</label>
-        <div class="col-md-2">
-            <input class="form-control" type="text" id="manufacturingOrder" [(ngModel)]="trace.manufacturingOrder.code" placeholder="" readonly>
+    <hr *ngIf="isFirst" />
+    <div class="row">
+        <div class="form-group">
+            <label for="product" class="col-md-1 col-form-label">{{'product'|translate}}</label>
+            <div class="col-md-5">
+                <input class="form-control" type="text" id="product" [(ngModel)]="trace.manufacturingOrderProduct.product.description" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="trace.manufacturingOrderProduct.product.productType.hasWidth" >
+            <label for="width" class="col-md-1 col-form-label">{{'width'|translate}}</label>
+            <div class="col-md-1">
+                <input class="form-control" type="text" id="width" [(ngModel)]="trace.manufacturingOrderProduct.width" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="form-group col-md-2" *ngIf="!trace.manufacturingOrderProduct.product.productType.hasWidth" ></div>
+        <div class="form-group" *ngIf="trace.manufacturingOrderProduct.product.productType.hasHeight" >
+            <label for="height" class="col-md-1 col-form-label">{{'height'|translate}}</label>
+            <div class="col-md-1">
+                <input class="form-control" type="text" id="height" [(ngModel)]="trace.manufacturingOrderProduct.height" placeholder="" readonly>
+            </div>
+        </div>
+        <div class="form-group col-md-2" *ngIf="!trace.manufacturingOrderProduct.product.productType.hasHeight" ></div>
+        <div class="form-group" >
+            <label for="quantity" class="col-md-1 col-form-label">{{'quantity'|translate}}</label>
+            <div class="col-md-1">
+                <input class="form-control" type="text" id="quantity" [(ngModel)]="trace.manufacturingOrderProduct.quantity" placeholder="" readonly>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="product" class="col-md-1 col-form-label">{{'product'|translate}}</label>
-        <div class="col-md-3">
-            <input class="form-control" type="text" id="product" [(ngModel)]="trace.manufacturingOrderProduct.product.description" placeholder="" readonly>
-        </div>
-    </div>
-    <div class="form-group" *ngIf="trace.manufacturingOrderProduct.product.productType.hasWidth" >
-        <label for="width" class="col-md-1 col-form-label">{{'width'|translate}}</label>
-        <div class="col-md-1">
-            <input class="form-control" type="text" id="width" [(ngModel)]="trace.manufacturingOrderProduct.width" placeholder="" readonly>
-        </div>
-    </div>
-    <div class="form-group col-md-2" *ngIf="!trace.manufacturingOrderProduct.product.productType.hasWidth" ></div>
-    <div class="form-group" *ngIf="trace.manufacturingOrderProduct.product.productType.hasHeight" >
-        <label for="height" class="col-md-1 col-form-label">{{'height'|translate}}</label>
-        <div class="col-md-1">
-            <input class="form-control" type="text" id="height" [(ngModel)]="trace.manufacturingOrderProduct.height" placeholder="" readonly>
-        </div>
-    </div>
-    <div class="form-group col-md-2" *ngIf="!trace.manufacturingOrderProduct.product.productType.hasHeight" ></div>
-</div>
-<div class="row">
-    <div class="form-group">
-        <label for="startTime" class="col-md-2 col-form-label">{{'start-time'|translate}}</label>
-        <div class="col-md-2">
-            <input class="form-control" type="text" id="startTime" [(ngModel)]="trace.startTime" placeholder="" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="endTime" class="col-md-1 col-form-label">{{'end-time'|translate}}</label>
-        <div class="col-md-2">
-            <input class="form-control" type="text" id="endTime" [(ngModel)]="trace.endTime" placeholder="" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-5">
-            <button type="button" class="btn btn-secondary pull-right fa fa-check" (click)="finish(trace)"></button>
-        </div>
-    </div>
+    <hr/>
 </div>

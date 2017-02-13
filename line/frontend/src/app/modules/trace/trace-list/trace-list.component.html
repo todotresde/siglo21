@@ -17,10 +17,10 @@
     <div class="col-md-2">
         {{'manufacturing-order'|translate}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         {{'code'|translate}}
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         {{'product'|translate}}
     </div>
     <div class="col-md-1">
@@ -30,7 +30,7 @@
         {{'height'|translate}}
     </div>
     <div class="col-md-1">
-        {{'status'|translate}}
+        {{'quantity'|translate}}
     </div>
     <div class="col-md-2 pull-right">
     </div>
@@ -40,12 +40,12 @@
         <div class="col-md-2" *ngIf="isFirst">
             {{trace.manufacturingOrder.code}}
         </div>
-        <div class="col-md-3" *ngIf="isFirst">
+        <div class="col-md-2" *ngIf="isFirst">
             {{trace.code}}
         </div>
-        <div class="col-md-5" *ngIf="!isFirst">
+        <div class="col-md-4" *ngIf="!isFirst">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             {{trace.manufacturingOrderProduct.product.description}}
         </div>
         <div class="col-md-1">
@@ -59,11 +59,13 @@
             </span>
         </div>
         <div class="col-md-1">
-            {{trace.status }}
+            <span >
+                {{trace.manufacturingOrderProduct.quantity}}
+            </span>
         </div>
         <div class="col-md-2" *ngIf="isFirst">
-            <button type="button" class="btn btn-secondary fa fa-wrench pull-right" (click)="activate(traceByCode)"></button>
-            <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(traceByCode)"></button>
+            <button type="button" class="btn btn-secondary fa fa-wrench pull-right" (click)="activate(traceGroupByCode)"></button>
+            <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(traceGroupByCode)"></button>
         </div>
         <div class="col-md-2" *ngIf="!isFirst">
         </div>

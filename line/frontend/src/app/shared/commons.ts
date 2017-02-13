@@ -32,6 +32,10 @@ export class Commons {
         return array;
     }
 
+    public static convertDateString(date: Date): string {
+        return this.convertDateToDateString(date) + " " + this.convertDateToTimeString(date);
+    }
+
     public static convertDateToDateString(date: Date): string {
         return this.datePipe.transform(date ? date : new Date(), 'yyyy-MM-dd');
     }

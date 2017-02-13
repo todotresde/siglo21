@@ -41,16 +41,25 @@
                 <div class="col-md-2">
                     {{'product'|translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
+                    {{'width'|translate}}
+                </div>
+                <div class="col-md-1">
+                    {{'height'|translate}}
+                </div>
+                <div class="col-md-1">
+                    {{'quantity'|translate}}
+                </div>
+                <div class="col-md-1">
                     {{'work-station'|translate}}
                 </div>
                 <div class="col-md-1">
                     {{'status'|translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{'start-time'|translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{'end-time'|translate}}
                 </div>
             </div>
@@ -64,16 +73,25 @@
                 <div class="col-md-2">
                     {{trace.manufacturingOrderProduct.product.description}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
+                    {{trace.manufacturingOrderProduct.width}}
+                </div>
+                <div class="col-md-1">
+                    {{trace.manufacturingOrderProduct.height}}
+                </div>
+                <div class="col-md-1">
+                    {{trace.manufacturingOrderProduct.quantity}}
+                </div>
+                <div class="col-md-1">
                     {{trace.workStation.name}}
                 </div>
                 <div class="col-md-1">
                     {{trace.status | status | translate}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{trace.startTime | date : "dd-MM-yyyy hh:mm"}}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{trace.endTime | date : "dd-MM-yyyy hh:mm" }}
                 </div>
             </div>
