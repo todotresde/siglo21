@@ -86,6 +86,7 @@
 	"pending" : "Pendiente",
 	"trace" : "Seguimiento",
 	"traces" : "Seguimientos",
+	"manufacturing-order-acronym" : "O.F.",
 	"success-sending-to-production" : "Enviado a Producción Correctamente!",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",

@@ -2,6 +2,7 @@ import { Shared } from '../../shared/shared';
 import { ManufacturingOrder } from '../manufacturingOrder/manufacturingOrder';
 import { Line } from '../line/line';
 import { WorkStation } from '../workStation/workStation';
+import { ManufacturingOrderCustomProduct } from '../manufacturingOrder/manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
 import { ManufacturingOrderProduct } from '../manufacturingOrder/manufacturingOrderProduct/manufacturingOrderProduct';
 import { User } from '../user/user';
 import { Delay } from '../delay/delay';
@@ -12,6 +13,7 @@ export class Trace {
     manufacturingOrder : ManufacturingOrder = new ManufacturingOrder();
     line : Line = new Line();
     workStation : WorkStation = new WorkStation();
+    manufacturingOrderCustomProduct: ManufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
     manufacturingOrderProduct: ManufacturingOrderProduct = new ManufacturingOrderProduct();
     startTime: Date;
     endTime : Date;
@@ -30,6 +32,7 @@ export class Trace {
             this.manufacturingOrder = (options.manufacturingOrder) ? new ManufacturingOrder(options.manufacturingOrder) : null;
             this.line = (options.line) ? new Line(options.line) : null;
             this.workStation = (options.workStation) ? new WorkStation(options.workStation) : null;
+            this.manufacturingOrderCustomProduct = (options.manufacturingOrderCustomProduct) ? new ManufacturingOrderCustomProduct(options.manufacturingOrderCustomProduct) : null;
             this.manufacturingOrderProduct = (options.manufacturingOrderProduct) ? new ManufacturingOrderProduct(options.manufacturingOrderProduct) : null;
             this.startTime = startTime;
             this.endTime = endTime;

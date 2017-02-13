@@ -15,9 +15,7 @@ public class ManufacturingOrderProduct {
     @Id
     @NotNull
     private Long id;
-    @NotNull
     private Double width;
-    @NotNull
     private Double height;
     @NotNull
     private Integer quantity;
@@ -46,7 +44,7 @@ public class ManufacturingOrderProduct {
     }
 
     public Double getWidth() {
-        return width;
+        return (width != null) ? width : 0;
     }
 
     public void setWidth(Double width) {
@@ -54,7 +52,7 @@ public class ManufacturingOrderProduct {
     }
 
     public Double getHeight() {
-        return height;
+        return (height != null) ? height : 0;
     }
 
     public void setHeight(Double height) {

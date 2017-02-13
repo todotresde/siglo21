@@ -28,7 +28,7 @@ export class ManufacturingOrderProductComponent implements OnInit, OnChanges {
   }
 
   setManufacturingOrderProduct(manufacturingOrderProduct: ManufacturingOrderProduct) : void{
-    this.manufacturingOrderProduct = manufacturingOrderProduct;
+    //this.manufacturingOrderProduct = manufacturingOrderProduct;
     this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
   }
 

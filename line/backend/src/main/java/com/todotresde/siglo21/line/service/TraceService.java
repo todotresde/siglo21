@@ -17,5 +17,5 @@ public interface TraceService {
     public Trace delete(Long id);
     public Trace save(Trace trace);
     public List<Trace> multipleSave(List<Trace> traces);
-    public Trace finish(Trace trace);
+    public List<Trace> finish(List<Trace> traces);
 }

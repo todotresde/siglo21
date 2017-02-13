@@ -7,20 +7,32 @@ import { TraceService } from '../trace.service';
 import { Message } from '../../../shared/message/message';
 import { SessionService } from '../../../shared/session.service';
 
+export class TraceGroupByCode {
+  code: String;
+  traces: Trace[];
+
+  constructor(code: String, traces: Trace[]){
+    this.code = code;
+    this.traces = traces;
+  }
+}
+
 @Component({
   selector: 'app-trace-list',
   templateUrl: './trace-list.component.html',
   providers:[TraceService]
 })
 export class TraceListComponent implements OnInit, OnChanges {
-  @Input() inputTrace = new Trace();
+  @Input() reload: any;
   @Input() inputTraces = new Trace();
-  @Output() outputTrace = new EventEmitter<Trace>();
-  @Output() outputFinishTrace = new EventEmitter<Trace>();
+  @Output() outputTraces = new EventEmitter<Trace[]>();
+  @Output() outputFinishTraces = new EventEmitter<Trace[]>();
 
   message: Message = new Message();
-  traces: Trace[];
+  
+  tracesGroupByCode: TraceGroupByCode[] = [];
   code: String = "";
+
 
   constructor(private route: ActivatedRoute, private router: Router, private traceService: TraceService, private r:ActivatedRoute, private sessionService: SessionService) {
 
@@ -28,33 +40,33 @@ export class TraceListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void{
     this.load();
-    
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+
     for (let propName in changes) {
       switch(propName){
-          case "inputTrace": if(changes["inputTrace"].currentValue){this.load();} break;
-          case "inputTraces": if(changes["inputTraces"].currentValue){this.traces = changes["inputTraces"].currentValue;} break;
+          case "reload": if(changes["reload"].currentValue){this.load();} break;
+          //case "inputTraces": if(changes["inputTraces"].currentValue){this.joinTracesByManufacturingOrderCustomProduct(changes["inputTraces"].currentValue);} break;
       }
     }
   }
 
-  activate(trace: Trace): void {
-    this.outputTrace.emit(trace);
+  activate(traceByCode: any): void {
+    this.outputTraces.emit(traceByCode);
   }
 
   selectByCode(code: String): void{
-    let trace: Trace;
+    let traces: Trace[] = [];
 
-    this.traces.forEach(t => {
-      if(t.code == code){
-        trace = t;
+    this.tracesGroupByCode.forEach(traceGroupByCode => {
+      if(traceGroupByCode.code == code){
+        traces = traceGroupByCode.traces;
       }
     });
     
-    if(trace != null)
-      this.outputFinishTrace.emit(trace);
+    if(traces != null)
+      this.outputFinishTraces.emit(traces);
   }
 
   delay(trace: Trace): void{
@@ -64,16 +76,39 @@ export class TraceListComponent implements OnInit, OnChanges {
 
   private load(): void{
     this.route.params.subscribe(params => {
+      this.code = "";
+
       if(params["lineId"] && params["workStationId"]){
         this.traceService.getAllByLineAndWorkStationAndStatus(params["lineId"], params["workStationId"], 1)
           .then(traces => {
-            this.traces = traces;
+            this.joinTracesByManufacturingOrderCustomProduct(traces);
           })
           .catch(error => { 
             this.message.error(JSON.parse(error._body).message);
           });
       }
     });
+  }
+
+  private joinTracesByManufacturingOrderCustomProduct(traces: Trace[]){
+    this.tracesGroupByCode = [];
+            
+    traces.forEach(trace => {
+      let found = false;
+
+      this.tracesGroupByCode.forEach(traceGroupByCode => {
+        if(traceGroupByCode.code == trace.code && !found){
+          traceGroupByCode.traces.push(trace);
+          found = true;
+        }
+      })
+      
+      if(!found){
+        let traceGroupByCode = new TraceGroupByCode(trace.code, [trace]);
+        this.tracesGroupByCode.push(traceGroupByCode);
+      }
+    }, this);
+
   }
 
 }

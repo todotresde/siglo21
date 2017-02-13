@@ -9,6 +9,7 @@ import java.util.List;
 public interface ProductTypeService {
     public List<ProductType> all();
     public ProductType byId(Long id);
+    public ProductType byCode(String code);
     public List<ProductType> byNameContaining(String name);
     public ProductType delete(Long id);
     public ProductType save(ProductType productType);

@@ -32,8 +32,11 @@
             <hr/>
             <h5 class="card-title">{{'traces'|translate}}</h5>
             <div class="row table-header">
+                <div class="col-md-1">
+                    {{'manufacturing-order-acronym'|translate}}
+                </div>
                 <div class="col-md-2">
-                    {{'manufacturing-order'|translate}}
+                    {{'code'|translate}}
                 </div>
                 <div class="col-md-2">
                     {{'product'|translate}}
@@ -41,22 +44,22 @@
                 <div class="col-md-2">
                     {{'work-station'|translate}}
                 </div>
-                <div class="col-md-2">
-                    {{'user'|translate}}
-                </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{'status'|translate}}
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     {{'start-time'|translate}}
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     {{'end-time'|translate}}
                 </div>
             </div>
             <div class="row table-content" *ngFor="let trace of traces">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{trace.manufacturingOrder.code}}
+                </div>
+                <div class="col-md-2">
+                    {{trace.code}}
                 </div>
                 <div class="col-md-2">
                     {{trace.manufacturingOrderProduct.product.description}}
@@ -64,16 +67,13 @@
                 <div class="col-md-2">
                     {{trace.workStation.name}}
                 </div>
-                <div class="col-md-2">
-                    {{trace.user.name }}
-                </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     {{trace.status | status | translate}}
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     {{trace.startTime | date : "dd-MM-yyyy hh:mm"}}
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     {{trace.endTime | date : "dd-MM-yyyy hh:mm" }}
                 </div>
             </div>

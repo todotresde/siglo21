@@ -13,4 +13,5 @@ public interface ProductService {
     public List<Product> byDescriptionContaining(String description);
     public Product delete(Long id);
     public Product save(Product product);
+    public List<Product> importProducts();
 }

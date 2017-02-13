@@ -51,10 +51,18 @@ export class WorkStationConfigurationComponent implements OnInit, OnChanges {
 
   private exist(workStationConfiguration: WorkStationConfiguration): boolean{
     let result: WorkStationConfiguration[] = this.workStationConfigurations.filter(w => {
-      return w.workStation.id === workStationConfiguration.workStation.id && 
-        w.nextWorkStation.id === workStationConfiguration.nextWorkStation.id && 
-        w.prevWorkStation.id === workStationConfiguration.prevWorkStation.id &&
-        w.id !== workStationConfiguration.id;
+      let result = w.workStation.id === workStationConfiguration.workStation.id;
+      
+      if(w.first === true){
+        return result && w.nextWorkStation.id === workStationConfiguration.nextWorkStation.id && w.prevWorkStation == null
+      }  
+
+      if(w.last === true){
+        return result && w.prevWorkStation.id === workStationConfiguration.prevWorkStation.id && w.nextWorkStation == null
+      }  
+
+      return result && w.nextWorkStation.id === workStationConfiguration.nextWorkStation.id && 
+        w.prevWorkStation.id === workStationConfiguration.prevWorkStation.id;
     });
     return result.length > 0;
   }

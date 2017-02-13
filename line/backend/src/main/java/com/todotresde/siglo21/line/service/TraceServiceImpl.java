@@ -4,17 +4,12 @@ import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.dao.ManufacturingOrderDao;
 import com.todotresde.siglo21.line.dao.TraceDao;
 import com.todotresde.siglo21.line.dao.WorkStationDao;
-import com.todotresde.siglo21.line.model.Line;
-import com.todotresde.siglo21.line.model.ManufacturingOrder;
-import com.todotresde.siglo21.line.model.Trace;
-import com.todotresde.siglo21.line.model.WorkStation;
+import com.todotresde.siglo21.line.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Leonardo on 26/12/2016.
@@ -23,13 +18,15 @@ import java.util.List;
 @Transactional
 public class TraceServiceImpl implements TraceService{
     @Autowired
-    private LineDao lineDao;
+    private LineService lineService;
     @Autowired
-    private WorkStationDao workStationDao;
+    private WorkStationService workStationService;
     @Autowired
     private TraceDao traceDao;
     @Autowired
-    private ManufacturingOrderDao manufacturingOrderDao;
+    private ManufacturingOrderService manufacturingOrderService;
+    @Autowired
+    private WorkStationConfigurationService workStationConfigurationService;
 
     public List<Trace> all() {
         List<Trace> traces = new ArrayList<Trace>();
@@ -44,7 +41,7 @@ public class TraceServiceImpl implements TraceService{
     public List<Trace> allByWorkStation(Long id) {
         List<Trace> traces = new ArrayList<Trace>();
 
-        for (Trace trace : traceDao.findByWorkStation(workStationDao.findById(id))) {
+        for (Trace trace : traceDao.findByWorkStation(workStationService.byId(id))) {
             traces.add(trace);
         }
 
@@ -54,7 +51,7 @@ public class TraceServiceImpl implements TraceService{
     public List<Trace> allByLineAndWorkStation(Long lineId, Long workStationId) {
         List<Trace> traces = new ArrayList<Trace>();
 
-        for (Trace traceByLine : traceDao.findByLine(lineDao.findById(lineId))) {
+        for (Trace traceByLine : traceDao.findByLine(lineService.byId(lineId))) {
             if (traceByLine.getWorkStation().getId().equals(workStationId)) {
                 traces.add(traceByLine);
             }
@@ -64,21 +61,44 @@ public class TraceServiceImpl implements TraceService{
     }
 
     public List<Trace> allByLineAndWorkStationAndStatus(Long lineId, Long workStationId, Integer status) {
-        List<Trace> traces = new ArrayList<Trace>();
+        WorkStationConfiguration workStationConfiguration = workStationConfigurationService.byLineAndWorkStation(lineId, workStationId);
+        Map<Long, ManufacturingOrderCustomProduct> manufacturingOrderCustomProducts = new HashMap<Long, ManufacturingOrderCustomProduct>();
+        Map<Long, List<Trace>> manufacturingOrderCustomProductTraces = new HashMap<Long, List<Trace>>();
+        List<Trace> partialTraces = new ArrayList<Trace>();
+        List<Trace> returnTraces = new ArrayList<Trace>();
 
-        for (Trace traceByLine : traceDao.findByLine(lineDao.findById(lineId))) {
-            if (traceByLine.getWorkStation().getId().equals(workStationId) && traceByLine.getStatus().equals(status)) {
-                traces.add(traceByLine);
+        //All traces in current Line / WorkStation
+        for (Trace trace : traceDao.findByLineAndWorkStation(lineService.byId(lineId), workStationService.byId(workStationId))) {
+            if (trace.getStatus().equals(status)) {
+                ManufacturingOrderCustomProduct manufacturingOrderCustomProduct = trace.getManufacturingOrderCustomProduct();
+                manufacturingOrderCustomProducts.put(manufacturingOrderCustomProduct.getId(), manufacturingOrderCustomProduct);
+
+                if(!manufacturingOrderCustomProductTraces.containsKey(manufacturingOrderCustomProduct.getId())){
+                    manufacturingOrderCustomProductTraces.put(manufacturingOrderCustomProduct.getId(), new ArrayList<Trace>());
+                }
+
+                manufacturingOrderCustomProductTraces.get(manufacturingOrderCustomProduct.getId()).add(trace);
+
+                partialTraces.add(trace);
             }
         }
 
-        return traces;
+        for (Map.Entry<Long, List<Trace>> entry : manufacturingOrderCustomProductTraces.entrySet()){
+            List<Trace> traces = entry.getValue();
+
+            //TODO - Especulation
+            if(traces.size() == workStationConfiguration.getProductTypes().size() || traces.size() == traces.get(0).getManufacturingOrderCustomProduct().getManufacturingOrderProducts().size()){
+                returnTraces.addAll(traces);
+            }
+        }
+
+        return returnTraces;
     }
 
     public List<Trace> allByManufacturingOrder(Long manufacturingOrderId){
         List<Trace> traces = new ArrayList<Trace>();
 
-        for (Trace trace : traceDao.findByManufacturingOrder(manufacturingOrderDao.findById(manufacturingOrderId))) {
+        for (Trace trace : traceDao.findByManufacturingOrder(manufacturingOrderService.byId(manufacturingOrderId))) {
             traces.add(trace);
         }
 
@@ -109,22 +129,25 @@ public class TraceServiceImpl implements TraceService{
         return traces;
     }
 
-    public Trace finish(Trace trace) {
-        trace.setStatus(2);
-        trace.setEndTime(new Date());
-        trace.setTime((trace.getEndTime().getTime() - trace.getStartTime().getTime()) / 60000);
+    public List<Trace> finish(List<Trace> traces) {
+        for(Trace trace: traces) {
+            trace.setStatus(2);
+            trace.setEndTime(new Date());
+            trace.setTime((trace.getEndTime().getTime() - trace.getStartTime().getTime()) / 60000);
 
-        traceDao.save(trace);
+            traceDao.save(trace);
 
-        this.enableNextTrace(trace);
+            this.enableNextTrace(trace);
+        }
 
-        return trace;
+        return traces;
     }
 
     private void enableNextTrace(Trace trace){
         Trace nextTrace = trace.getNextTrace();
 
         if(nextTrace != null) {
+            nextTrace.setStartTime(new Date());
             nextTrace.setStatus(1);
             traceDao.save(nextTrace);
         }

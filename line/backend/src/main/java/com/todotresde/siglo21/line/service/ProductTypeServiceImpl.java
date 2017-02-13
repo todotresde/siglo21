@@ -32,6 +32,10 @@ public class ProductTypeServiceImpl implements ProductTypeService{
         return productTypeDao.findById(id);
     }
 
+    public ProductType byCode(String code) {
+        return productTypeDao.findByCode(code);
+    }
+
     public List<ProductType> byNameContaining(String name){
         List<ProductType> productTypes = new ArrayList<ProductType>();
 

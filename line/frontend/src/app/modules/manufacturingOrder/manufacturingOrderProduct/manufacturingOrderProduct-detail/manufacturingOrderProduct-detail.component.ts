@@ -34,6 +34,7 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
+    debugger
     if(changes["inputManufacturingOrderProduct"].currentValue){
       this.manufacturingOrderProduct = changes["inputManufacturingOrderProduct"].currentValue;
     }else{
@@ -44,7 +45,7 @@ export class ManufacturingOrderProductDetailComponent implements OnInit, OnChang
   add(manufacturingOrderProduct: ManufacturingOrderProduct): void{
     if(this.validForm(manufacturingOrderProduct)){
       this.outputManufacturingOrderProduct.emit(manufacturingOrderProduct);
-      
+      debugger
       this.manufacturingOrderProduct = new ManufacturingOrderProduct();
       this.message.none();
     }else{

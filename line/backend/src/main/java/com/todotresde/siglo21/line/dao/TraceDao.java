@@ -18,5 +18,6 @@ public interface TraceDao extends CrudRepository<Trace, Long> {
     public List<Trace> findByWorkStation(WorkStation workStation);
     public List<Trace> findByLine(Line line);
     public List<Trace> findByManufacturingOrder(ManufacturingOrder manufacturingOrder);
+    public List<Trace> findByLineAndWorkStation(Line line, WorkStation workStation);
     public void delete(Long id);
 }

@@ -36,8 +36,9 @@ public class Trace {
     private WorkStation previousWorkStation;
     @NotNull
     @OneToOne
+    private ManufacturingOrderCustomProduct manufacturingOrderCustomProduct;
+    @OneToOne
     private ManufacturingOrderProduct manufacturingOrderProduct;
-    @NotNull
     private Date startTime;
     private Date endTime;
     private Long time;
@@ -73,9 +74,8 @@ public class Trace {
 
     public void setCode() {
         this.code = this.manufacturingOrder.getCode()
-                .concat(this.getManufacturingOrderProduct().getProduct().getCode())
-                .concat(this.getManufacturingOrderProduct().getWidth().toString())
-                .concat(this.getManufacturingOrderProduct().getHeight().toString());
+                .concat("-")
+                .concat(String.valueOf(this.getManufacturingOrderCustomProduct().getId()));
     }
 
     public ManufacturingOrder getManufacturingOrder() {
@@ -124,6 +124,14 @@ public class Trace {
 
     public void setManufacturingOrderProduct(ManufacturingOrderProduct manufacturingOrderProduct) {
         this.manufacturingOrderProduct = manufacturingOrderProduct;
+    }
+
+    public ManufacturingOrderCustomProduct getManufacturingOrderCustomProduct() {
+        return manufacturingOrderCustomProduct;
+    }
+
+    public void setManufacturingOrderCustomProduct(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct) {
+        this.manufacturingOrderCustomProduct = manufacturingOrderCustomProduct;
     }
 
     public Date getStartTime() {

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Commons } from '../../../../shared/commons';
+import { SortPipe } from '../../../../shared/sort.pipe';
 
 import { ManufacturingOrder } from '../../manufacturingOrder';
 import { ManufacturingOrderService } from '../../manufacturingOrder.service';
@@ -40,6 +41,8 @@ export class ManufacturingOrderQueryDetailComponent implements OnInit {
   traces: Trace[] = [];
   delays: DelayQuery[] = [];
 
+  sortPipe: SortPipe = new SortPipe();
+
   constructor(private location: Location, private route: ActivatedRoute, private router: Router, private manufacturingOrderService: ManufacturingOrderService, private r:ActivatedRoute, private traceService: TraceService) {
 
   }
@@ -71,8 +74,8 @@ export class ManufacturingOrderQueryDetailComponent implements OnInit {
             this.delays.push(delayQuery);
           })
         })
-
-        this.traces = traces;
+        debugger
+        this.traces = this.sortPipe.transform(traces,"code,workStation.name");
       })
       .catch(error => {
         this.message.error(JSON.parse(error._body).message);

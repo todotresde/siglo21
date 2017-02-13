@@ -2,6 +2,7 @@ package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.dao.ProductDao;
 import com.todotresde.siglo21.line.exception.BaseException;
+import com.todotresde.siglo21.line.helper.ProductHelper;
 import com.todotresde.siglo21.line.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private ProductHelper productHelper;
 
     public List<Product> all() {
         List<Product> products = new ArrayList<Product>();
@@ -62,5 +65,9 @@ public class ProductServiceImpl implements ProductService{
 
         productDao.save(product);
         return product;
+    }
+
+    public List<Product> importProducts(){
+        return productHelper.importProducts();
     }
 }

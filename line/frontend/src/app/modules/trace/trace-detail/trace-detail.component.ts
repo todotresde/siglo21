@@ -13,8 +13,8 @@ import { Message } from '../../../shared/message/message';
 })
 export class TraceDetailComponent implements OnInit, OnChanges {
   @Input() inputTrace;
-  @Input() inputTraceToBeFinished;
-  @Output() outputTrace = new EventEmitter<Trace>();
+  @Input() inputTracesToBeFinished;
+  @Output() outputTraces = new EventEmitter<Trace[]>();
   
   message: Message = new Message();
   trace : Trace;
@@ -24,10 +24,12 @@ export class TraceDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
+    this.route.params.subscribe(params => {
+      this.message.none();
+    })
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
-    this.message.none();
     
     for (let propName in changes) {
       switch(propName){
@@ -35,21 +37,21 @@ export class TraceDetailComponent implements OnInit, OnChanges {
             if(changes["inputTrace"].currentValue != null)
               this.trace = changes["inputTrace"].currentValue; 
             break;
-          case "inputTraceToBeFinished": 
-            if(changes["inputTraceToBeFinished"].currentValue != null)
-              this.finish(changes["inputTraceToBeFinished"].currentValue); 
+          case "inputTracesToBeFinished": 
+            if(changes["inputTracesToBeFinished"].currentValue != null)
+              this.finish(changes["inputTracesToBeFinished"].currentValue); 
             break;
       }
     }
   }
 
-  finish(trace: Trace): void {
+  finish(traces: Trace[]): void {
     this.traceService
-        .finish(trace)
-        .then(trace => {
+        .finish(traces)
+        .then(ts => {
           this.message.success("work-finished");
 
-          this.outputTrace.emit(trace);
+          this.outputTraces.emit(traces);
 
           this.trace = new Trace();
         }).catch(error => {

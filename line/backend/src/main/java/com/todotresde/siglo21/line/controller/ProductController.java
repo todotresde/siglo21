@@ -44,4 +44,10 @@ public class ProductController {
     Product save(@RequestBody Product product) {
         return this.productService.save(product);
     }
+
+    @RequestMapping(value="/product/import", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<Product> importProducts() {
+        return this.productService.importProducts();
+    }
 }

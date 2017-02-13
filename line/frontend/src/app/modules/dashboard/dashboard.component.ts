@@ -9,7 +9,6 @@ import { WorkStation } from '../workStation/workStation';
 import { TraceService } from '../trace/trace.service';
 
 import { Message } from '../../shared/message/message';
-import { Commons } from '../../shared/commons';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +45,9 @@ export class DashboardComponent implements OnInit {
 
   private setAverage(line: Line, workStation: WorkStation): void{
     this.traceService.getAverageByLineAndWorkStation(line.id, workStation.id)
-      .then(result => this.averages[line.id + '' + workStation.id] = result);
+      .then(result => {
+        this.averages[line.id + '' + workStation.id] = result;
+      });
   }
 
 

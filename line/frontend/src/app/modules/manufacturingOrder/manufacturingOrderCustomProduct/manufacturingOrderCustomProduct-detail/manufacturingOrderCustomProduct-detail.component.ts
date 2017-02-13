@@ -62,10 +62,8 @@ export class ManufacturingOrderCustomProductDetailComponent implements OnInit, O
       this.manufacturingOrder.addManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
       this.sessionService.set("manufacturingOrder", this.manufacturingOrder);
 
-      Commons.delay().then(() => {
-        this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
-        this.back();
-      });
+      this.manufacturingOrderCustomProduct = new ManufacturingOrderCustomProduct();
+      this.back();
     }else{
       this.message.error("error-missing-values");
     }

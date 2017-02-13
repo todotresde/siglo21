@@ -7,6 +7,7 @@ import { Trace } from './trace';
 
 import { environment } from '../../../environments/environment';
 
+
 @Injectable()
 export class TraceService {
   constructor(private http: Http) { }
@@ -65,9 +66,9 @@ export class TraceService {
                .toPromise();
   }
 
-  finish(trace: Trace): Promise<Trace> {
-    return this.http.post(environment.host + "/trace/finish", trace)
-               .map(response => response.json() as Trace)
+  finish(traces: Trace[]): Promise<Trace[]> {
+    return this.http.post(environment.host + "/trace/finish", traces)
+               .map(response => response.json() as Trace[])
                .toPromise();
   }
 
@@ -92,14 +93,14 @@ export class TraceService {
             });
 
             previousTraces.forEach(t => {
-              result.previousAverage =+ t.time / previousTraces.length;
+              result.previousAverage =+ Math.round(t.time / previousTraces.length);
             });
 
             currentTraces.forEach(t => {
-              result.currentAverage =+ t.time / currentTraces.length;
+              result.currentAverage =+ Math.round(t.time / currentTraces.length);
             });
 
-            result.difference = result.previousAverage - result.currentAverage;
+            result.difference = Math.round(result.previousAverage - result.currentAverage);
             
             resolve(result);
           })

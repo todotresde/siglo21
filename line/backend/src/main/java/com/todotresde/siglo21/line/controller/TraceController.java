@@ -71,7 +71,7 @@ public class TraceController {
 
     @RequestMapping(value="/trace/finish", method= RequestMethod.POST, produces="application/json")
     public @ResponseBody
-    Trace finish(@RequestBody Trace trace) {
-        return this.traceService.finish(trace);
+    List<Trace> finish(@RequestBody List<Trace> traces) {
+        return this.traceService.finish(traces);
     }
 }

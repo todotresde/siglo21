@@ -19,8 +19,8 @@ import { Message } from '../../shared/message/message';
 export class TraceComponent implements OnInit, OnChanges{
 	line: Line = new Line();
 	workStation: WorkStation = new WorkStation();
-	selectedTrace: Trace;
-	selectedTraceToBeFinished: Trace;
+	selectedTraces: Trace[];
+	selectedTracesToBeFinished: Trace[];
 	average: number = 0;
 
 	message: Message = new Message();
@@ -55,12 +55,12 @@ export class TraceComponent implements OnInit, OnChanges{
 	ngOnChanges(changes:  {[propKey: string]: SimpleChange}): void{
 	}
 
-	activeTrace(trace: Trace): void{
-		this.selectedTrace = trace;
+	activeTraces(traces: Trace[]): void{
+		this.selectedTraces = traces;
 	}
 
-	finishTrace(trace: Trace): void{
-		this.selectedTraceToBeFinished = trace;
+	finishTraces(traces: Trace[]): void{
+		this.selectedTracesToBeFinished = traces;
 	}
 
 	workStationDelay(line: Line, workStation: WorkStation): void{

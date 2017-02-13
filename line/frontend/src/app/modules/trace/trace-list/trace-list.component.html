@@ -17,7 +17,10 @@
     <div class="col-md-2">
         {{'manufacturing-order'|translate}}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
+        {{'code'|translate}}
+    </div>
+    <div class="col-md-2">
         {{'product'|translate}}
     </div>
     <div class="col-md-1">
@@ -29,31 +32,40 @@
     <div class="col-md-1">
         {{'status'|translate}}
     </div>
-    <div class="col-md-3 pull-right">
+    <div class="col-md-2 pull-right">
     </div>
 </div>
-<div class="row table-content" *ngFor="let trace of traces">
-    <div class="col-md-2">
-        {{trace.manufacturingOrder.code}}
-    </div>
-    <div class="col-md-4">
-        {{trace.manufacturingOrderProduct.product.description}}
-    </div>
-    <div class="col-md-1">
-        <span *ngIf="trace.manufacturingOrderProduct.product.productType.hasWidth">
-            {{trace.manufacturingOrderProduct.width}}
-        </span>
-    </div>
-    <div class="col-md-1">
-        <span *ngIf="trace.manufacturingOrderProduct.product.productType.hasHeight">
-            {{trace.manufacturingOrderProduct.height}}
-        </span>
-    </div>
-    <div class="col-md-1">
-        {{trace.status }}
-    </div>
-    <div class="col-md-3">
-        <button type="button" class="btn btn-secondary fa fa-wrench pull-right" (click)="activate(trace)"></button>
-        <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(trace)"></button>
+<div *ngFor="let traceGroupByCode of tracesGroupByCode">
+    <div class="row table-content" *ngFor="let trace of traceGroupByCode.traces; let isFirst=first" >
+        <div class="col-md-2" *ngIf="isFirst">
+            {{trace.manufacturingOrder.code}}
+        </div>
+        <div class="col-md-3" *ngIf="isFirst">
+            {{trace.code}}
+        </div>
+        <div class="col-md-5" *ngIf="!isFirst">
+        </div>
+        <div class="col-md-2">
+            {{trace.manufacturingOrderProduct.product.description}}
+        </div>
+        <div class="col-md-1">
+            <span *ngIf="trace.manufacturingOrderProduct.product.productType.hasWidth">
+                {{trace.manufacturingOrderProduct.width}}
+            </span>
+        </div>
+        <div class="col-md-1">
+            <span *ngIf="trace.manufacturingOrderProduct.product.productType.hasHeight">
+                {{trace.manufacturingOrderProduct.height}}
+            </span>
+        </div>
+        <div class="col-md-1">
+            {{trace.status }}
+        </div>
+        <div class="col-md-2" *ngIf="isFirst">
+            <button type="button" class="btn btn-secondary fa fa-wrench pull-right" (click)="activate(traceByCode)"></button>
+            <button type="button" class="btn btn-secondary fa fa-clock-o pull-right" (click)="delay(traceByCode)"></button>
+        </div>
+        <div class="col-md-2" *ngIf="!isFirst">
+        </div>
     </div>
 </div>
