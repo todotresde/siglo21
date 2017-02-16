@@ -1,9 +1,9 @@
 <div class="card">
-    <div class="card-header">
-        {{'users'|translate}}
-    </div>
     <app-message [message]="message"></app-message>
     <div class="card-block">
+        <h6 class="card-title">{{'users'|translate}}</h6>
+        <hr/>
+        <app-message [message]="message"></app-message>
         <div class="container-fluid">
             <div class="form-group row">
                 <label for="dropdownUser">{{'user'|translate}}</label>
@@ -17,18 +17,12 @@
                     [attr.disabled]="selectedUser.name === '' ? true : null" 
                     (click)="add(selectedUser)"></button>
             </div>
-            <div class="row table-header" >
-                <div class="col-md-8">
-                    {{'name'|translate}}
-                </div>
-                <div class="col-ms-4 pull-right">
-                </div>
-            </div>
+            <hr/>
             <div class="row table-content" *ngFor="let selectedUser of selectedUsers" >
                 <div class="col-md-8">
                     {{selectedUser.name}}
                 </div>
-                <div class="col-ms-4 pull-right">
+                <div class="col-md-4 pull-right">
                     <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(selectedUser)"></button>
                 </div>
             </div>
