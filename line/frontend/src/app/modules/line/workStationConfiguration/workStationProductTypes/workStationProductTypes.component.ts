@@ -1,10 +1,9 @@
 import { Component, OnInit , EventEmitter, Input, Output, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ProductType } from '../../../productType/productType';
-import { ProductTypeService } from '../../../productType/productType.service';
+import { ProductType, ProductTypeService } from 'app/modules/productType';
 
-import { Message } from '../../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-workstation-product-types',

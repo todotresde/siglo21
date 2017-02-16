@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Line } from '../line';
 import { LineService } from '../line.service';
 
-import { Message } from '../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-line-list',

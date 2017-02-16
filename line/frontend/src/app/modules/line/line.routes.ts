@@ -1,10 +1,6 @@
 import { Route } from '@angular/router';
 
-import { WorkStationConfigurationRoutes } from './workStationConfiguration/workStationConfiguration.routes';
-
-import { LineComponent } from './line.component';
-import { LineListComponent } from './line-list/line-list.component';
-import { LineDetailComponent } from './line-detail/line-detail.component';
+import { LineComponent, LineListComponent, LineDetailComponent, WorkStationConfigurationRoutes } from 'app/modules/line';
 
 export const LineRoutes: Route[] = [
 	{

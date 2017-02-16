@@ -3,7 +3,7 @@ import { Component, OnChanges, SimpleChange, OnInit, Input, Output, EventEmitter
 import { WorkStationConfiguration } from '../workStationConfiguration/workStationConfiguration';
 import { WorkStationConfigurationService } from '../workStationConfiguration/workStationConfiguration.service';
 
-import { Message } from '../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-workstation-configuration',

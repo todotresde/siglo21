@@ -1,5 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { TranslateModule } from 'ng2-translate';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -9,12 +11,28 @@ import { MessageComponent } from './message/message.component';
 import { SortPipe } from './sort.pipe';
 
 @NgModule({
-  imports: [TranslateModule, NgbModule, CommonModule, Ng2CompleterModule],
-  declarations: [MessageComponent, SortPipe],
-  exports: [TranslateModule, NgbModule, MessageComponent, Ng2CompleterModule, SortPipe]
+    imports: [
+    	CommonModule, 
+    	RouterModule, 
+    	FormsModule, 
+    	TranslateModule, 
+    	NgbModule, 
+    	Ng2CompleterModule
+    ],
+    declarations: [MessageComponent, SortPipe],
+    exports: [
+    	CommonModule, 
+    	RouterModule, 
+    	FormsModule, 
+    	TranslateModule, 
+    	NgbModule, 
+    	MessageComponent, 
+    	Ng2CompleterModule, 
+    	SortPipe
+    ]
 })
-export class SharedModule { 
-   static forRoot(): ModuleWithProviders {
+export class SharedModule {
+    static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule
         };

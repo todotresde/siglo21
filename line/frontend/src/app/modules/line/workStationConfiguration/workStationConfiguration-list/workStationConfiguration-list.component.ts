@@ -1,11 +1,11 @@
 import { Component, OnInit, OnChanges, SimpleChange, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { WorkStation } from '../../../workStation/workStation';
+import { WorkStation } from 'app/modules/workStation';
 import { WorkStationConfiguration } from '../workStationConfiguration';
 import { WorkStationConfigurationService } from '../workStationConfiguration.service';
 
-import { Message } from '../../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-workstation-configuration-list',

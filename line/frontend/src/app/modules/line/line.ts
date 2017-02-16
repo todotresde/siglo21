@@ -1,14 +1,14 @@
-import { Shared } from '../../shared/shared';
-import { WorkStation } from '../workStation/workStation';
-import { WorkStationConfiguration } from './workStationConfiguration/workStationConfiguration';
+import { Commons } from 'app/shared';
+import { WorkStation } from 'app/modules/workStation';
+import { WorkStationConfiguration } from 'app/modules/line';
 
 export class Line {
-    id: number = Shared.generateId();
+    id: number = Commons.generateId();
     name : string;
     workStationConfigurations : WorkStationConfiguration[] = [];
 
     constructor(options?: any){
-    	this.id = (options && options.id) ? options.id : Shared.generateId();
+    	this.id = (options && options.id) ? options.id : Commons.generateId();
     	this.name = (options && options.code) ? options.code : "";
     	this.workStationConfigurations = (options && options.workStationConfigurations) ? options.workStationConfigurations : [];
     }

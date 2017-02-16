@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
 
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from 'app/shared';
 
 import { WorkStationConfigurationComponent } from './workStationConfiguration.component';
 import { WorkStationConfigurationDetailComponent } from './workStationConfiguration-detail/workStationConfiguration-detail.component';
@@ -12,7 +9,7 @@ import { WorkStationUsersComponent } from './workStationUsers/workStationUsers.c
 import { WorkStationProductTypesComponent } from './workStationProductTypes/workStationProductTypes.component';
 
 @NgModule({
-    imports: [RouterModule, CommonModule, FormsModule, SharedModule],
+    imports: [SharedModule],
     declarations: [WorkStationConfigurationComponent, WorkStationConfigurationDetailComponent, WorkStationConfigurationListComponent, WorkStationUsersComponent, WorkStationProductTypesComponent],
     exports: [WorkStationConfigurationComponent, WorkStationConfigurationDetailComponent, WorkStationConfigurationListComponent, WorkStationUsersComponent, WorkStationProductTypesComponent]
 })

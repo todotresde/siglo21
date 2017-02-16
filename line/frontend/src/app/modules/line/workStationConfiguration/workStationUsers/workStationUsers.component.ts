@@ -1,10 +1,9 @@
 import { Component, OnInit , EventEmitter, Input, Output, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { User } from '../../../user/user';
-import { UserService } from '../../../user/user.service';
+import { User, UserService } from 'app/modules/user';
 
-import { Message } from '../../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-workstation-users',

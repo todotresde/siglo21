@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { SortPipe } from '../../shared/sort.pipe';
+import { Line, LineService } from 'app/modules/line';
 
-import { Line } from '../line/line';
-import { LineService } from '../line/line.service';
-import { WorkStation } from '../workStation/workStation';
-import { TraceService } from '../trace/trace.service';
+import { WorkStation } from 'app/modules/workStation/workStation';
+import { TraceService } from 'app/modules/trace/trace.service';
 
-import { Message } from '../../shared/message/message';
+import { Message, SortPipe } from 'app/shared';
 
 @Component({
   selector: 'app-dashboard',
