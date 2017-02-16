@@ -1,15 +1,13 @@
-import { Line } from '../line/line';
-import { WorkStationConfiguration } from '../line/workStationConfiguration/workStationConfiguration';
-import { Trace } from '../trace/trace';
-import { DelayType } from '../delayType/delayType';
+import { Line, WorkStationConfiguration } from 'app/modules/line';
+import { Trace } from 'app/modules/trace';
+import { DelayType } from 'app/modules/delayType';
 
-import { Shared } from '../../shared/shared';
-import { Commons } from '../../shared/commons';
+import { Commons } from 'app/shared';
 
 import { DatePipe } from '@angular/common';
 
 export class Delay {
-    id: number = Shared.generateId();
+    id: number = Commons.generateId();
     description: string;
     startTime: Date;
     endTime: Date;
@@ -18,7 +16,7 @@ export class Delay {
 
     constructor(options?: any){
         if(options){
-            this.id = (options.id) ? options.id : Shared.generateId();
+            this.id = (options.id) ? options.id : Commons.generateId();
             this.description = (options.description) ? options.description : "";
             this.startTime = (options.startTime) ? options.startTime : new Date();
             this.endTime = (options.endTime) ? options.endTime : new Date();

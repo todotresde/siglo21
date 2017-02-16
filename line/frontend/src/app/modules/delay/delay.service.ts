@@ -3,10 +3,9 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { environment } from '../../../environments/environment';
+import { environment } from 'environments/environment';
 
-import { Line } from '../line/line';
-import { WorkStationConfiguration } from '../line/workStationConfiguration/workStationConfiguration';
+import { Line, WorkStationConfiguration } from 'app/modules/line';
 import { Delay } from './delay';
 
 
