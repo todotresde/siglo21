@@ -1,9 +1,9 @@
-import { Shared } from '../../shared/shared';
-import { Line } from '../line/line';
+import { Commons } from 'app/shared';
+import { Line } from 'app/modules/line';
 import { ManufacturingOrderCustomProduct } from './manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
 
 export class ManufacturingOrder {
-    id: number = Shared.generateId();
+    id: number = Commons.generateId();
     code : string;
     date : Date = new Date();
     status : Number = 0;
@@ -11,7 +11,7 @@ export class ManufacturingOrder {
     manufacturingOrderCustomProducts : ManufacturingOrderCustomProduct[] = [];
 
     constructor(options?: any){
-    	this.id = (options && options.id) ? options.id : Shared.generateId();
+    	this.id = (options && options.id) ? options.id : Commons.generateId();
     	this.code = (options && options.code) ? options.code : "";
     	this.date = (options && options.date) ? options.date : new Date();
         this.line = (options && options.line) ? options.line : null;

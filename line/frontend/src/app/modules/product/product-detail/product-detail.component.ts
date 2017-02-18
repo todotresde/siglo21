@@ -6,11 +6,9 @@ import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { ProductType } from '../../productType/productType';
-import { ProductTypeService } from '../../productType/productType.service';
+import { ProductType, ProductTypeService } from 'app/modules/productType';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
+import { Message, Commons } from 'app/shared';
 
 @Component({
   selector: 'app-product-detail',

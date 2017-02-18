@@ -1,5 +1,5 @@
-import { Shared } from '../../../shared/shared';
-import { Product } from '../../product/product';
+import { Shared } from 'app/shared';
+import { Product } from 'app/modules/product';
 
 export class ManufacturingOrderProduct {
     id: number = Shared.generateId();;

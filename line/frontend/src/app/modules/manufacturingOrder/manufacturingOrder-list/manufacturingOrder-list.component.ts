@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ManufacturingOrder } from '../manufacturingOrder';
 import { ManufacturingOrderService } from '../manufacturingOrder.service';
 
-import { Message } from '../../../shared/message/message';
-import { SessionService } from '../../../shared/session.service';
+import { Message, SessionService } from 'app/shared';
 
 @Component({
   selector: 'app-manufacturing-order-list',

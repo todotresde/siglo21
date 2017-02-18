@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Trace } from '../trace';
 import { TraceService } from '../trace.service';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
+import { Message, Commons } from 'app/shared';
 
 @Component({
   selector: 'app-trace-detail',

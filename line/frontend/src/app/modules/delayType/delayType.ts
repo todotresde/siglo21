@@ -1,7 +1,7 @@
-import { Shared } from '../../shared/shared';
+import { Commons } from 'app/shared';
 
 export class DelayType {
-    id: number = Shared.generateId();
+    id: number = Commons.generateId();
     code: string;
     description: string;
 }

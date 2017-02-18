@@ -2,15 +2,12 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Delay } from '../../delay/delay';
+import { Delay } from 'app/modules/delay';
 import { Trace } from '../trace';
 import { TraceService } from '../trace.service';
-import { WorkStationConfiguration } from '../../line/workStationConfiguration/workStationConfiguration';
-import { WorkStationConfigurationService } from '../../line/workStationConfiguration/workStationConfiguration.service';
+import { WorkStationConfiguration, WorkStationConfigurationService } from 'app/modules/line';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
-import { SessionService } from '../../../shared/session.service';
+import { Message, Commons, SessionService } from 'app/shared';
 
 @Component({
   selector: 'app-workStation-delay',

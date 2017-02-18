@@ -5,12 +5,9 @@ import { Location } from '@angular/common';
 import { ManufacturingOrder } from '../manufacturingOrder';
 import { ManufacturingOrderService } from '../manufacturingOrder.service';
 import { ManufacturingOrderCustomProduct } from '../manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
-import { Line } from '../../line/line';
-import { LineService } from '../../line/line.service';
+import { Line, LineService } from 'app/modules/line';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
-import { SessionService } from '../../../shared/session.service';
+import { Message, Commons, SessionService } from 'app/shared';
 
 @Component({
   selector: 'app-manufacturing-order-detail',

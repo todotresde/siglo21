@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
 
-import { SharedModule } from '../../shared/shared.module';
-import { DelayModule } from '../delay/delay.module';
+import { SharedModule } from 'app/shared';
+import { DelayModule } from 'app/modules/delay';
 
 import { TraceComponent } from './trace.component';
 import { TraceDetailComponent } from './trace-detail/trace-detail.component';
@@ -13,7 +10,7 @@ import { TraceDelayComponent } from './trace-delay/trace-delay.component';
 import { WorkStationDelayComponent } from './workStation-delay/workStation-delay.component';
 
 @NgModule({
-    imports: [RouterModule, CommonModule, FormsModule, SharedModule, DelayModule],
+    imports: [SharedModule, DelayModule],
     declarations: [TraceComponent, TraceDetailComponent, TraceListComponent, TraceDelayComponent, WorkStationDelayComponent],
     exports: [TraceComponent, TraceDetailComponent, TraceListComponent, TraceDelayComponent, WorkStationDelayComponent]
 })

@@ -1,15 +1,13 @@
 import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Delay } from 'app/modules/delay';
 import { Trace } from './trace';
 import { TraceService } from './trace.service';
-import { Line } from '../line/line';
-import { WorkStation } from '../workStation/workStation';
+import { WorkStation, WorkStationService } from 'app/modules/workStation';
+import { Line, LineService } from 'app/modules/line';
 
-import { LineService } from '../line/line.service';
-import { WorkStationService } from '../workStation/workStation.service';
-
-import { Message } from '../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-module-trace',

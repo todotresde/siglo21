@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
 
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from '../../shared/shared.module';
+
+import { SharedModule, StatusPipe } from 'app/shared';
 import { ManufacturingOrderCustomProductModule } from './manufacturingOrderCustomProduct/manufacturingOrderCustomProduct.module';
-import { DelayModule } from '../delay/delay.module';
-import { TraceModule } from '../trace/trace.module';
+import { DelayModule } from 'app/modules/delay';
+import { TraceModule } from 'app/modules/trace';
 
 import { ManufacturingOrderComponent } from './manufacturingOrder.component';
 import { ManufacturingOrderListComponent } from './manufacturingOrder-list/manufacturingOrder-list.component';
@@ -18,10 +16,8 @@ import { ManufacturingOrderQueryDetailComponent } from './manufacturingOrderQuer
 
 import { ManufacturingOrderService } from './manufacturingOrder.service';
 
-import { StatusPipe } from '../../shared/status.pipe';
-
 @NgModule({
-    imports: [RouterModule, CommonModule, FormsModule, NgbModule, ManufacturingOrderCustomProductModule, SharedModule, DelayModule, TraceModule],
+    imports: [NgbModule, ManufacturingOrderCustomProductModule, SharedModule, DelayModule, TraceModule],
     declarations: [StatusPipe, ManufacturingOrderComponent, ManufacturingOrderListComponent, ManufacturingOrderDetailComponent, ManufacturingOrderQueryComponent, ManufacturingOrderQueryDetailComponent],
     exports: [ManufacturingOrderComponent, ManufacturingOrderListComponent, ManufacturingOrderDetailComponent, ManufacturingOrderQueryComponent, ManufacturingOrderQueryDetailComponent],
     providers: [ManufacturingOrderService]

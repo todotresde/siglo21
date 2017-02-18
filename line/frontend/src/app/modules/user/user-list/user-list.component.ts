@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
-import { Message } from '../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-user-list',

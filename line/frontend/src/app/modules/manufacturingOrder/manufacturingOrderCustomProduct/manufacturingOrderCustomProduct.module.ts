@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule }   from '@angular/forms';
 
-import { SharedModule } from '../../../shared/shared.module';
+import { SharedModule } from 'app/shared';
 import { ManufacturingOrderProductModule } from '../manufacturingOrderProduct/manufacturingOrderProduct.module';
 
 import { ManufacturingOrderCustomProductComponent } from './manufacturingOrderCustomProduct.component';
@@ -11,7 +8,7 @@ import { ManufacturingOrderCustomProductListComponent } from './manufacturingOrd
 import { ManufacturingOrderCustomProductDetailComponent } from './manufacturingOrderCustomProduct-detail/manufacturingOrderCustomProduct-detail.component';
 
 @NgModule({
-    imports: [RouterModule, CommonModule, FormsModule, ManufacturingOrderProductModule, SharedModule],
+    imports: [ManufacturingOrderProductModule, SharedModule],
     declarations: [ManufacturingOrderCustomProductComponent, ManufacturingOrderCustomProductListComponent, ManufacturingOrderCustomProductDetailComponent],
     exports: [ManufacturingOrderCustomProductComponent, ManufacturingOrderCustomProductListComponent, ManufacturingOrderCustomProductDetailComponent]
 })

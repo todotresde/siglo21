@@ -1,14 +1,14 @@
-import { Shared } from '../../shared/shared';
-import { ManufacturingOrder } from '../manufacturingOrder/manufacturingOrder';
-import { Line } from '../line/line';
-import { WorkStation } from '../workStation/workStation';
-import { ManufacturingOrderCustomProduct } from '../manufacturingOrder/manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
-import { ManufacturingOrderProduct } from '../manufacturingOrder/manufacturingOrderProduct/manufacturingOrderProduct';
-import { User } from '../user/user';
-import { Delay } from '../delay/delay';
+import { Commons } from 'app/shared';
+import { ManufacturingOrder } from 'app/modules/manufacturingOrder/manufacturingOrder';
+import { ManufacturingOrderCustomProduct } from 'app/modules/manufacturingOrder/manufacturingOrderCustomProduct/manufacturingOrderCustomProduct';
+import { ManufacturingOrderProduct } from 'app/modules/manufacturingOrder/manufacturingOrderProduct/manufacturingOrderProduct';
+import { Line } from 'app/modules/line';
+import { WorkStation } from 'app/modules//workStation';
+import { User } from 'app/modules/user';
+import { Delay } from 'app/modules/delay';
 
 export class Trace {
-    id: number = Shared.generateId();
+    id: number = Commons.generateId();
     code: String;
     manufacturingOrder : ManufacturingOrder = new ManufacturingOrder();
     line : Line = new Line();
@@ -29,7 +29,7 @@ export class Trace {
             let startTime = new Date(); (options.startTime) ? startTime.setTime(options.startTime) : new Date();
             let endTime = new Date(); (options.endDate) ? endTime.setTime(options.endDate) : new Date();
 
-            this.id = (options.id) ? options.id : Shared.generateId();
+            this.id = (options.id) ? options.id : Commons.generateId();
             this.code = (options.code) ? options.code : "";
             this.manufacturingOrder = (options.manufacturingOrder) ? new ManufacturingOrder(options.manufacturingOrder) : null;
             this.line = (options.line) ? new Line(options.line) : null;

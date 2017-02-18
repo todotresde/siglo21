@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Trace } from '../trace';
 import { TraceService } from '../trace.service';
 
-import { Message } from '../../../shared/message/message';
-import { SessionService } from '../../../shared/session.service';
+import { Message, Commons, SessionService } from 'app/shared';
 
 export class TraceGroupByCode {
   code: String;

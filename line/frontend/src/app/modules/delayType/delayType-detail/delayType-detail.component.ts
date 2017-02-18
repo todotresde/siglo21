@@ -5,8 +5,7 @@ import { Location } from '@angular/common';
 import { DelayType } from '../delayType';
 import { DelayTypeService } from '../delayType.service';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
+import { Message, Commons } from 'app/shared';
 
 @Component({
   selector: 'app-delayType-detail',

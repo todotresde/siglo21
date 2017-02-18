@@ -1,4 +1,4 @@
-import { Shared } from '../../../shared/shared';
+import { Shared } from 'app/shared';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct/manufacturingOrderProduct';
 
 export class ManufacturingOrderCustomProduct {

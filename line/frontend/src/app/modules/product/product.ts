@@ -1,8 +1,8 @@
-import { Shared } from '../../shared/shared';
-import { ProductType } from '../productType/productType';
+import { Commons } from 'app/shared';
+import { ProductType } from 'app/modules/productType';
 
 export class Product {
-    id: number = Shared.generateId();
+    id: number = Commons.generateId();
     code: string;
     description: string;
     productType: ProductType = new ProductType();

@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { ManufacturingOrder } from './manufacturingOrder';
 
-import { environment } from '../../../environments/environment';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class ManufacturingOrderService {

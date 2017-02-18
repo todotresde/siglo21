@@ -5,8 +5,7 @@ import { ManufacturingOrder } from '../manufacturingOrder'
 import { ManufacturingOrderCustomProduct } from './manufacturingOrderCustomProduct';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct/manufacturingOrderProduct';
 
-import { Message } from '../../../shared/message/message';
-import { SessionService } from '../../../shared/session.service';
+import { Message, SessionService } from 'app/shared';
 
 @Component({
   selector: 'app-manufacturing-order-custom-product',

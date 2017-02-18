@@ -1,6 +1,6 @@
-import { Shared } from '../../shared/shared';
+import { Shared } from 'app/shared';
 
-import { Role } from '../role/role';
+import { Role } from 'app/modules/role';
 
 export class User {
     id: number = Shared.generateId();

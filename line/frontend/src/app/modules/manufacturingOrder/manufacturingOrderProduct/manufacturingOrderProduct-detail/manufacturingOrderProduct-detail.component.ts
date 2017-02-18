@@ -3,11 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 
-import { Product } from '../../../product/product';
-import { ProductService } from '../../../product/product.service';
+import { Product, ProductService } from 'app/modules/product';
 import { ManufacturingOrderProduct } from '../manufacturingOrderProduct'
 
-import { Message } from '../../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-manufacturing-order-product-detail',
