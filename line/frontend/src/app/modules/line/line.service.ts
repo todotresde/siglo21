@@ -12,25 +12,25 @@ export class LineService {
   constructor(private http: Http) { }
 
   getAll(): Promise<Line[]> {
-    return this.http.get(environment.host + "/line")
+    return this.http.get(environment.hosts.line + "/line")
                .map(response => response.json() as Line[])
                .toPromise();
   }
 
   get(id: Number): Promise<Line> {
-    return this.http.get(environment.host + "/line/" + id)
+    return this.http.get(environment.hosts.line + "/line/" + id)
                .map(response => response.json() as Line)
                .toPromise();
   }
 
   remove(line: Line): Promise<number> {
-    return this.http.delete(environment.host + "/line/" + line.id)
+    return this.http.delete(environment.hosts.line + "/line/" + line.id)
                .map(response => response.json() as number)
                .toPromise();
   }
 
   save(line: Line): Promise<Line> {
-    return this.http.post(environment.host + "/line", line)
+    return this.http.post(environment.hosts.line + "/line", line)
                .map(response => response.json() as Line)
                .toPromise();
   }

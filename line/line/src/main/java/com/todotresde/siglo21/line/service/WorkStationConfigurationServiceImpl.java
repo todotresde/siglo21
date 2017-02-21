@@ -3,8 +3,9 @@ package com.todotresde.siglo21.line.service;
 import com.todotresde.siglo21.line.dao.WorkStationConfigurationDao;
 import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.Line;
-import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
+import com.todotresde.siglo21.product.model.ProductType;
+import com.todotresde.siglo21.product.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
     private WorkStationConfigurationDao workStationConfigurationDao;
     @Autowired
     private LineService lineService;
+    @Autowired
+    private ProductTypeService productTypeService;
 
     public List<WorkStationConfiguration> all() {
         List<WorkStationConfiguration> workStationConfigurations = new ArrayList<WorkStationConfiguration>();
@@ -50,7 +53,7 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
 
     public WorkStationConfiguration byProductTypeId(Long productTypeId){
         for (WorkStationConfiguration workStationConfiguration : workStationConfigurationDao.findAll()) {
-            for(ProductType productType : workStationConfiguration.getProductTypes()){
+            for(ProductType productType : productTypeService.byIds(workStationConfiguration.getProductTypes())){
                 if(productTypeId.equals(productType.getId())){
                     return workStationConfiguration;
                 }
@@ -80,7 +83,7 @@ public class WorkStationConfigurationServiceImpl implements WorkStationConfigura
     }
 
     public Boolean hasProductType(WorkStationConfiguration workStationConfiguration, Long productTypeId){
-        for(ProductType productType : workStationConfiguration.getProductTypes()){
+        for(ProductType productType : productTypeService.byIds(workStationConfiguration.getProductTypes())){
             if(productTypeId.equals(productType.getId())){
                 return true;
             }

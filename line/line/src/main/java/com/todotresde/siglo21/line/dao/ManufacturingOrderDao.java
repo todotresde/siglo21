@@ -4,7 +4,6 @@ import com.todotresde.siglo21.line.model.Line;
 import com.todotresde.siglo21.line.model.ManufacturingOrder;
 import org.springframework.data.repository.CrudRepository;
 
-
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;

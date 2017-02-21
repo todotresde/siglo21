@@ -3,9 +3,10 @@ package com.todotresde.siglo21.line.service;
 import com.todotresde.siglo21.line.dao.LineDao;
 import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.Line;
-import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStation;
 import com.todotresde.siglo21.line.model.WorkStationConfiguration;
+import com.todotresde.siglo21.product.model.ProductType;
+import com.todotresde.siglo21.line.service.ProductTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ import java.util.List;
 public class LineServiceImpl implements LineService{
     @Autowired
     private LineDao lineDao;
+    @Autowired
+    private ProductTypeServiceImpl productTypeService;
 
     public List<Line> all() {
         List<Line> lines = new ArrayList<Line>();
@@ -39,7 +42,7 @@ public class LineServiceImpl implements LineService{
 
         for (Line line : lineDao.findAll()) {
             for (WorkStationConfiguration workStationConfiguration : line.getWorkStationConfigurations()) {
-                for (ProductType productType : workStationConfiguration.getProductTypes()) {
+                for (ProductType productType : productTypeService.byIds(workStationConfiguration.getProductTypes())) {
                     if(productType.getId().equals(productTypeId)){
                         lines.add(line);
                     }

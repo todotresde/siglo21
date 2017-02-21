@@ -1,9 +1,9 @@
-package com.todotresde.siglo21.security.service;
+package com.todotresde.siglo21.product.service;
 
-import com.todotresde.siglo21.security.dao.ProductDao;
-import com.todotresde.siglo21.security.exception.BaseException;
-import com.todotresde.siglo21.security.helper.ProductHelper;
-import com.todotresde.siglo21.security.model.Product;
+import com.todotresde.siglo21.product.dao.ProductDao;
+import com.todotresde.siglo21.product.exception.BaseException;
+import com.todotresde.siglo21.product.helper.ProductHelper;
+import com.todotresde.siglo21.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +32,20 @@ public class ProductServiceImpl implements ProductService{
 
     public Product byId(Long id) {
         return productDao.findById(id);
+    }
+
+    public List<Product> byIds(List<Long> productIds) {
+        List<Product> products = new ArrayList<Product>();
+
+        for (Long productId : productIds) {
+            products.add(productDao.findById(productId));
+        }
+
+        return products;
+    }
+
+    public Product byCode(String code) {
+        return productDao.findByCode(code);
     }
 
     public List<Product> byDescriptionContaining(String description){

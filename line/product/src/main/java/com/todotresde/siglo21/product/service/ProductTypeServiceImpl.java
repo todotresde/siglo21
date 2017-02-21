@@ -1,8 +1,8 @@
-package com.todotresde.siglo21.security.service;
+package com.todotresde.siglo21.product.service;
 
-import com.todotresde.siglo21.security.dao.ProductTypeDao;
-import com.todotresde.siglo21.security.exception.BaseException;
-import com.todotresde.siglo21.security.model.ProductType;
+import com.todotresde.siglo21.product.dao.ProductTypeDao;
+import com.todotresde.siglo21.product.exception.BaseException;
+import com.todotresde.siglo21.product.model.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +29,16 @@ public class ProductTypeServiceImpl implements ProductTypeService{
 
     public ProductType byId(Long id) {
         return productTypeDao.findById(id);
+    }
+
+    public List<ProductType> byIds(List<Long> productTypeIds) {
+        List<ProductType> productTypes = new ArrayList<ProductType>();
+
+        for (Long productTypeId : productTypeIds) {
+            productTypes.add(byId(productTypeId));
+        }
+
+        return productTypes;
     }
 
     public ProductType byCode(String code) {

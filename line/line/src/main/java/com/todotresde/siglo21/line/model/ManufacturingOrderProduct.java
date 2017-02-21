@@ -20,14 +20,13 @@ public class ManufacturingOrderProduct {
     @NotNull
     private Integer quantity;
     @NotNull
-    @OneToOne
-    private Product product;
+    private Long product;
 
     public ManufacturingOrderProduct(){
 
     }
 
-    public ManufacturingOrderProduct(Long id, Double width, Double height, Integer quantity, Product product) {
+    public ManufacturingOrderProduct(Long id, Double width, Double height, Integer quantity, Long product) {
         this.id = id;
         this.width = width;
         this.height = height;
@@ -67,11 +66,11 @@ public class ManufacturingOrderProduct {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
+    public Long getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Long product) {
         this.product = product;
     }
 

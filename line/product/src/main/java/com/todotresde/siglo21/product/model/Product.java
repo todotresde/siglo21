@@ -1,4 +1,4 @@
-package com.todotresde.siglo21.security.model;
+package com.todotresde.siglo21.product.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

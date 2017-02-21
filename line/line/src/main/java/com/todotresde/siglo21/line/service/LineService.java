@@ -1,8 +1,8 @@
 package com.todotresde.siglo21.line.service;
 
 import com.todotresde.siglo21.line.model.Line;
-import com.todotresde.siglo21.line.model.ProductType;
 import com.todotresde.siglo21.line.model.WorkStation;
+import com.todotresde.siglo21.product.model.ProductType;
 
 import java.util.List;
 

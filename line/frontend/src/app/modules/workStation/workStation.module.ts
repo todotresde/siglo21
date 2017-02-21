@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from 'app/shared';
 
 import { WorkStationComponent } from './workStation.component';
 import { WorkStationListComponent } from './workStation-list/workStation-list.component';

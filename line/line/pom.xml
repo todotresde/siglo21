@@ -51,7 +51,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<!--
 		<dependency>
 			<groupId>com.todotresde.siglo21</groupId>
 			<artifactId>security</artifactId>
@@ -62,7 +61,6 @@
 			<artifactId>product</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		-->
 		<dependency>
 			<!-- Spring Cloud starter -->
 			<groupId>org.springframework.cloud</groupId>

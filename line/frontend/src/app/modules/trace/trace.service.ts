@@ -13,61 +13,61 @@ export class TraceService {
   constructor(private http: Http) { }
 
   getAll(): Promise<Trace[]> {
-    return this.http.get(environment.host + "/trace")
+    return this.http.get(environment.hosts.line + "/trace")
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByWorkStation(id: Number): Promise<Trace[]> {
-    return this.http.get(environment.host + "/trace/workStation/" + id)
+    return this.http.get(environment.hosts.line + "/trace/workStation/" + id)
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByLineAndWorkStation(lineId: Number, workStationID: Number): Promise<Trace[]> {
-    return this.http.get(environment.host + "/trace/line/" + lineId + "/workStation/" + workStationID)
+    return this.http.get(environment.hosts.line + "/trace/line/" + lineId + "/workStation/" + workStationID)
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByLineAndWorkStationAndStatus(lineId: Number, workStationID: Number, status: Number): Promise<Trace[]> {
-    return this.http.get(environment.host + "/trace/line/" + lineId + "/workStation/" + workStationID + "/status/" + status)
+    return this.http.get(environment.hosts.line + "/trace/line/" + lineId + "/workStation/" + workStationID + "/status/" + status)
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByManufacturingOrder(manufacturingOrderId: Number): Promise<Trace[]> {
-    return this.http.get(environment.host + "/trace/manufacturingOrder/" + manufacturingOrderId)
+    return this.http.get(environment.hosts.line + "/trace/manufacturingOrder/" + manufacturingOrderId)
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   get(id: Number): Promise<Trace> {
-    return this.http.get(environment.host + "/trace/" + id)
+    return this.http.get(environment.hosts.line + "/trace/" + id)
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   remove(trace: Trace): Promise<Trace> {
-    return this.http.delete(environment.host + "/trace/" + trace.id)
+    return this.http.delete(environment.hosts.line + "/trace/" + trace.id)
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   save(trace: Trace): Promise<Trace> {
-    return this.http.post(environment.host + "/trace", trace)
+    return this.http.post(environment.hosts.line + "/trace", trace)
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   multipleSave(traces: Trace[]): Promise<Trace[]> {
-    return this.http.post(environment.host + "/traces", traces)
+    return this.http.post(environment.hosts.line + "/traces", traces)
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   finish(traces: Trace[]): Promise<Trace[]> {
-    return this.http.post(environment.host + "/trace/finish", traces)
+    return this.http.post(environment.hosts.line + "/trace/finish", traces)
                .map(response => response.json() as Trace[])
                .toPromise();
   }

@@ -1,9 +1,10 @@
 package com.todotresde.siglo21.line.service;
 
-import com.todotresde.siglo21.security.dao.UserDao;
+import com.todotresde.siglo21.line.dao.ManufacturingOrderDao;
+import com.todotresde.siglo21.product.service.ProductService;
+import com.todotresde.siglo21.product.model.ProductType;
+import com.todotresde.siglo21.security.service.UserService;
 import com.todotresde.siglo21.security.model.User;
-
-import com.todotresde.siglo21.line.dao.*;
 import com.todotresde.siglo21.line.exception.BaseException;
 import com.todotresde.siglo21.line.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,11 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
     @Autowired
     private LineService lineService;
     @Autowired
-    private TraceDao traceDao;
+    private TraceService traceService;
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
+    @Autowired
+    private ProductService productService;
 
     public List<ManufacturingOrder> all() {
         List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
@@ -45,6 +48,36 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
         List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
 
         for (ManufacturingOrder manufacturingOrder : manufacturingOrderDao.findByStatus(status)) {
+            manufacturingOrders.add(manufacturingOrder);
+        }
+
+        return manufacturingOrders;
+    }
+
+    public List<ManufacturingOrder> allByDateBetween(Date from, Date to) {
+        List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
+
+        for (ManufacturingOrder manufacturingOrder : manufacturingOrderDao.findByDateBetween(from, to)) {
+            manufacturingOrders.add(manufacturingOrder);
+        }
+
+        return manufacturingOrders;
+    }
+
+    public List<ManufacturingOrder> allByCodeContaining(String manufacturingOrderCode) {
+        List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
+
+        for (ManufacturingOrder manufacturingOrder : manufacturingOrderDao.findByCodeContaining(manufacturingOrderCode)) {
+            manufacturingOrders.add(manufacturingOrder);
+        }
+
+        return manufacturingOrders;
+    }
+
+    public List<ManufacturingOrder> allByLine(Line line) {
+        List<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
+
+        for (ManufacturingOrder manufacturingOrder : manufacturingOrderDao.findByLine(line)) {
             manufacturingOrders.add(manufacturingOrder);
         }
 
@@ -119,7 +152,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
         for(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct : manufacturingOrder.getManufacturingOrderCustomProducts()){
 
             for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()){
-                ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
+                ProductType productType = productService.byId(manufacturingOrderProduct.getProduct()).getProductType();
                 //Used for repeat Traces for the same workStation
                 List<WorkStation> workStations = new ArrayList<WorkStation>();
 
@@ -128,7 +161,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                     if(workStationConfigurationService.hasProductType(workStationConfiguration, productType.getId()) && !workStations.contains(workStationConfiguration.getWorkStation())){
                         //TODO
                         //Look for the session user
-                        User user = userDao.findAll().iterator().next();
+                        User user = userService.all().iterator().next();
 
                         Trace trace = new Trace();
 
@@ -137,7 +170,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                         trace.setLine(line);
                         trace.setManufacturingOrderCustomProduct(manufacturingOrderCustomProduct);
                         trace.setManufacturingOrderProduct(manufacturingOrderProduct);
-                        trace.setUser(user);
+                        trace.setUser(user.getId());
                         trace.setWorkStation(workStationConfiguration.getWorkStation());
                         trace.setNextWorkStation(workStationConfiguration.getNextWorkStation());
                         trace.setPreviousWorkStation(workStationConfiguration.getPrevWorkStation());
@@ -153,7 +186,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                         workStations.add(workStationConfiguration.getWorkStation());
 
                         trace.setCode();
-                        traceDao.save(trace);
+                        traceService.save(trace);
 
                         traces.add(trace);
                     }
@@ -169,7 +202,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                 //Previous Trace
                 if(subTrace.getNextWorkStation() != null &&
                         subTrace.getNextWorkStation().getId().equals(trace.getWorkStation().getId()) &&
-                        subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId()))
+                        subTrace.getManufacturingOrderProduct().getProduct().equals(trace.getManufacturingOrderProduct().getProduct()))
                 {
                     previousTrace = subTrace;
                 }
@@ -177,7 +210,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
                 //Next Trace
                 if(trace.getNextWorkStation() != null &&
                         subTrace.getWorkStation().getId().equals(trace.getNextWorkStation().getId()) &&
-                        subTrace.getManufacturingOrderProduct().getProduct().getId().equals(trace.getManufacturingOrderProduct().getProduct().getId()))
+                        subTrace.getManufacturingOrderProduct().getProduct().equals(trace.getManufacturingOrderProduct().getProduct()))
                 {
                     nextTrace = subTrace;
                 }
@@ -186,7 +219,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
             trace.setPreviousTrace(previousTrace);
             trace.setNextTrace(nextTrace);
 
-            traceDao.save(trace);
+            traceService.save(trace);
         }
 
         //In progress
@@ -203,7 +236,7 @@ public class ManufacturingOrderServiceImpl implements ManufacturingOrderService{
         for(ManufacturingOrderCustomProduct manufacturingOrderCustomProduct : manufacturingOrder.getManufacturingOrderCustomProducts()){
 
             for(ManufacturingOrderProduct manufacturingOrderProduct : manufacturingOrderCustomProduct.getManufacturingOrderProducts()) {
-                ProductType productType = manufacturingOrderProduct.getProduct().getProductType();
+                ProductType productType = productService.byId(manufacturingOrderProduct.getProduct()).getProductType();
 
                 if(!productTypes.contains(productType)){
                     productTypes.add(productType);

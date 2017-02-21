@@ -12,13 +12,13 @@ export class ProductService {
   constructor(private http: Http) { }
 
   getAll(): Promise<Product[]> {
-    return this.http.get( environment.host + "/product")
+    return this.http.get( environment.hosts.product + "/product")
                .map(response => response.json() as Product[])
                .toPromise();
   }
 
   getUrl(id: Number): string {
-    return environment.host + "/product/" + id;
+    return environment.hosts.product + "/product/" + id;
   }
 
   get(id: Number): Promise<Product> {
@@ -28,7 +28,7 @@ export class ProductService {
   }
 
   getByDescriptionURL(description: string = ""): string{
-    return environment.host + "/product/byDescription/" + description;
+    return environment.hosts.product + "/product/byDescription/" + description;
   }
 
   getByDescription(description: string): Promise<Product[]> {
@@ -38,13 +38,13 @@ export class ProductService {
   }
 
   remove(product: Product): Promise<Product> {
-    return this.http.delete(environment.host + "/product/" + product.id)
+    return this.http.delete(environment.hosts.product + "/product/" + product.id)
                .map(response => response.json() as Product)
                .toPromise();
   }
 
   save(product: Product): Promise<Product> {
-    return this.http.post(environment.host + "/product", product)
+    return this.http.post(environment.hosts.product + "/product", product)
                .map(response => response.json() as Product)
                .toPromise();
   }

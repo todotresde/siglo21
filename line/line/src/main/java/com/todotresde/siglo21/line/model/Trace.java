@@ -1,7 +1,5 @@
 package com.todotresde.siglo21.line.model;
 
-import com.todotresde.siglo21.security.model.User;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -50,8 +48,7 @@ public class Trace {
     @OneToMany
     private List<Delay> delays;
     @NotNull
-    @OneToOne
-    private User user;
+    private Long user;
     @OneToOne
     @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
     private Trace nextTrace;
@@ -185,11 +182,11 @@ public class Trace {
         this.delays = delays;
     }
 
-    public User getUser() {
+    public Long getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Long user) {
         this.user = user;
     }
 

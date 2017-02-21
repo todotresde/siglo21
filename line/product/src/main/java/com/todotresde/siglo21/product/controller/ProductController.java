@@ -1,10 +1,13 @@
-package com.todotresde.siglo21.security.controller;
+package com.todotresde.siglo21.product.controller;
 
-import com.todotresde.siglo21.security.model.Product;
-import com.todotresde.siglo21.security.service.ProductService;
+import com.google.common.collect.Lists;
+import com.google.common.primitives.Longs;
+import com.todotresde.siglo21.product.model.Product;
+import com.todotresde.siglo21.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,6 +28,19 @@ public class ProductController {
     public @ResponseBody
     Product get(@PathVariable Long id) {
         return this.productService.byId(id);
+    }
+
+    @RequestMapping(value="/products/{ids}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    List<Product> getByIds(@PathVariable String ids) {
+        List<Long> productIds = Lists.transform(Arrays.asList(ids.split(",")), Longs.stringConverter());;
+        return this.productService.byIds(productIds);
+    }
+
+    @RequestMapping(value="/product/byCode/{code}", method= RequestMethod.GET, produces="application/json")
+    public @ResponseBody
+    Product byCode(@PathVariable String code) {
+        return this.productService.byCode(code);
     }
 
     @RequestMapping(value="/product/byDescription/{description}", method= RequestMethod.GET, produces="application/json")

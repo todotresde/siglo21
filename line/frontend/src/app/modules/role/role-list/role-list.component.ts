@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Role } from '../role';
 import { RoleService } from '../role.service';
 
-import { Message } from '../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-role-list',

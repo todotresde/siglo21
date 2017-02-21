@@ -1,7 +1,5 @@
 package com.todotresde.siglo21.line.model;
 
-import com.todotresde.siglo21.security.model.User;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -22,12 +20,12 @@ public class WorkStationConfiguration implements Cloneable{
     private WorkStation prevWorkStation;
     @OneToOne
     private WorkStation nextWorkStation;
-    @ManyToMany
+    @ElementCollection
     @NotNull
-    private List<ProductType> productTypes;
-    @ManyToMany
+    private List<Long> productTypes;
+    @ElementCollection
     @NotNull
-    private List<User> users;
+    private List<Long> users;
     @NotNull
     private Boolean first = false;
     @NotNull
@@ -71,19 +69,19 @@ public class WorkStationConfiguration implements Cloneable{
         this.nextWorkStation = nextWorkStation;
     }
 
-    public List<ProductType> getProductTypes() {
+    public List<Long> getProductTypes() {
         return productTypes;
     }
 
-    public void setProductTypes(List<ProductType> productTypes) {
+    public void setProductTypes(List<Long> productTypes) {
         this.productTypes = productTypes;
     }
 
-    public List<User> getUsers() {
+    public List<Long> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<Long> users) {
         this.users = users;
     }
 

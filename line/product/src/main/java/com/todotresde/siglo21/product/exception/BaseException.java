@@ -1,4 +1,4 @@
-package com.todotresde.siglo21.security.exception;
+package com.todotresde.siglo21.product.exception;
 
 import org.springframework.validation.Errors;
 

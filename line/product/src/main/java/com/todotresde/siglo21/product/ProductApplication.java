@@ -1,4 +1,4 @@
-package com.todotresde.siglo21.security;
+package com.todotresde.siglo21.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

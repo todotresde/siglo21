@@ -1,6 +1,6 @@
-package com.todotresde.siglo21.security.dao;
+package com.todotresde.siglo21.product.dao;
 
-import com.todotresde.siglo21.security.model.ProductType;
+import com.todotresde.siglo21.product.model.ProductType;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;

@@ -1,9 +1,9 @@
-package com.todotresde.siglo21.security.helper;
+package com.todotresde.siglo21.product.helper;
 
-import com.todotresde.siglo21.security.model.Product;
-import com.todotresde.siglo21.security.model.ProductType;
-import com.todotresde.siglo21.security.service.ProductService;
-import com.todotresde.siglo21.security.service.ProductTypeService;
+import com.todotresde.siglo21.product.model.Product;
+import com.todotresde.siglo21.product.model.ProductType;
+import com.todotresde.siglo21.product.service.ProductService;
+import com.todotresde.siglo21.product.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

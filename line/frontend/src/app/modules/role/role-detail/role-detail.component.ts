@@ -5,8 +5,7 @@ import { Location } from '@angular/common';
 import { Role } from '../role';
 import { RoleService } from '../role.service';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
+import { Message, Commons } from 'app/shared';
 
 @Component({
   selector: 'app-role-detail',

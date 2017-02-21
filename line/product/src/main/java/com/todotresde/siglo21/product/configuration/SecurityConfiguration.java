@@ -1,4 +1,4 @@
-package com.todotresde.siglo21.security.configuration;
+package com.todotresde.siglo21.product.configuration;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
