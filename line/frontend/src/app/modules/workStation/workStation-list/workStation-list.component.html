@@ -4,35 +4,13 @@
     <hr/>
     <app-message [message]="message"></app-message>
     <div class="container-fluid">
-      <div class="row table-header">
-          <div class="col-md-4">
-              {{'name'|translate}}
-          </div>
-          <div class="col-md-4">
-              {{'short-name'|translate}}
-          </div>
-          <div class="col-md-2">
-              {{'ip'|translate}}
-          </div>
-          <div class="col-md-2 pull-right ">
-            <button type="button" class="btn btn-secondary pull-right fa fa-plus" (click)="create()"></button>
-          </div>
-      </div>
-      <div class="row table-content" *ngFor="let workStation of workStations" >
-        <div class="col-md-4">
-          {{workStation.name}}
-        </div>
-        <div class="col-md-4">
-          {{workStation.shortName}}
-        </div>
-        <div class="col-md-2">
-          {{workStation.ip}}
-        </div>
-        <div class="col-md-2 ">
-          <button type="button" class="btn btn-secondary pull-right fa fa-trash" (click)="remove(workStation)"></button>
-          <button type="button" class="btn btn-secondary pull-right fa fa-pencil" (click)="edit(workStation)"></button>
-        </div>
-      </div>
+      <app-list 
+        [inputComponent]="this" 
+        [inputColumns]="workStationColumns" 
+        [inputRecords]="workStations" 
+        [inputRecordActions]="workStationRecordActions"
+        [inputHeaderActions]="workStationHeaderActions"
+      ></app-list>
     </div>
   </div>
 </div>

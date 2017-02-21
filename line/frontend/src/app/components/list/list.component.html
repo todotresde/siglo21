@@ -1,0 +1,20 @@
+<div class="row table-header">
+    <div *ngFor="let column of columns">
+        <div class="{{'col-md-' + column.width}}">
+            {{column.name | translate}}
+        </div>
+    </div>
+    <div *ngFor="let headerAction of headerActions">
+      <button type="button" class="btn btn-secondary pull-right fa {{headerAction.class}}" (click)="component[headerAction['action']]()"></button>
+    </div>
+</div>
+<div class="row table-content" *ngFor="let inputRecord of inputRecords">
+    <div *ngFor="let column of columns">
+        <div class="{{'col-md-' + column.width}}">
+            {{inputRecord[column.field]}}
+        </div>
+    </div>
+    <div *ngFor="let recordAction of recordActions">
+      <button type="button" class="btn btn-secondary pull-right fa {{recordAction.class}}" (click)="component[recordAction['action']](inputRecord)"></button>
+    </div>
+</div>

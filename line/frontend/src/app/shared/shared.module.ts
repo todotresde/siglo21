@@ -10,6 +10,8 @@ import { Ng2CompleterModule } from "ng2-completer";
 import { MessageComponent } from './message/message.component';
 import { SortPipe } from './sort.pipe';
 
+import { ComponentsModule } from 'app/components/components.module';
+
 @NgModule({
     imports: [
     	CommonModule, 
@@ -17,7 +19,8 @@ import { SortPipe } from './sort.pipe';
     	FormsModule, 
     	TranslateModule, 
     	NgbModule, 
-    	Ng2CompleterModule
+    	Ng2CompleterModule,
+        ComponentsModule
     ],
     declarations: [MessageComponent, SortPipe],
     exports: [
@@ -28,7 +31,8 @@ import { SortPipe } from './sort.pipe';
     	NgbModule, 
     	MessageComponent, 
     	Ng2CompleterModule, 
-    	SortPipe
+    	SortPipe,
+        ComponentsModule
     ]
 })
 export class SharedModule {

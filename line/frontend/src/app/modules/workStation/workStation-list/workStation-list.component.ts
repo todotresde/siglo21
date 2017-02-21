@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { WorkStation } from '../workStation';
 import { WorkStationService } from '../workStation.service';
 
-import { Message } from '../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-workStation-list',
@@ -14,6 +14,21 @@ import { Message } from '../../../shared/message/message';
 export class WorkStationListComponent implements OnInit {
   message: Message = new Message();
   workStations: WorkStation[];
+
+  workStationColumns: any[] = [
+    {name: "name", width:"4"},
+    {name: "short-name", field: "shortName", width:"4"},
+    {name: "ip" },
+  ];
+
+  workStationRecordActions: any[] = [
+    {action: "remove", class: "fa-trash"},
+    {action: "edit", class: "fa-pencil"}
+  ];
+
+  workStationHeaderActions: any[] = [
+    {action: "create", class: "fa-plus"}
+  ];
 
   constructor(private router: Router, private workStationService: WorkStationService, private r:ActivatedRoute) {
 

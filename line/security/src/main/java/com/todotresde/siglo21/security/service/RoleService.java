@@ -1,0 +1,15 @@
+package com.todotresde.siglo21.security.service;
+
+import com.todotresde.siglo21.security.model.Role;
+
+import java.util.List;
+
+/**
+ * Created by Leonardo on 26/12/2016.
+ */
+public interface RoleService {
+    public List<Role> all();
+    public Role byId(Long id);
+    public Role delete(Long id);
+    public Role save(Role role);
+}

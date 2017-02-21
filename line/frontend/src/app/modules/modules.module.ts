@@ -18,6 +18,7 @@ import { LineDelayModule } from './lineDelay/lineDelay.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 import { ModulesComponent } from './modules.component';
+
 @NgModule({
   imports: [
     LayoutModule,
