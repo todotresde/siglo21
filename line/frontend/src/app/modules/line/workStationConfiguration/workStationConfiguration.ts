@@ -9,8 +9,8 @@ export class WorkStationConfiguration {
     workStation: WorkStation = new WorkStation();
     nextWorkStation? : WorkStation = null;
     prevWorkStation? : WorkStation = null;
-    productTypes : ProductType[] = [];
-    users : User[] = [];
+    productTypes : number[] = [];
+    users : number[] = [];
     first : boolean = false;
     last : boolean = false;
     delays : Delay[] = [];

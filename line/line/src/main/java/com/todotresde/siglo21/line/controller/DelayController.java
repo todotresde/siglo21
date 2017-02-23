@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @RestController
-public class DelayController {
+public class DelayController extends MainController{
     @Autowired
     private DelayService delayService;
 

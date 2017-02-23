@@ -19,6 +19,7 @@ export class WorkStationUsersComponent implements OnInit, OnChanges {
   users : User[];
   selectedUser : User;
   selectedUsers : User[];
+  usersById : any = {};
   
   constructor(private route: ActivatedRoute, private userService: UserService) { 
       this.selectedUsers = this.inputUsers;
@@ -26,7 +27,10 @@ export class WorkStationUsersComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
-      this.userService.getAll().then(users => this.users = users);
+      this.userService.getAll().then(users => {
+        this.users = users;
+        this.users.forEach(user => this.usersById[user.id] = user);
+    });
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {

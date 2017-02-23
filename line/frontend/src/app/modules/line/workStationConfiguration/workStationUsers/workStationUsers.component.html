@@ -20,7 +20,7 @@
             <hr/>
             <div class="row table-content" *ngFor="let selectedUser of selectedUsers" >
                 <div class="col-md-8">
-                    {{selectedUser.name}}
+                    {{usersById[selectedUser].name}}
                 </div>
                 <div class="col-md-4 pull-right">
                     <button type="button" class="btn btn-secondary fa fa-trash" (click)="remove(selectedUser)"></button>

@@ -6,8 +6,8 @@
 export const environment = {
     production: false,
     hosts: {
-        product: "http://localhost:8082",
-        security: "http://localhost:8081",
-        line: "http://localhost:8080"
+        product: "http://localhost:1111/product",
+        security: "http://localhost:1111/security",
+        line: "http://localhost:1111/line"
     }
 };

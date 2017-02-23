@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @RestController
-public class ManufacturingOrderProductController {
+public class ManufacturingOrderProductController extends MainController{
     @Autowired
     private ManufacturingOrderProductService manufacturingOrderProductService;
 

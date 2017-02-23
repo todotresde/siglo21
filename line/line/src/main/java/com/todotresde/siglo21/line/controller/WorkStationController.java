@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @RestController
-public class WorkStationController {
+public class WorkStationController extends MainController{
     @Autowired
     private WorkStationService workStationService;
 

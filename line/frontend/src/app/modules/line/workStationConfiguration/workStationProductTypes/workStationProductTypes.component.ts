@@ -19,6 +19,7 @@ export class WorkStationProductTypesComponent implements OnInit, OnChanges {
   productTypes : ProductType[];
   selectedProductType : ProductType;
   selectedProductTypes : ProductType[];
+  productTypesById : any = {};
   
   constructor(private route: ActivatedRoute, private productTypeService: ProductTypeService) { 
       this.selectedProductTypes = this.inputProductTypes;
@@ -26,7 +27,11 @@ export class WorkStationProductTypesComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() : void{
-      this.productTypeService.getAll().then(productTypes => this.productTypes = productTypes);
+      this.productTypeService.getAll().then(productTypes => {
+        this.productTypes = productTypes;
+
+        this.productTypes.forEach(productType => this.productTypesById[productType.id] = productType);
+      });
   }
 
   ngOnChanges(changes:  {[propKey: string]:SimpleChange}) {
@@ -43,6 +48,7 @@ export class WorkStationProductTypesComponent implements OnInit, OnChanges {
   }
 
   add(productType: ProductType): void {
+    debugger
     if(this.exist(productType)){
       this.message.error("error-product-type-already-assigned");
     }else{

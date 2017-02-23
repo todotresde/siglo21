@@ -12,31 +12,31 @@ export class WorkStationConfigurationService {
   constructor(private http: Http) { }
 
   getAll(): Promise<WorkStationConfiguration[]> {
-    return this.http.get(environment.host + "/workStationConfiguration")
+    return this.http.get(environment.hosts.line + "/workStationConfiguration")
                .map(response => response.json() as WorkStationConfiguration[])
                .toPromise();
   }
 
   get(id: Number): Promise<WorkStationConfiguration> {
-    return this.http.get(environment.host + "/workStationConfiguration/" + id)
+    return this.http.get(environment.hosts.line + "/workStationConfiguration/" + id)
                .map(response => response.json() as WorkStationConfiguration)
                .toPromise();
   }
 
   getByLineAndWorkStation(lineId: Number, workStationId: Number): Promise<WorkStationConfiguration> {
-    return this.http.get(environment.host + "/workStationConfiguration/line/" + lineId + "/workStation/" + workStationId)
+    return this.http.get(environment.hosts.line + "/workStationConfiguration/line/" + lineId + "/workStation/" + workStationId)
                .map(response => response.json() as WorkStationConfiguration)
                .toPromise();
   }
 
   remove(workStationConfiguration: WorkStationConfiguration): Promise<WorkStationConfiguration> {
-    return this.http.delete(environment.host + "/workStationConfiguration/" + workStationConfiguration.id)
+    return this.http.delete(environment.hosts.line + "/workStationConfiguration/" + workStationConfiguration.id)
                .map(response => response.json() as WorkStationConfiguration)
                .toPromise();
   }
 
   save(workStationConfiguration: WorkStationConfiguration): Promise<WorkStationConfiguration> {
-    return this.http.post(environment.host + "/workStationConfiguration", workStationConfiguration)
+    return this.http.post(environment.hosts.line + "/workStationConfiguration", workStationConfiguration)
                .map(response => response.json() as WorkStationConfiguration)
                .toPromise();
   }

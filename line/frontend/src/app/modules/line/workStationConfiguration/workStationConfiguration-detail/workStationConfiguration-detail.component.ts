@@ -71,11 +71,17 @@ export class WorkStationConfigurationDetailComponent implements OnInit, OnChange
   }
 
   setUsers(users: User[]): void {
-    this.workStationConfiguration.users = users;
+    let ids: number[] = [];
+    users.forEach(user => ids.push(user.id));
+
+    this.workStationConfiguration.users = ids;
   }
 
   setProductTypes(productTypes: ProductType[]){
-    this.workStationConfiguration.productTypes = productTypes;
+    let ids: number[] = [];
+    productTypes.forEach(productType => ids.push(productType.id));
+
+    this.workStationConfiguration.productTypes = ids;
   }
 
   private valid(workStationConfiguration: WorkStationConfiguration): boolean{
