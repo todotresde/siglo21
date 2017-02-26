@@ -6,6 +6,7 @@ import com.todotresde.siglo21.security.helper.UserHelper;
 import com.todotresde.siglo21.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by Leonardo on 26/12/2016.
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserDao userDao;

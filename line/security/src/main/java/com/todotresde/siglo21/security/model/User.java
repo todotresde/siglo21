@@ -1,5 +1,6 @@
 package com.todotresde.siglo21.security.model;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -24,7 +25,8 @@ public class User {
     private String name;
     @NotNull
     private String email;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @NotNull
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> roles;
 
     public User(){
@@ -37,6 +39,11 @@ public class User {
         this.password = password;
         this.name = name;
         this.email = email;
+    }
+
+    public User(String username, String password, List<GrantedAuthority> roles) {
+        this.username = username;
+        this.password = password;
     }
 
     public Long getId() {

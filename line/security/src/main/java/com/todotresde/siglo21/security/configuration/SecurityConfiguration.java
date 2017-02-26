@@ -1,5 +1,6 @@
 package com.todotresde.siglo21.security.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,10 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Autowired
+    CustomAuthenticationProvider customAuthenticationProvider;
+
     @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(customAuthenticationProvider);
     }
 
     @Override
