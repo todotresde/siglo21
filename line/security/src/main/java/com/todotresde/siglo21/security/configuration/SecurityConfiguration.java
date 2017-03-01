@@ -1,5 +1,8 @@
 package com.todotresde.siglo21.security.configuration;
 
+import com.todotresde.siglo21.security.model.Role;
+import com.todotresde.siglo21.security.model.Route;
+import com.todotresde.siglo21.security.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +25,25 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomAuthenticationProvider customAuthenticationProvider;
+    @Autowired
+    RoleService roleService;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/login").permitAll();
+
+        for(Role role : roleService.all()){
+            for(Route route : role.getRoutes()) {
+                http.authorizeRequests().antMatchers(route.getRoute()).hasAnyRole(role.getName().replace("ROLE_",""));
+            }
+        }
+
+        http.authorizeRequests()
+                .anyRequest().denyAll()
+                .and()
+                .formLogin().permitAll();
+    }
+
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {

@@ -10,6 +10,7 @@ import java.util.List;
 public interface RoleService {
     public List<Role> all();
     public Role byId(Long id);
+    public Role byName(String name);
     public Role delete(Long id);
     public Role save(Role role);
 }

@@ -1,33 +1,33 @@
 package com.todotresde.siglo21.security.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Created by Leonardo on 26/12/2016.
  */
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "route")
+public class Route {
     @Id
     @NotNull
     private Long id;
     @NotNull
     @Column(unique=true)
-    private String name;
+    private String route;
     @NotNull
     private String description;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Route> routes;
 
-    public Role(){
+    public Route(){
 
     }
 
-    public Role(Long id, String name, String description) {
+    public Route(Long id, String name, String description) {
         this.id = id;
-        this.name = name;
+        this.route = name;
         this.description = description;
     }
 
@@ -39,12 +39,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRoute() {
+        return route;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoute(String route) {
+        this.route = route;
     }
 
     public String getDescription() {
@@ -55,7 +55,4 @@ public class Role {
         this.description = description;
     }
 
-    public List<Route> getRoutes(){return routes;}
-
-    public void setRoutes(List<Route> routes){this.routes = routes;}
 }

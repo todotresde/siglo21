@@ -33,6 +33,10 @@ public class RoleServiceImpl implements RoleService{
         return roleDao.findById(id);
     }
 
+    public Role byName(String name) {
+        return roleDao.findByName(name);
+    }
+
     public Role delete(Long id) {
         Role role = roleDao.findById(id);
 

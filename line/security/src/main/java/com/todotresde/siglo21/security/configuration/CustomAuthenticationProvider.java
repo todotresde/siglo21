@@ -1,7 +1,5 @@
 package com.todotresde.siglo21.security.configuration;
 
-import com.todotresde.siglo21.security.model.User;
-import com.todotresde.siglo21.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
