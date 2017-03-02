@@ -1,27 +1,30 @@
-package com.todotresde.siglo21.line.controller;
+package com.todotresde.siglo21.cloud.controller;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import com.todotresde.siglo21.security.model.User;
-import com.todotresde.siglo21.security.service.UserService;
+import com.todotresde.siglo21.cloud.model.User;
+import com.todotresde.siglo21.cloud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Leonardo on 19/01/2017.
  */
-@Controller
+@RestController
 public class LoginController {
 
     @Autowired
@@ -34,7 +37,7 @@ public class LoginController {
         return modelAndView;
     }
 
-
+    /*
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
@@ -76,10 +79,24 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/token", method = RequestMethod.GET)
+    @RequestMapping(value="/token", method = RequestMethod.GET, produces="application/json")
     @ResponseBody
     public Map<String,String> token(HttpSession session) {
         return Collections.singletonMap("token", session.getId());
+    }
+
+    */
+
+    @RequestMapping(value="/token", method = RequestMethod.GET, produces="application/json")
+    @ResponseBody
+    public Map<String,String> getCsrfToken(HttpServletRequest request, HttpSession session) {
+        //CsrfToken token = (CsrfToken)request.getAttribute(CsrfToken.class.getName());
+        Map<String, String> tokens = new HashMap<String, String>();
+
+        //tokens.put("csrfToken", token.getToken());
+        tokens.put("sessionToken", session.getId());
+
+        return tokens;
     }
 
 }

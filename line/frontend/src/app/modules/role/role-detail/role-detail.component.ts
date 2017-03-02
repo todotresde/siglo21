@@ -4,19 +4,22 @@ import { Location } from '@angular/common';
 
 import { Role } from '../role';
 import { RoleService } from '../role.service';
+import { Route, RouteService } from 'app/modules/route';
 
 import { Message, Commons } from 'app/shared';
 
 @Component({
   selector: 'app-role-detail',
   templateUrl: './role-detail.component.html',
-  providers:[RoleService]
+  providers:[RoleService, RouteService]
 })
 export class RoleDetailComponent implements OnInit {
   message: Message = new Message();
   role : Role;
+  routes : Route[] = [];
+  selectedRoute : Route = new Route();
 
-  constructor(private location: Location, private route: ActivatedRoute, private roleService: RoleService) { 
+  constructor(private location: Location, private route: ActivatedRoute, private roleService: RoleService, private routeService: RouteService) { 
     this.role = new Role();
   }
 
@@ -28,6 +31,33 @@ export class RoleDetailComponent implements OnInit {
         });
       }
     });
+
+    this.routeService
+      .getAll()
+      .then(routes => this.routes = routes)
+      .catch(error => {
+        this.message.error(JSON.parse(error._body).message);
+      })
+  }
+
+  add(route: Route): void {
+    if(this.exist(route)){
+      this.message.error("error-route-already-assigned");
+    }else{
+      this.role.routes.push(route);
+      
+      this.selectedRoute = new Route();
+      this.message.none();
+    }
+  }
+
+  remove(route: Route): void {
+    this.role.routes = this.role.routes.filter(u => u.id !== route.id);
+  }
+
+  private exist(route: Route): boolean{
+    let result: Route[] = this.role.routes.filter(u => u.id === route.id);
+    return result.length > 0;
   }
 
   save(): void {

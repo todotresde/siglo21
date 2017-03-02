@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { LoginService } from './login.service';
 
-import { Message } from '../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
 	moduleId: "login",
@@ -20,7 +20,7 @@ export class LoginComponent {
 	constructor(private router: Router, private r:ActivatedRoute, private loginService: LoginService){
 
 	}
-
+	/*
 	login(username: string, password: string): void{
 		this.loginService.login(username, password)
 			.then(response => {
@@ -36,11 +36,31 @@ export class LoginComponent {
 						this.router.navigate(['/modules'],{ relativeTo: this.r })
 					})
 					.catch(error => {
-						this.message.error("invalid-username-password");
+						this.message.error("error-invalid-username-password");
 					})
 			})
 			.catch(error => {
-				this.message.error("invalid-username-password");
+				this.message.error("error-invalid-username-password");
+			})
+	}
+	*/
+
+	login(username: string, password: string): void{
+		this.loginService.getToken()
+			.then( response => {
+				//localStorage.setItem("Cookie", "JSESSIONID="+response.sessionToken);
+				localStorage.setItem("X-XSRF-TOKEN", response.sessionToken);
+
+				this.loginService.login(username, password, response.csrfToken)
+					.then(response => {
+						this.router.navigate(['/modules'],{ relativeTo: this.r })
+					})
+					.catch(error => {
+						this.message.error("error-invalid-username-password");
+					})
+			})
+			.catch(error => {
+				this.message.error("error-invalid-username-password");
 			})
 	}
 }

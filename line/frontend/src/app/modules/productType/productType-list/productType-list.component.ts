@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductType } from '../productType';
 import { ProductTypeService } from '../productType.service';
 
-import { Message } from '../../../shared/message/message';
+import { Message } from 'app/shared';
 
 @Component({
   selector: 'app-productType-list',

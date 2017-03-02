@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { UserRoutes } from './user/user.routes';
 import { RoleRoutes } from './role/role.routes';
+import { RouteRoutes } from './route/route.routes';
 import { WorkStationRoutes } from './workStation/workStation.routes';
 import { ProductRoutes } from './product/product.routes';
 import { ProductTypeRoutes } from './productType/productType.routes';
@@ -31,7 +32,8 @@ export const ModulesRoutes: Route[] = [
             ...DelayRoutes,
             ...DelayTypeRoutes,
             ...LineDelayRoutes,
-            ...DashboardRoutes
+            ...DashboardRoutes,
+            ...RouteRoutes
     	]
   	}
 ];

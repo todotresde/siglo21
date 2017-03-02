@@ -6,6 +6,7 @@
 export const environment = {
     production: false,
     hosts: {
+    	base: "http://localhost:1111",
         product: "http://localhost:1111/product",
         security: "http://localhost:1111/security",
         line: "http://localhost:1111/line"

@@ -9,6 +9,7 @@ import { ProductModule } from './product/product.module';
 import { ProductTypeModule } from './productType/productType.module';
 import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
+import { RouteModule } from './route/route.module';
 import { WorkStationModule } from './workStation/workStation.module';
 import { ManufacturingOrderModule } from './manufacturingOrder/manufacturingOrder.module';
 import { TraceModule } from './trace/trace.module';
@@ -26,6 +27,7 @@ import { ModulesComponent } from './modules.component';
     RouterModule,
     UserModule,
     RoleModule,
+    RouteModule,
     WorkStationModule,
     ProductModule,
     ProductTypeModule,

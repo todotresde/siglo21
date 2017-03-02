@@ -20,7 +20,6 @@
     </properties>
     
     <modules>
-        <module>security</module>
         <module>product</module>
         <module>line</module>
         <module>cloud</module>

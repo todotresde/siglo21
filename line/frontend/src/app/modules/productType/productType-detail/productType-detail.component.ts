@@ -5,8 +5,7 @@ import { Location } from '@angular/common';
 import { ProductType } from '../productType';
 import { ProductTypeService } from '../productType.service';
 
-import { Message } from '../../../shared/message/message';
-import { Commons } from '../../../shared/commons';
+import { Message, Commons } from 'app/shared';
 
 @Component({
   selector: 'app-productType-detail',

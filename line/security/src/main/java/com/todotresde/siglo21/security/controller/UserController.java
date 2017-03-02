@@ -1,5 +1,6 @@
 package com.todotresde.siglo21.security.controller;
 
+import com.todotresde.siglo21.security.configuration.SecurityConfiguration;
 import com.todotresde.siglo21.security.model.User;
 import com.todotresde.siglo21.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import java.util.List;
 public class UserController extends MainController {
     @Autowired
     private UserService userService;
+    @Autowired
+    SecurityConfiguration securityConfiguration;
 
     @RequestMapping(value="/user", method= RequestMethod.GET, produces="application/json")
     public @ResponseBody

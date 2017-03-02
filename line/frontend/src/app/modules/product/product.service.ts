@@ -5,14 +5,15 @@ import 'rxjs/add/operator/toPromise';
 
 import { environment } from 'environments/environment';
 
+import { Service } from 'app/shared';
 import { Product } from './product';
 
 @Injectable()
-export class ProductService {
-  constructor(private http: Http) { }
+export class ProductService extends Service{
+  constructor(private http: Http) { super(); }
 
   getAll(): Promise<Product[]> {
-    return this.http.get( environment.hosts.product + "/product")
+    return this.http.get( environment.hosts.product + "/product", this.getRequestOptions())
                .map(response => response.json() as Product[])
                .toPromise();
   }
@@ -22,7 +23,7 @@ export class ProductService {
   }
 
   get(id: Number): Promise<Product> {
-    return this.http.get(this.getUrl(id))
+    return this.http.get(this.getUrl(id), this.getRequestOptions())
                .map(response => response.json() as Product)
                .toPromise();
   }
@@ -32,19 +33,19 @@ export class ProductService {
   }
 
   getByDescription(description: string): Promise<Product[]> {
-    return this.http.get(this.getByDescriptionURL(description))
+    return this.http.get(this.getByDescriptionURL(description), this.getRequestOptions())
                .map(response => response.json() as Product[])
                .toPromise();
   }
 
   remove(product: Product): Promise<Product> {
-    return this.http.delete(environment.hosts.product + "/product/" + product.id)
+    return this.http.delete(environment.hosts.product + "/product/" + product.id, this.getRequestOptions())
                .map(response => response.json() as Product)
                .toPromise();
   }
 
   save(product: Product): Promise<Product> {
-    return this.http.post(environment.hosts.product + "/product", product)
+    return this.http.post(environment.hosts.product + "/product", product, this.getRequestOptions())
                .map(response => response.json() as Product)
                .toPromise();
   }

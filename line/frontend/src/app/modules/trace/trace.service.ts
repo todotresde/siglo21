@@ -3,71 +3,71 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Trace } from './trace';
-
 import { environment } from 'environments/environment';
 
+import { Service } from 'app/shared';
+import { Trace } from './trace';
 
 @Injectable()
-export class TraceService {
-  constructor(private http: Http) { }
+export class TraceService extends Service {
+  constructor(private http: Http) { super(); }
 
   getAll(): Promise<Trace[]> {
-    return this.http.get(environment.hosts.line + "/trace")
+    return this.http.get(environment.hosts.line + "/trace", this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByWorkStation(id: Number): Promise<Trace[]> {
-    return this.http.get(environment.hosts.line + "/trace/workStation/" + id)
+    return this.http.get(environment.hosts.line + "/trace/workStation/" + id, this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByLineAndWorkStation(lineId: Number, workStationID: Number): Promise<Trace[]> {
-    return this.http.get(environment.hosts.line + "/trace/line/" + lineId + "/workStation/" + workStationID)
+    return this.http.get(environment.hosts.line + "/trace/line/" + lineId + "/workStation/" + workStationID, this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByLineAndWorkStationAndStatus(lineId: Number, workStationID: Number, status: Number): Promise<Trace[]> {
-    return this.http.get(environment.hosts.line + "/trace/line/" + lineId + "/workStation/" + workStationID + "/status/" + status)
+    return this.http.get(environment.hosts.line + "/trace/line/" + lineId + "/workStation/" + workStationID + "/status/" + status, this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   getAllByManufacturingOrder(manufacturingOrderId: Number): Promise<Trace[]> {
-    return this.http.get(environment.hosts.line + "/trace/manufacturingOrder/" + manufacturingOrderId)
+    return this.http.get(environment.hosts.line + "/trace/manufacturingOrder/" + manufacturingOrderId, this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   get(id: Number): Promise<Trace> {
-    return this.http.get(environment.hosts.line + "/trace/" + id)
+    return this.http.get(environment.hosts.line + "/trace/" + id, this.getRequestOptions())
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   remove(trace: Trace): Promise<Trace> {
-    return this.http.delete(environment.hosts.line + "/trace/" + trace.id)
+    return this.http.delete(environment.hosts.line + "/trace/" + trace.id, this.getRequestOptions())
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   save(trace: Trace): Promise<Trace> {
-    return this.http.post(environment.hosts.line + "/trace", trace)
+    return this.http.post(environment.hosts.line + "/trace", trace, this.getRequestOptions())
                .map(response => response.json() as Trace)
                .toPromise();
   }
 
   multipleSave(traces: Trace[]): Promise<Trace[]> {
-    return this.http.post(environment.hosts.line + "/traces", traces)
+    return this.http.post(environment.hosts.line + "/traces", traces, this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }
 
   finish(traces: Trace[]): Promise<Trace[]> {
-    return this.http.post(environment.hosts.line + "/trace/finish", traces)
+    return this.http.post(environment.hosts.line + "/trace/finish", traces, this.getRequestOptions())
                .map(response => response.json() as Trace[])
                .toPromise();
   }

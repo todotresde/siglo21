@@ -89,6 +89,8 @@
 	"manufacturing-order-acronym" : "O.F.",
 	"in" : "Ingreso",
 	"in-work-station" : "En Puesto",
+	"route" : "Ruta",
+	"routes" : "Rutas",
 	"success-sending-to-production" : "Enviado a Producción Correctamente!",
 	"error-ip-already-exist" : "El Puesto con esta IP ya existe",
 	"error-ip-format-invalid" : "El formato de la IP es inválido",
@@ -105,5 +107,7 @@
 	"error-missing-users" : "No eisten Usuarios asignados",
 	"error-missing-workstation-configurations" : "No existen Puestos asignados",
 	"error-missing-manufacturing-custom-order" : "No existe el Producto a Medida",
-	"error-missing-workstations-for-line" : "La Línea no posee las Puestos de Trabajo para porcesar alguno o todos los productos."
+	"error-missing-workstations-for-line" : "La Línea no posee las Puestos de Trabajo para porcesar alguno o todos los productos.",
+	"error-route-already-assigned" : "La Ruta ya fue asignada",
+	"error-invalid-username-password" : "Username o Password incorrectos"
 }
