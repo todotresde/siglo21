@@ -16,6 +16,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Leonardo on 18/01/2017.
  */
@@ -35,6 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        Map<String, List<String>> routes = new HashMap<String, List<String>>();
+
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/lastn").permitAll()
@@ -44,9 +51,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         for(Role role : roleService.all()){
             for(Route route : role.getRoutes()) {
-                http.authorizeRequests().antMatchers(route.getRoute()).hasAnyRole(role.getName().replace("ROLE_",""));
+                if(!routes.containsKey(route.getRoute())){
+                    routes.put(route.getRoute(), new ArrayList<String>());
+                }
+
+                if(!routes.get(route.getRoute()).contains(role.getName().replace("ROLE_",""))){
+                    routes.get(route.getRoute()).add(role.getName().replace("ROLE_",""));
+                }
             }
         }
+
+        routes.forEach((route, roles)->{
+            try {
+                http.authorizeRequests().antMatchers(route).hasAnyRole(roles.toArray(new String[roles.size()]));
+            }catch (Exception e){
+
+            }
+        });
+
+
 
         http.authorizeRequests()
                 .anyRequest().denyAll()

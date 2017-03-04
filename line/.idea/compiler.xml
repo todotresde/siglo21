@@ -29,11 +29,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cloud" target="1.6" />
+      <module name="cloud" target="1.8" />
       <module name="line" target="1.8" />
-      <module name="product" target="1.5" />
-      <module name="security" target="1.8" />
-      <module name="security (1)" target="1.8" />
+      <module name="product" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

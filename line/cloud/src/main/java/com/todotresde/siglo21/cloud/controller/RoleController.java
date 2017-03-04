@@ -3,6 +3,7 @@ package com.todotresde.siglo21.cloud.controller;
 import com.todotresde.siglo21.cloud.model.Role;
 import com.todotresde.siglo21.cloud.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
