@@ -1,7 +1,5 @@
 package com.todotresde.siglo21.security.dao;
 
-import javax.transaction.Transactional;
-
 import com.todotresde.siglo21.security.model.User;
 import org.springframework.data.repository.CrudRepository;
 

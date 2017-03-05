@@ -1,7 +1,7 @@
-package com.todotresde.siglo21.cloud.controller;
+package com.todotresde.siglo21.security.controller;
 
-import com.todotresde.siglo21.cloud.model.Route;
-import com.todotresde.siglo21.cloud.service.RouteService;
+import com.todotresde.siglo21.security.model.Route;
+import com.todotresde.siglo21.security.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

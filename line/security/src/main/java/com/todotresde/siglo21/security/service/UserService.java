@@ -1,6 +1,7 @@
 package com.todotresde.siglo21.security.service;
 
 import com.todotresde.siglo21.security.model.User;
+
 import java.util.List;
 
 /**

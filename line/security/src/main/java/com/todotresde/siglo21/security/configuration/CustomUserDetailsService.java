@@ -1,6 +1,5 @@
 package com.todotresde.siglo21.security.configuration;
 
-import com.todotresde.siglo21.security.dao.UserDao;
 import com.todotresde.siglo21.security.model.Role;
 import com.todotresde.siglo21.security.model.User;
 import com.todotresde.siglo21.security.service.UserService;
@@ -13,8 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**

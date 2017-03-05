@@ -1,22 +1,16 @@
 package com.todotresde.siglo21.cloud.configuration;
 
-import com.todotresde.siglo21.cloud.model.Role;
-import com.todotresde.siglo21.cloud.model.Route;
-import com.todotresde.siglo21.cloud.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +21,6 @@ import java.util.Map;
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    CustomAuthenticationProvider customAuthenticationProvider;
-    @Autowired
-    RoleService roleService;
     @Autowired
     private RESTAuthenticationEntryPoint authenticationEntryPoint;
     @Autowired
@@ -49,28 +39,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/token").permitAll();
 
-        for(Role role : roleService.all()){
-            for(Route route : role.getRoutes()) {
-                if(!routes.containsKey(route.getRoute())){
-                    routes.put(route.getRoute(), new ArrayList<String>());
-                }
-
-                if(!routes.get(route.getRoute()).contains(role.getName().replace("ROLE_",""))){
-                    routes.get(route.getRoute()).add(role.getName().replace("ROLE_",""));
-                }
-            }
-        }
-
-        routes.forEach((route, roles)->{
-            try {
-                http.authorizeRequests().antMatchers(route).hasAnyRole(roles.toArray(new String[roles.size()]));
-            }catch (Exception e){
-
-            }
-        });
-
-
-
         http.authorizeRequests()
                 .anyRequest().denyAll()
                 .and()
@@ -80,11 +48,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin().successHandler(authenticationSuccessHandler)
                 .and()
                 .formLogin().failureHandler(authenticationFailureHandler);
-    }
-
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(customAuthenticationProvider);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.todotresde.siglo21.security.controller;
 import com.todotresde.siglo21.security.model.Role;
 import com.todotresde.siglo21.security.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

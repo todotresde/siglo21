@@ -3,8 +3,6 @@ package com.todotresde.siglo21.security.dao;
 import com.todotresde.siglo21.security.model.Role;
 import org.springframework.data.repository.CrudRepository;
 
-import javax.transaction.Transactional;
-
 /**
  * Created by Leonardo on 27/12/2016.
  */

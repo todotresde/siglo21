@@ -11,7 +11,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Leonardo on 18/01/2017.
@@ -24,23 +32,45 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     RoleService roleService;
     @Autowired
-    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private RESTAuthenticationEntryPoint authenticationEntryPoint;
+    @Autowired
+    private RESTAuthenticationFailureHandler authenticationFailureHandler;
+    @Autowired
+    private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/login").permitAll();
+        Map<String, List<String>> routes = new HashMap<String, List<String>>();
 
         for(Role role : roleService.all()){
             for(Route route : role.getRoutes()) {
-                http.authorizeRequests().antMatchers(route.getRoute()).hasAnyRole(role.getName().replace("ROLE_",""));
+                if(!routes.containsKey(route.getRoute())){
+                    routes.put(route.getRoute(), new ArrayList<String>());
+                }
+
+                if(!routes.get(route.getRoute()).contains(role.getName().replace("ROLE_",""))){
+                    routes.get(route.getRoute()).add(role.getName().replace("ROLE_",""));
+                }
             }
         }
+
+        routes.forEach((route, roles)->{
+            try {
+                http.authorizeRequests().antMatchers(route).hasAnyRole(roles.toArray(new String[roles.size()]));
+            }catch (Exception e){
+
+            }
+        });
 
         http.authorizeRequests()
                 .anyRequest().denyAll()
                 .and()
-                .formLogin().successHandler(customAuthenticationSuccessHandler)
-                .permitAll();
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .and()
+                .formLogin().successHandler(authenticationSuccessHandler)
+                .and()
+                .formLogin().failureHandler(authenticationFailureHandler);
     }
 
     @Override
@@ -53,6 +83,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers(HttpMethod.OPTIONS, "/**");
+    }
+
+    private CsrfTokenRepository csrfTokenRepository(){
+        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+        repository.setSessionAttributeName("_csrf");
+        repository.setHeaderName("X-XSRF-TOKEN");
+        return repository;
     }
 
 }

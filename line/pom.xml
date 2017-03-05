@@ -23,6 +23,7 @@
         <module>product</module>
         <module>line</module>
         <module>cloud</module>
+        <module>security</module>
     </modules>
     
     <dependencyManagement>
