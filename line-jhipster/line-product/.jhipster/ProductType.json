@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "productType"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hasWidth",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "hasHeight",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170405164107",
+    "entityTableName": "product_type",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

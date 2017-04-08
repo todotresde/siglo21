@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Trace.
+    -->
+    <changeSet id="20170406150907-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="mo_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_mo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mo"/>
+
+        <addForeignKeyConstraint baseColumnNames="line_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_line_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="line"/>
+
+        <addForeignKeyConstraint baseColumnNames="ws_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_ws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws"/>
+
+        <addForeignKeyConstraint baseColumnNames="nextws_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_nextws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws"/>
+
+        <addForeignKeyConstraint baseColumnNames="prevws_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_prevws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws"/>
+
+        <addForeignKeyConstraint baseColumnNames="moproduct_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_moproduct_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mo_product"/>
+
+        <addForeignKeyConstraint baseColumnNames="mocustom_product_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_mocustom_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mo_custom_product"/>
+
+        <addForeignKeyConstraint baseColumnNames="next_trace_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_next_trace_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trace"/>
+
+        <addForeignKeyConstraint baseColumnNames="prev_trace_id"
+                                 baseTableName="trace"
+                                 constraintName="fk_trace_prev_trace_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trace"/>
+
+        <addForeignKeyConstraint baseColumnNames="traces_id"
+                                 baseTableName="trace_delay"
+                                 constraintName="fk_trace_delay_traces_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trace"/>
+        <addForeignKeyConstraint baseColumnNames="delays_id"
+                                 baseTableName="trace_delay"
+                                 constraintName="fk_trace_delay_delays_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delay"/>
+        
+    </changeSet>
+</databaseChangeLog>

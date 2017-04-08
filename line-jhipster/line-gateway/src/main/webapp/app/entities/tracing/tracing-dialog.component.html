@@ -1,0 +1,140 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTracingLabel" jhiTranslate="lineGatewayApp.tracing.home.createOrEditLabel">Create or edit a Tracing</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!tracing.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="tracing.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.tracing.code" for="field_code">Code</label>
+            <input type="text" class="form-control" name="code" id="field_code"
+                [(ngModel)]="tracing.code"
+            required />
+            <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.tracing.inTime" for="field_inTime">In Time</label>
+            <div class="input-group">
+                <input id="field_inTime" type="text" class="form-control" name="inTime" ngbDatepicker  #inTimeDp="ngbDatepicker" [(ngModel)]="tracing.inTime"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="inTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.tracing.startTime" for="field_startTime">Start Time</label>
+            <div class="input-group">
+                <input id="field_startTime" type="text" class="form-control" name="startTime" ngbDatepicker  #startTimeDp="ngbDatepicker" [(ngModel)]="tracing.startTime"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="startTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.tracing.time" for="field_time">Time</label>
+            <input type="number" class="form-control" name="time" id="field_time"
+                [(ngModel)]="tracing.time"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.tracing.status" for="field_status">Status</label>
+            <input type="number" class="form-control" name="status" id="field_status"
+                [(ngModel)]="tracing.status"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.mO" for="field_mO">M O</label>
+            <select class="form-control" id="field_mO" name="mO" [(ngModel)]="tracing.mO">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="mOOption.id === tracing.mO?.id ? tracing.mO : mOOption" *ngFor="let mOOption of mos; trackBy: trackMOById">{{mOOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.line" for="field_line">Line</label>
+            <select class="form-control" id="field_line" name="line" [(ngModel)]="tracing.line">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="lineOption.id === tracing.line?.id ? tracing.line : lineOption" *ngFor="let lineOption of lines; trackBy: trackLineById">{{lineOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.wS" for="field_wS">W S</label>
+            <select class="form-control" id="field_wS" name="wS" [(ngModel)]="tracing.wS">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wSOption.id === tracing.wS?.id ? tracing.wS : wSOption" *ngFor="let wSOption of ws; trackBy: trackWSById">{{wSOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.nextWS" for="field_nextWS">Next WS</label>
+            <select class="form-control" id="field_nextWS" name="nextWS" [(ngModel)]="tracing.nextWS">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wSOption.id === tracing.nextWS?.id ? tracing.nextWS : wSOption" *ngFor="let wSOption of nextws; trackBy: trackWSById">{{wSOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.prevWS" for="field_prevWS">Prev WS</label>
+            <select class="form-control" id="field_prevWS" name="prevWS" [(ngModel)]="tracing.prevWS">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wSOption.id === tracing.prevWS?.id ? tracing.prevWS : wSOption" *ngFor="let wSOption of prevws; trackBy: trackWSById">{{wSOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.mOProduct" for="field_mOProduct">M O Product</label>
+            <select class="form-control" id="field_mOProduct" name="mOProduct" [(ngModel)]="tracing.mOProduct">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="mOProductOption.id === tracing.mOProduct?.id ? tracing.mOProduct : mOProductOption" *ngFor="let mOProductOption of moproducts; trackBy: trackMOProductById">{{mOProductOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.mOCustomProduct" for="field_mOCustomProduct">M O Custom Product</label>
+            <select class="form-control" id="field_mOCustomProduct" name="mOCustomProduct" [(ngModel)]="tracing.mOCustomProduct">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="mOCustomProductOption.id === tracing.mOCustomProduct?.id ? tracing.mOCustomProduct : mOCustomProductOption" *ngFor="let mOCustomProductOption of mocustomproducts; trackBy: trackMOCustomProductById">{{mOCustomProductOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.nextTracing" for="field_nextTracing">Next Tracing</label>
+            <select class="form-control" id="field_nextTracing" name="nextTracing" [(ngModel)]="tracing.nextTracing">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tracingOption.id === tracing.nextTracing?.id ? tracing.nextTracing : tracingOption" *ngFor="let tracingOption of nexttracings; trackBy: trackTracingById">{{tracingOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.prevTracing" for="field_prevTracing">Prev Tracing</label>
+            <select class="form-control" id="field_prevTracing" name="prevTracing" [(ngModel)]="tracing.prevTracing">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tracingOption.id === tracing.prevTracing?.id ? tracing.prevTracing : tracingOption" *ngFor="let tracingOption of prevtracings; trackBy: trackTracingById">{{tracingOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.tracing.delay" for="field_delay">Delay</label>
+            <select class="form-control" id="field_delay" multiple name="delay" [(ngModel)]="tracing.delays">
+                <option [ngValue]="getSelected(tracing.delays, delayOption)" *ngFor="let delayOption of delays; trackBy: trackDelayById">{{delayOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

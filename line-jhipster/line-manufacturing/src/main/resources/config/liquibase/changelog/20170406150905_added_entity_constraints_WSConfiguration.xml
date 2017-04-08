@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity WSConfiguration.
+    -->
+    <changeSet id="20170406150905-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ws_id"
+                                 baseTableName="ws_configuration"
+                                 constraintName="fk_wsconfiguration_ws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws"/>
+
+        <addForeignKeyConstraint baseColumnNames="prevws_id"
+                                 baseTableName="ws_configuration"
+                                 constraintName="fk_wsconfiguration_prevws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws"/>
+
+        <addForeignKeyConstraint baseColumnNames="nextws_id"
+                                 baseTableName="ws_configuration"
+                                 constraintName="fk_wsconfiguration_nextws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws"/>
+
+        <addForeignKeyConstraint baseColumnNames="wsconfigurations_id"
+                                 baseTableName="wsconfiguration_delay"
+                                 constraintName="fk_wsconfiguration_delay_wsconfigurations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws_configuration"/>
+        <addForeignKeyConstraint baseColumnNames="delays_id"
+                                 baseTableName="wsconfiguration_delay"
+                                 constraintName="fk_wsconfiguration_delay_delays_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delay"/>
+        
+    </changeSet>
+</databaseChangeLog>

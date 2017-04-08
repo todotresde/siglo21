@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span jhiTranslate="lineGatewayApp.wSConfiguration.home.title">WS Configurations</span>
+        <button class="btn btn-primary float-right create-ws-configuration" [routerLink]="['/', { outlets: { popup: ['ws-configuration-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="lineGatewayApp.wSConfiguration.home.createLabel">
+            Create new WS Configuration
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wSConfigurations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wSConfiguration.first">First</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wSConfiguration.last">Last</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wSConfiguration.wS">W S</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wSConfiguration.prevWS">Prev WS</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wSConfiguration.nextWS">Next WS</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wSConfiguration.delay">Delay</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wSConfiguration of wSConfigurations ;trackBy: trackId">
+                <td><a [routerLink]="['../ws-configuration', wSConfiguration.id ]">{{wSConfiguration.id}}</a></td>
+                <td>{{wSConfiguration.first}}</td>
+                <td>{{wSConfiguration.last}}</td>
+                <td>
+                    <div *ngIf="wSConfiguration.wS">
+                        <a [routerLink]="['../ws', wSConfiguration.wS?.id ]" >{{wSConfiguration.wS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wSConfiguration.prevWS">
+                        <a [routerLink]="['../ws', wSConfiguration.prevWS?.id ]" >{{wSConfiguration.prevWS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wSConfiguration.nextWS">
+                        <a [routerLink]="['../ws', wSConfiguration.nextWS?.id ]" >{{wSConfiguration.nextWS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let delay of wSConfiguration.delays; let last = last">
+                            <a class="form-control-static" [routerLink]="['../delay', delay?.id ]">{{delay.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ws-configuration', wSConfiguration.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

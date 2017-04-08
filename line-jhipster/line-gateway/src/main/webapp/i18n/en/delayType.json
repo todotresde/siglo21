@@ -1,0 +1,22 @@
+{
+    "lineGatewayApp": {
+        "delayType" : {
+            "home": {
+                "title": "Delay Types",
+                "createLabel": "Create a new Delay Type",
+                "createOrEditLabel": "Create or edit a Delay Type"
+            },
+            "created": "A new Delay Type is created with identifier {{ param }}",
+            "updated": "A Delay Type is updated with identifier {{ param }}",
+            "deleted": "A Delay Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Delay Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Delay Type"
+            },
+            "code": "Code",
+            "description": "Description"
+        }
+    }
+}

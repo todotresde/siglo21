@@ -1,0 +1,60 @@
+<div>
+    <h2>
+        <span jhiTranslate="lineGatewayApp.wS.home.title">WS</span>
+        <button class="btn btn-primary float-right create-ws" [routerLink]="['/', { outlets: { popup: ['ws-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="lineGatewayApp.wS.home.createLabel">
+            Create new WS
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wS">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wS.name">Name</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wS.shortName">Short Name</span></th>
+            <th><span jhiTranslate="lineGatewayApp.wS.ip">Ip</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wS of wS ;trackBy: trackId">
+                <td><a [routerLink]="['../ws', wS.id ]">{{wS.id}}</a></td>
+                <td>{{wS.name}}</td>
+                <td>{{wS.shortName}}</td>
+                <td>{{wS.ip}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ws', wS.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws/'+ wS.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws/'+ wS.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

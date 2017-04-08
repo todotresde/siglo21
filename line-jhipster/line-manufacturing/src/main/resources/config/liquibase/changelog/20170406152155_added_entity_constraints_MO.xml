@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity MO.
+    -->
+    <changeSet id="20170406152155-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="line_id"
+                                 baseTableName="mo"
+                                 constraintName="fk_mo_line_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="line"/>
+
+        <addForeignKeyConstraint baseColumnNames="mos_id"
+                                 baseTableName="mo_mocustom_product"
+                                 constraintName="fk_mo_mocustom_product_mos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mo"/>
+        <addForeignKeyConstraint baseColumnNames="mocustom_products_id"
+                                 baseTableName="mo_mocustom_product"
+                                 constraintName="fk_mo_mocustom_product_mocustom_products_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mo_custom_product"/>
+        
+    </changeSet>
+</databaseChangeLog>

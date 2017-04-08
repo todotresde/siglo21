@@ -1,0 +1,22 @@
+{
+    "lineGatewayApp": {
+        "mOCustomProduct" : {
+            "home": {
+                "title": "MO Custom Products",
+                "createLabel": "Crear nuevo MO Custom Product",
+                "createOrEditLabel": "Crear o editar MO Custom Product"
+            },
+            "created": "Un nuevo MO Custom Product ha sido creado con el identificador {{ param }}",
+            "updated": "Un MO Custom Product ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un MO Custom Product ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar MO Custom Product {{ id }}?"
+            },
+            "detail": {
+                "title": "MO Custom Product"
+            },
+            "description": "Description",
+            "mOProduct": "M O Product"
+        }
+    }
+}

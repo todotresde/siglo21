@@ -1,0 +1,27 @@
+entity Product {
+    id String
+    code String
+    name String
+    description String
+}
+
+entity ProductType {
+    id String
+    code String
+    name String
+    description String
+    hasWidth Boolean
+    hasHeight Boolean
+}
+
+relationship OneToMany {
+    ProductType{product} to Product
+}
+
+skipClient for Product, ProductType
+
+paginate Product, ProductType with pager
+
+// Set service options to all except few
+service all with serviceImpl
+

@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "wS",
+            "otherEntityName": "wS",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "wSConfiguration"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "prevWS",
+            "otherEntityName": "wS",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "wSConfiguration"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "nextWS",
+            "otherEntityName": "wS",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "wSConfiguration"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "delay",
+            "otherEntityName": "delay",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "first",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "last",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170406152159",
+    "entityTableName": "ws_configuration",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "skipClient": true
+}

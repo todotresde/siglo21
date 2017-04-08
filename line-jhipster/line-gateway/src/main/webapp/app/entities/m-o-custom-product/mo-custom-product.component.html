@@ -1,0 +1,62 @@
+<div>
+    <h2>
+        <span jhiTranslate="lineGatewayApp.mOCustomProduct.home.title">MO Custom Products</span>
+        <button class="btn btn-primary float-right create-mo-custom-product" [routerLink]="['/', { outlets: { popup: ['mo-custom-product-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="lineGatewayApp.mOCustomProduct.home.createLabel">
+            Create new MO Custom Product
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mOCustomProducts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="lineGatewayApp.mOCustomProduct.description">Description</span></th>
+            <th><span jhiTranslate="lineGatewayApp.mOCustomProduct.mOProduct">M O Product</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mOCustomProduct of mOCustomProducts ;trackBy: trackId">
+                <td><a [routerLink]="['../mo-custom-product', mOCustomProduct.id ]">{{mOCustomProduct.id}}</a></td>
+                <td>{{mOCustomProduct.description}}</td>
+                <td>
+                    <span *ngFor="let mOProduct of mOCustomProduct.mOProducts; let last = last">
+                            <a class="form-control-static" [routerLink]="['../mo-product', mOProduct?.id ]">{{mOProduct.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../mo-custom-product', mOCustomProduct.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mo-custom-product/'+ mOCustomProduct.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mo-custom-product/'+ mOCustomProduct.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

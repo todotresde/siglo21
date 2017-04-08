@@ -1,0 +1,33 @@
+
+<div *ngIf="mOProduct">
+    <h2><span jhiTranslate="lineGatewayApp.mOProduct.detail.title">MO Product</span> {{mOProduct.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lineGatewayApp.mOProduct.width">Width</span></dt>
+        <dd>
+            <span>{{mOProduct.width}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mOProduct.height">Height</span></dt>
+        <dd>
+            <span>{{mOProduct.height}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mOProduct.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{mOProduct.quantity}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mo-product/'+ mOProduct.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

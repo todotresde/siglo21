@@ -1,0 +1,66 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myWSConfigurationLabel" jhiTranslate="lineGatewayApp.wSConfiguration.home.createOrEditLabel">Create or edit a WS Configuration</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!wSConfiguration.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="wSConfiguration.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.wSConfiguration.first" for="field_first">First</label>
+            <input type="checkbox" class="form-control" name="first" id="field_first"
+                [(ngModel)]="wSConfiguration.first"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lineGatewayApp.wSConfiguration.last" for="field_last">Last</label>
+            <input type="checkbox" class="form-control" name="last" id="field_last"
+                [(ngModel)]="wSConfiguration.last"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.wSConfiguration.wS" for="field_wS">W S</label>
+            <select class="form-control" id="field_wS" name="wS" [(ngModel)]="wSConfiguration.wS">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wSOption.id === wSConfiguration.wS?.id ? wSConfiguration.wS : wSOption" *ngFor="let wSOption of ws; trackBy: trackWSById">{{wSOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.wSConfiguration.prevWS" for="field_prevWS">Prev WS</label>
+            <select class="form-control" id="field_prevWS" name="prevWS" [(ngModel)]="wSConfiguration.prevWS">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wSOption.id === wSConfiguration.prevWS?.id ? wSConfiguration.prevWS : wSOption" *ngFor="let wSOption of prevws; trackBy: trackWSById">{{wSOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.wSConfiguration.nextWS" for="field_nextWS">Next WS</label>
+            <select class="form-control" id="field_nextWS" name="nextWS" [(ngModel)]="wSConfiguration.nextWS">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wSOption.id === wSConfiguration.nextWS?.id ? wSConfiguration.nextWS : wSOption" *ngFor="let wSOption of nextws; trackBy: trackWSById">{{wSOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lineGatewayApp.wSConfiguration.delay" for="field_delay">Delay</label>
+            <select class="form-control" id="field_delay" multiple name="delay" [(ngModel)]="wSConfiguration.delays">
+                <option [ngValue]="getSelected(wSConfiguration.delays, delayOption)" *ngFor="let delayOption of delays; trackBy: trackDelayById">{{delayOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,35 @@
+{
+    "lineGatewayApp": {
+        "tracing" : {
+            "home": {
+                "title": "Tracings",
+                "createLabel": "Crear nuevo Tracing",
+                "createOrEditLabel": "Crear o editar Tracing"
+            },
+            "created": "Un nuevo Tracing ha sido creado con el identificador {{ param }}",
+            "updated": "Un Tracing ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Tracing ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Tracing {{ id }}?"
+            },
+            "detail": {
+                "title": "Tracing"
+            },
+            "code": "Code",
+            "inTime": "In Time",
+            "startTime": "Start Time",
+            "time": "Time",
+            "status": "Status",
+            "mO": "M O",
+            "line": "Line",
+            "wS": "W S",
+            "nextWS": "Next WS",
+            "prevWS": "Prev WS",
+            "mOProduct": "M O Product",
+            "mOCustomProduct": "M O Custom Product",
+            "nextTracing": "Next Tracing",
+            "prevTracing": "Prev Tracing",
+            "delay": "Delay"
+        }
+    }
+}

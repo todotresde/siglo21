@@ -1,0 +1,22 @@
+entity Product {
+    id String
+    code String
+    name String
+    description String
+}
+
+entity ProductType {
+    id String
+    code String
+    name String
+    description String
+    hasWidth Boolean
+    hasHeight Boolean
+}
+
+relationship OneToMany {
+    ProductType{product} to Product
+}
+
+skipServer for Product
+

@@ -1,0 +1,49 @@
+
+<div *ngIf="mO">
+    <h2><span jhiTranslate="lineGatewayApp.mO.detail.title">MO</span> {{mO.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lineGatewayApp.mO.code">Code</span></dt>
+        <dd>
+            <span>{{mO.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mO.date">Date</span></dt>
+        <dd>
+            <span>{{mO.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mO.status">Status</span></dt>
+        <dd>
+            <span>{{mO.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mO.description">Description</span></dt>
+        <dd>
+            <span>{{mO.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mO.line">Line</span></dt>
+        <dd>
+            <div *ngIf="mO.line">
+                <a [routerLink]="['/line', mO.line?.id]">{{mO.line?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.mO.mOCustomProduct">M O Custom Product</span></dt>
+        <dd>
+            <span *ngFor="let mOCustomProduct of mO.mOCustomProducts; let last = last">
+                <a [routerLink]="['/mo-custom-product', mOCustomProduct?.id ]">{{mOCustomProduct.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mo/'+ mO.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
