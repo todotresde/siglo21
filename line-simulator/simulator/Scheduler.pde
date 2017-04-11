@@ -1,20 +1,20 @@
 class Scheduler{
   Factory factory;
+  int manufacturingOrdersCounter = 0;
+  int periodSeconds = 1;
   
   Scheduler(){
     factory = new Factory();
     
     for(int i=0; i<numberOfLines;i++){
-      factory.addLine(new Line(5, 200, (100 * i) + 30));
+      factory.addLine(new Line(5, 400, 50 + (100 * i) + 30));
     }
-    
-    
     
   }
   
   void draw(){
-    if(frameCount%300==0){
-      //this.addManufacturingOrders();
+    if(frameCount%(periodSeconds*60)==0){
+      factory.releaseManufacturingOrders();
       factory.doAction();
     }
     factory.draw();
@@ -25,7 +25,8 @@ class Scheduler{
   void addManufacturingOrders(){
     int numberOfMO = round(random(1,4));
     for(int i=0; i<numberOfMO; i++){
-      factory.addManufacturingOrder(new ManufacturingOrder(round(random(1,10))));
+      factory.addManufacturingOrder(new ManufacturingOrder(manufacturingOrdersCounter,round(random(1,10))));
+      manufacturingOrdersCounter++;
     }
   }
   
@@ -35,11 +36,11 @@ class Scheduler{
   }
   
   void drawAddManufacturingOrderButton(){
-    ellipse(width-100,height-100,50,50);
+    ellipse(width-50,height-50,50,50);
   }
   
   void clickButtonAddManufacturingOrder(){
-    if(dist(mouseX, mouseY, width-100, height-100)<25){
+    if(dist(mouseX, mouseY, width-50, height-50)<25){
       this.addManufacturingOrders();
     }
   }

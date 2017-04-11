@@ -1,14 +1,15 @@
-int numberOfLines = 3;
+int numberOfLines = 5;
 
 Scheduler scheduler;
 
 void setup(){
-  size(800,600);
+  size(1200,700);
   
   scheduler = new Scheduler();
 }
 
 void draw(){
+  background(200);
   scheduler.draw();
 }
 
