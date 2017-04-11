@@ -18,16 +18,20 @@ class Line{
   }
   
   void draw(){
-    textSize(20);
+    
     //In Products
     for(int i=0; i<inProducts.size();i++){
       fill(255);
+      textSize(20);
       text(inProducts.get(i).manufacturingOrder.id, (50 * -i) + posX - 30, posY + 30);
+      textSize(10);
+      text(inProducts.get(i).m, (50 * -i) + posX - 25, posY + 15);
     }
     
     //Out Products
     for(int i=outProducts.size()-1; i>=0;i--){
       fill(255);
+      textSize(20);
       text(outProducts.get(i).manufacturingOrder.id, posX + 10 + ( 75 * workStations.size()) + (50 * (outProducts.size() - i - 1)), posY + 30);
     }
     
@@ -48,22 +52,6 @@ class Line{
       WorkStation workStation = workStations.get(i);
       workStation.doAction();
       
-      /*if(workStation.finished() && !workStation.stopped()){
-        if(i<workStations.size()-1){
-          if(!workStations.get(i+1).hasProduct() && !workStations.get(i+1).stopped()){
-            Product product = workStation.product;
-            workStation.removeProduct();
-          
-            workStations.get(i+1).addProduct(product);
-          }
-        }else{
-          Product product = workStation.product;
-          workStation.removeProduct();
-            
-          outProducts.add(product);
-          factory.setFinishedProduct(product);
-        }
-      }*/
       if(!workStation.stopped()){
         if(i>0 && i<workStations.size()){
           if(workStations.get(i-1).hasFinishedProducts() && !workStation.hasProduct()){

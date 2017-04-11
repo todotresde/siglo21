@@ -1,0 +1,7 @@
+######################
+# Project Specific
+######################
+/simulator/application.windows32/
+/simulator/application.windows64/
+/simulator/simulator/
+/simulator/simulator.zip
