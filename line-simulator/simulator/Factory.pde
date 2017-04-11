@@ -21,11 +21,12 @@ class Factory{
     }
     
     //Status
+    rect(0,height - 100, width, 100);
     for(int i=0; i<manufacturingOrdersStatus.size();i++){
       ManufacturingOrder manufacturingOrder = manufacturingOrdersStatus.get(i);
       textSize(15);
       if(manufacturingOrder.finishedProducts == manufacturingOrder.numberOfProducts){fill(0,255,0);}else{fill(255,0,0);}
-      text(manufacturingOrder.id + "(" + manufacturingOrder.finishedProducts + "/" + manufacturingOrder.numberOfProducts + ")", (80 * i) + 30, height - 50);
+      text(manufacturingOrder.id + "(" + manufacturingOrder.finishedProducts + "/" + manufacturingOrder.numberOfProducts + ")", (80 * (i%13)) + 30, height - 80 + 25 * (i/13));
     }
   }
   

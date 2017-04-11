@@ -5,7 +5,8 @@ class WorkStation{
   int timeToSolve = 0;
   int time = -1;
   boolean stop = false;
-  Product product;
+  Product currentProduct;
+  ArrayList<Product> finishedProducts = new ArrayList<Product>();
   
   
   WorkStation(int ppos, int pposX, int pposY){
@@ -14,15 +15,21 @@ class WorkStation{
   }
   
   void draw(){
-    if(!stop){fill(100);}else{fill(255,0,0);}
+    if(!stop){if(finished()){fill(255,255,0);}else{fill(100);}}else{fill(255,0,0);}
     
+    //Workstation
     rect(posX, posY, tam, tam);
+    //Connector
     line(posX + tam, posY + tam/2, posX + tam + tam/2, posY + tam/2);
+    //Finished Products
+    for(int i=0; i<finishedProducts.size(); i++){
+      line(posX + tam, posY + tam/2 - 5 - 5*i, posX + tam + tam/4, posY + tam/2 - 5 - 5*i);
+    }
     
     if(hasProduct()){
       textSize(20);
       fill(0,255,0);
-      text(product.manufacturingOrder.id, posX + tam/3, posY + tam * 2/3);
+      text(currentProduct.manufacturingOrder.id, posX + tam/3, posY + tam * 2/3);
     }
     
     textSize(10);
@@ -33,14 +40,19 @@ class WorkStation{
   void doAction(){
     if(hasProduct() && !finished() && !stop){
       time++;
+      if(finished()){
+        finishedProducts.add(currentProduct);
+        removeProduct();
+      }
+      
     }
   }
   
   void addProduct(Product pproduct){
     if(!stop){
       time = 0;
-      product = pproduct;
-      timeToSolve = round(random(3,6));
+      currentProduct = pproduct;
+      timeToSolve = round(currentProduct.m) + round(random(1,2));
     }
   }
   
@@ -61,6 +73,18 @@ class WorkStation{
   
   boolean stopped(){
     return stop;
+  }
+  
+  Product removeFinishedProduct(){
+    if(hasFinishedProducts()){
+      return finishedProducts.remove(0);
+    }
+    
+    return null;
+  }
+  
+  boolean hasFinishedProducts(){
+    return finishedProducts.size() > 0;
   }
   
   void mouseClicked(){

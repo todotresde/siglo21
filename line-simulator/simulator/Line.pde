@@ -48,7 +48,7 @@ class Line{
       WorkStation workStation = workStations.get(i);
       workStation.doAction();
       
-      if(workStation.finished() && !workStation.stopped()){
+      /*if(workStation.finished() && !workStation.stopped()){
         if(i<workStations.size()-1){
           if(!workStations.get(i+1).hasProduct() && !workStations.get(i+1).stopped()){
             Product product = workStation.product;
@@ -63,6 +63,19 @@ class Line{
           outProducts.add(product);
           factory.setFinishedProduct(product);
         }
+      }*/
+      if(!workStation.stopped()){
+        if(i>0 && i<workStations.size()){
+          if(workStations.get(i-1).hasFinishedProducts() && !workStation.hasProduct()){
+            workStation.addProduct(workStations.get(i-1).removeFinishedProduct());
+          }
+        }
+        
+        if(i==workStations.size()-1 && workStation.hasFinishedProducts()){
+          Product product = workStation.removeFinishedProduct();
+          outProducts.add(product);
+          factory.setFinishedProduct(product);
+        }
       }
     }
     
@@ -72,7 +85,7 @@ class Line{
   }
   
   boolean firstWorkStationIsFree(){
-    return !workStations.get(0).hasProduct();
+    return !workStations.get(0).hasProduct() && !workStations.get(0).stopped();
   }
   
   boolean hasProducts(){
