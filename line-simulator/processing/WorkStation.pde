@@ -47,6 +47,7 @@ class WorkStation{
         removeProduct();
       }
       
+      currentProduct.doAction();
     }
   }
   

@@ -68,7 +68,9 @@ class Line{
     }
     
     if(firstWorkStationIsFree() && hasProducts()){
-      workStations.get(0).addProduct(this.inProducts.remove(0));
+      Product product = this.inProducts.remove(0);
+      product.manufacturingOrder.setStartTime(minutesPerSecod);
+      workStations.get(0).addProduct(product);
     }
   }
   

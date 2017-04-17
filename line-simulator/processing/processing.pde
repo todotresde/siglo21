@@ -1,4 +1,5 @@
 int numberOfLines = 5;
+float minutesPerSecod = 0.1 * 60;
 
 Scheduler scheduler;
 

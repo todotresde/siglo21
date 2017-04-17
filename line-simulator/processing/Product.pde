@@ -11,4 +11,8 @@ class Product{
     h = random(0.50,10);
     m = w * h;
   }
+  
+  void doAction(){
+    manufacturingOrder.doAction();
+  }
 }

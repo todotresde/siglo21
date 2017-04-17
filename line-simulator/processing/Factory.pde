@@ -3,6 +3,8 @@ class Factory{
   ArrayList<ManufacturingOrder> manufacturingOrders = new ArrayList<ManufacturingOrder>();
   ArrayList<ManufacturingOrder> manufacturingOrdersStatus = new ArrayList<ManufacturingOrder>();
   
+  float minutesPerSecod;
+  
   Factory(){
   }
   
@@ -25,8 +27,13 @@ class Factory{
     for(int i=0; i<manufacturingOrdersStatus.size();i++){
       ManufacturingOrder manufacturingOrder = manufacturingOrdersStatus.get(i);
       textSize(15);
-      if(manufacturingOrder.finishedProducts == manufacturingOrder.numberOfProducts){fill(0,255,0);}else{fill(255,0,0);}
-      text(manufacturingOrder.id + "(" + manufacturingOrder.finishedProducts + "/" + manufacturingOrder.numberOfProducts + ")", (80 * (i%13)) + 30, height - 80 + 25 * (i/13));
+      if(manufacturingOrder.finishedProducts == manufacturingOrder.numberOfProducts){
+        fill(0,255,0);
+      }else{
+        fill(255,0,0);
+        manufacturingOrder.setEndTime(minutesPerSecod);
+      }
+      text(manufacturingOrder.id + "(" + manufacturingOrder.finishedProducts + "/" + manufacturingOrder.numberOfProducts + " - " + manufacturingOrder.getTimeSpent() + ")", (90 * (i%12)) + 30, height - 80 + 25 * (i/12));
     }
   }
   

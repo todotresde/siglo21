@@ -1,10 +1,11 @@
 class Scheduler{
   Factory factory;
+  Clock clock;
   int manufacturingOrdersCounter = 0;
-  int periodSeconds = 1;
   
   Scheduler(){
     factory = new Factory();
+    clock = new Clock(width-180, 30);
     
     for(int i=0; i<numberOfLines;i++){
       factory.addLine(new Line(5, 400, 50 + (100 * i) + 30));
@@ -13,11 +14,13 @@ class Scheduler{
   }
   
   void draw(){
-    if(frameCount%(periodSeconds*60)==0){
+    if(frameCount%(minutesPerSecod)==0){
       factory.releaseManufacturingOrders();
       factory.doAction();
+      clock.doAction();
     }
     factory.draw();
+    clock.draw();
     
     this.drawAddManufacturingOrderButton();
   }
