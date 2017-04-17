@@ -3,7 +3,7 @@ int numberOfLines = 5;
 Scheduler scheduler;
 
 void setup(){
-  size(1200,700, P3D);
+  size(1200,700);
   
   scheduler = new Scheduler();
 }

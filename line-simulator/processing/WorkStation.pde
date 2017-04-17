@@ -15,6 +15,7 @@ class WorkStation{
   }
   
   void draw(){
+    pushMatrix();
     if(!stop){if(finished()){fill(255,255,0);}else{fill(100);}}else{fill(255,0,0);}
     
     //Workstation
@@ -23,7 +24,7 @@ class WorkStation{
     line(posX + tam, posY + tam/2, posX + tam + tam/2, posY + tam/2);
     //Finished Products
     for(int i=0; i<finishedProducts.size(); i++){
-      line(posX + tam, posY + tam/2 - 5 - 5*i, posX + tam + tam/4, posY + tam/2 - 5 - 5*i);
+      line(posX + tam, posY + tam/2 - 5 - 5*i, posX +  tam + tam/4, posY + tam/2 - 5 - 5*i);
     }
     
     if(hasProduct()){
@@ -35,6 +36,7 @@ class WorkStation{
     textSize(10);
     fill(255);
     text(timeToSolve, posX + tam - 10, posY + 10);
+    popMatrix();
   }
   
   void doAction(){
