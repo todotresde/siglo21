@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>{{codeType}} - {{codeText}}</ion-list-header>
+    <ion-item>
+      <button ion-button (click)="readBarCode()">Bar Code</button>     
+    </ion-item>
+    <ion-item>
+      <button ion-button (click)="readQRCode()">QR Code</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

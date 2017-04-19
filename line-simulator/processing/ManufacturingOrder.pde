@@ -3,9 +3,9 @@ class ManufacturingOrder{
   int numberOfProducts;
   int finishedProducts = 0;
   int id;
-  float startTime;
-  float endTime;
-  int timeSpent;
+  float startTime = 0;
+  float endTime = 0;
+  int timeSpent = 0;
   
   ManufacturingOrder(int pid, int pnumberOfProducts){
     id = pid;
@@ -24,7 +24,7 @@ class ManufacturingOrder{
   }
   
   void setStartTime(float minutesPerSecod){
-    startTime = frameCount / minutesPerSecod;
+    startTime = 0;
   }
   
   void setEndTime(float minutesPerSecod){
@@ -32,9 +32,6 @@ class ManufacturingOrder{
   }
   
   int getTimeSpent(){
-    if(startTime != 0)
-      return round(endTime-startTime);
-    else
-      return 0;
+    return round(startTime);
   }
 }

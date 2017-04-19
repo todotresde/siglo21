@@ -29,9 +29,9 @@ class Factory{
       textSize(15);
       if(manufacturingOrder.finishedProducts == manufacturingOrder.numberOfProducts){
         fill(0,255,0);
+        manufacturingOrder.setEndTime(minutesPerSecod);
       }else{
         fill(255,0,0);
-        manufacturingOrder.setEndTime(minutesPerSecod);
       }
       text(manufacturingOrder.id + "(" + manufacturingOrder.finishedProducts + "/" + manufacturingOrder.numberOfProducts + " - " + manufacturingOrder.getTimeSpent() + ")", (90 * (i%12)) + 30, height - 80 + 25 * (i/12));
     }
