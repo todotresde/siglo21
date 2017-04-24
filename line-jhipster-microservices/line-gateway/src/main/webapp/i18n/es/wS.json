@@ -1,0 +1,23 @@
+{
+    "lineGatewayApp": {
+        "wS" : {
+            "home": {
+                "title": "Puesto",
+                "createLabel": "Crear Puesto",
+                "createOrEditLabel": "Crear o Editar Puesto"
+            },
+            "created": "Un nuevo Puesto ha sido creado con el identificador {{ param }}",
+            "updated": "Un Puesto ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Puesto ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar el Puesto {{ id }}?"
+            },
+            "detail": {
+                "title": "Puesto"
+            },
+            "name": "Nombre",
+            "shortName": "Nombre Corto",
+            "ip": "Ip"
+        }
+    }
+}
