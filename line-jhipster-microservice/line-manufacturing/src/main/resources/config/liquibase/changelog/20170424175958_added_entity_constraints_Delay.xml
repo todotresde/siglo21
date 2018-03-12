@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Delay.
+    -->
+    <changeSet id="20170424175958-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="delay_type_id"
+                                 baseTableName="delay"
+                                 constraintName="fk_delay_delay_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="delay_type"/>
+
+    </changeSet>
+</databaseChangeLog>

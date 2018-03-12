@@ -1,0 +1,32 @@
+
+<div *ngIf="supplyType">
+    <h2><span jhiTranslate="sfi2App.supplyType.detail.title">Supply Type</span> {{supplyType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="sfi2App.supplyType.name">Name</span></dt>
+        <dd>
+            <span>{{supplyType.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.supplyType.stAttribute">St Attribute</span></dt>
+        <dd>
+            <span *ngFor="let stAttribute of supplyType.stAttributes; let last = last">
+                <a [routerLink]="['/st-attribute', stAttribute?.id ]">{{stAttribute.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'supply-type/'+ supplyType.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

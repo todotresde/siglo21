@@ -1,0 +1,29 @@
+
+{
+    "sfi2App": {
+        "wSConfiguration" : {
+            "home": {
+                "title": "WS Configurations",
+                "createLabel": "Crear nuevo WS Configuration",
+                "createOrEditLabel": "Crear o editar WS Configuration"
+            },
+            "created": "Un nuevo WS Configuration ha sido creado con el identificador {{ param }}",
+            "updated": "Un WS Configuration ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un WS Configuration ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar WS Configuration {{ id }}?"
+            },
+            "detail": {
+                "title": "WS Configuration"
+            },
+            "first": "First",
+            "last": "Last",
+            "workStation": "Work Station",
+            "supplyType": "Supply Type",
+            "employee": "Employee",
+            "prevWorkStation": "Prev Work Station",
+            "nextWorkStation": "Next Work Station",
+            "line": "Line"
+        }
+    }
+}

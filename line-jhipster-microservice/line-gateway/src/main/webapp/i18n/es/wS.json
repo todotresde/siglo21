@@ -1,0 +1,23 @@
+{
+    "lineGatewayApp": {
+        "wS" : {
+            "home": {
+                "title": "WS",
+                "createLabel": "Crear nuevo WS",
+                "createOrEditLabel": "Crear o editar WS"
+            },
+            "created": "Un nuevo WS ha sido creado con el identificador {{ param }}",
+            "updated": "Un WS ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un WS ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar WS {{ id }}?"
+            },
+            "detail": {
+                "title": "WS"
+            },
+            "name": "Name",
+            "shortName": "Short Name",
+            "ip": "Ip"
+        }
+    }
+}

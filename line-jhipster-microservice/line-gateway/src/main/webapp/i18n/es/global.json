@@ -7,6 +7,18 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
+                "mo": "MO",
+                "line": "Line",
+                "moCustomProduct": "MO Custom Product",
+                "moProduct": "MO Product",
+                "wsConfiguration": "WS Configuration",
+                "ws": "WS",
+                "tracing": "Tracing",
+                "delay": "Delay",
+                "delayType": "Delay Type",
+                "product": "Product",
+                "productType": "Product Type",
+                "employee": "Employee",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

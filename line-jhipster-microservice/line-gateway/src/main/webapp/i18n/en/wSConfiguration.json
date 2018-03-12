@@ -1,0 +1,26 @@
+{
+    "lineGatewayApp": {
+        "wSConfiguration" : {
+            "home": {
+                "title": "WS Configurations",
+                "createLabel": "Create a new WS Configuration",
+                "createOrEditLabel": "Create or edit a WS Configuration"
+            },
+            "created": "A new WS Configuration is created with identifier {{ param }}",
+            "updated": "A WS Configuration is updated with identifier {{ param }}",
+            "deleted": "A WS Configuration is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete WS Configuration {{ id }}?"
+            },
+            "detail": {
+                "title": "WS Configuration"
+            },
+            "first": "First",
+            "last": "Last",
+            "wS": "W S",
+            "prevWS": "Prev WS",
+            "nextWS": "Next WS",
+            "delay": "Delay"
+        }
+    }
+}

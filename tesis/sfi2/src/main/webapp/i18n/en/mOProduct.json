@@ -1,0 +1,24 @@
+
+{
+    "sfi2App": {
+        "mOProduct" : {
+            "home": {
+                "title": "MO Products",
+                "createLabel": "Create a new MO Product",
+                "createOrEditLabel": "Create or edit a MO Product"
+            },
+            "created": "A new MO Product is created with identifier {{ param }}",
+            "updated": "A MO Product is updated with identifier {{ param }}",
+            "deleted": "A MO Product is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete MO Product {{ id }}?"
+            },
+            "detail": {
+                "title": "MO Product"
+            },
+            "quantity": "Quantity",
+            "manufacturingOrder": "Manufacturing Order",
+            "product": "Product"
+        }
+    }
+}

@@ -1,0 +1,118 @@
+
+entity MO {
+    id String required
+    code String required
+    date LocalDate required
+    status Integer required
+    description String required
+}
+
+entity Line {
+    id String required
+    name String required
+    description String required
+}
+
+entity MOCustomProduct {
+    id String required
+    description String required
+}
+
+entity MOProduct {
+    id String required
+    width Double required
+    height Double required
+    quantity Integer required
+}
+
+entity WSConfiguration {
+    id String required
+    first Boolean
+    last Boolean
+}
+
+entity WS {
+    id String required
+    name String required
+    shortName String required
+    ip String required
+}
+
+entity Tracing {
+    id String required
+    code String required
+    inTime LocalDate
+    startTime LocalDate
+    time Long
+    status Integer
+}
+
+entity Delay {
+    id String required
+    startDate LocalDate required
+    endDate LocalDate required
+    time Integer required
+    description String
+}
+
+entity DelayType {
+    id String required
+    code String required
+    description String required
+}
+
+entity Product {
+    id String
+    code String
+    name String
+    description String
+}
+
+entity ProductType {
+    id String
+    code String
+    name String
+    description String
+    hasWidth Boolean
+    hasHeight Boolean
+}
+
+entity Employee {
+    name String required
+    email String required
+}
+
+relationship ManyToMany {
+    MO{mOCustomProduct} to MOCustomProduct,
+    Line{wSConfiguration} to WSConfiguration,
+    MOCustomProduct{mOProduct} to MOProduct,
+    WSConfiguration{delay} to Delay,
+    Tracing{delay} to Delay
+}
+
+relationship OneToOne {
+    Delay{delayType} to DelayType,
+    Product{productType} to ProductType,
+    MO{line} to Line,
+    WSConfiguration{wS} to WS,
+    WSConfiguration{prevWS} to WS,
+    WSConfiguration{nextWS} to WS,
+    Tracing{mO} to MO,
+    Tracing{line} to Line,
+    Tracing{wS} to WS,
+    Tracing{nextWS} to WS,
+    Tracing{prevWS} to WS,
+    Tracing{mOProduct} to MOProduct,
+    Tracing{mOCustomProduct} to MOCustomProduct,
+    Tracing{nextTracing} to Tracing,
+    Tracing{prevTracing} to Tracing
+}
+
+
+skipClient for Delay, DelayType, MO, Line, MOCustomProduct, MOProduct, WSConfiguration, WS, Tracing, Product, ProductType, Employee
+
+paginate Delay, DelayType, MO, Line, MOCustomProduct, MOProduct, WSConfiguration, WS, Tracing, Product, ProductType, Employee with pager
+
+// Set service options to all except few
+service all with serviceImpl
+

@@ -1,0 +1,85 @@
+<div>
+    <h2>
+        <span jhiTranslate="lineGatewayApp.wSConfiguration.home.title">WS Configurations</span>
+        <button class="btn btn-primary float-right create-ws-configuration" [routerLink]="['/', { outlets: { popup: ['ws-configuration-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="lineGatewayApp.wSConfiguration.home.createLabel">
+            Create new WS Configuration
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wSConfigurations">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="first"><span jhiTranslate="lineGatewayApp.wSConfiguration.first">First</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="last"><span jhiTranslate="lineGatewayApp.wSConfiguration.last">Last</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wS.id"><span jhiTranslate="lineGatewayApp.wSConfiguration.wS">W S</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prevWS.id"><span jhiTranslate="lineGatewayApp.wSConfiguration.prevWS">Prev WS</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nextWS.id"><span jhiTranslate="lineGatewayApp.wSConfiguration.nextWS">Next WS</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wSConfiguration of wSConfigurations ;trackBy: trackId">
+                <td><a [routerLink]="['../ws-configuration', wSConfiguration.id ]">{{wSConfiguration.id}}</a></td>
+                <td>{{wSConfiguration.first}}</td>
+                <td>{{wSConfiguration.last}}</td>
+                <td>
+                    <div *ngIf="wSConfiguration.wS">
+                        <a [routerLink]="['../ws', wSConfiguration.wS?.id ]" >{{wSConfiguration.wS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wSConfiguration.prevWS">
+                        <a [routerLink]="['../ws', wSConfiguration.prevWS?.id ]" >{{wSConfiguration.prevWS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wSConfiguration.nextWS">
+                        <a [routerLink]="['../ws', wSConfiguration.nextWS?.id ]" >{{wSConfiguration.nextWS?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ws-configuration', wSConfiguration.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- Pager is not implemented yet, so this is normal pagination instead -->
+        <div *ngIf="wSConfigurations && wSConfigurations.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page"  (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

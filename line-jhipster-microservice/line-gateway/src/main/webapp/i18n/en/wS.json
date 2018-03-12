@@ -1,0 +1,23 @@
+{
+    "lineGatewayApp": {
+        "wS" : {
+            "home": {
+                "title": "WorkStation",
+                "createLabel": "Create a new WorkStation",
+                "createOrEditLabel": "Create or edit a WorkStation"
+            },
+            "created": "A new WorkStation is created with identifier {{ param }}",
+            "updated": "A WorkStation is updated with identifier {{ param }}",
+            "deleted": "A WorkStation is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete WorkStation {{ id }}?"
+            },
+            "detail": {
+                "title": "WorkStation"
+            },
+            "name": "Name",
+            "shortName": "Short Name",
+            "ip": "Ip"
+        }
+    }
+}

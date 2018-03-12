@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "prevWSConfiguration",
+            "otherEntityName": "wSConfiguration",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "prevWorkStation"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "nextWSConfiguration",
+            "otherEntityName": "wSConfiguration",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "nextWorkStation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shortName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ip",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180312131748",
+    "entityTableName": "work_station",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

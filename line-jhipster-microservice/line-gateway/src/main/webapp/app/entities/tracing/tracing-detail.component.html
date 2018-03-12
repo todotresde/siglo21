@@ -1,0 +1,101 @@
+
+<div *ngIf="tracing">
+    <h2><span jhiTranslate="lineGatewayApp.tracing.detail.title">Tracing</span> {{tracing.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lineGatewayApp.tracing.code">Code</span></dt>
+        <dd>
+            <span>{{tracing.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.inTime">In Time</span></dt>
+        <dd>
+            <span>{{tracing.inTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{tracing.startTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.time">Time</span></dt>
+        <dd>
+            <span>{{tracing.time}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.status">Status</span></dt>
+        <dd>
+            <span>{{tracing.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.mO">M O</span></dt>
+        <dd>
+            <div *ngIf="tracing.mO">
+                <a [routerLink]="['/mo', tracing.mO?.id]">{{tracing.mO?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.line">Line</span></dt>
+        <dd>
+            <div *ngIf="tracing.line">
+                <a [routerLink]="['/line', tracing.line?.id]">{{tracing.line?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.wS">W S</span></dt>
+        <dd>
+            <div *ngIf="tracing.wS">
+                <a [routerLink]="['/ws', tracing.wS?.id]">{{tracing.wS?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.nextWS">Next WS</span></dt>
+        <dd>
+            <div *ngIf="tracing.nextWS">
+                <a [routerLink]="['/ws', tracing.nextWS?.id]">{{tracing.nextWS?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.prevWS">Prev WS</span></dt>
+        <dd>
+            <div *ngIf="tracing.prevWS">
+                <a [routerLink]="['/ws', tracing.prevWS?.id]">{{tracing.prevWS?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.mOProduct">M O Product</span></dt>
+        <dd>
+            <div *ngIf="tracing.mOProduct">
+                <a [routerLink]="['/mo-product', tracing.mOProduct?.id]">{{tracing.mOProduct?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.mOCustomProduct">M O Custom Product</span></dt>
+        <dd>
+            <div *ngIf="tracing.mOCustomProduct">
+                <a [routerLink]="['/mo-custom-product', tracing.mOCustomProduct?.id]">{{tracing.mOCustomProduct?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.nextTracing">Next Tracing</span></dt>
+        <dd>
+            <div *ngIf="tracing.nextTracing">
+                <a [routerLink]="['/tracing', tracing.nextTracing?.id]">{{tracing.nextTracing?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.prevTracing">Prev Tracing</span></dt>
+        <dd>
+            <div *ngIf="tracing.prevTracing">
+                <a [routerLink]="['/tracing', tracing.prevTracing?.id]">{{tracing.prevTracing?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.tracing.delay">Delay</span></dt>
+        <dd>
+            <span *ngFor="let delay of tracing.delays; let last = last">
+                <a [routerLink]="['/delay', delay?.id ]">{{delay.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tracing/'+ tracing.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

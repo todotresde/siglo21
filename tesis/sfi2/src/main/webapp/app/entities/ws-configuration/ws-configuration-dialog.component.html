@@ -1,0 +1,85 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myWSConfigurationLabel" jhiTranslate="sfi2App.wSConfiguration.home.createOrEditLabel">Create or edit a WS Configuration</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!wSConfiguration.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="wSConfiguration.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.wSConfiguration.first" for="field_first">First</label>
+            <input type="checkbox" class="form-control" name="first" id="field_first"
+                [(ngModel)]="wSConfiguration.first" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.wSConfiguration.last" for="field_last">Last</label>
+            <input type="checkbox" class="form-control" name="last" id="field_last"
+                [(ngModel)]="wSConfiguration.last" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.wSConfiguration.workStation" for="field_workStation">Work Station</label>
+            <select class="form-control" id="field_workStation" name="workStation" [(ngModel)]="wSConfiguration.workStation"  required>
+                <option *ngIf="!editForm.value.workStation" [ngValue]="null" selected></option>
+                <option [ngValue]="workStationOption.id === wSConfiguration.workStation?.id ? wSConfiguration.workStation : workStationOption" *ngFor="let workStationOption of workstations; trackBy: trackWorkStationById">{{workStationOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.workStation?.dirty && editForm.controls.workStation?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.workStation?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="sfi2App.wSConfiguration.supplyType" for="field_supplyType">Supply Type</label>
+            <select class="form-control" id="field_supplyType" multiple name="supplyType" [(ngModel)]="wSConfiguration.supplyTypes">
+                <option [ngValue]="getSelected(wSConfiguration.supplyTypes, supplyTypeOption)" *ngFor="let supplyTypeOption of supplytypes; trackBy: trackSupplyTypeById">{{supplyTypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="sfi2App.wSConfiguration.employee" for="field_employee">Employee</label>
+            <select class="form-control" id="field_employee" multiple name="employee" [(ngModel)]="wSConfiguration.employees">
+                <option [ngValue]="getSelected(wSConfiguration.employees, employeeOption)" *ngFor="let employeeOption of employees; trackBy: trackEmployeeById">{{employeeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="sfi2App.wSConfiguration.prevWorkStation" for="field_prevWorkStation">Prev Work Station</label>
+            <select class="form-control" id="field_prevWorkStation" multiple name="prevWorkStation" [(ngModel)]="wSConfiguration.prevWorkStations">
+                <option [ngValue]="getSelected(wSConfiguration.prevWorkStations, workStationOption)" *ngFor="let workStationOption of workstations; trackBy: trackWorkStationById">{{workStationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="sfi2App.wSConfiguration.nextWorkStation" for="field_nextWorkStation">Next Work Station</label>
+            <select class="form-control" id="field_nextWorkStation" multiple name="nextWorkStation" [(ngModel)]="wSConfiguration.nextWorkStations">
+                <option [ngValue]="getSelected(wSConfiguration.nextWorkStations, workStationOption)" *ngFor="let workStationOption of workstations; trackBy: trackWorkStationById">{{workStationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.wSConfiguration.line" for="field_line">Line</label>
+            <select class="form-control" id="field_line" name="line" [(ngModel)]="wSConfiguration.line"  required>
+                <option *ngIf="!editForm.value.line" [ngValue]="null" selected></option>
+                <option [ngValue]="lineOption.id === wSConfiguration.line?.id ? wSConfiguration.line : lineOption" *ngFor="let lineOption of lines; trackBy: trackLineById">{{lineOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.line?.dirty && editForm.controls.line?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.line?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

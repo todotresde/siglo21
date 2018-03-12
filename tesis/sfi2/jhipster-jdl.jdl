@@ -1,0 +1,99 @@
+
+entity Employee{
+    name String required,
+    lastName String,
+    userId String required
+}
+
+entity Line{
+    name String required
+}
+
+entity WSConfiguration{
+    first Boolean,
+    last Boolean
+}
+
+entity WorkStation{
+    name String required,
+    shortName String required,
+    ip String required
+}
+
+entity ManufacturingOrder{
+    code String required,
+    orderDate Instant required,
+    status Integer required,
+    name String
+}
+
+entity MOProduct{
+    quantity Integer required
+    
+}
+
+entity Supply{
+    name String required
+}
+
+entity SupplyType{
+    name String required
+}
+
+entity STAttribute{
+    name String required
+}
+
+entity Product{
+    name String required
+}
+
+entity ProductType{
+    name String required
+}
+
+entity PTAttribute{
+    name String required
+}
+
+entity Tracer{
+    code String required, 
+    inTime Instant required,
+    startTime Instant,
+    endTime Instant,
+    time Integer,
+    status Integer required
+}
+
+relationship ManyToOne {
+    Tracer{wsConfiguration required} to WSConfiguration,
+    Tracer{manufacturingOrder required} to ManufacturingOrder,
+    Tracer{moProduct required} to MOProduct,
+    Tracer{line required} to Line,
+    Tracer{workStation required} to WorkStation,
+    Tracer{prevWorkStation} to WorkStation,
+    Tracer{nextWorkStation} to WorkStation,
+    Tracer{nextTracer} to Tracer,
+    Tracer{prevTracer} to Tracer,
+    MOProduct{manufacturingOrder required} to ManufacturingOrder,
+    WSConfiguration{workStation required} to WorkStation
+}
+
+relationship OneToMany {
+    Line{wsConfiguration} to WSConfiguration{line required},
+    SupplyType{supply} to Supply{supplyType required},
+    ProductType{product} to Product{productType required},
+    Product{moProduct} to MOProduct{product required}
+}
+
+relationship ManyToMany {
+    WSConfiguration{supplyType} to SupplyType{wsConfiguration},
+    SupplyType{stAttribute} to STAttribute{supplyType},
+    ProductType{ptAttribute} to PTAttribute{productType},
+    Product{supply} to Supply{product},
+    WSConfiguration{employee} to Employee{wsConfiguration},
+    WSConfiguration{prevWorkStation} to WorkStation{prevWSConfiguration},
+    WSConfiguration{nextWorkStation} to WorkStation{nextWSConfiguration}
+}
+
+

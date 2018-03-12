@@ -1,0 +1,53 @@
+
+<div *ngIf="wSConfiguration">
+    <h2><span jhiTranslate="lineGatewayApp.wSConfiguration.detail.title">WS Configuration</span> {{wSConfiguration.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lineGatewayApp.wSConfiguration.first">First</span></dt>
+        <dd>
+            <span>{{wSConfiguration.first}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.wSConfiguration.last">Last</span></dt>
+        <dd>
+            <span>{{wSConfiguration.last}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.wSConfiguration.wS">W S</span></dt>
+        <dd>
+            <div *ngIf="wSConfiguration.wS">
+                <a [routerLink]="['/ws', wSConfiguration.wS?.id]">{{wSConfiguration.wS?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.wSConfiguration.prevWS">Prev WS</span></dt>
+        <dd>
+            <div *ngIf="wSConfiguration.prevWS">
+                <a [routerLink]="['/ws', wSConfiguration.prevWS?.id]">{{wSConfiguration.prevWS?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.wSConfiguration.nextWS">Next WS</span></dt>
+        <dd>
+            <div *ngIf="wSConfiguration.nextWS">
+                <a [routerLink]="['/ws', wSConfiguration.nextWS?.id]">{{wSConfiguration.nextWS?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.wSConfiguration.delay">Delay</span></dt>
+        <dd>
+            <span *ngFor="let delay of wSConfiguration.delays; let last = last">
+                <a [routerLink]="['/delay', delay?.id ]">{{delay.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

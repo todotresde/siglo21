@@ -1,0 +1,96 @@
+<div>
+    <h2>
+        <span jhiTranslate="sfi2App.wSConfiguration.home.title">WS Configurations</span>
+        <button class="btn btn-primary float-right jh-create-entity create-ws-configuration" [routerLink]="['/', { outlets: { popup: ['ws-configuration-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="sfi2App.wSConfiguration.home.createLabel">
+            Create new WS Configuration
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wSConfigurations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.first">First</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.last">Last</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.workStation">Work Station</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.supplyType">Supply Type</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.employee">Employee</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.prevWorkStation">Prev Work Station</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.nextWorkStation">Next Work Station</span></th>
+            <th><span jhiTranslate="sfi2App.wSConfiguration.line">Line</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wSConfiguration of wSConfigurations ;trackBy: trackId">
+                <td><a [routerLink]="['../ws-configuration', wSConfiguration.id ]">{{wSConfiguration.id}}</a></td>
+                <td>{{wSConfiguration.first}}</td>
+                <td>{{wSConfiguration.last}}</td>
+                <td>
+                    <div *ngIf="wSConfiguration.workStation">
+                        <a [routerLink]="['../work-station', wSConfiguration.workStation?.id ]" >{{wSConfiguration.workStation?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let supplyType of wSConfiguration.supplyTypes; let last = last">
+                            <a class="form-control-static" [routerLink]="['../supply-type', supplyType?.id ]">{{supplyType.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let employee of wSConfiguration.employees; let last = last">
+                            <a class="form-control-static" [routerLink]="['../employee', employee?.id ]">{{employee.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let prevWorkStation of wSConfiguration.prevWorkStations; let last = last">
+                            <a class="form-control-static" [routerLink]="['../work-station', prevWorkStation?.id ]">{{prevWorkStation.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let nextWorkStation of wSConfiguration.nextWorkStations; let last = last">
+                            <a class="form-control-static" [routerLink]="['../work-station', nextWorkStation?.id ]">{{nextWorkStation.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <div *ngIf="wSConfiguration.line">
+                        <a [routerLink]="['../line', wSConfiguration.line?.id ]" >{{wSConfiguration.line?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ws-configuration', wSConfiguration.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

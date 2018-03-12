@@ -1,0 +1,32 @@
+
+<div *ngIf="productType">
+    <h2><span jhiTranslate="sfi2App.productType.detail.title">Product Type</span> {{productType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="sfi2App.productType.name">Name</span></dt>
+        <dd>
+            <span>{{productType.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.productType.ptAttribute">Pt Attribute</span></dt>
+        <dd>
+            <span *ngFor="let ptAttribute of productType.ptAttributes; let last = last">
+                <a [routerLink]="['/pt-attribute', ptAttribute?.id ]">{{ptAttribute.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-type/'+ productType.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

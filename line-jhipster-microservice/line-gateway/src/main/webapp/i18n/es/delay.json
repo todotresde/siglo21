@@ -1,0 +1,25 @@
+{
+    "lineGatewayApp": {
+        "delay" : {
+            "home": {
+                "title": "Delays",
+                "createLabel": "Crear nuevo Delay",
+                "createOrEditLabel": "Crear o editar Delay"
+            },
+            "created": "Un nuevo Delay ha sido creado con el identificador {{ param }}",
+            "updated": "Un Delay ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Delay ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Delay {{ id }}?"
+            },
+            "detail": {
+                "title": "Delay"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "time": "Time",
+            "description": "Description",
+            "delayType": "Delay Type"
+        }
+    }
+}

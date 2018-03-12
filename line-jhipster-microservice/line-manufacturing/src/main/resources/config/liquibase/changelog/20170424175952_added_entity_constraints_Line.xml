@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Line.
+    -->
+    <changeSet id="20170424175952-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="lines_id"
+                                 baseTableName="line_wsconfiguration"
+                                 constraintName="fk_line_wsconfiguration_lines_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="line"/>
+        <addForeignKeyConstraint baseColumnNames="wsconfigurations_id"
+                                 baseTableName="line_wsconfiguration"
+                                 constraintName="fk_line_wsconfiguration_wsconfigurations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ws_configuration"/>
+        
+    </changeSet>
+</databaseChangeLog>

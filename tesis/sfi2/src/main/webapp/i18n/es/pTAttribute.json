@@ -1,0 +1,23 @@
+
+{
+    "sfi2App": {
+        "pTAttribute" : {
+            "home": {
+                "title": "PT Attributes",
+                "createLabel": "Crear nuevo PT Attribute",
+                "createOrEditLabel": "Crear o editar PT Attribute"
+            },
+            "created": "Un nuevo PT Attribute ha sido creado con el identificador {{ param }}",
+            "updated": "Un PT Attribute ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un PT Attribute ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar PT Attribute {{ id }}?"
+            },
+            "detail": {
+                "title": "PT Attribute"
+            },
+            "name": "Name",
+            "productType": "Product Type"
+        }
+    }
+}

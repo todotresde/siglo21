@@ -1,0 +1,127 @@
+<div>
+    <h2>
+        <span jhiTranslate="lineGatewayApp.tracing.home.title">Tracings</span>
+        <button class="btn btn-primary float-right create-tracing" [routerLink]="['/', { outlets: { popup: ['tracing-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="lineGatewayApp.tracing.home.createLabel">
+            Create new Tracing
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tracings">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="code"><span jhiTranslate="lineGatewayApp.tracing.code">Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="inTime"><span jhiTranslate="lineGatewayApp.tracing.inTime">In Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startTime"><span jhiTranslate="lineGatewayApp.tracing.startTime">Start Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="time"><span jhiTranslate="lineGatewayApp.tracing.time">Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="lineGatewayApp.tracing.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mO.id"><span jhiTranslate="lineGatewayApp.tracing.mO">M O</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="line.id"><span jhiTranslate="lineGatewayApp.tracing.line">Line</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wS.id"><span jhiTranslate="lineGatewayApp.tracing.wS">W S</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nextWS.id"><span jhiTranslate="lineGatewayApp.tracing.nextWS">Next WS</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prevWS.id"><span jhiTranslate="lineGatewayApp.tracing.prevWS">Prev WS</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mOProduct.id"><span jhiTranslate="lineGatewayApp.tracing.mOProduct">M O Product</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mOCustomProduct.id"><span jhiTranslate="lineGatewayApp.tracing.mOCustomProduct">M O Custom Product</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nextTracing.id"><span jhiTranslate="lineGatewayApp.tracing.nextTracing">Next Tracing</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prevTracing.id"><span jhiTranslate="lineGatewayApp.tracing.prevTracing">Prev Tracing</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tracing of tracings ;trackBy: trackId">
+                <td><a [routerLink]="['../tracing', tracing.id ]">{{tracing.id}}</a></td>
+                <td>{{tracing.code}}</td>
+                <td>{{tracing.inTime | date:'mediumDate'}}</td>
+                <td>{{tracing.startTime | date:'mediumDate'}}</td>
+                <td>{{tracing.time}}</td>
+                <td>{{tracing.status}}</td>
+                <td>
+                    <div *ngIf="tracing.mO">
+                        <a [routerLink]="['../mo', tracing.mO?.id ]" >{{tracing.mO?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.line">
+                        <a [routerLink]="['../line', tracing.line?.id ]" >{{tracing.line?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.wS">
+                        <a [routerLink]="['../ws', tracing.wS?.id ]" >{{tracing.wS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.nextWS">
+                        <a [routerLink]="['../ws', tracing.nextWS?.id ]" >{{tracing.nextWS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.prevWS">
+                        <a [routerLink]="['../ws', tracing.prevWS?.id ]" >{{tracing.prevWS?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.mOProduct">
+                        <a [routerLink]="['../mo-product', tracing.mOProduct?.id ]" >{{tracing.mOProduct?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.mOCustomProduct">
+                        <a [routerLink]="['../mo-custom-product', tracing.mOCustomProduct?.id ]" >{{tracing.mOCustomProduct?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.nextTracing">
+                        <a [routerLink]="['../tracing', tracing.nextTracing?.id ]" >{{tracing.nextTracing?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tracing.prevTracing">
+                        <a [routerLink]="['../tracing', tracing.prevTracing?.id ]" >{{tracing.prevTracing?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../tracing', tracing.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tracing/'+ tracing.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tracing/'+ tracing.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- Pager is not implemented yet, so this is normal pagination instead -->
+        <div *ngIf="tracings && tracings.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page"  (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

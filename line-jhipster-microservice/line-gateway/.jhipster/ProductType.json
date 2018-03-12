@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hasWidth",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "hasHeight",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170424180519",
+    "entityTableName": "product_type",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl",
+    "skipServer": true
+}

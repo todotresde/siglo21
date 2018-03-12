@@ -1,0 +1,38 @@
+
+<div *ngIf="mOProduct">
+    <h2><span jhiTranslate="sfi2App.mOProduct.detail.title">MO Product</span> {{mOProduct.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="sfi2App.mOProduct.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{mOProduct.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.mOProduct.manufacturingOrder">Manufacturing Order</span></dt>
+        <dd>
+            <div *ngIf="mOProduct.manufacturingOrder">
+                <a [routerLink]="['/manufacturing-order', mOProduct.manufacturingOrder?.id]">{{mOProduct.manufacturingOrder?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.mOProduct.product">Product</span></dt>
+        <dd>
+            <div *ngIf="mOProduct.product">
+                <a [routerLink]="['/product', mOProduct.product?.id]">{{mOProduct.product?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mo-product/'+ mOProduct.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "mOProduct",
+            "otherEntityName": "mOProduct",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170424175953",
+    "entityTableName": "mo_custom_product",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl",
+    "skipClient": true
+}

@@ -1,0 +1,41 @@
+
+<div *ngIf="productType">
+    <h2><span jhiTranslate="lineGatewayApp.productType.detail.title">Product Type</span> {{productType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lineGatewayApp.productType.code">Code</span></dt>
+        <dd>
+            <span>{{productType.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.productType.name">Name</span></dt>
+        <dd>
+            <span>{{productType.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.productType.description">Description</span></dt>
+        <dd>
+            <span>{{productType.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.productType.hasWidth">Has Width</span></dt>
+        <dd>
+            <span>{{productType.hasWidth}}</span>
+        </dd>
+        <dt><span jhiTranslate="lineGatewayApp.productType.hasHeight">Has Height</span></dt>
+        <dd>
+            <span>{{productType.hasHeight}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-type/'+ productType.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

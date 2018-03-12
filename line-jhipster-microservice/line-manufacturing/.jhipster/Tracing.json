@@ -1,0 +1,116 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mO",
+            "otherEntityName": "mO",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "line",
+            "otherEntityName": "line",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "wS",
+            "otherEntityName": "wS",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "nextWS",
+            "otherEntityName": "wS",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "prevWS",
+            "otherEntityName": "wS",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mOProduct",
+            "otherEntityName": "mOProduct",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mOCustomProduct",
+            "otherEntityName": "mOCustomProduct",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "nextTracing",
+            "otherEntityName": "tracing",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "prevTracing",
+            "otherEntityName": "tracing",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "tracing"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "delay",
+            "otherEntityName": "delay",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "inTime",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "startTime",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170424175957",
+    "entityTableName": "tracing",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl",
+    "skipClient": true
+}

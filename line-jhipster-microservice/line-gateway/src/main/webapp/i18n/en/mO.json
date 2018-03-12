@@ -1,0 +1,26 @@
+{
+    "lineGatewayApp": {
+        "mO" : {
+            "home": {
+                "title": "MOS",
+                "createLabel": "Create a new MO",
+                "createOrEditLabel": "Create or edit a MO"
+            },
+            "created": "A new MO is created with identifier {{ param }}",
+            "updated": "A MO is updated with identifier {{ param }}",
+            "deleted": "A MO is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete MO {{ id }}?"
+            },
+            "detail": {
+                "title": "MO"
+            },
+            "code": "Code",
+            "date": "Date",
+            "status": "Status",
+            "description": "Description",
+            "line": "Line",
+            "mOCustomProduct": "M O Custom Product"
+        }
+    }
+}

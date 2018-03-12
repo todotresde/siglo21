@@ -1,0 +1,66 @@
+
+<div *ngIf="wSConfiguration">
+    <h2><span jhiTranslate="sfi2App.wSConfiguration.detail.title">WS Configuration</span> {{wSConfiguration.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.first">First</span></dt>
+        <dd>
+            <span>{{wSConfiguration.first}}</span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.last">Last</span></dt>
+        <dd>
+            <span>{{wSConfiguration.last}}</span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.workStation">Work Station</span></dt>
+        <dd>
+            <div *ngIf="wSConfiguration.workStation">
+                <a [routerLink]="['/work-station', wSConfiguration.workStation?.id]">{{wSConfiguration.workStation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.supplyType">Supply Type</span></dt>
+        <dd>
+            <span *ngFor="let supplyType of wSConfiguration.supplyTypes; let last = last">
+                <a [routerLink]="['/supply-type', supplyType?.id ]">{{supplyType.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.employee">Employee</span></dt>
+        <dd>
+            <span *ngFor="let employee of wSConfiguration.employees; let last = last">
+                <a [routerLink]="['/employee', employee?.id ]">{{employee.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.prevWorkStation">Prev Work Station</span></dt>
+        <dd>
+            <span *ngFor="let prevWorkStation of wSConfiguration.prevWorkStations; let last = last">
+                <a [routerLink]="['/work-station', prevWorkStation?.id ]">{{prevWorkStation.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.nextWorkStation">Next Work Station</span></dt>
+        <dd>
+            <span *ngFor="let nextWorkStation of wSConfiguration.nextWorkStations; let last = last">
+                <a [routerLink]="['/work-station', nextWorkStation?.id ]">{{nextWorkStation.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.wSConfiguration.line">Line</span></dt>
+        <dd>
+            <div *ngIf="wSConfiguration.line">
+                <a [routerLink]="['/line', wSConfiguration.line?.id]">{{wSConfiguration.line?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ws-configuration/'+ wSConfiguration.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

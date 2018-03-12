@@ -1,0 +1,93 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="send()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTracerLabel" jhiTranslate="sfi2App.tracer.start.title">Start Tracer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sfi2App.tracer.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="tracer.code" required />
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                           This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sfi2App.tracer.startTime" for="field_startTime">Start Time</label>
+                    <div class="d-flex">
+                        <input id="field_startTime" type="datetime-local" class="form-control" name="startTime" [(ngModel)]="tracer.startTime"
+                          />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sfi2App.tracer.manufacturingOrder" for="field_manufacturingOrder">Manufacturing Order</label>
+                    <select class="form-control" id="field_manufacturingOrder" name="manufacturingOrder" [(ngModel)]="tracer.manufacturingOrder"  required>
+                        <option *ngIf="!editForm.value.manufacturingOrder" [ngValue]="null" selected></option>
+                        <option [ngValue]="manufacturingOrderOption.id === tracer.manufacturingOrder?.id ? tracer.manufacturingOrder : manufacturingOrderOption" *ngFor="let manufacturingOrderOption of manufacturingorders; trackBy: trackManufacturingOrderById">{{manufacturingOrderOption.id}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.manufacturingOrder?.dirty && editForm.controls.manufacturingOrder?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.manufacturingOrder?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sfi2App.tracer.inTime" for="field_inTime">In Time</label>
+                    <div class="d-flex">
+                        <input id="field_inTime" type="datetime-local" class="form-control" name="inTime" [(ngModel)]="tracer.inTime"
+                        required  />
+                    </div>
+                    <div [hidden]="!(editForm.controls.inTime?.dirty && editForm.controls.inTime?.invalid)">
+                        <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.inTime?.errors?.required" jhiTranslate="entity.validation.required">
+                           This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.inTime?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sfi2App.tracer.endTime" for="field_endTime">End Time</label>
+                    <div class="d-flex">
+                        <input id="field_endTime" type="datetime-local" class="form-control" name="endTime" [(ngModel)]="tracer.endTime"
+                          />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sfi2App.tracer.moProduct" for="field_moProduct">Mo Product</label>
+                    <select class="form-control" id="field_moProduct" name="moProduct" [(ngModel)]="tracer.moProduct"  required>
+                        <option *ngIf="!editForm.value.moProduct" [ngValue]="null" selected></option>
+                        <option [ngValue]="mOProductOption.id === tracer.moProduct?.id ? tracer.moProduct : mOProductOption" *ngFor="let mOProductOption of moproducts; trackBy: trackMOProductById">{{mOProductOption.id}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.moProduct?.dirty && editForm.controls.moProduct?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.moProduct?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSending" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="sfi2App.tracer.start.finish">Finish</span>
+        </button>
+    </div>
+</form>

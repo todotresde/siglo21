@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SupplyType.
+    -->
+    <changeSet id="20180312131752-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="supply_types_id"
+                                 baseTableName="supply_type_st_attribute"
+                                 constraintName="fk_supply_type_st_attribute_supply_types_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="supply_type"/>
+        <addForeignKeyConstraint baseColumnNames="st_attributes_id"
+                                 baseTableName="supply_type_st_attribute"
+                                 constraintName="fk_supply_type_st_attribute_st_attributes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="st_attribute"/>
+        
+    </changeSet>
+</databaseChangeLog>
