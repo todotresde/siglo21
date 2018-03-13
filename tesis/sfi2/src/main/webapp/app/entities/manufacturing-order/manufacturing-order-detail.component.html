@@ -21,6 +21,31 @@
             <span>{{manufacturingOrder.name}}</span>
         </dd>
     </dl>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mOProducts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="sfi2App.mOProduct.quantity">Quantity</span></th>
+            <th><span jhiTranslate="sfi2App.mOProduct.product">Product</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mOProduct of mOProducts ;trackBy: trackId">
+                <td><a [routerLink]="['../mo-product', mOProduct.id ]">{{mOProduct.id}}</a></td>
+                <td>{{mOProduct.quantity}}</td>
+                <td>
+                    <div *ngIf="mOProduct.product">
+                        <a [routerLink]="['../product', mOProduct.product?.id ]" >{{mOProduct.product?.id}}</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <button type="submit"
             (click)="previousState()"

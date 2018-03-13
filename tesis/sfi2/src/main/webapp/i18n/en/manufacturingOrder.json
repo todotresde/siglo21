@@ -17,15 +17,14 @@
                 "title": "Manufacturing Order"
             },
             "send": {
-                "title": "Send",
+                "title": "Confirm Send to Production",
                 "question": "Are you sure you want to send Manufacturing Order {{ id }}?",
                 "send": "Send"
             },
             "code": "Code",
             "orderDate": "Order Date",
             "status": "Status",
-            "name": "Name",
-            "send": "Send"
+            "name": "Name"
         }
     }
 }

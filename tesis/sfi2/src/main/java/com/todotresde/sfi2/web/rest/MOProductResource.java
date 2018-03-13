@@ -3,7 +3,9 @@ package com.todotresde.sfi2.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.todotresde.sfi2.domain.MOProduct;
 
+import com.todotresde.sfi2.domain.ManufacturingOrder;
 import com.todotresde.sfi2.repository.MOProductRepository;
+import com.todotresde.sfi2.repository.ManufacturingOrderRepository;
 import com.todotresde.sfi2.web.rest.errors.BadRequestAlertException;
 import com.todotresde.sfi2.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -31,9 +33,11 @@ public class MOProductResource {
     private static final String ENTITY_NAME = "mOProduct";
 
     private final MOProductRepository mOProductRepository;
+    private final ManufacturingOrderRepository manufacturingOrderRepository;
 
-    public MOProductResource(MOProductRepository mOProductRepository) {
+    public MOProductResource(MOProductRepository mOProductRepository, ManufacturingOrderRepository manufacturingOrderRepository) {
         this.mOProductRepository = mOProductRepository;
+        this.manufacturingOrderRepository = manufacturingOrderRepository;
     }
 
     /**
@@ -89,6 +93,19 @@ public class MOProductResource {
         log.debug("REST request to get all MOProducts");
         return mOProductRepository.findAll();
         }
+
+    /**
+     * GET  /mo-products : get all the mOProducts by manufacturingOrder.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of mOProducts in body
+     */
+    @GetMapping("/mo-products/manufacturingOrder/{id}")
+    @Timed
+    public List<MOProduct> getAllMOProductsByMO(@PathVariable Long id) {
+        log.debug("REST request to get all MOProducts by MO");
+        ManufacturingOrder manufacturingOrder = manufacturingOrderRepository.findOne(id);
+        return mOProductRepository.findByManufacturingOrder(manufacturingOrder);
+    }
 
     /**
      * GET  /mo-products/:id : get the "id" mOProduct.
