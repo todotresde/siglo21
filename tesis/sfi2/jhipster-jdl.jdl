@@ -44,6 +44,10 @@ entity STAttribute{
     name String required
 }
 
+entity STAttributeValue{
+    name String required
+}
+
 entity Product{
     name String required
 }
@@ -76,7 +80,11 @@ relationship ManyToOne {
     Tracer{nextTracer} to Tracer,
     Tracer{prevTracer} to Tracer,
     MOProduct{manufacturingOrder required} to ManufacturingOrder,
-    WSConfiguration{workStation required} to WorkStation
+    WSConfiguration{workStation required} to WorkStation,
+    STAttributeValue{product required} to Product,
+    STAttributeValue{supply required} to Supply,
+    STAttributeValue{supplyType required} to SupplyType,
+    STAttributeValue{stAttribute required} to STAttribute,
 }
 
 relationship OneToMany {
