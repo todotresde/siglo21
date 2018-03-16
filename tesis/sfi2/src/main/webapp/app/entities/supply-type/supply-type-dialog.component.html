@@ -27,7 +27,7 @@
         <div class="form-group">
             <label jhiTranslate="sfi2App.supplyType.stAttribute" for="field_stAttribute">St Attribute</label>
             <select class="form-control" id="field_stAttribute" multiple name="stAttribute" [(ngModel)]="supplyType.stAttributes">
-                <option [ngValue]="getSelected(supplyType.stAttributes, sTAttributeOption)" *ngFor="let sTAttributeOption of stattributes; trackBy: trackSTAttributeById">{{sTAttributeOption.id}}</option>
+                <option [ngValue]="getSelected(supplyType.stAttributes, sTAttributeOption)" *ngFor="let sTAttributeOption of stAttributes; trackBy: trackSTAttributeById">{{sTAttributeOption.id}}</option>
             </select>
         </div>
     </div>

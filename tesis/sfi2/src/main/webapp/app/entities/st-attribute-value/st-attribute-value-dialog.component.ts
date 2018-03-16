@@ -29,7 +29,7 @@ export class STAttributeValueDialogComponent implements OnInit {
 
     supplytypes: SupplyType[];
 
-    stattributes: STAttribute[];
+    stAttributes: STAttribute[];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -52,7 +52,7 @@ export class STAttributeValueDialogComponent implements OnInit {
         this.supplyTypeService.query()
             .subscribe((res: HttpResponse<SupplyType[]>) => { this.supplytypes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.stAttributeService.query()
-            .subscribe((res: HttpResponse<STAttribute[]>) => { this.stattributes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<STAttribute[]>) => { this.stAttributes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {

@@ -5,6 +5,7 @@
             "home": {
                 "title": "Manufacturing Orders",
                 "createLabel": "Create a new Manufacturing Order",
+                "createFullLabel": "Create a new Full Manufacturing Order",
                 "createOrEditLabel": "Create or edit a Manufacturing Order"
             },
             "created": "A new Manufacturing Order is created with identifier {{ param }}",
@@ -24,7 +25,17 @@
             "code": "Code",
             "orderDate": "Order Date",
             "status": "Status",
-            "description": "Description"
+            "description": "Description",
+            "products": {
+                "product": "Product",
+                "products": "Products",
+                "add.product": "Add Product" 
+            },
+            "supplies": {
+                "supply": "Supply",
+                "atributes": "Attributes",
+                "add.supply": "Add Supply" 
+            }
         }
     }
 }

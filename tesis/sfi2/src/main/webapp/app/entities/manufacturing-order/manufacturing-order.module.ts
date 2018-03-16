@@ -8,18 +8,22 @@ import {
     ManufacturingOrderComponent,
     ManufacturingOrderDetailComponent,
     ManufacturingOrderDialogComponent,
+    ManufacturingOrderFullDialogComponent,
     ManufacturingOrderPopupComponent,
+    ManufacturingOrderFullPopupComponent,
     ManufacturingOrderDeletePopupComponent,
     ManufacturingOrderSendPopupComponent,
     ManufacturingOrderDeleteDialogComponent,
     ManufacturingOrderSendDialogComponent,
     manufacturingOrderRoute,
     manufacturingOrderPopupRoute,
+    manufacturingOrderFullPopupRoute
 } from './';
 
 const ENTITY_STATES = [
     ...manufacturingOrderRoute,
     ...manufacturingOrderPopupRoute,
+    ...manufacturingOrderFullPopupRoute
 ];
 
 @NgModule({
@@ -31,16 +35,20 @@ const ENTITY_STATES = [
         ManufacturingOrderComponent,
         ManufacturingOrderDetailComponent,
         ManufacturingOrderDialogComponent,
+        ManufacturingOrderFullDialogComponent,
         ManufacturingOrderDeleteDialogComponent,
         ManufacturingOrderSendDialogComponent,
         ManufacturingOrderPopupComponent,
+        ManufacturingOrderFullPopupComponent,
         ManufacturingOrderDeletePopupComponent,
         ManufacturingOrderSendPopupComponent,
     ],
     entryComponents: [
         ManufacturingOrderComponent,
         ManufacturingOrderDialogComponent,
+        ManufacturingOrderFullDialogComponent,
         ManufacturingOrderPopupComponent,
+        ManufacturingOrderFullPopupComponent,
         ManufacturingOrderDeleteDialogComponent,
         ManufacturingOrderSendDialogComponent,
         ManufacturingOrderDeletePopupComponent,

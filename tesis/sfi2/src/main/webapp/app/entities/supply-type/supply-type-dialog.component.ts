@@ -21,7 +21,7 @@ export class SupplyTypeDialogComponent implements OnInit {
     supplyType: SupplyType;
     isSaving: boolean;
 
-    stattributes: STAttribute[];
+    stAttributes: STAttribute[];
 
     wsconfigurations: WSConfiguration[];
 
@@ -38,7 +38,7 @@ export class SupplyTypeDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.sTAttributeService.query()
-            .subscribe((res: HttpResponse<STAttribute[]>) => { this.stattributes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<STAttribute[]>) => { this.stAttributes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.wSConfigurationService.query()
             .subscribe((res: HttpResponse<WSConfiguration[]>) => { this.wsconfigurations = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }

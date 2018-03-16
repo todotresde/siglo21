@@ -67,7 +67,7 @@
             <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.stAttribute" for="field_stAttribute">St Attribute</label>
             <select class="form-control" id="field_stAttribute" name="stAttribute" [(ngModel)]="sTAttributeValue.stAttribute"  required>
                 <option *ngIf="!editForm.value.stAttribute" [ngValue]="null" selected></option>
-                <option [ngValue]="stAttributeOption.id === sTAttributeValue.stAttribute?.id ? sTAttributeValue.stAttribute : stAttributeOption" *ngFor="let stAttributeOption of stattributes; trackBy: trackSTAttributeById">{{stAttributeOption.id}}</option>
+                <option [ngValue]="stAttributeOption.id === sTAttributeValue.stAttribute?.id ? sTAttributeValue.stAttribute : stAttributeOption" *ngFor="let stAttributeOption of stAttributes; trackBy: trackSTAttributeById">{{stAttributeOption.id}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.stAttribute?.dirty && editForm.controls.stAttribute?.invalid)">

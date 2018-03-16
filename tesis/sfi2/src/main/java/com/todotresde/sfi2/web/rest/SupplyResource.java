@@ -88,7 +88,7 @@ public class SupplyResource {
     public List<Supply> getAllSupplies() {
         log.debug("REST request to get all Supplies");
         return supplyRepository.findAll();
-        }
+    }
 
     /**
      * GET  /supplies/:id : get the "id" supply.
