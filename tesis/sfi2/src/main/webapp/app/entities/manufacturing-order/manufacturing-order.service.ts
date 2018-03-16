@@ -7,6 +7,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { ManufacturingOrder } from './manufacturing-order.model';
 import { createRequestOption } from '../../shared';
+import { Product } from '../product/product.model';
 
 export type EntityResponseType = HttpResponse<ManufacturingOrder>;
 
@@ -23,9 +24,21 @@ export class ManufacturingOrderService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
+    fullCreate(manufacturingOrder: ManufacturingOrder, products: Product[]): Observable<EntityResponseType> {
+        const copy = this.convertMOAndProducts(manufacturingOrder, products);
+        return this.http.post<ManufacturingOrder>(this.resourceUrl + '/products', copy, { observe: 'response' })
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
     update(manufacturingOrder: ManufacturingOrder): Observable<EntityResponseType> {
         const copy = this.convert(manufacturingOrder);
         return this.http.put<ManufacturingOrder>(this.resourceUrl, copy, { observe: 'response' })
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    fullUpdate(manufacturingOrder: ManufacturingOrder, products: Product[]): Observable<EntityResponseType> {
+        const copy = this.convertMOAndProducts(manufacturingOrder, products);
+        return this.http.put<ManufacturingOrder>(this.resourceUrl + '/products', copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
@@ -80,6 +93,20 @@ export class ManufacturingOrderService {
         const copy: ManufacturingOrder = Object.assign({}, manufacturingOrder);
 
         copy.orderDate = this.dateUtils.toDate(manufacturingOrder.orderDate);
+        return copy;
+    }
+
+    /**
+     * Convert a ManufacturingOrder and Products to a JSON which can be sent to the server.
+     */
+    private convertMOAndProducts(manufacturingOrder: ManufacturingOrder, products: Product[]): any {
+        const copyMO: ManufacturingOrder = this.convert(manufacturingOrder);
+        const copyProducts: Product[] = products;
+        const copy: any = {};
+
+        copy['manufacturingOrder'] = copyMO;
+        copy['products'] = copyProducts;
+
         return copy;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -25,6 +25,7 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
     isSaving: boolean;
     products: Product[] = [];
     supplies: Supply[];
+    currentSupply: Supply;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -49,15 +50,15 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.manufacturingOrder.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.manufacturingOrderService.update(this.manufacturingOrder));
+                this.manufacturingOrderService.fullUpdate(this.manufacturingOrder, this.products));
         } else {
             this.subscribeToSaveResponse(
-                this.manufacturingOrderService.create(this.manufacturingOrder));
+                this.manufacturingOrderService.fullCreate(this.manufacturingOrder, this.products));
         }
     }
 
     addProduct() {
-        let product: Product = new Product();
+        const product: Product = new Product();
         product.supplies = [];
         this.products.push(product);
         this.addSupply(product);
@@ -67,20 +68,22 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
         product.supplies.push(new Supply());
     }
 
-    deleteProduct() {
-
+    deleteProduct(productPosition: number) {
+        this.products.splice(productPosition, 1);
     }
 
-    deleteSupply() {
-
+    deleteSupply(productPosition: number, supplyPosition: number) {
+        this.products[productPosition].supplies.splice(supplyPosition, 1);
     }
 
-    onChangeSupply(supplyOptionId: number, supply: Supply) {
-        supply = this.supplies.filter((res: Supply) => {return res.id == supplyOptionId;}).pop();
+    onChangeSupply(supplyOptionId: number, productPosition: number, supplyPosition: number) {
+        const updateSupply: Supply = this.supplies.filter((res: Supply) => res.id == supplyOptionId).pop();
 
-        this.supplyTypeService.find(supply.supplyType.id).subscribe(
+        this.supplyTypeService.find(updateSupply.supplyType.id).subscribe(
             (res: HttpResponse<SupplyType>) => {
-                supply.supplyType = res.body;
+                updateSupply.supplyType = res.body;
+                this.products[productPosition].supplies[supplyPosition] = updateSupply;
+                console.log(this.supplies, this.products);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

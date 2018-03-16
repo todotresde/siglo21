@@ -2,6 +2,7 @@ package com.todotresde.sfi2.service;
 
 import com.todotresde.sfi2.domain.MOProduct;
 import com.todotresde.sfi2.domain.ManufacturingOrder;
+import com.todotresde.sfi2.domain.Product;
 import com.todotresde.sfi2.repository.ManufacturingOrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service class for managing users.
@@ -47,6 +49,10 @@ public class ManufacturingOrderService {
         manufacturingOrderRepository.save(manufacturingOrder);
 
         return manufacturingOrder;
+    }
+
+    public ManufacturingOrder saveWithProducts(ManufacturingOrder manufacturingOrder, Set<Product> products) {
+        return manufacturingOrderRepository.save(manufacturingOrder);
     }
 }
 

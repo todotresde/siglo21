@@ -3,8 +3,10 @@ package com.todotresde.sfi2.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.todotresde.sfi2.domain.ManufacturingOrder;
 
+import com.todotresde.sfi2.domain.Product;
 import com.todotresde.sfi2.repository.ManufacturingOrderRepository;
 import com.todotresde.sfi2.service.ManufacturingOrderService;
+import com.todotresde.sfi2.service.dto.ManufacturingOrderDTO;
 import com.todotresde.sfi2.web.rest.errors.BadRequestAlertException;
 import com.todotresde.sfi2.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -55,6 +57,27 @@ public class ManufacturingOrderResource {
             throw new BadRequestAlertException("A new manufacturingOrder cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ManufacturingOrder result = manufacturingOrderRepository.save(manufacturingOrder);
+        return ResponseEntity.created(new URI("/api/manufacturing-orders/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * POST  /manufacturing-orders/products : Create a new manufacturingOrder with Products.
+     *
+     * @param manufacturingOrderDTO the manufacturingOrder to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new manufacturingOrder, or with status 400 (Bad Request) if the manufacturingOrder has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/manufacturing-orders/products")
+    @Timed
+    public ResponseEntity<ManufacturingOrder> createManufacturingOrderWithProducts(@Valid @RequestBody ManufacturingOrderDTO manufacturingOrderDTO) throws URISyntaxException {
+        log.debug("REST request to save ManufacturingOrder with Products : {}", manufacturingOrderDTO.getManufacturingOrder());
+        if (manufacturingOrderDTO.getManufacturingOrder().getId() != null) {
+            throw new BadRequestAlertException("A new manufacturingOrder cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+
+        ManufacturingOrder result = manufacturingOrderService.saveWithProducts(manufacturingOrderDTO.getManufacturingOrder(), manufacturingOrderDTO.getProducts());
         return ResponseEntity.created(new URI("/api/manufacturing-orders/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
