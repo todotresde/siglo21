@@ -20,6 +20,12 @@
                 <a [routerLink]="['/product-type', product.productType?.id]">{{product.productType?.id}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="sfi2App.product.moProduct">Mo Product</span></dt>
+        <dd>
+            <div *ngIf="product.moProduct">
+                <a [routerLink]="['/mo-product', product.moProduct?.id]">{{product.moProduct?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

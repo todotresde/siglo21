@@ -20,7 +20,7 @@
             <th><span jhiTranslate="sfi2App.manufacturingOrder.code">Code</span></th>
             <th><span jhiTranslate="sfi2App.manufacturingOrder.orderDate">Order Date</span></th>
             <th><span jhiTranslate="sfi2App.manufacturingOrder.status">Status</span></th>
-            <th><span jhiTranslate="sfi2App.manufacturingOrder.name">Name</span></th>
+            <th><span jhiTranslate="sfi2App.manufacturingOrder.description">Description</span></th>
             <th></th>
             </tr>
             </thead>
@@ -30,7 +30,7 @@
                 <td>{{manufacturingOrder.code}}</td>
                 <td>{{manufacturingOrder.orderDate | date:'medium'}}</td>
                 <td>{{manufacturingOrder.status}}</td>
-                <td>{{manufacturingOrder.name}}</td>
+                <td>{{manufacturingOrder.description}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -10,7 +10,6 @@ import { MOProductDialogComponent } from '../../../../../../main/webapp/app/enti
 import { MOProductService } from '../../../../../../main/webapp/app/entities/mo-product/mo-product.service';
 import { MOProduct } from '../../../../../../main/webapp/app/entities/mo-product/mo-product.model';
 import { ManufacturingOrderService } from '../../../../../../main/webapp/app/entities/manufacturing-order';
-import { ProductService } from '../../../../../../main/webapp/app/entities/product';
 
 describe('Component Tests', () => {
 
@@ -27,7 +26,6 @@ describe('Component Tests', () => {
                 declarations: [MOProductDialogComponent],
                 providers: [
                     ManufacturingOrderService,
-                    ProductService,
                     MOProductService
                 ]
             })

@@ -94,7 +94,7 @@ public class SupplyType implements Serializable {
         this.supplies = supplies;
     }
 
-    public Set<STAttribute> getStAttributes() {
+    public Set<STAttribute> getSTAttributes() {
         return stAttributes;
     }
 
@@ -103,19 +103,19 @@ public class SupplyType implements Serializable {
         return this;
     }
 
-    public SupplyType addStAttribute(STAttribute sTAttribute) {
+    public SupplyType addSTAttribute(STAttribute sTAttribute) {
         this.stAttributes.add(sTAttribute);
         sTAttribute.getSupplyTypes().add(this);
         return this;
     }
 
-    public SupplyType removeStAttribute(STAttribute sTAttribute) {
+    public SupplyType removeSTAttribute(STAttribute sTAttribute) {
         this.stAttributes.remove(sTAttribute);
         sTAttribute.getSupplyTypes().remove(this);
         return this;
     }
 
-    public void setStAttributes(Set<STAttribute> sTAttributes) {
+    public void setSTAttributes(Set<STAttribute> sTAttributes) {
         this.stAttributes = sTAttributes;
     }
 

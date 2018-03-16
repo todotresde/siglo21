@@ -23,12 +23,14 @@ public class LineService {
     private final WSConfigurationService wSConfigurationService;
     private final TracerService tracerService;
     private final ProductService productService;
+    private final MOProductService mOProductService;
 
-    public LineService(LineRepository lineRepository, WSConfigurationService wSConfigurationService, TracerService tracerService, ProductService productService) {
+    public LineService(LineRepository lineRepository, WSConfigurationService wSConfigurationService, TracerService tracerService, ProductService productService, MOProductService mOProductService) {
         this.lineRepository = lineRepository;
         this.wSConfigurationService = wSConfigurationService;
         this.tracerService = tracerService;
         this.productService = productService;
+        this.mOProductService = mOProductService;
     }
 
     public Line getBestLineForMOProduct(MOProduct mOProduct) {
@@ -52,7 +54,7 @@ public class LineService {
         List<Line> lines = this.lineRepository.findAll();
         List<Line> linesForMOProduct = new ArrayList<Line>();
 
-        List<SupplyType> mOProductSupplyTypes = this.productService.getSupplyTypes(mOProduct.getProduct());
+        List<SupplyType> mOProductSupplyTypes = this.productService.getSupplyTypes(mOProductService.getProducts(mOProduct).get(0));
         for(Line line: lines){
             List<SupplyType> lineSupplyTypes = this.getSupplyTypesForLine(line);
 

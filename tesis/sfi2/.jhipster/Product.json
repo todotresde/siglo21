@@ -2,12 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "moProduct",
-            "otherEntityName": "mOProduct",
-            "otherEntityRelationshipName": "product"
-        },
-        {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "product",
             "relationshipName": "supply",
@@ -20,6 +14,13 @@
             "relationshipValidateRules": "required",
             "relationshipName": "productType",
             "otherEntityName": "productType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "moProduct",
+            "otherEntityName": "moProduct",
             "otherEntityField": "id"
         }
     ],

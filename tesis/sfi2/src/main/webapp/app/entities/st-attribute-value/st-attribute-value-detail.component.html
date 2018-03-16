@@ -1,0 +1,50 @@
+
+<div *ngIf="sTAttributeValue">
+    <h2><span jhiTranslate="sfi2App.sTAttributeValue.detail.title">ST Attribute Value</span> {{sTAttributeValue.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="sfi2App.sTAttributeValue.value">Value</span></dt>
+        <dd>
+            <span>{{sTAttributeValue.value}}</span>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.sTAttributeValue.product">Product</span></dt>
+        <dd>
+            <div *ngIf="sTAttributeValue.product">
+                <a [routerLink]="['/product', sTAttributeValue.product?.id]">{{sTAttributeValue.product?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.sTAttributeValue.supply">Supply</span></dt>
+        <dd>
+            <div *ngIf="sTAttributeValue.supply">
+                <a [routerLink]="['/supply', sTAttributeValue.supply?.id]">{{sTAttributeValue.supply?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.sTAttributeValue.supplyType">Supply Type</span></dt>
+        <dd>
+            <div *ngIf="sTAttributeValue.supplyType">
+                <a [routerLink]="['/supply-type', sTAttributeValue.supplyType?.id]">{{sTAttributeValue.supplyType?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="sfi2App.sTAttributeValue.stAttribute">St Attribute</span></dt>
+        <dd>
+            <div *ngIf="sTAttributeValue.stAttribute">
+                <a [routerLink]="['/st-attribute', sTAttributeValue.stAttribute?.id]">{{sTAttributeValue.stAttribute?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'st-attribute-value/'+ sTAttributeValue.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

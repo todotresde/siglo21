@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span jhiTranslate="sfi2App.sTAttributeValue.home.title">ST Attribute Values</span>
+        <button class="btn btn-primary float-right jh-create-entity create-st-attribute-value" [routerLink]="['/', { outlets: { popup: ['st-attribute-value-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="sfi2App.sTAttributeValue.home.createLabel">
+            Create new ST Attribute Value
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="sTAttributeValues">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.value">Value 1111</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.product">Product</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.supply">Supply</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.supplyType">Supply Type</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.stAttribute">St Attribute</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sTAttributeValue of sTAttributeValues ;trackBy: trackId">
+                <td><a [routerLink]="['../st-attribute-value', sTAttributeValue.id ]">{{sTAttributeValue.id}}</a></td>
+                <td>{{sTAttributeValue.value}}</td>
+                <td>
+                    <div *ngIf="sTAttributeValue.product">
+                        <a [routerLink]="['../product', sTAttributeValue.product?.id ]" >{{sTAttributeValue.product?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sTAttributeValue.supply">
+                        <a [routerLink]="['../supply', sTAttributeValue.supply?.id ]" >{{sTAttributeValue.supply?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sTAttributeValue.supplyType">
+                        <a [routerLink]="['../supply-type', sTAttributeValue.supplyType?.id ]" >{{sTAttributeValue.supplyType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="sTAttributeValue.stAttribute">
+                        <a [routerLink]="['../st-attribute', sTAttributeValue.stAttribute?.id ]" >{{sTAttributeValue.stAttribute?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../st-attribute-value', sTAttributeValue.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'st-attribute-value/'+ sTAttributeValue.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'st-attribute-value/'+ sTAttributeValue.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

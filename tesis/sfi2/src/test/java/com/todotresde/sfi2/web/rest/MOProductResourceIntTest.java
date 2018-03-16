@@ -4,7 +4,6 @@ import com.todotresde.sfi2.Sfi2App;
 
 import com.todotresde.sfi2.domain.MOProduct;
 import com.todotresde.sfi2.domain.ManufacturingOrder;
-import com.todotresde.sfi2.domain.Product;
 import com.todotresde.sfi2.repository.MOProductRepository;
 import com.todotresde.sfi2.web.rest.errors.ExceptionTranslator;
 
@@ -87,11 +86,6 @@ public class MOProductResourceIntTest {
         em.persist(manufacturingOrder);
         em.flush();
         mOProduct.setManufacturingOrder(manufacturingOrder);
-        // Add required entity
-        Product product = ProductResourceIntTest.createEntity(em);
-        em.persist(product);
-        em.flush();
-        mOProduct.setProduct(product);
         return mOProduct;
     }
 

@@ -33,6 +33,7 @@ public class MOProductResource {
     private static final String ENTITY_NAME = "mOProduct";
 
     private final MOProductRepository mOProductRepository;
+
     private final ManufacturingOrderRepository manufacturingOrderRepository;
 
     public MOProductResource(MOProductRepository mOProductRepository, ManufacturingOrderRepository manufacturingOrderRepository) {
@@ -92,10 +93,10 @@ public class MOProductResource {
     public List<MOProduct> getAllMOProducts() {
         log.debug("REST request to get all MOProducts");
         return mOProductRepository.findAll();
-        }
+    }
 
     /**
-     * GET  /mo-products : get all the mOProducts by manufacturingOrder.
+     * GET  /m-o-products : get all the mOProducts by manufacturingOrder.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of mOProducts in body
      */

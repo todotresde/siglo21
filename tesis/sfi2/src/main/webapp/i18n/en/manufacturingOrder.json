@@ -24,7 +24,7 @@
             "code": "Code",
             "orderDate": "Order Date",
             "status": "Status",
-            "name": "Name"
+            "description": "Description"
         }
     }
 }

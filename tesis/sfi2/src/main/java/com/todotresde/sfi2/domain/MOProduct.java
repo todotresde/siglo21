@@ -31,10 +31,6 @@ public class MOProduct implements Serializable {
     @NotNull
     private ManufacturingOrder manufacturingOrder;
 
-    @ManyToOne(optional = false)
-    @NotNull
-    private Product product;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -68,19 +64,6 @@ public class MOProduct implements Serializable {
 
     public void setManufacturingOrder(ManufacturingOrder manufacturingOrder) {
         this.manufacturingOrder = manufacturingOrder;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public MOProduct product(Product product) {
-        this.product = product;
-        return this;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

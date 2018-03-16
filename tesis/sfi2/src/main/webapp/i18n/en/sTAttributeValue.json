@@ -1,0 +1,26 @@
+
+{
+    "sfi2App": {
+        "sTAttributeValue" : {
+            "home": {
+                "title": "ST Attribute Values",
+                "createLabel": "Create a new ST Attribute Value",
+                "createOrEditLabel": "Create or edit a ST Attribute Value"
+            },
+            "created": "A new ST Attribute Value is created with identifier {{ param }}",
+            "updated": "A ST Attribute Value is updated with identifier {{ param }}",
+            "deleted": "A ST Attribute Value is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete ST Attribute Value {{ id }}?"
+            },
+            "detail": {
+                "title": "ST Attribute Value"
+            },
+            "value": "Value",
+            "product": "Product",
+            "supply": "Supply",
+            "supplyType": "Supply Type",
+            "stAttribute": "St Attribute"
+        }
+    }
+}

@@ -11,6 +11,7 @@ import { ProductService } from '../../../../../../main/webapp/app/entities/produ
 import { Product } from '../../../../../../main/webapp/app/entities/product/product.model';
 import { SupplyService } from '../../../../../../main/webapp/app/entities/supply';
 import { ProductTypeService } from '../../../../../../main/webapp/app/entities/product-type';
+import { MOProductService } from '../../../../../../main/webapp/app/entities/mo-product';
 
 describe('Component Tests', () => {
 
@@ -28,6 +29,7 @@ describe('Component Tests', () => {
                 providers: [
                     SupplyService,
                     ProductTypeService,
+                    MOProductService,
                     ProductService
                 ]
             })

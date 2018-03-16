@@ -11,6 +11,7 @@ import { ProductPopupService } from './product-popup.service';
 import { ProductService } from './product.service';
 import { Supply, SupplyService } from '../supply';
 import { ProductType, ProductTypeService } from '../product-type';
+import { MOProduct, MOProductService } from '../mo-product';
 
 @Component({
     selector: 'jhi-product-dialog',
@@ -25,12 +26,15 @@ export class ProductDialogComponent implements OnInit {
 
     producttypes: ProductType[];
 
+    moproducts: MOProduct[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private productService: ProductService,
         private supplyService: SupplyService,
         private productTypeService: ProductTypeService,
+        private moProductService: MOProductService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -41,6 +45,8 @@ export class ProductDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<Supply[]>) => { this.supplies = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productTypeService.query()
             .subscribe((res: HttpResponse<ProductType[]>) => { this.producttypes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.moProductService.query()
+            .subscribe((res: HttpResponse<MOProduct[]>) => { this.moproducts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -82,6 +88,10 @@ export class ProductDialogComponent implements OnInit {
     }
 
     trackProductTypeById(index: number, item: ProductType) {
+        return item.id;
+    }
+
+    trackMoProductById(index: number, item: MOProduct) {
         return item.id;
     }
 

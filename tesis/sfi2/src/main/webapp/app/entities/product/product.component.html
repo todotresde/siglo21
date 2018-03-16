@@ -20,6 +20,7 @@
             <th><span jhiTranslate="sfi2App.product.name">Name</span></th>
             <th><span jhiTranslate="sfi2App.product.supply">Supply</span></th>
             <th><span jhiTranslate="sfi2App.product.productType">Product Type</span></th>
+            <th><span jhiTranslate="sfi2App.product.moProduct">Mo Product</span></th>
             <th></th>
             </tr>
             </thead>
@@ -35,6 +36,11 @@
                 <td>
                     <div *ngIf="product.productType">
                         <a [routerLink]="['../product-type', product.productType?.id ]" >{{product.productType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.moProduct">
+                        <a [routerLink]="['../mo-product', product.moProduct?.id ]" >{{product.moProduct?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

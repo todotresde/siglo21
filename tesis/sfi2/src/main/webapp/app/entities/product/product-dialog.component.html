@@ -43,6 +43,19 @@
                 This field is required.
             </small>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.product.moProduct" for="field_moProduct">Mo Product</label>
+            <select class="form-control" id="field_moProduct" name="moProduct" [(ngModel)]="product.moProduct"  required>
+                <option *ngIf="!editForm.value.moProduct" [ngValue]="null" selected></option>
+                <option [ngValue]="moProductOption.id === product.moProduct?.id ? product.moProduct : moProductOption" *ngFor="let moProductOption of moproducts; trackBy: trackMoProductById">{{moProductOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.moProduct?.dirty && editForm.controls.moProduct?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.moProduct?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

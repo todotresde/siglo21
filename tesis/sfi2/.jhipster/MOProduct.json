@@ -7,13 +7,6 @@
             "relationshipName": "manufacturingOrder",
             "otherEntityName": "manufacturingOrder",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": "required",
-            "relationshipName": "product",
-            "otherEntityName": "product",
-            "otherEntityField": "id"
         }
     ],
     "fields": [

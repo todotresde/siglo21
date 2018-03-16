@@ -5,7 +5,6 @@ export class MOProduct implements BaseEntity {
         public id?: number,
         public quantity?: number,
         public manufacturingOrder?: BaseEntity,
-        public product?: BaseEntity,
     ) {
     }
 }

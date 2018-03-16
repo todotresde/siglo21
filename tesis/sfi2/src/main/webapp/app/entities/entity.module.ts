@@ -13,6 +13,7 @@ import { Sfi2ProductModule } from './product/product.module';
 import { Sfi2ProductTypeModule } from './product-type/product-type.module';
 import { Sfi2PTAttributeModule } from './pt-attribute/pt-attribute.module';
 import { Sfi2TracerModule } from './tracer/tracer.module';
+import { Sfi2STAttributeValueModule } from './st-attribute-value/st-attribute-value.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -30,6 +31,7 @@ import { Sfi2TracerModule } from './tracer/tracer.module';
         Sfi2ProductTypeModule,
         Sfi2PTAttributeModule,
         Sfi2TracerModule,
+        Sfi2STAttributeValueModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

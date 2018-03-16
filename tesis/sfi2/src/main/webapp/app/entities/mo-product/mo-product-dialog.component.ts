@@ -10,7 +10,6 @@ import { MOProduct } from './mo-product.model';
 import { MOProductPopupService } from './mo-product-popup.service';
 import { MOProductService } from './mo-product.service';
 import { ManufacturingOrder, ManufacturingOrderService } from '../manufacturing-order';
-import { Product, ProductService } from '../product';
 
 @Component({
     selector: 'jhi-mo-product-dialog',
@@ -23,14 +22,11 @@ export class MOProductDialogComponent implements OnInit {
 
     manufacturingorders: ManufacturingOrder[];
 
-    products: Product[];
-
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private mOProductService: MOProductService,
         private manufacturingOrderService: ManufacturingOrderService,
-        private productService: ProductService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -39,8 +35,6 @@ export class MOProductDialogComponent implements OnInit {
         this.isSaving = false;
         this.manufacturingOrderService.query()
             .subscribe((res: HttpResponse<ManufacturingOrder[]>) => { this.manufacturingorders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.productService.query()
-            .subscribe((res: HttpResponse<Product[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -78,10 +72,6 @@ export class MOProductDialogComponent implements OnInit {
     }
 
     trackManufacturingOrderById(index: number, item: ManufacturingOrder) {
-        return item.id;
-    }
-
-    trackProductById(index: number, item: Product) {
         return item.id;
     }
 }

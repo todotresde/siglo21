@@ -14,12 +14,6 @@
                 <a [routerLink]="['/manufacturing-order', mOProduct.manufacturingOrder?.id]">{{mOProduct.manufacturingOrder?.id}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="sfi2App.mOProduct.product">Product</span></dt>
-        <dd>
-            <div *ngIf="mOProduct.product">
-                <a [routerLink]="['/product', mOProduct.product?.id]">{{mOProduct.product?.id}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

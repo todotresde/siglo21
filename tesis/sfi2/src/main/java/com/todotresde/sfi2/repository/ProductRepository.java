@@ -1,5 +1,6 @@
 package com.todotresde.sfi2.repository;
 
+import com.todotresde.sfi2.domain.MOProduct;
 import com.todotresde.sfi2.domain.Product;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select product from Product product left join fetch product.supplies where product.id =:id")
     Product findOneWithEagerRelationships(@Param("id") Long id);
+
+    List<Product> findByMoProduct(MOProduct moProduct);
 
 }

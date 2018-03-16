@@ -68,13 +68,13 @@ public class STAttribute implements Serializable {
 
     public STAttribute addSupplyType(SupplyType supplyType) {
         this.supplyTypes.add(supplyType);
-        supplyType.getStAttributes().add(this);
+        supplyType.getSTAttributes().add(this);
         return this;
     }
 
     public STAttribute removeSupplyType(SupplyType supplyType) {
         this.supplyTypes.remove(supplyType);
-        supplyType.getStAttributes().remove(this);
+        supplyType.getSTAttributes().remove(this);
         return this;
     }
 

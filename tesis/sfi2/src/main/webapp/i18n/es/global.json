@@ -21,6 +21,7 @@
                 "ptAttribute": "PT Attribute",
                 "tracer": "Tracer",
                 "wsTracer": "WSTracer",
+                "stAttributeValue": "ST Attribute Value",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

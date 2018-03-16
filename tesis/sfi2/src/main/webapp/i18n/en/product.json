@@ -17,9 +17,9 @@
                 "title": "Product"
             },
             "name": "Name",
-            "moProduct": "Mo Product",
             "supply": "Supply",
-            "productType": "Product Type"
+            "productType": "Product Type",
+            "moProduct": "Mo Product"
         }
     }
 }

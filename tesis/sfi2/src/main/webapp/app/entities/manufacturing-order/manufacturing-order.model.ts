@@ -6,7 +6,7 @@ export class ManufacturingOrder implements BaseEntity {
         public code?: string,
         public orderDate?: any,
         public status?: number,
-        public name?: string,
+        public description?: string,
     ) {
     }
 }

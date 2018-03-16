@@ -1,6 +1,5 @@
 package com.todotresde.sfi2.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,11 +29,6 @@ public class Product implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "product")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<MOProduct> moProducts = new HashSet<>();
-
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "product_supply",
@@ -45,6 +39,10 @@ public class Product implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private ProductType productType;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    private MOProduct moProduct;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -66,31 +64,6 @@ public class Product implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<MOProduct> getMoProducts() {
-        return moProducts;
-    }
-
-    public Product moProducts(Set<MOProduct> mOProducts) {
-        this.moProducts = mOProducts;
-        return this;
-    }
-
-    public Product addMoProduct(MOProduct mOProduct) {
-        this.moProducts.add(mOProduct);
-        mOProduct.setProduct(this);
-        return this;
-    }
-
-    public Product removeMoProduct(MOProduct mOProduct) {
-        this.moProducts.remove(mOProduct);
-        mOProduct.setProduct(null);
-        return this;
-    }
-
-    public void setMoProducts(Set<MOProduct> mOProducts) {
-        this.moProducts = mOProducts;
     }
 
     public Set<Supply> getSupplies() {
@@ -129,6 +102,19 @@ public class Product implements Serializable {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    public MOProduct getMoProduct() {
+        return moProduct;
+    }
+
+    public Product moProduct(MOProduct moProduct) {
+        this.moProduct = moProduct;
+        return this;
+    }
+
+    public void setMoProduct(MOProduct moProduct) {
+        this.moProduct = moProduct;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

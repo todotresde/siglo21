@@ -1,0 +1,88 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySTAttributeValueLabel" jhiTranslate="sfi2App.sTAttributeValue.home.createOrEditLabel">Create or edit a ST Attribute Value</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!sTAttributeValue.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="sTAttributeValue.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.value" for="field_value">Value</label>
+            <input type="text" class="form-control" name="value" id="field_value"
+                [(ngModel)]="sTAttributeValue.value" required/>
+            <div [hidden]="!(editForm.controls.value?.dirty && editForm.controls.value?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.value?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="sTAttributeValue.product"  required>
+                <option *ngIf="!editForm.value.product" [ngValue]="null" selected></option>
+                <option [ngValue]="productOption.id === sTAttributeValue.product?.id ? sTAttributeValue.product : productOption" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.product?.dirty && editForm.controls.product?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.product?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.supply" for="field_supply">Supply</label>
+            <select class="form-control" id="field_supply" name="supply" [(ngModel)]="sTAttributeValue.supply"  required>
+                <option *ngIf="!editForm.value.supply" [ngValue]="null" selected></option>
+                <option [ngValue]="supplyOption.id === sTAttributeValue.supply?.id ? sTAttributeValue.supply : supplyOption" *ngFor="let supplyOption of supplies; trackBy: trackSupplyById">{{supplyOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.supply?.dirty && editForm.controls.supply?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.supply?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.supplyType" for="field_supplyType">Supply Type</label>
+            <select class="form-control" id="field_supplyType" name="supplyType" [(ngModel)]="sTAttributeValue.supplyType"  required>
+                <option *ngIf="!editForm.value.supplyType" [ngValue]="null" selected></option>
+                <option [ngValue]="supplyTypeOption.id === sTAttributeValue.supplyType?.id ? sTAttributeValue.supplyType : supplyTypeOption" *ngFor="let supplyTypeOption of supplytypes; trackBy: trackSupplyTypeById">{{supplyTypeOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.supplyType?.dirty && editForm.controls.supplyType?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.supplyType?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.stAttribute" for="field_stAttribute">St Attribute</label>
+            <select class="form-control" id="field_stAttribute" name="stAttribute" [(ngModel)]="sTAttributeValue.stAttribute"  required>
+                <option *ngIf="!editForm.value.stAttribute" [ngValue]="null" selected></option>
+                <option [ngValue]="stAttributeOption.id === sTAttributeValue.stAttribute?.id ? sTAttributeValue.stAttribute : stAttributeOption" *ngFor="let stAttributeOption of stattributes; trackBy: trackSTAttributeById">{{stAttributeOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.stAttribute?.dirty && editForm.controls.stAttribute?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.stAttribute?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

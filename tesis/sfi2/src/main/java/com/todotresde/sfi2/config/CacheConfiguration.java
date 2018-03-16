@@ -77,6 +77,7 @@ public class CacheConfiguration {
             cm.createCache(com.todotresde.sfi2.domain.WorkStation.class.getName() + ".wsConfigurations", jcacheConfiguration);
             cm.createCache(com.todotresde.sfi2.domain.WorkStation.class.getName() + ".prevWSConfigurations", jcacheConfiguration);
             cm.createCache(com.todotresde.sfi2.domain.WorkStation.class.getName() + ".nextWSConfigurations", jcacheConfiguration);
+            cm.createCache(com.todotresde.sfi2.domain.STAttributeValue.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
