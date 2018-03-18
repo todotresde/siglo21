@@ -8,6 +8,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 import { ManufacturingOrder } from './manufacturing-order.model';
 import { createRequestOption } from '../../shared';
 import { Product } from '../product/product.model';
+import { STAttributeValue } from '../st-attribute-value/st-attribute-value.model';
 
 export type EntityResponseType = HttpResponse<ManufacturingOrder>;
 
@@ -24,8 +25,8 @@ export class ManufacturingOrderService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    fullCreate(manufacturingOrder: ManufacturingOrder, products: Product[]): Observable<EntityResponseType> {
-        const copy = this.convertMOAndProducts(manufacturingOrder, products);
+    fullCreate(manufacturingOrder: ManufacturingOrder, products: Product[], stAttributeValues: STAttributeValue[]): Observable<EntityResponseType> {
+        const copy = this.convertMOAndProductsAndSTAttributeValues(manufacturingOrder, products, stAttributeValues);
         return this.http.post<ManufacturingOrder>(this.resourceUrl + '/products', copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
@@ -36,8 +37,8 @@ export class ManufacturingOrderService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    fullUpdate(manufacturingOrder: ManufacturingOrder, products: Product[]): Observable<EntityResponseType> {
-        const copy = this.convertMOAndProducts(manufacturingOrder, products);
+    fullUpdate(manufacturingOrder: ManufacturingOrder, products: Product[], stAttributeValues: STAttributeValue[]): Observable<EntityResponseType> {
+        const copy = this.convertMOAndProductsAndSTAttributeValues(manufacturingOrder, products, stAttributeValues);
         return this.http.put<ManufacturingOrder>(this.resourceUrl + '/products', copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
@@ -99,13 +100,15 @@ export class ManufacturingOrderService {
     /**
      * Convert a ManufacturingOrder and Products to a JSON which can be sent to the server.
      */
-    private convertMOAndProducts(manufacturingOrder: ManufacturingOrder, products: Product[]): any {
+    private convertMOAndProductsAndSTAttributeValues(manufacturingOrder: ManufacturingOrder, products: Product[], stAttributeValues: STAttributeValue[]): any {
         const copyMO: ManufacturingOrder = this.convert(manufacturingOrder);
         const copyProducts: Product[] = products;
+        const copySTAttributeValues: STAttributeValue[] = stAttributeValues;
         const copy: any = {};
 
         copy['manufacturingOrder'] = copyMO;
         copy['products'] = copyProducts;
+        copy['sTAttributeValues'] = copySTAttributeValues;
 
         return copy;
     }

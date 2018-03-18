@@ -31,6 +31,15 @@ public class MOProduct implements Serializable {
     @NotNull
     private ManufacturingOrder manufacturingOrder;
 
+    public MOProduct() {
+
+    }
+
+    public MOProduct(Integer quantity, ManufacturingOrder manufacturingOrder) {
+        this.quantity = quantity;
+        this.manufacturingOrder = manufacturingOrder;
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;

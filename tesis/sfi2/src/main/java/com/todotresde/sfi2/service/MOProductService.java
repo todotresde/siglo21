@@ -30,6 +30,10 @@ public class MOProductService {
         this.productRepository = productRepository;
     }
 
+    public MOProduct save(MOProduct moProduct) {
+        return this.mOProductRepository.save(moProduct);
+    }
+
     public List<MOProduct> getByManufacturingOrder(ManufacturingOrder manufacturingOrder) {
         return this.mOProductRepository.findByManufacturingOrder(manufacturingOrder);
     }

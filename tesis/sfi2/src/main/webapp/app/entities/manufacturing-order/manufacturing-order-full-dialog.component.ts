@@ -14,6 +14,8 @@ import { Supply } from '../supply/supply.model';
 import { SupplyService } from '../supply/supply.service';
 import { SupplyType } from '../supply-type/supply-type.model';
 import { SupplyTypeService } from '../supply-type/supply-type.service';
+import { STAttribute } from '../st-attribute/st-attribute.model';
+import { STAttributeValue } from '../st-attribute-value/st-attribute-value.model';
 
 @Component({
     selector: 'jhi-manufacturing-order-full-dialog',
@@ -26,6 +28,8 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
     products: Product[] = [];
     supplies: Supply[];
     currentSupply: Supply;
+    attributeValues: any = [];
+    stAttributeValues: STAttributeValue[] = [];
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -47,13 +51,14 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
     }
 
     save() {
+        this.prepareSTAttributeValues();
         this.isSaving = true;
         if (this.manufacturingOrder.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.manufacturingOrderService.fullUpdate(this.manufacturingOrder, this.products));
+                this.manufacturingOrderService.fullUpdate(this.manufacturingOrder, this.products, this.stAttributeValues));
         } else {
             this.subscribeToSaveResponse(
-                this.manufacturingOrderService.fullCreate(this.manufacturingOrder, this.products));
+                this.manufacturingOrderService.fullCreate(this.manufacturingOrder, this.products, this.stAttributeValues));
         }
     }
 
@@ -70,10 +75,12 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
 
     deleteProduct(productPosition: number) {
         this.products.splice(productPosition, 1);
+        this.attributeValues.splice(productPosition, 1);
     }
 
     deleteSupply(productPosition: number, supplyPosition: number) {
         this.products[productPosition].supplies.splice(supplyPosition, 1);
+        this.attributeValues[productPosition].splice(supplyPosition, 1);
     }
 
     onChangeSupply(supplyOptionId: number, productPosition: number, supplyPosition: number) {
@@ -83,10 +90,50 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
             (res: HttpResponse<SupplyType>) => {
                 updateSupply.supplyType = res.body;
                 this.products[productPosition].supplies[supplyPosition] = updateSupply;
-                console.log(this.supplies, this.products);
+                this.createAttributeValues(productPosition, supplyPosition, updateSupply.supplyType);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    private prepareSTAttributeValues() {
+        for (let productPosition = 0; productPosition < this.attributeValues.length; productPosition++) {
+            for (let supplyPosition = 0; supplyPosition < this.attributeValues[productPosition].length; supplyPosition++) {
+                for (const attributeName in this.attributeValues[productPosition][supplyPosition]) {
+                    const value: any = this.attributeValues[productPosition][supplyPosition][attributeName];
+                    const stAttributeValue = new STAttributeValue();
+                    const supply: Supply = this.products[productPosition].supplies[supplyPosition];
+                    const supplyType: SupplyType = this.supplyTypeService.convertSTAttributes(supply.supplyType);
+
+                    stAttributeValue.value = value;
+                    stAttributeValue.product = this.products[productPosition];
+                    stAttributeValue.supply = supply;
+                    stAttributeValue.supplyType = supplyType;
+                    supplyType.stAttributes.forEach((stAttribue: STAttribute) => {
+                        if (stAttribue.name === attributeName) {
+                            stAttributeValue.stAttribute = stAttribue;
+                        }
+                    });
+
+                    this.stAttributeValues.push(stAttributeValue);
+                }
+            }
+        }
+    }
+
+    private createAttributeValues(productPosition: number, supplyPosition: number, supplyType: SupplyType) {
+        if (!this.attributeValues[productPosition]) {
+            this.attributeValues[productPosition] = [];
+        }
+        if (!this.attributeValues[productPosition][supplyPosition]) {
+            this.attributeValues[productPosition][supplyPosition] = {};
+        }
+
+        supplyType.stAttributes.forEach((stAttribute: any) => {
+            if (!this.attributeValues[productPosition][supplyPosition][stAttribute.name]) {
+                this.attributeValues[productPosition][supplyPosition][stAttribute.name] = 0;
+            }
+        });
     }
 
     private loadSupplies() {

@@ -1,8 +1,6 @@
 package com.todotresde.sfi2.service;
 
-import com.todotresde.sfi2.domain.MOProduct;
-import com.todotresde.sfi2.domain.ManufacturingOrder;
-import com.todotresde.sfi2.domain.Product;
+import com.todotresde.sfi2.domain.*;
 import com.todotresde.sfi2.repository.ManufacturingOrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +21,15 @@ public class ManufacturingOrderService {
 
     private final MOProductService mOProductService;
     private final SchedulerService schedulerService;
+    private final ProductService productService;
+    private final STAttributeValueService stAttributeValueService;
     private final ManufacturingOrderRepository manufacturingOrderRepository;
 
-    public ManufacturingOrderService(MOProductService mOProductService, SchedulerService schedulerService, ManufacturingOrderRepository manufacturingOrderRepository) {
+    public ManufacturingOrderService(MOProductService mOProductService, SchedulerService schedulerService, ManufacturingOrderRepository manufacturingOrderRepository, ProductService productService, STAttributeValueService stAttributeValueService) {
         this.mOProductService = mOProductService;
         this.schedulerService = schedulerService;
+        this.productService = productService;
+        this.stAttributeValueService = stAttributeValueService;
         this.manufacturingOrderRepository = manufacturingOrderRepository;
     }
 
@@ -51,8 +53,39 @@ public class ManufacturingOrderService {
         return manufacturingOrder;
     }
 
-    public ManufacturingOrder saveWithProducts(ManufacturingOrder manufacturingOrder, Set<Product> products) {
-        return manufacturingOrderRepository.save(manufacturingOrder);
+    public ManufacturingOrder saveWithProductsAndSTAttributeValues(ManufacturingOrder manufacturingOrder, List<Product> products, List<STAttributeValue> stAttributeValues) {
+        manufacturingOrder = manufacturingOrderRepository.save(manufacturingOrder);
+        Integer stAttributeValueIndex = 0;
+        for(Product product : products) {
+            MOProduct moProduct = new MOProduct(1, manufacturingOrder);
+            moProduct = mOProductService.save(moProduct);
+
+            ProductType productType = new ProductType();
+            productType.setId(new Long(1));
+            product.setName("");
+            product.setProductType(productType);
+            product.setMoProduct(moProduct);
+
+            productService.save(product);
+
+            for(Supply supply : product.getSupplies()) {
+                for(STAttribute stAttribute : supply.getSupplyType().getSTAttributes()) {
+                    STAttributeValue stAttributeValue = new STAttributeValue();
+                    stAttributeValue.setProduct(product);
+                    stAttributeValue.setStAttribute(stAttribute);
+                    stAttributeValue.setSupply(supply);
+                    stAttributeValue.setSupplyType(supply.getSupplyType());
+                    stAttributeValue.setValue(stAttributeValues.get(stAttributeValueIndex).getValue());
+
+                    stAttributeValueService.save(stAttributeValue);
+
+                    stAttributeValueIndex++;
+                }
+
+            }
+        }
+
+        return manufacturingOrder;
     }
 }
 

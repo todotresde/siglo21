@@ -2,14 +2,24 @@ package com.todotresde.sfi2.service.dto;
 
 import com.todotresde.sfi2.domain.ManufacturingOrder;
 import com.todotresde.sfi2.domain.Product;
+import com.todotresde.sfi2.domain.STAttributeValue;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ManufacturingOrderDTO {
+    private List<STAttributeValue> sTAttributeValues = new ArrayList<>();
     private ManufacturingOrder manufacturingOrder;
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
+
+
+    public List<STAttributeValue> getsTAttributeValues() {
+        return sTAttributeValues;
+    }
+
+    public void setsTAttributeValues(List<STAttributeValue> sTAttributeValues) {
+        this.sTAttributeValues = sTAttributeValues;
+    }
 
     public ManufacturingOrder getManufacturingOrder() {
         return manufacturingOrder;
@@ -19,11 +29,11 @@ public class ManufacturingOrderDTO {
         this.manufacturingOrder = manufacturingOrder;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }

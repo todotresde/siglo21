@@ -108,7 +108,13 @@
                         <td>
                             <div class="row">
                                 <div class="form-group col-md-3" *ngFor="let stAttribute of supply?.supplyType?.stattributes ;trackBy: trackId">
-                                    <input id="field_{{stAttribute.name}}" type="input" class="form-control" name="{{stAttribute.name}}" placeholder="{{stAttribute.name}}" required/>
+                                    <input 
+                                        id="attributeValues[{{productPosition}}][{{supplyPosition}}]['{{stAttribute.name}}']" 
+                                        name="attributeValues[{{productPosition}}][{{supplyPosition}}]['{{stAttribute.name}}']" 
+                                        type="input" class="form-control" 
+                                        placeholder="{{stAttribute.name}}" 
+                                        [(ngModel)]="attributeValues[productPosition][supplyPosition][stAttribute.name]"
+                                        required/>
                                 </div>
                             </div>
                         </td>

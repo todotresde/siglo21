@@ -9,4 +9,5 @@ export class SupplyType implements BaseEntity {
         public wsConfigurations?: BaseEntity[],
     ) {
     }
+
 }

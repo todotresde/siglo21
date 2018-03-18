@@ -42,6 +42,11 @@ export class SupplyTypeService {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
     }
 
+    convertSTAttributes(supplyType: SupplyType): SupplyType {
+        supplyType.stAttributes = supplyType['stattributes'].map((x) => Object.assign({}, x));
+        return supplyType;
+    }
+
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: SupplyType = this.convertItemFromServer(res.body);
         return res.clone({body});

@@ -25,6 +25,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public Product save(Product product) {
+        return this.productRepository.save(product);
+    }
+
     public List<SupplyType> getSupplyTypes(Product product) {
         List<SupplyType> supplyTypes = new ArrayList<SupplyType>();
 
