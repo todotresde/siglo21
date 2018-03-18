@@ -77,7 +77,13 @@
         <div class="table-responsive" *ngIf="products">
             <div *ngFor="let product of products ;trackBy: trackId; let productPosition = index;">
                 <div class="modal-header">
-                    <h5 class="modal-title" jhiTranslate="sfi2App.manufacturingOrder.products.product">Product</h5>
+                    <h5 class="modal-title" jhiTranslate="sfi2App.manufacturingOrder.products.product">Product {{index+1}}</h5>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Quantity" 
+                            id="moProducts[{{productPosition}}].quantity" 
+                            name="moProducts[{{productPosition}}].quantity" 
+                            [(ngModel)]="moProducts[productPosition].quantity" />
+                    </div>
                     <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(productPosition)" >
                         <span class="fa fa-remove"></span>
                         <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>

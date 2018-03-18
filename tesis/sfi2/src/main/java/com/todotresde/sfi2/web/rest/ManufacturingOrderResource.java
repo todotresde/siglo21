@@ -78,7 +78,7 @@ public class ManufacturingOrderResource {
             throw new BadRequestAlertException("A new manufacturingOrder cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
-        ManufacturingOrder result = manufacturingOrderService.saveWithProductsAndSTAttributeValues(manufacturingOrderDTO.getManufacturingOrder(), manufacturingOrderDTO.getProducts(), manufacturingOrderDTO.getsTAttributeValues());
+        ManufacturingOrder result = manufacturingOrderService.saveWithProductsAndSTAttributeValues(manufacturingOrderDTO.getManufacturingOrder(), manufacturingOrderDTO.getmOProducts(), manufacturingOrderDTO.getProducts(), manufacturingOrderDTO.getsTAttributeValues());
         return ResponseEntity.created(new URI("/api/manufacturing-orders/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -130,6 +130,20 @@ public class ManufacturingOrderResource {
         log.debug("REST request to get ManufacturingOrder : {}", id);
         ManufacturingOrder manufacturingOrder = manufacturingOrderRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(manufacturingOrder));
+    }
+
+    /**
+     * GET  /manufacturing-orders/:id/products : get the "id" manufacturingOrder.
+     *
+     * @param id the id of the manufacturingOrder to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the manufacturingOrder, or with status 404 (Not Found)
+     */
+    @GetMapping("/manufacturing-orders/{id}/products")
+    @Timed
+    public ResponseEntity<ManufacturingOrderDTO> getManufacturingOrderWithProducts(@PathVariable Long id) {
+        log.debug("REST request to get ManufacturingOrderDTO : {}", id);
+        ManufacturingOrderDTO manufacturingOrderDTO = manufacturingOrderService.findOneFull(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(manufacturingOrderDTO));
     }
 
     /**

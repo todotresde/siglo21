@@ -28,7 +28,7 @@ export class ManufacturingOrderPopupService {
             }
 
             if (id) {
-                this.manufacturingOrderService.find(id)
+                this.manufacturingOrderService.findFull(id)
                     .subscribe((manufacturingOrderResponse: HttpResponse<ManufacturingOrder>) => {
                         const manufacturingOrder: ManufacturingOrder = manufacturingOrderResponse.body;
                         manufacturingOrder.orderDate = this.datePipe

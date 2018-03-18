@@ -29,7 +29,8 @@
             "products": {
                 "product": "Product",
                 "products": "Products",
-                "add.product": "Add Product" 
+                "add.product": "Add Product",
+                "quantity": "Quantity"
             },
             "supplies": {
                 "supply": "Supply",

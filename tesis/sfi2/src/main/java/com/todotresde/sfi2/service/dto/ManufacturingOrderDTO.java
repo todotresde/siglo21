@@ -1,5 +1,6 @@
 package com.todotresde.sfi2.service.dto;
 
+import com.todotresde.sfi2.domain.MOProduct;
 import com.todotresde.sfi2.domain.ManufacturingOrder;
 import com.todotresde.sfi2.domain.Product;
 import com.todotresde.sfi2.domain.STAttributeValue;
@@ -9,9 +10,17 @@ import java.util.List;
 
 public class ManufacturingOrderDTO {
     private List<STAttributeValue> sTAttributeValues = new ArrayList<>();
+    private List<MOProduct> mOProducts = new ArrayList<>();
     private ManufacturingOrder manufacturingOrder;
     private List<Product> products = new ArrayList<>();
 
+    public List<MOProduct> getmOProducts() {
+        return mOProducts;
+    }
+
+    public void setmOProducts(List<MOProduct> mOProducts) {
+        this.mOProducts = mOProducts;
+    }
 
     public List<STAttributeValue> getsTAttributeValues() {
         return sTAttributeValues;

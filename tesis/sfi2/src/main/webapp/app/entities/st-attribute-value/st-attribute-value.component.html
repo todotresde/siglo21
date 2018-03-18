@@ -17,7 +17,8 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="sfi2App.sTAttributeValue.value">Value 1111</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.value">Value</span></th>
+            <th><span jhiTranslate="sfi2App.sTAttributeValue.manufactringOrder">Manufacturing Order</span></th>
             <th><span jhiTranslate="sfi2App.sTAttributeValue.product">Product</span></th>
             <th><span jhiTranslate="sfi2App.sTAttributeValue.supply">Supply</span></th>
             <th><span jhiTranslate="sfi2App.sTAttributeValue.supplyType">Supply Type</span></th>
@@ -29,6 +30,11 @@
             <tr *ngFor="let sTAttributeValue of sTAttributeValues ;trackBy: trackId">
                 <td><a [routerLink]="['../st-attribute-value', sTAttributeValue.id ]">{{sTAttributeValue.id}}</a></td>
                 <td>{{sTAttributeValue.value}}</td>
+                <td>
+                    <div *ngIf="sTAttributeValue.manufacturingOrder">
+                        <a [routerLink]="['../manufacturing-order', sTAttributeValue.manufacturingOrder?.id ]" >{{sTAttributeValue.manufacturingOrder?.id}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="sTAttributeValue.product">
                         <a [routerLink]="['../product', sTAttributeValue.product?.id ]" >{{sTAttributeValue.product?.id}}</a>

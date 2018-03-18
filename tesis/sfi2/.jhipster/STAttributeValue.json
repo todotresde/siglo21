@@ -25,6 +25,12 @@
             "relationshipName": "stAttribute",
             "otherEntityName": "stAttribute",
             "otherEntityField": "id"
+        },{
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "manufacturingOrder",
+            "otherEntityName": "manufacturingOrder",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

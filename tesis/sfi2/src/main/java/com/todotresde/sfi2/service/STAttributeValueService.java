@@ -1,9 +1,6 @@
 package com.todotresde.sfi2.service;
 
-import com.todotresde.sfi2.domain.Product;
-import com.todotresde.sfi2.domain.STAttributeValue;
-import com.todotresde.sfi2.domain.Supply;
-import com.todotresde.sfi2.domain.SupplyType;
+import com.todotresde.sfi2.domain.*;
 import com.todotresde.sfi2.repository.ProductRepository;
 import com.todotresde.sfi2.repository.STAttributeValueRepository;
 import org.slf4j.Logger;
@@ -31,6 +28,10 @@ public class STAttributeValueService {
 
     public STAttributeValue save(STAttributeValue stAttributeValue) {
         return this.stAttributeValueRepository.save(stAttributeValue);
+    }
+
+    public List<STAttributeValue> getByManufacturingOrder(ManufacturingOrder manufacturingOrder) {
+        return this.stAttributeValueRepository.findByManufacturingOrder(manufacturingOrder);
     }
 
 }

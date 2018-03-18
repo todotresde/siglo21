@@ -10,6 +10,7 @@ import { STAttributeValue } from './st-attribute-value.model';
 import { STAttributeValuePopupService } from './st-attribute-value-popup.service';
 import { STAttributeValueService } from './st-attribute-value.service';
 import { Product, ProductService } from '../product';
+import { ManufacturingOrder, ManufacturingOrderService } from '../manufacturing-order';
 import { Supply, SupplyService } from '../supply';
 import { SupplyType, SupplyTypeService } from '../supply-type';
 import { STAttribute, STAttributeService } from '../st-attribute';
@@ -23,6 +24,8 @@ export class STAttributeValueDialogComponent implements OnInit {
     sTAttributeValue: STAttributeValue;
     isSaving: boolean;
 
+    manufacturingOrders: ManufacturingOrder[];
+
     products: Product[];
 
     supplies: Supply[];
@@ -35,6 +38,7 @@ export class STAttributeValueDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private sTAttributeValueService: STAttributeValueService,
+        private manufacturingOrderService: ManufacturingOrderService,
         private productService: ProductService,
         private supplyService: SupplyService,
         private supplyTypeService: SupplyTypeService,
@@ -45,6 +49,8 @@ export class STAttributeValueDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.manufacturingOrderService.query()
+            .subscribe((res: HttpResponse<Product[]>) => { this.manufacturingOrders = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productService.query()
             .subscribe((res: HttpResponse<Product[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.supplyService.query()
@@ -87,6 +93,10 @@ export class STAttributeValueDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackManufacturingOrderById(index: number, item: ManufacturingOrder) {
+        return item.id;
     }
 
     trackProductById(index: number, item: Product) {

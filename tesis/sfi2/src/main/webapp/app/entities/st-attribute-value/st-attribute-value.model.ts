@@ -8,6 +8,7 @@ export class STAttributeValue implements BaseEntity {
         public supply?: BaseEntity,
         public supplyType?: BaseEntity,
         public stAttribute?: BaseEntity,
+        public manufacturingOrder?: BaseEntity,
     ) {
     }
 }

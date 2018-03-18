@@ -8,6 +8,12 @@
     -->
     <changeSet id="20180312131753-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="manufacturing_order_id"
+                                 baseTableName="st_attribute_value"
+                                 constraintName="fk_stattribute_value_manufacturing_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="manufacturing_order"/>
+
         <addForeignKeyConstraint baseColumnNames="product_id"
                                  baseTableName="st_attribute_value"
                                  constraintName="fk_stattribute_value_product_id"

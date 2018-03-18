@@ -43,6 +43,10 @@ public class STAttributeValue implements Serializable {
     @NotNull
     private STAttribute stAttribute;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    private ManufacturingOrder manufacturingOrder;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -108,13 +112,26 @@ public class STAttributeValue implements Serializable {
         return stAttribute;
     }
 
+    public void setStAttribute(STAttribute stAttribute) {
+        this.stAttribute = stAttribute;
+    }
+
     public STAttributeValue stAttribute(STAttribute stAttribute) {
         this.stAttribute = stAttribute;
         return this;
     }
 
-    public void setStAttribute(STAttribute stAttribute) {
-        this.stAttribute = stAttribute;
+    public ManufacturingOrder getManufacturingOrder() {
+        return manufacturingOrder;
+    }
+
+    public STAttributeValue manufacturingOrder(ManufacturingOrder manufacturingOrder) {
+        this.manufacturingOrder = manufacturingOrder;
+        return this;
+    }
+
+    public void setManufacturingOrder(ManufacturingOrder manufacturingOrder) {
+        this.manufacturingOrder = manufacturingOrder;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

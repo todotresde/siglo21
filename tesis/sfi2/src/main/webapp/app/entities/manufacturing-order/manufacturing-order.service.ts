@@ -6,7 +6,9 @@ import { SERVER_API_URL } from '../../app.constants';
 import { JhiDateUtils } from 'ng-jhipster';
 
 import { ManufacturingOrder } from './manufacturing-order.model';
+import { ManufacturingOrderDTO } from '../manufacturing-order-dto/manufacturing-order-dto.model';
 import { createRequestOption } from '../../shared';
+import { MOProduct } from '../mo-product/mo-product.model';
 import { Product } from '../product/product.model';
 import { STAttributeValue } from '../st-attribute-value/st-attribute-value.model';
 
@@ -25,8 +27,8 @@ export class ManufacturingOrderService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    fullCreate(manufacturingOrder: ManufacturingOrder, products: Product[], stAttributeValues: STAttributeValue[]): Observable<EntityResponseType> {
-        const copy = this.convertMOAndProductsAndSTAttributeValues(manufacturingOrder, products, stAttributeValues);
+    fullCreate(manufacturingOrder: ManufacturingOrder, moProducts: MOProduct[], products: Product[], stAttributeValues: STAttributeValue[]): Observable<EntityResponseType> {
+        const copy = this.convertMOAndProductsAndSTAttributeValues(manufacturingOrder, moProducts, products, stAttributeValues);
         return this.http.post<ManufacturingOrder>(this.resourceUrl + '/products', copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
@@ -37,14 +39,19 @@ export class ManufacturingOrderService {
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    fullUpdate(manufacturingOrder: ManufacturingOrder, products: Product[], stAttributeValues: STAttributeValue[]): Observable<EntityResponseType> {
-        const copy = this.convertMOAndProductsAndSTAttributeValues(manufacturingOrder, products, stAttributeValues);
+    fullUpdate(manufacturingOrder: ManufacturingOrder, moProducts: MOProduct[], products: Product[], stAttributeValues: STAttributeValue[]): Observable<EntityResponseType> {
+        const copy = this.convertMOAndProductsAndSTAttributeValues(manufacturingOrder, moProducts, products, stAttributeValues);
         return this.http.put<ManufacturingOrder>(this.resourceUrl + '/products', copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<ManufacturingOrder>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    findFull(id: number): Observable<EntityResponseType> {
+        return this.http.get<ManufacturingOrderDTO>(`${this.resourceUrl}/${id}/products`, { observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
@@ -100,13 +107,20 @@ export class ManufacturingOrderService {
     /**
      * Convert a ManufacturingOrder and Products to a JSON which can be sent to the server.
      */
-    private convertMOAndProductsAndSTAttributeValues(manufacturingOrder: ManufacturingOrder, products: Product[], stAttributeValues: STAttributeValue[]): any {
+    private convertMOAndProductsAndSTAttributeValues(
+        manufacturingOrder: ManufacturingOrder,
+        moProducts: MOProduct[],
+        products: Product[],
+        stAttributeValues: STAttributeValue[]
+    ): any {
         const copyMO: ManufacturingOrder = this.convert(manufacturingOrder);
+        const copyMOProducts: MOProduct[] = moProducts;
         const copyProducts: Product[] = products;
         const copySTAttributeValues: STAttributeValue[] = stAttributeValues;
         const copy: any = {};
 
         copy['manufacturingOrder'] = copyMO;
+        copy['mOProducts'] = copyMOProducts;
         copy['products'] = copyProducts;
         copy['sTAttributeValues'] = copySTAttributeValues;
 

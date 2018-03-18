@@ -25,6 +25,13 @@
         </div>
 
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.manufacturingOrder" for="field_manufacturingOrder">Manufacturing Order</label>
+            <select class="form-control" id="field_manufacturingOrder" name="manufacturingOrder" [(ngModel)]="sTAttributeValue.manufacturingOrder"  required>
+                <option *ngIf="!editForm.value.manufacturingOrder" [ngValue]="null" selected></option>
+                <option [ngValue]="manufacturingOrderOption.id === sTAttributeValue.manufacturingOrder?.id ? sTAttributeValue.manufacturingOrder : manufacturingOrderOption" *ngFor="let manufacturingOrderOption of manufacturingOrders; trackBy: trackManufacturingOrderById">{{manufacturingOrderOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="sfi2App.sTAttributeValue.product" for="field_product">Product</label>
             <select class="form-control" id="field_product" name="product" [(ngModel)]="sTAttributeValue.product"  required>
                 <option *ngIf="!editForm.value.product" [ngValue]="null" selected></option>

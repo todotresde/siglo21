@@ -16,6 +16,7 @@ import { SupplyType } from '../supply-type/supply-type.model';
 import { SupplyTypeService } from '../supply-type/supply-type.service';
 import { STAttribute } from '../st-attribute/st-attribute.model';
 import { STAttributeValue } from '../st-attribute-value/st-attribute-value.model';
+import { MOProduct } from '../mo-product/mo-product.model';
 
 @Component({
     selector: 'jhi-manufacturing-order-full-dialog',
@@ -25,6 +26,7 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
 
     manufacturingOrder: ManufacturingOrder;
     isSaving: boolean;
+    moProducts: MOProduct[] = [];
     products: Product[] = [];
     supplies: Supply[];
     currentSupply: Supply;
@@ -55,16 +57,18 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.manufacturingOrder.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.manufacturingOrderService.fullUpdate(this.manufacturingOrder, this.products, this.stAttributeValues));
+                this.manufacturingOrderService.fullUpdate(this.manufacturingOrder, this.moProducts, this.products, this.stAttributeValues));
         } else {
             this.subscribeToSaveResponse(
-                this.manufacturingOrderService.fullCreate(this.manufacturingOrder, this.products, this.stAttributeValues));
+                this.manufacturingOrderService.fullCreate(this.manufacturingOrder, this.moProducts, this.products, this.stAttributeValues));
         }
     }
 
     addProduct() {
+        const moProduct: MOProduct = new MOProduct();
         const product: Product = new Product();
         product.supplies = [];
+        this.moProducts.push(moProduct);
         this.products.push(product);
         this.addSupply(product);
     }
@@ -74,6 +78,7 @@ export class ManufacturingOrderFullDialogComponent implements OnInit {
     }
 
     deleteProduct(productPosition: number) {
+        this.moProducts.splice(productPosition, 1);
         this.products.splice(productPosition, 1);
         this.attributeValues.splice(productPosition, 1);
     }

@@ -20,7 +20,8 @@
             "product": "Product",
             "supply": "Supply",
             "supplyType": "Supply Type",
-            "stAttribute": "St Attribute"
+            "stAttribute": "St Attribute",
+            "manufacturingOrder": "Manufacturing Order"
         }
     }
 }
