@@ -9,7 +9,7 @@ entity Line{
     name String required
 }
 
-entity WSConfiguration{
+entity WorkStationConfig{
     first Boolean,
     last Boolean
 }
@@ -27,9 +27,8 @@ entity ManufacturingOrder{
     name String
 }
 
-entity MOProduct{
+entity ManuOrderProduct{
     quantity Integer required
-    
 }
 
 entity Supply{
@@ -40,11 +39,11 @@ entity SupplyType{
     name String required
 }
 
-entity STAttribute{
+entity SupplyTypeAttr{
     name String required
 }
 
-entity STAttributeValue{
+entity SupplyTypeAttrValue{
     name String required
 }
 
@@ -56,7 +55,7 @@ entity ProductType{
     name String required
 }
 
-entity PTAttribute{
+entity ProductTypeAttr{
     name String required
 }
 
@@ -70,38 +69,38 @@ entity Tracer{
 }
 
 relationship ManyToOne {
-    Tracer{wsConfiguration required} to WSConfiguration,
+    Tracer{workStationConfig required} to WorkStationConfig,
     Tracer{manufacturingOrder required} to ManufacturingOrder,
-    Tracer{moProduct required} to MOProduct,
+    Tracer{manuOrderProduct required} to ManuOrderProduct,
     Tracer{line required} to Line,
     Tracer{workStation required} to WorkStation,
     Tracer{prevWorkStation} to WorkStation,
     Tracer{nextWorkStation} to WorkStation,
     Tracer{nextTracer} to Tracer,
     Tracer{prevTracer} to Tracer,
-    MOProduct{manufacturingOrder required} to ManufacturingOrder,
-    WSConfiguration{workStation required} to WorkStation,
-    STAttributeValue{product required} to Product,
-    STAttributeValue{supply required} to Supply,
-    STAttributeValue{supplyType required} to SupplyType,
-    STAttributeValue{stAttribute required} to STAttribute,
-    Product{moProduct} to MOProduct
+    ManuOrderProduct{manufacturingOrder required} to ManufacturingOrder,
+    WorkStationConfig{workStation required} to WorkStation,
+    SupplyTypeAttrValue{product required} to Product,
+    SupplyTypeAttrValue{supply required} to Supply,
+    SupplyTypeAttrValue{supplyType required} to SupplyType,
+    SupplyTypeAttrValue{supplyTypeAttr required} to SupplyTypeAttr,
+    Product{manuOrderProduct} to ManuOrderProduct
 }
 
 relationship OneToMany {
-    Line{wsConfiguration} to WSConfiguration{line required},
+    Line{workStationConfig} to WorkStationConfig{line required},
     SupplyType{supply} to Supply{supplyType required},
     ProductType{product} to Product{productType required}
 }
 
 relationship ManyToMany {
-    WSConfiguration{supplyType} to SupplyType{wsConfiguration},
-    SupplyType{stAttribute} to STAttribute{supplyType},
+    WorkStationConfig{supplyType} to SupplyType{workStationConfig},
+    SupplyType{supplyTypeAttr} to SupplyTypeAttr{supplyType},
     ProductType{ptAttribute} to PTAttribute{productType},
     Product{supply} to Supply{product},
-    WSConfiguration{employee} to Employee{wsConfiguration},
-    WSConfiguration{prevWorkStation} to WorkStation{prevWSConfiguration},
-    WSConfiguration{nextWorkStation} to WorkStation{nextWSConfiguration}
+    WorkStationConfig{employee} to Employee{workStationConfig},
+    WorkStationConfig{prevWorkStation} to WorkStation{prevWorkStationConfig},
+    WorkStationConfig{nextWorkStation} to WorkStation{nextWorkStationConfig}
 }
 
 
